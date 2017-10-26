@@ -1,23 +1,21 @@
 //
-//  SettingTableViewController.swift
+//  SettingItemTableViewController.swift
 //  SimpleDocbase
 //
-//  Created by jeon sangjun on 2017/10/25.
+//  Created by jeon sangjun on 2017/10/26.
 //  Copyright © 2017年 jeon sangjun. All rights reserved.
 //
 
 import UIKit
 
-class SettingTableViewController: UITableViewController {
+class SettingItemTableViewController: UITableViewController {
 
+    var settingMenu: SettingMenu?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.title = settingMenu?.name
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,17 +30,17 @@ class SettingTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowConut = settingData.settings.count
-        return rowConut
+        guard let rowCount = settingMenu?.service?.count else { return 0 }
+        return rowCount
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingItemCell", for: indexPath)
 
-        let setting = settingData.settings[indexPath.row]
-        cell.textLabel?.text = setting.name
+        guard let service = settingMenu?.service?[indexPath.row] else { return cell }
 
+        cell.textLabel?.text = service.name
         return cell
     }
     
@@ -82,21 +80,14 @@ class SettingTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "SettingItemSegue" {
-            if let destination = segue.destination as? SettingItemTableViewController {
-                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.settingMenu = settingData.settings[selectedIndex] as SettingMenu
-                }
-            }
-        }
-        
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
     }
-    
+    */
 
 }
