@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DAC4E54C1FA1EB0C00301844 /* SettingItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
 		DAF6B9521FA06F090042BEC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9511FA06F090042BEC0 /* ViewController.swift */; };
 		DAF6B9551FA06F090042BEC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF6B9531FA06F090042BEC0 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemTableViewController.swift; sourceTree = "<group>"; };
 		DAF6B94C1FA06F090042BEC0 /* SimpleDocbase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDocbase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF6B9511FA06F090042BEC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				DAF6B9511FA06F090042BEC0 /* ViewController.swift */,
 				DAF6B9691FA090BC0042BEC0 /* GroupTableViewController.swift */,
 				DAF6B9671FA082EC0042BEC0 /* SettingTableViewController.swift */,
+				DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */,
 				DAF6B9531FA06F090042BEC0 /* Main.storyboard */,
 				DAF6B9561FA06F090042BEC0 /* Assets.xcassets */,
 				DAF6B9581FA06F090042BEC0 /* LaunchScreen.storyboard */,
@@ -152,6 +155,7 @@
 				DAF6B9621FA07F110042BEC0 /* SettingMenu.swift in Sources */,
 				DAF6B9521FA06F090042BEC0 /* ViewController.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
+				DAC4E54C1FA1EB0C00301844 /* SettingItemTableViewController.swift in Sources */,
 				DAF6B9681FA082EC0042BEC0 /* SettingTableViewController.swift in Sources */,
 				DAF6B96A1FA090BC0042BEC0 /* GroupTableViewController.swift in Sources */,
 			);
