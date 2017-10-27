@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		DAC4E54C1FA1EB0C00301844 /* SettingItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */; };
+		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
+		DAC4E5541FA2F30F00301844 /* TeamList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5531FA2F30F00301844 /* TeamList.swift */; };
+		DAC4E5561FA3241600301844 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5551FA3241600301844 /* GroupList.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
 		DAF6B9521FA06F090042BEC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9511FA06F090042BEC0 /* ViewController.swift */; };
 		DAF6B9551FA06F090042BEC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF6B9531FA06F090042BEC0 /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 
 /* Begin PBXFileReference section */
 		DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemTableViewController.swift; sourceTree = "<group>"; };
+		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		DAC4E5531FA2F30F00301844 /* TeamList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamList.swift; sourceTree = "<group>"; };
+		DAC4E5551FA3241600301844 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
 		DAF6B94C1FA06F090042BEC0 /* SimpleDocbase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDocbase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAF6B9511FA06F090042BEC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +51,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DAC4E5571FA32B8800301844 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DAC4E5531FA2F30F00301844 /* TeamList.swift */,
+				DAC4E5551FA3241600301844 /* GroupList.swift */,
+				DAF6B9631FA07FFD0042BEC0 /* SettingData.swift */,
+				DAF6B9611FA07F110042BEC0 /* SettingMenu.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DAC4E5581FA32B9300301844 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				DAC4E5511FA2F24D00301844 /* Request.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		DAC4E5591FA32B9800301844 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DAF6B9511FA06F090042BEC0 /* ViewController.swift */,
+				DAF6B9691FA090BC0042BEC0 /* GroupTableViewController.swift */,
+				DAF6B9671FA082EC0042BEC0 /* SettingTableViewController.swift */,
+				DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		DAF6B9431FA06F090042BEC0 = {
 			isa = PBXGroup;
 			children = (
@@ -64,13 +100,10 @@
 		DAF6B94E1FA06F090042BEC0 /* SimpleDocbase */ = {
 			isa = PBXGroup;
 			children = (
+				DAC4E5591FA32B9800301844 /* Controller */,
+				DAC4E5581FA32B9300301844 /* Request */,
+				DAC4E5571FA32B8800301844 /* Model */,
 				DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */,
-				DAF6B9631FA07FFD0042BEC0 /* SettingData.swift */,
-				DAF6B9611FA07F110042BEC0 /* SettingMenu.swift */,
-				DAF6B9511FA06F090042BEC0 /* ViewController.swift */,
-				DAF6B9691FA090BC0042BEC0 /* GroupTableViewController.swift */,
-				DAF6B9671FA082EC0042BEC0 /* SettingTableViewController.swift */,
-				DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */,
 				DAF6B9531FA06F090042BEC0 /* Main.storyboard */,
 				DAF6B9561FA06F090042BEC0 /* Assets.xcassets */,
 				DAF6B9581FA06F090042BEC0 /* LaunchScreen.storyboard */,
@@ -152,8 +185,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF6B9641FA07FFD0042BEC0 /* SettingData.swift in Sources */,
+				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
+				DAC4E5541FA2F30F00301844 /* TeamList.swift in Sources */,
 				DAF6B9621FA07F110042BEC0 /* SettingMenu.swift in Sources */,
 				DAF6B9521FA06F090042BEC0 /* ViewController.swift in Sources */,
+				DAC4E5561FA3241600301844 /* GroupList.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
 				DAC4E54C1FA1EB0C00301844 /* SettingItemTableViewController.swift in Sources */,
 				DAF6B9681FA082EC0042BEC0 /* SettingTableViewController.swift in Sources */,

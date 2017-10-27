@@ -11,17 +11,39 @@ import UIKit
 class GroupTableViewController: UITableViewController {
 
     
+    // MARK: Properties
+    let request: Request = Request()
+    
+    
+    @IBAction func testButton(_ sender: Any) {
+        
+        request.getTeamList()
+        
+    }
+    
     // UIRefreshControl
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        //FIXME: viewDidLoad()が呼ばれるとき、基本のチームのdomain(配列の0番目の値)を貰えたいです。
+        if request.teamDomain == nil {
+            
+            // 関数を呼び出してteamDomainsの配列を作ってdefaultDomainを作る用です。
+            request.getTeamList()
+            
+            
+            if let defaultDomain = request.teamDomains.first {
+                request.groupList(domain: defaultDomain)
+            }
+            
+        } else {
+            
+            //FIXME: 後で設定でチームを選択してから選択されたチームのdomainを持ってGroupList()に入れて選択されたチームのGroupリストを見せる。
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
