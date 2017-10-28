@@ -8,15 +8,10 @@
 
 import Foundation
 
-protocol RequestDelegate {
-    func didRecivedTeamList(teams: Array<String>)
-}
-
 class Request {
     
     // MARK: Properties
     let session: URLSession = URLSession.shared
-    var delegate: RequestDelegate?
     var teamDomain: String?
     var teamDomains = [String]()
     var groupNames = [String]()
