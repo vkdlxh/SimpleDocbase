@@ -17,7 +17,10 @@ class GroupTableViewController: UITableViewController {
     
     @IBAction func testButton(_ sender: Any) {
         
-        request.getTeamList()
+        //結果はクロージャーで受け取る
+        request.getTeamList { (domains) in
+            print(domains)
+        }
         
     }
     
@@ -31,7 +34,9 @@ class GroupTableViewController: UITableViewController {
         if request.teamDomain == nil {
             
             // 関数を呼び出してteamDomainsの配列を作ってdefaultDomainを作る用です。
-            request.getTeamList()
+            request.getTeamList { (domains) in
+                print(domains)
+            }
             
             
             if let defaultDomain = request.teamDomains.first {
