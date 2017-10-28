@@ -17,6 +17,10 @@ class GroupTableViewController: UITableViewController {
     
     @IBAction func testButton(_ sender: Any) {
         
+        //サーバーへデータをリクエスト処理を委任。
+        //結果はデリゲートで取得する
+        request.delegate = self
+        
         request.getTeamList()
         
     }
@@ -118,4 +122,13 @@ class GroupTableViewController: UITableViewController {
     }
     */
 
+}
+
+//MARK: RequestDelegate
+extension GroupTableViewController : RequestDelegate {
+    
+    func didRecivedTeamList(teams: Array<String>) {
+        //レスポンス結果を出力
+        print(teams)
+    }
 }
