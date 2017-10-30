@@ -22,15 +22,3 @@ struct GroupList {
     }
 }
 
-struct Group {
-    var id: Int
-    var name: String
-    
-    init?(group: [String: Any]) {
-        guard let id = group["id"] as? Int else { return nil }
-        guard let name = group["name"] as? String else { return nil }
-        
-        self.id = id
-        self.name = name
-    }
-}

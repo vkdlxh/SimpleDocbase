@@ -22,15 +22,4 @@ struct TeamList {
     }
 }
 
-struct Team {
-    var domain: String
-    var name: String
-    
-    init?(team: [String: String]) {
-        guard let domain = team["domain"] else { return nil }
-        guard let name = team["name"] else { return nil }
-        
-        self.domain = domain
-        self.name = name
-    }
-}
+

@@ -17,12 +17,3 @@ class SettingMenu{
     }
 }
 
-class SettingItem {
-    let name: String
-    let item: String
-    
-    init(name: String, item: String) {
-        self.name = name
-        self.item = item
-    }
-}

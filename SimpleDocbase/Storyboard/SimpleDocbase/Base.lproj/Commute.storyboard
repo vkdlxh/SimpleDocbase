@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yrb-ko-aZI">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--勤怠記録-->
+        <scene sceneID="Pvb-Kh-6gh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yrb-ko-aZI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="勤怠記録" id="z1q-hG-1IL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tyw-C3-0eB">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lXW-oG-Y8a" kind="relationship" relationship="rootViewController" id="xa2-hP-9o1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HNR-H8-W4i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="476" y="81"/>
+        </scene>
+        <!--Commute View Controller-->
+        <scene sceneID="lrU-m5-uhr">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-nDy-Po-9Je" id="lXW-oG-Y8a" userLabel="Commute View Controller" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bKh-Aa-lsL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9tH-V7-vh3"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="勤怠記録" id="o2f-03-BYc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Pg-b4-IY1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1265" y="81"/>
+        </scene>
+    </scenes>
+</document>

@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DAC4E54C1FA1EB0C00301844 /* SettingItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */; };
+		DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A7E1FA6D3B500668EC9 /* Group.swift */; };
+		DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A801FA6D3DE00668EC9 /* Team.swift */; };
+		DA2D5A831FA6E74700668EC9 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A821FA6E74700668EC9 /* SettingItem.swift */; };
+		DA2D5A8B1FA6EA6600668EC9 /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A8A1FA6EA6600668EC9 /* Group.storyboard */; };
+		DA2D5A8E1FA6EAE500668EC9 /* Commute.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A8C1FA6EAE500668EC9 /* Commute.storyboard */; };
+		DA2D5A901FA6EB1A00668EC9 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A8F1FA6EB1A00668EC9 /* Setting.storyboard */; };
+		DAC4E54C1FA1EB0C00301844 /* SettingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E54B1FA1EB0C00301844 /* SettingItemViewController.swift */; };
 		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
 		DAC4E5541FA2F30F00301844 /* TeamList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5531FA2F30F00301844 /* TeamList.swift */; };
 		DAC4E5561FA3241600301844 /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5551FA3241600301844 /* GroupList.swift */; };
@@ -18,12 +24,18 @@
 		DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF6B9581FA06F090042BEC0 /* LaunchScreen.storyboard */; };
 		DAF6B9621FA07F110042BEC0 /* SettingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9611FA07F110042BEC0 /* SettingMenu.swift */; };
 		DAF6B9641FA07FFD0042BEC0 /* SettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9631FA07FFD0042BEC0 /* SettingData.swift */; };
-		DAF6B9681FA082EC0042BEC0 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9671FA082EC0042BEC0 /* SettingTableViewController.swift */; };
-		DAF6B96A1FA090BC0042BEC0 /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9691FA090BC0042BEC0 /* GroupTableViewController.swift */; };
+		DAF6B9681FA082EC0042BEC0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */; };
+		DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemTableViewController.swift; sourceTree = "<group>"; };
+		DA2D5A7E1FA6D3B500668EC9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		DA2D5A801FA6D3DE00668EC9 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		DA2D5A821FA6E74700668EC9 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
+		DA2D5A8A1FA6EA6600668EC9 /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
+		DA2D5A8D1FA6EAE500668EC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SimpleDocbase/Base.lproj/Commute.storyboard; sourceTree = "<group>"; };
+		DA2D5A8F1FA6EB1A00668EC9 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		DAC4E54B1FA1EB0C00301844 /* SettingItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItemViewController.swift; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAC4E5531FA2F30F00301844 /* TeamList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamList.swift; sourceTree = "<group>"; };
 		DAC4E5551FA3241600301844 /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
@@ -36,8 +48,8 @@
 		DAF6B95B1FA06F090042BEC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAF6B9611FA07F110042BEC0 /* SettingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingMenu.swift; sourceTree = "<group>"; };
 		DAF6B9631FA07FFD0042BEC0 /* SettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingData.swift; sourceTree = "<group>"; };
-		DAF6B9671FA082EC0042BEC0 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
-		DAF6B9691FA090BC0042BEC0 /* GroupTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
+		DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,13 +63,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA2D5A911FA6EBB200668EC9 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				DAF6B9531FA06F090042BEC0 /* Main.storyboard */,
+				DA2D5A8A1FA6EA6600668EC9 /* Group.storyboard */,
+				DA2D5A8C1FA6EAE500668EC9 /* Commute.storyboard */,
+				DA2D5A8F1FA6EB1A00668EC9 /* Setting.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
 		DAC4E5571FA32B8800301844 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				DAC4E5531FA2F30F00301844 /* TeamList.swift */,
+				DA2D5A801FA6D3DE00668EC9 /* Team.swift */,
 				DAC4E5551FA3241600301844 /* GroupList.swift */,
+				DA2D5A7E1FA6D3B500668EC9 /* Group.swift */,
 				DAF6B9631FA07FFD0042BEC0 /* SettingData.swift */,
 				DAF6B9611FA07F110042BEC0 /* SettingMenu.swift */,
+				DA2D5A821FA6E74700668EC9 /* SettingItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -74,9 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				DAF6B9511FA06F090042BEC0 /* ViewController.swift */,
-				DAF6B9691FA090BC0042BEC0 /* GroupTableViewController.swift */,
-				DAF6B9671FA082EC0042BEC0 /* SettingTableViewController.swift */,
-				DAC4E54B1FA1EB0C00301844 /* SettingItemTableViewController.swift */,
+				DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */,
+				DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */,
+				DAC4E54B1FA1EB0C00301844 /* SettingItemViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -100,11 +126,11 @@
 		DAF6B94E1FA06F090042BEC0 /* SimpleDocbase */ = {
 			isa = PBXGroup;
 			children = (
+				DA2D5A911FA6EBB200668EC9 /* Storyboard */,
 				DAC4E5591FA32B9800301844 /* Controller */,
 				DAC4E5581FA32B9300301844 /* Request */,
 				DAC4E5571FA32B8800301844 /* Model */,
 				DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */,
-				DAF6B9531FA06F090042BEC0 /* Main.storyboard */,
 				DAF6B9561FA06F090042BEC0 /* Assets.xcassets */,
 				DAF6B9581FA06F090042BEC0 /* LaunchScreen.storyboard */,
 				DAF6B95B1FA06F090042BEC0 /* Info.plist */,
@@ -171,9 +197,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2D5A8E1FA6EAE500668EC9 /* Commute.storyboard in Resources */,
+				DA2D5A8B1FA6EA6600668EC9 /* Group.storyboard in Resources */,
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
 				DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */,
 				DAF6B9551FA06F090042BEC0 /* Main.storyboard in Resources */,
+				DA2D5A901FA6EB1A00668EC9 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,22 +213,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
+				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
 				DAF6B9641FA07FFD0042BEC0 /* SettingData.swift in Sources */,
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
 				DAC4E5541FA2F30F00301844 /* TeamList.swift in Sources */,
+				DA2D5A831FA6E74700668EC9 /* SettingItem.swift in Sources */,
 				DAF6B9621FA07F110042BEC0 /* SettingMenu.swift in Sources */,
 				DAF6B9521FA06F090042BEC0 /* ViewController.swift in Sources */,
 				DAC4E5561FA3241600301844 /* GroupList.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
-				DAC4E54C1FA1EB0C00301844 /* SettingItemTableViewController.swift in Sources */,
-				DAF6B9681FA082EC0042BEC0 /* SettingTableViewController.swift in Sources */,
-				DAF6B96A1FA090BC0042BEC0 /* GroupTableViewController.swift in Sources */,
+				DAC4E54C1FA1EB0C00301844 /* SettingItemViewController.swift in Sources */,
+				DAF6B9681FA082EC0042BEC0 /* SettingViewController.swift in Sources */,
+				DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		DA2D5A8C1FA6EAE500668EC9 /* Commute.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA2D5A8D1FA6EAE500668EC9 /* Base */,
+			);
+			name = Commute.storyboard;
+			sourceTree = "<group>";
+		};
 		DAF6B9531FA06F090042BEC0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

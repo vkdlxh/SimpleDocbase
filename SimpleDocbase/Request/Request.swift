@@ -42,19 +42,13 @@ class Request {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
                         
                         if let teamList = TeamList(dict: json) {
-                            let domains = teamList.teams
                             
                             guard let delegate = self.delegate else {
                                 return;
                             }
                             
-                            //結果をデリゲートで渡す
                             self.delegate?.didRecivedTeamList(teams: teamList.teams)
                             
-                            //self.teamDomains = domains
-//                            if let firstDomain = self.teamDomains.first {
-//                                print(firstDomain)
-//                            }
                         }
                     }
                 } catch {

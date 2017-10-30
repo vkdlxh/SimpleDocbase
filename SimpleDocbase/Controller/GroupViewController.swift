@@ -1,21 +1,53 @@
 //
-//  SettingItemTableViewController.swift
+//  GroupViewController.swift
 //  SimpleDocbase
 //
-//  Created by jeon sangjun on 2017/10/26.
+//  Created by jeon sangjun on 2017/10/25.
 //  Copyright © 2017年 jeon sangjun. All rights reserved.
 //
 
 import UIKit
 
-class SettingItemTableViewController: UITableViewController {
+class GroupViewController: UITableViewController {
 
-    var settingMenu: SettingMenu?
+    
+    // MARK: Properties
+    let request: Request = Request()
+    
+    
+    @IBAction func testButton(_ sender: Any) {
+        
+        request.delegate = self
+        
+        request.getTeamList()
+        
+    }
+    
+    // UIRefreshControl
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = settingMenu?.name
+        
+        //FIXME: viewDidLoad()が呼ばれるとき、基本のチームのdomain(配列の0番目の値)を貰えたいです。
+        if request.teamDomain == nil {
+            
+            // 関数を呼び出してteamDomainsの配列を作ってdefaultDomainを作る用です。
+            request.delegate = self
+            
+            request.getTeamList()
+            
+            
+            if let defaultDomain = request.teamDomains.first {
+                request.groupList(domain: defaultDomain)
+            }
+            
+        } else {
+            
+            //FIXME: 後で設定でチームを選択してから選択されたチームのdomainを持ってGroupList()に入れて選択されたチームのGroupリストを見せる。
+            
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,24 +58,24 @@ class SettingItemTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        // #warning Incomplete implementation, return the number of sections
+        return 0
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let rowCount = settingMenu?.service?.count else { return 0 }
-        return rowCount
+        // #warning Incomplete implementation, return the number of rows
+        return 0
     }
 
-    
+    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        guard let service = settingMenu?.service?[indexPath.row] else { return cell }
+        // Configure the cell...
 
-        cell.textLabel?.text = service.name
         return cell
     }
-    
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -90,4 +122,14 @@ class SettingItemTableViewController: UITableViewController {
     }
     */
 
+}
+
+//MARK: RequestDelegate
+extension GroupViewController : RequestDelegate {
+    
+    func didRecivedTeamList(teams: Array<String>) {
+
+        print(teams)
+    }
+    
 }

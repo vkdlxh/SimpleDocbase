@@ -1,5 +1,5 @@
 //
-//  GroupTableViewController.swift
+//  SettingViewController.swift
 //  SimpleDocbase
 //
 //  Created by jeon sangjun on 2017/10/25.
@@ -8,46 +8,16 @@
 
 import UIKit
 
-class GroupTableViewController: UITableViewController {
+class SettingViewController: UITableViewController {
 
-    
-    // MARK: Properties
-    let request: Request = Request()
-    
-    
-    @IBAction func testButton(_ sender: Any) {
-        
-        //サーバーへデータをリクエスト処理を委任。
-        //結果はデリゲートで取得する
-        request.delegate = self
-        
-        request.getTeamList()
-        
-    }
-    
-    // UIRefreshControl
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //FIXME: viewDidLoad()が呼ばれるとき、基本のチームのdomain(配列の0番目の値)を貰えたいです。
-        if request.teamDomain == nil {
-            
-            // 関数を呼び出してteamDomainsの配列を作ってdefaultDomainを作る用です。
-            request.getTeamList()
-            
-            
-            if let defaultDomain = request.teamDomains.first {
-                request.groupList(domain: defaultDomain)
-            }
-            
-        } else {
-            
-            //FIXME: 後で設定でチームを選択してから選択されたチームのdomainを持ってGroupList()に入れて選択されたチームのGroupリストを見せる。
-            
-        }
-        
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,24 +28,24 @@ class GroupTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        let rowConut = settingData.settings.count
+        return rowConut
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath)
 
-        // Configure the cell...
+        let setting = settingData.settings[indexPath.row]
+        cell.textLabel?.text = setting.name
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -112,23 +82,21 @@ class GroupTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "SettingItemSegue" {
+            if let destination = segue.destination as? SettingItemViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.settingMenu = settingData.settings[selectedIndex] as SettingMenu
+                }
+            }
+        }
+        
     }
-    */
-
-}
-
-//MARK: RequestDelegate
-extension GroupTableViewController : RequestDelegate {
     
-    func didRecivedTeamList(teams: Array<String>) {
-        //レスポンス結果を出力
-        print(teams)
-    }
+
 }
