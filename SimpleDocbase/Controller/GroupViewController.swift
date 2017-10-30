@@ -8,13 +8,13 @@
 
 import UIKit
 
-class GroupViewController: UITableViewController {
+class GroupViewController: UIViewController {
 
     
     // MARK: Properties
     let request: Request = Request()
     
-    
+    // MARK: IBActions
     @IBAction func testButton(_ sender: Any) {
         
         request.delegate = self
@@ -25,7 +25,7 @@ class GroupViewController: UITableViewController {
     
     // UIRefreshControl
     
-    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,12 +57,12 @@ class GroupViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
     }
