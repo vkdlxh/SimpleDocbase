@@ -8,10 +8,15 @@
 
 import Foundation
 
+protocol RequestDelegate {
+    func didRecivedTeamList(teams: Array<String>)
+}
+
 class Request {
     
     // MARK: Properties
     let session: URLSession = URLSession.shared
+    var delegate: RequestDelegate?
     var teamDomain: String?
     var teamDomains = [String]()
     var groupNames = [String]()
@@ -22,12 +27,11 @@ class Request {
     enum MethodType: String {
         case get = "GET", post = "POST", delete = "DELETE", put = "PUT", patch = "PATCH"
     }
-
     
     // MARK: Internal Methods
-    func getTeamList() -> [String]? {
+    func getTeamList() {
         
-        guard let url = URL(string: "https://api.docbase.io/teams") else { return nil }
+        guard let url = URL(string: "https://api.docbase.io/teams") else { return }
     
         let request = settingRequest(url: url, httpMethod: .get)
     
@@ -40,8 +44,14 @@ class Request {
                         if let teamList = TeamList(dict: json) {
                             let domains = teamList.teams
                             
-                            self.teamDomains = domains
+                            guard let delegate = self.delegate else {
+                                return;
+                            }
                             
+                            //結果をデリゲートで渡す
+                            self.delegate?.didRecivedTeamList(teams: teamList.teams)
+                            
+                            //self.teamDomains = domains
 //                            if let firstDomain = self.teamDomains.first {
 //                                print(firstDomain)
 //                            }
@@ -52,7 +62,7 @@ class Request {
                 }
             }
         }.resume()
-        return teamDomains
+        
     }
     
     func groupList(domain: String) -> Void {
