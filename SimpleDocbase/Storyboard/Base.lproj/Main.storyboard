@@ -19,34 +19,14 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Mts-gv-c0G" kind="relationship" relationship="viewControllers" id="W1V-9P-nlY"/>
-                        <segue destination="v7s-IY-jNF" kind="relationship" relationship="viewControllers" id="WGR-LW-mqr"/>
-                        <segue destination="gw6-Bk-c2B" kind="relationship" relationship="viewControllers" id="ZlK-Sv-Kj7"/>
+                        <segue destination="S76-De-bWa" kind="relationship" relationship="viewControllers" id="kly-kq-QEj"/>
+                        <segue destination="VTz-11-5op" kind="relationship" relationship="viewControllers" id="0O6-OZ-qUJ"/>
+                        <segue destination="gw6-Bk-c2B" kind="relationship" relationship="viewControllers" id="BEs-7l-95q"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TL4-BS-5fJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-761" y="202"/>
-        </scene>
-        <!--Group-->
-        <scene sceneID="Oil-uS-Wsk">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Group" id="Mts-gv-c0G" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Zwv-gr-qz5"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lWa-hH-C0C" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="426" y="-85"/>
-        </scene>
-        <!--Commute-->
-        <scene sceneID="AoV-wQ-KlR">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Commute" id="v7s-IY-jNF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="tjf-g1-8bN"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="r1T-2c-nDU" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="409" y="201"/>
         </scene>
         <!--Setting-->
         <scene sceneID="TKe-Jr-ggm">
@@ -56,7 +36,27 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hfq-jp-Uhs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="421" y="489"/>
+            <point key="canvasLocation" x="-18" y="446"/>
+        </scene>
+        <!--Commute-->
+        <scene sceneID="PMM-ys-zIc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Commute" id="VTz-11-5op" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="r8d-Tc-rfe"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQw-Yp-5aq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1" y="201"/>
+        </scene>
+        <!--Group-->
+        <scene sceneID="jfh-Vk-SFI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Group" id="S76-De-bWa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="JRM-Mz-cLT"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mcb-f0-MNA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-17" y="-74"/>
         </scene>
     </scenes>
 </document>
