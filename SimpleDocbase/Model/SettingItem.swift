@@ -1,21 +1,12 @@
 //
-//  SettingMenu.swift
+//  SettingItem.swift
 //  SimpleDocbase
 //
-//  Created by jeon sangjun on 2017/10/25.
+//  Created by jeonsangjun on 2017/10/30.
 //  Copyright © 2017年 jeon sangjun. All rights reserved.
 //
 
 import Foundation
-
-class SettingMenu{
-    let name: String
-    var service: [SettingItem]?
-    
-    init(name: String) {
-        self.name = name
-    }
-}
 
 class SettingItem {
     let name: String
