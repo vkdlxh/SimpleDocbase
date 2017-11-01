@@ -15,7 +15,7 @@ class SettingItemViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var resultTokenKey: UILabel!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -28,16 +28,24 @@ class SettingItemViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        let userDefaults = UserDefaults.standard
+        
+        if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
+            resultTokenKey.text = tokenKey
+        }
+    }
 
     /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+       
     }
-    */
+ */
 
 }
 
