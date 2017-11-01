@@ -9,7 +9,7 @@
 import UIKit
 
 class SettingViewController: UIViewController {
-
+    
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,7 +34,7 @@ class SettingViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "SettingItemSegue" {
+       if segue.identifier == "SettingItem" {
             if let destination = segue.destination as? SettingItemViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.settingMenu = settingData.settings[selectedIndex] as SettingMenu
@@ -68,3 +68,20 @@ extension SettingViewController: UITableViewDataSource {
     }
     
 }
+
+
+
+//extension SettingItemViewController: RequestGroupDelegate {
+//    func getGroupList(dict: [[String : Any]]) -> [String] {
+//        var groups = [String]()
+//            
+//        for group in dict {
+//            if let group = Group(group:group) {
+//                    
+//                groups.append(group.name)
+//            }
+//        }
+//    }
+//    
+//}
+

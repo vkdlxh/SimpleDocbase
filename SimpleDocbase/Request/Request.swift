@@ -10,22 +10,29 @@ import Foundation
 
 protocol RequestDelegate {
     func didRecivedTeamList(teams: Array<String>)
+    func getGroupName(groups: Array<String>)
 }
+
+//protocol RequestGroupDelegate {
+//    func getGroupList(dict: [[String: Any]]) -> [String]
+//}
 
 class Request {
     
     // MARK: Properties
     let session: URLSession = URLSession.shared
     var delegate: RequestDelegate?
-    var teamDomain: String?
-    var teamDomains = [String]()
-    var groupNames = [String]()
+    let paramTokenKey = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+    // TokenKey : 8ZwKUqC7QkJJKZN2hP2i
     
-    //FIXME: 後で設定から直接Keyを貰えるようにする。
-    var tokenKey: String = "beNCf4mxkKXLLRrBqEwH"
     
+
     enum MethodType: String {
-        case get = "GET", post = "POST", delete = "DELETE", put = "PUT", patch = "PATCH"
+        case get = "GET"
+        case post = "POST"
+        case delete = "DELETE"
+        case put = "PUT"
+        case patch = "PATCH"
     }
     
     // MARK: Internal Methods
@@ -41,13 +48,14 @@ class Request {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
                         
-                        if let teamList = TeamList(dict: json) {
+                        if let teamList = self.getTeamDomain(dict: json){
                             
                             guard let delegate = self.delegate else {
                                 return;
                             }
                             
-                            self.delegate?.didRecivedTeamList(teams: teamList.teams)
+                            self.delegate?.didRecivedTeamList(teams: teamList)
+//                            self.delegate?.getGroupName(groups: teamList)
                             
                         }
                     }
@@ -71,10 +79,9 @@ class Request {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
                         
-                        if let groupList = GroupList(dict: json) {
-                            let names = groupList.groups
+                        if let groupList = self.getGroupList(dict: json) {
+                           
                             
-                            self.groupNames = names
                             
                         }
                     }
@@ -94,9 +101,36 @@ class Request {
         
         request.httpMethod = httpMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue(tokenKey, forHTTPHeaderField: "X-DocBaseToken")
+        if let tokenKey = paramTokenKey {
+          request.addValue(tokenKey, forHTTPHeaderField: "X-DocBaseToken")
+        }
         
         return request
     }
+    
+    private func getTeamDomain(dict: [[String : String]]) -> [String]?{
+        var teams = [String]()
+        
+        for team in dict {
+            if let team = Team(team:team) {
+                
+                teams.append(team.domain)
+            }
+        }
+        return teams
+    }
+    
+    private func getGroupList(dict: [[String: Any]]) -> [String]?{
+        var groups = [String]()
+        
+        for group in dict {
+            if let group = Group(group:group) {
+                
+                groups.append(group.name)
+            }
+        }
+        return groups
+    }
+    
     
 }

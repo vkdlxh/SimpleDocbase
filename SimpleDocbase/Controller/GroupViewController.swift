@@ -9,10 +9,10 @@
 import UIKit
 
 class GroupViewController: UIViewController {
-
     
     // MARK: Properties
     let request: Request = Request()
+    var groupNames = [String]()
     
     // MARK: IBActions
     @IBAction func testButton(_ sender: Any) {
@@ -29,88 +29,15 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //FIXME: viewDidLoad()が呼ばれるとき、基本のチームのdomain(配列の0番目の値)を貰えたいです。
-        if request.teamDomain == nil {
-            
-            // 関数を呼び出してteamDomainsの配列を作ってdefaultDomainを作る用です。
-            request.delegate = self
-            
-            request.getTeamList()
-            
-            
-            if let defaultDomain = request.teamDomains.first {
-                request.groupList(domain: defaultDomain)
-            }
-            
-        } else {
-            
-            //FIXME: 後で設定でチームを選択してから選択されたチームのdomainを持ってGroupList()に入れて選択されたチームのGroupリストを見せる。
-            
-        }
+        request.delegate = self
         
+        request.getTeamList()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Table view data source
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     /*
     // MARK: - Navigation
@@ -124,12 +51,37 @@ class GroupViewController: UIViewController {
 
 }
 
+// MARK: Extensions
+extension GroupViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        let rowConut = groupNames.count
+        return rowConut
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
+        
+//        let groupName = groupNames[indexPath.row]
+//        cell.textLabel?.text = groupName
+        return cell
+    }
+}
+
 //MARK: RequestDelegate
 extension GroupViewController : RequestDelegate {
-    
     func didRecivedTeamList(teams: Array<String>) {
 
         print(teams)
+    }
+    
+    func getGroupName(groups: Array<String>) {
+        self.groupNames = groups
     }
     
 }
