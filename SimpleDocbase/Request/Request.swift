@@ -8,14 +8,11 @@
 
 import Foundation
 
-protocol RequestDelegate {
-    func didRecivedTeamList(teams: Array<String>)
-    func getGroupName(groups: Array<String>)
+@objc protocol RequestDelegate {
+    @objc optional func didRecivedTeamList(teams: Array<String>)
+    @objc optional func getGroupName(groups: Array<String>)
+//    @objc optional func getMemoList(memo: Memo)
 }
-
-//protocol RequestGroupDelegate {
-//    func getGroupList(dict: [[String: Any]]) -> [String]
-//}
 
 class Request {
     
@@ -50,12 +47,10 @@ class Request {
                         
                         if let teamList = self.getTeamDomain(dict: json){
                             
-                            guard let delegate = self.delegate else {
-                                return;
+                            guard let team = self.delegate?.didRecivedTeamList?(teams: teamList) else {
+                                return
                             }
                             
-                            self.delegate?.didRecivedTeamList(teams: teamList)
-//                            self.delegate?.getGroupName(groups: teamList)
                             
                         }
                     }
@@ -81,8 +76,9 @@ class Request {
                         
                         if let groupList = self.getGroupList(dict: json) {
                            
-                            
-                            
+                            guard let groupName = self.delegate?.getGroupName?(groups: groupList) else {
+                                return
+                            }
                         }
                     }
                 } catch {
@@ -91,6 +87,32 @@ class Request {
             }
             }.resume()
         
+    }
+    
+    func MemoList(domain: String, group: String) -> Void {
+        
+        guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts?q=group:\(group)") else { return }
+        
+        let request = settingRequest(url: url, httpMethod: .get)
+        
+        session.dataTask(with: request) { (data, response, error) in
+   
+            if let data = data {
+                print(data)
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                    
+                    for post in json["posts"] as! [Any] {
+                        
+                        let memo = Memo(dict: post as! [String:Any])
+                        
+                       
+                    }
+                } catch {
+                    print(error)
+                }
+            }
+            }.resume()
     }
     
     
@@ -120,6 +142,7 @@ class Request {
         return teams
     }
     
+    
     private func getGroupList(dict: [[String: Any]]) -> [String]?{
         var groups = [String]()
         
@@ -131,6 +154,5 @@ class Request {
         }
         return groups
     }
-    
     
 }

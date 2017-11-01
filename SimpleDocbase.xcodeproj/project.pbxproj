@@ -14,7 +14,6 @@
 		DA2D5AA21FA728CE00668EC9 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */; };
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
 		DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C80F01FA729D400AC3E3D /* Group.storyboard */; };
-		DAA69CA31FA89C9A003EA3B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9511FA06F090042BEC0 /* ViewController.swift */; };
 		DAC4E54C1FA1EB0C00301844 /* SettingItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E54B1FA1EB0C00301844 /* SettingItemViewController.swift */; };
 		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
@@ -24,6 +23,12 @@
 		DAF6B9641FA07FFD0042BEC0 /* SettingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9631FA07FFD0042BEC0 /* SettingData.swift */; };
 		DAF6B9681FA082EC0042BEC0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */; };
 		DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */; };
+		DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */; };
+		DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */; };
+		DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */; };
+		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
+		DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CF1FA99C6100A368BC /* Comment.swift */; };
+		DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95D11FA99C7C00A368BC /* Tag.swift */; };
 		DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +44,6 @@
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAF6B94C1FA06F090042BEC0 /* SimpleDocbase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDocbase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DAF6B9511FA06F090042BEC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		DAF6B9561FA06F090042BEC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAF6B9591FA06F090042BEC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAF6B95B1FA06F090042BEC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +51,12 @@
 		DAF6B9631FA07FFD0042BEC0 /* SettingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingData.swift; sourceTree = "<group>"; };
 		DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
+		DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
+		DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoViewController.swift; sourceTree = "<group>"; };
+		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		DAFA95CF1FA99C6100A368BC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		DAFA95D11FA99C7C00A368BC /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTokenkeyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +87,10 @@
 			children = (
 				DA2D5A801FA6D3DE00668EC9 /* Team.swift */,
 				DA2D5A7E1FA6D3B500668EC9 /* Group.swift */,
+				DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */,
+				DAFA95CD1FA99C4500A368BC /* User.swift */,
+				DAFA95D11FA99C7C00A368BC /* Tag.swift */,
+				DAFA95CF1FA99C6100A368BC /* Comment.swift */,
 				DAF6B9631FA07FFD0042BEC0 /* SettingData.swift */,
 				DAF6B9611FA07F110042BEC0 /* SettingMenu.swift */,
 				DA2D5A821FA6E74700668EC9 /* SettingItem.swift */,
@@ -95,11 +109,7 @@
 		DAC4E5591FA32B9800301844 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DAF6B9511FA06F090042BEC0 /* ViewController.swift */,
-				DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */,
-				DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */,
-				DAC4E54B1FA1EB0C00301844 /* SettingItemViewController.swift */,
-				DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */,
+				DAFA95CA1FA98E0800A368BC /* Group */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -125,12 +135,41 @@
 			children = (
 				DA2D5A911FA6EBB200668EC9 /* Storyboard */,
 				DAC4E5591FA32B9800301844 /* Controller */,
+				DAFA95CB1FA98E1300A368BC /* Sheet */,
+				DAFA95CC1FA98E2000A368BC /* Setting */,
 				DAC4E5581FA32B9300301844 /* Request */,
 				DAC4E5571FA32B8800301844 /* Model */,
 				DAFF5C6D1FA836370087C871 /* Supportting Files */,
 				DAF6B95B1FA06F090042BEC0 /* Info.plist */,
 			);
 			path = SimpleDocbase;
+			sourceTree = "<group>";
+		};
+		DAFA95CA1FA98E0800A368BC /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */,
+				DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */,
+				DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		DAFA95CB1FA98E1300A368BC /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Sheet;
+			sourceTree = "<group>";
+		};
+		DAFA95CC1FA98E2000A368BC /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */,
+				DAC4E54B1FA1EB0C00301844 /* SettingItemViewController.swift */,
+				DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		DAFF5C6D1FA836370087C871 /* Supportting Files */ = {
@@ -218,14 +257,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */,
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
 				DAF6B9641FA07FFD0042BEC0 /* SettingData.swift in Sources */,
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
 				DA2D5A831FA6E74700668EC9 /* SettingItem.swift in Sources */,
 				DAF6B9621FA07F110042BEC0 /* SettingMenu.swift in Sources */,
-				DAA69CA31FA89C9A003EA3B6 /* ViewController.swift in Sources */,
+				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
+				DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */,
+				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
+				DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */,
 				DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */,
+				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
 				DAC4E54C1FA1EB0C00301844 /* SettingItemViewController.swift in Sources */,
 				DAF6B9681FA082EC0042BEC0 /* SettingViewController.swift in Sources */,
