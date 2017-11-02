@@ -14,23 +14,18 @@ class GroupViewController: UIViewController {
     let request: Request = Request()
     var groupNames = [String]()
     
-    // MARK: IBActions
-    @IBAction func testButton(_ sender: Any) {
-        
-        request.delegate = self
-        
-        request.getTeamList()
-        
-    }
+    @IBOutlet weak var tableView: UITableView!
     
     // UIRefreshControl
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
         request.delegate = self
-        
         request.getTeamList()
     }
 
@@ -39,15 +34,20 @@ class GroupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
+    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "MemoListSegue" {
+            if let destination = segue.destination as? MemoListViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                destination.groupName = groupNames[selectedIndex]
+                }
+            }
+        }
     }
-    */
+    
+    
 
 }
 
@@ -67,21 +67,39 @@ extension GroupViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
         
-//        let groupName = groupNames[indexPath.row]
-//        cell.textLabel?.text = groupName
+        let groupName = groupNames[indexPath.row]
+        cell.textLabel?.text = groupName
         return cell
     }
+
 }
+
+
 
 //MARK: RequestDelegate
 extension GroupViewController : RequestDelegate {
     func didRecivedTeamList(teams: Array<String>) {
-
+        
+        if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
+              request.groupList(domain: domain)
+        } else {
+            if let domain = teams.first {
+                UserDefaults.standard.set(domain, forKey: "selectedDomain")
+                request.groupList(domain: domain)
+            }
+        }
+        
         print(teams)
+        
     }
     
     func getGroupName(groups: Array<String>) {
         self.groupNames = groups
+       
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
     
 }
