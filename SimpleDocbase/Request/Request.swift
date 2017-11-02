@@ -11,7 +11,7 @@ import Foundation
 @objc protocol RequestDelegate {
     @objc optional func didRecivedTeamList(teams: Array<String>)
     @objc optional func getGroupName(groups: Array<String>)
-//    @objc optional func getMemoList(memo: Memo)
+    @objc optional func getMemoList(memos: Array<Any>)
 }
 
 class Request {
@@ -91,7 +91,11 @@ class Request {
     
     func MemoList(domain: String, group: String) -> Void {
         
-        guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts?q=group:\(group)") else { return }
+        let urlStr = "https://api.docbase.io/teams/\(domain)/posts?q=group:\(group)"
+        let encodedURL = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        guard let url = URL(string: encodedURL) else { return }
+        //                           https://api.docbase.io/teams/archive-asia/posts?q=group:練習はこちら
         
         let request = settingRequest(url: url, httpMethod: .get)
         
@@ -101,13 +105,15 @@ class Request {
                 print(data)
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    
+                    var memos = [Any]()
                     for post in json["posts"] as! [Any] {
                         
-                        let memo = Memo(dict: post as! [String:Any])
-                        
+                        guard let memo = Memo(dict: post as! [String:Any]) else { return }
+                        memos.append(memo)
                        
                     }
+                    guard let _ = self.delegate?.getMemoList?(memos: memos) else { return }
+                    
                 } catch {
                     print(error)
                 }

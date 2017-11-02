@@ -16,8 +16,6 @@ class GroupViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    
-    
     // UIRefreshControl
     
     // MARK: Lifecycle
@@ -82,8 +80,6 @@ extension GroupViewController: UITableViewDataSource {
 extension GroupViewController : RequestDelegate {
     func didRecivedTeamList(teams: Array<String>) {
         
-        //FIXME: Settingで洗濯されたチームのdomainを利用する。
-        
         if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
               request.groupList(domain: domain)
         } else {
@@ -99,7 +95,11 @@ extension GroupViewController : RequestDelegate {
     
     func getGroupName(groups: Array<String>) {
         self.groupNames = groups
-        tableView.reloadData()
+       
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
     }
     
 }

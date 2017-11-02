@@ -8,6 +8,12 @@
 
 import UIKit
 
+class MemoListTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+}
+
 class MemoListViewController: UIViewController {
     
     // MARK: Properties
@@ -15,11 +21,16 @@ class MemoListViewController: UIViewController {
     var groupName: String = ""
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     
+    var memos = [Memo]()
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.estimatedRowHeight = 168.0
+        self.tableView.rowHeight = UITableViewAutomaticDimension
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,10 +39,17 @@ class MemoListViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         
+        request.delegate = self
+        if let domain = domain {
+            request.MemoList(domain: domain, group: groupName)
+        }
+        
+        
         navigationItem.title = groupName
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-//                                                            target: self,
-//                                                            action: #selector(addTapped(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(addTapped(sender:)))
+
         
     }
     
@@ -53,8 +71,45 @@ class MemoListViewController: UIViewController {
 
 }
 
+
+
+extension MemoListViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return memos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: MemoListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoListTableViewCell
+        
+        let memo = memos[indexPath.row]
+        
+        cell.titleLabel.text = memo.title
+        let imageURL = URL(string: memo.user.profile_image_url)
+        let imageURLData = try? Data(contentsOf: imageURL!)
+        cell.profileImageView.image = UIImage(data: imageURLData!)
+        
+        
+        return cell
+    }
+    
+}
+
+
 extension MemoListViewController: RequestDelegate {
-//    func getMemoList(domain: String, group: String) {
-//        <#code#>
-//    }
+    
+    func getMemoList(memos: Array<Any>) {
+        if let paramMemo = memos as? [Memo] {
+            self.memos = paramMemo
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
 }
