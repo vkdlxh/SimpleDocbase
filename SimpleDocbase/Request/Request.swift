@@ -22,7 +22,6 @@ class Request {
     let paramTokenKey = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
     // TokenKey : 8ZwKUqC7QkJJKZN2hP2i
     
-    
 
     enum MethodType: String {
         case get = "GET"
@@ -47,11 +46,9 @@ class Request {
                         
                         if let teamList = self.getTeamDomain(dict: json){
                             
-                            guard let team = self.delegate?.didRecivedTeamList?(teams: teamList) else {
+                            guard let _ = self.delegate?.didRecivedTeamList?(teams: teamList) else {
                                 return
                             }
-                            
-                            
                         }
                     }
                 } catch {
@@ -59,7 +56,6 @@ class Request {
                 }
             }
         }.resume()
-        
     }
     
     func groupList(domain: String) -> Void {
@@ -76,7 +72,7 @@ class Request {
                         
                         if let groupList = self.getGroupList(dict: json) {
                            
-                            guard let groupName = self.delegate?.getGroupName?(groups: groupList) else {
+                            guard let _ = self.delegate?.getGroupName?(groups: groupList) else {
                                 return
                             }
                         }

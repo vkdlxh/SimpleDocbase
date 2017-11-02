@@ -10,6 +10,12 @@ import UIKit
 
 class SettingViewController: UIViewController {
     
+    // MARK: Properties
+    var settingMenu = ["Token登録",
+                       "勤怠管理グループ設定",
+                       "所属チーム情報"]
+    
+    
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,16 +23,10 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Navigation
@@ -37,13 +37,11 @@ class SettingViewController: UIViewController {
        if segue.identifier == "SettingItem" {
             if let destination = segue.destination as? SettingItemViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.settingMenu = settingData.settings[selectedIndex] as SettingMenu
+                    destination.settingName = settingMenu[selectedIndex]
                 }
             }
         }
-        
     }
-    
 }
 
 // MARK: Extensions
@@ -54,7 +52,7 @@ extension SettingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowConut = settingData.settings.count
+        let rowConut = settingMenu.count
         return rowConut
     }
     
@@ -62,26 +60,11 @@ extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath)
         
-        let setting = settingData.settings[indexPath.row]
-        cell.textLabel?.text = setting.name
+        let setting = settingMenu[indexPath.row]
+        cell.textLabel?.text = setting
         return cell
     }
     
 }
 
-
-
-//extension SettingItemViewController: RequestGroupDelegate {
-//    func getGroupList(dict: [[String : Any]]) -> [String] {
-//        var groups = [String]()
-//            
-//        for group in dict {
-//            if let group = Group(group:group) {
-//                    
-//                groups.append(group.name)
-//            }
-//        }
-//    }
-//    
-//}
 

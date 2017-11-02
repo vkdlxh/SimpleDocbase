@@ -11,7 +11,7 @@ import UIKit
 class SettingItemViewController: UIViewController {
 
     // MARK: Properties
-    var settingMenu: SettingMenu?
+    var settingName: String = ""
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -21,7 +21,7 @@ class SettingItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = settingMenu?.name
+        self.title = settingName
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,17 +57,13 @@ extension SettingItemViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let rowCount = settingMenu?.service?.count else { return 0 }
-        return rowCount
+        return 1
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingItemCell", for: indexPath)
         
-        guard let service = settingMenu?.service?[indexPath.row] else { return cell }
-        
-        cell.textLabel?.text = service.name
         return cell
     }
     
