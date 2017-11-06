@@ -8,18 +8,18 @@
 
 import UIKit
 
-class TeamListTableViewCell: UITableViewCell {
-    
-}
-
 class ChangeTeamViewController: UIViewController {
 
+    // MARK: Properties
     let request: Request = Request()
     var settingName: String = ""
     var teamNames = [String]()
+    let userDefaults = UserDefaults.standard
     
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = settingName
@@ -28,23 +28,13 @@ class ChangeTeamViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         request.delegate = self
         request.getTeamList()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -64,7 +54,27 @@ extension ChangeTeamViewController: UITableViewDataSource {
         
         let teamName = teamNames[indexPath.row]
         cell.textLabel?.text = teamName
+        
+        let domain = userDefaults.object(forKey: "selectedDomain") as? String
+        if cell.textLabel?.text == domain {
+            cell.backgroundColor = UIColor.blue
+            cell.textLabel?.textColor = UIColor.white
+        } else {
+            cell.backgroundColor = UIColor.clear
+            cell.textLabel?.textColor = UIColor.black
+        }
+        
         return cell
+    }
+}
+
+extension ChangeTeamViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+            userDefaults.set(teamNames[selectedIndex], forKey: "selectedDomain")
+            print("Team Changed \(teamNames[selectedIndex])")
+            self.tableView.reloadData()
+        }
     }
 }
 

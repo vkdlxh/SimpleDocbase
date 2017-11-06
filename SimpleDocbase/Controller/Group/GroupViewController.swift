@@ -14,6 +14,8 @@ class GroupViewController: UIViewController {
     let request: Request = Request()
     var groupNames = [String]()
     
+    
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
     // UIRefreshControl
@@ -40,7 +42,7 @@ class GroupViewController: UIViewController {
         if segue.identifier == "MemoListSegue" {
             if let destination = segue.destination as? MemoListViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                destination.groupName = groupNames[selectedIndex]
+                    destination.groupName = groupNames[selectedIndex]
                 }
             }
         }

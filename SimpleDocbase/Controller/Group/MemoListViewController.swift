@@ -10,6 +10,7 @@ import UIKit
 
 class MemoListTableViewCell: UITableViewCell {
     
+    // MARK: IBOutlets
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 }
@@ -23,13 +24,12 @@ class MemoListViewController: UIViewController {
     
     var memos = [Memo]()
     
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.estimatedRowHeight = 70
-        self.tableView.rowHeight = UITableViewAutomaticDimension
 
     }
 
@@ -37,6 +37,7 @@ class MemoListViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         request.delegate = self
@@ -60,11 +61,13 @@ class MemoListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "WriteMemoSegue" {
             if let destination = segue.destination as? WriteMemoViewController {
-            
-            }
-        } else if segue.identifier == "DetailSegue" {
-            if let destination = segue.destination as? DetailMemoViewController {
                 
+            }
+        } else if segue.identifier == "DetailMemoSegue" {
+            if let destination = segue.destination as? DetailMemoViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.memos.append(memos[selectedIndex])
+                }
             }
         }
     }
