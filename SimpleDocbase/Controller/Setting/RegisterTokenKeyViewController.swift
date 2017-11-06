@@ -1,5 +1,5 @@
 //
-//  SettingItemViewController.swift
+//  RegisterTokenKeyViewController.swift
 //  SimpleDocbase
 //
 //  Created by jeon sangjun on 2017/10/26.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingItemViewController: UIViewController {
+class RegisterTokenKeyViewController: UIViewController {
 
     // MARK: Properties
     var settingName: String = ""
@@ -50,7 +50,7 @@ class SettingItemViewController: UIViewController {
 }
 
 // MARK: Extensions
-extension SettingItemViewController: UITableViewDataSource {
+extension RegisterTokenKeyViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

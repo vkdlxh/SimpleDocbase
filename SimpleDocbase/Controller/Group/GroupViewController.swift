@@ -57,8 +57,7 @@ extension GroupViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let rowConut = groupNames.count
-        return rowConut
+        return groupNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -85,9 +84,6 @@ extension GroupViewController : RequestDelegate {
                 request.groupList(domain: domain)
             }
         }
-        
-        print(teams)
-        
     }
     
     func getGroupName(groups: Array<String>) {
@@ -96,7 +92,5 @@ extension GroupViewController : RequestDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
-    }
-    
+    }    
 }

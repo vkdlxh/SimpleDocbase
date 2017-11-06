@@ -99,7 +99,7 @@ extension MemoListViewController: UITableViewDataSource {
 
 
 extension MemoListViewController: RequestDelegate {
-    
+
     func getMemoList(memos: Array<Any>) {
         if let paramMemo = memos as? [Memo] {
             self.memos = paramMemo
@@ -107,6 +107,7 @@ extension MemoListViewController: RequestDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
+
     }
 }
+

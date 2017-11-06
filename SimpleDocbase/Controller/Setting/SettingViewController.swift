@@ -34,8 +34,20 @@ class SettingViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-       if segue.identifier == "SettingItem" {
-            if let destination = segue.destination as? SettingItemViewController {
+       if segue.identifier == "GoRegisterTokenKeySegue" {
+            if let destination = segue.destination as? RegisterTokenKeyViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.settingName = settingMenu[selectedIndex]
+                }
+            }
+       } else if segue.identifier == "GoChangeTeamSegue" {
+            if let destination = segue.destination as? ChangeTeamViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.settingName = settingMenu[selectedIndex]
+                }
+            }
+       } else if segue.identifier == "GoTeamInformSegue" {
+            if let destination = segue.destination as? TeamInformViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.settingName = settingMenu[selectedIndex]
                 }
@@ -65,6 +77,22 @@ extension SettingViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+extension SettingViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            performSegue(withIdentifier: "GoRegisterTokenKeySegue", sender: self)
+            print("tapped indexPath.row: \(indexPath.row)")
+        } else if indexPath.row == 1 {
+            performSegue(withIdentifier: "GoChangeTeamSegue", sender: self)
+            print("tapped indexPath.row: \(indexPath.row)")
+        } else if indexPath.row == 2 {
+            performSegue(withIdentifier: "GoTeamInformSegue", sender: self)
+            print("tapped indexPath.row: \(indexPath.row)")
+        }
+    }
 }
 
 
