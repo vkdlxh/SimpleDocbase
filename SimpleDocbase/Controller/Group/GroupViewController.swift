@@ -14,6 +14,8 @@ class GroupViewController: UIViewController {
     let request: Request = Request()
     var groupNames = [String]()
     
+    
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
     // UIRefreshControl
@@ -34,22 +36,19 @@ class GroupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MemoListSegue" {
             if let destination = segue.destination as? MemoListViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                destination.groupName = groupNames[selectedIndex]
+                    destination.groupName = groupNames[selectedIndex]
                 }
             }
         }
     }
-    
-    
-
 }
+
 
 // MARK: Extensions
 extension GroupViewController: UITableViewDataSource {
@@ -60,8 +59,7 @@ extension GroupViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let rowConut = groupNames.count
-        return rowConut
+        return groupNames.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,9 +86,6 @@ extension GroupViewController : RequestDelegate {
                 request.groupList(domain: domain)
             }
         }
-        
-        print(teams)
-        
     }
     
     func getGroupName(groups: Array<String>) {
@@ -99,7 +94,5 @@ extension GroupViewController : RequestDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
-    }
-    
+    }    
 }

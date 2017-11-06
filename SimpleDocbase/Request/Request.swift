@@ -22,7 +22,6 @@ class Request {
     let paramTokenKey = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
     // TokenKey : 8ZwKUqC7QkJJKZN2hP2i
     
-    
 
     enum MethodType: String {
         case get = "GET"
@@ -41,17 +40,15 @@ class Request {
     
         session.dataTask(with: request) { (data, response, error) in
             if let data = data {
-                print(data)
+                print("TeamList OK")
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
                         
                         if let teamList = self.getTeamDomain(dict: json){
                             
-                            guard let team = self.delegate?.didRecivedTeamList?(teams: teamList) else {
+                            guard let _ = self.delegate?.didRecivedTeamList?(teams: teamList) else {
                                 return
                             }
-                            
-                            
                         }
                     }
                 } catch {
@@ -59,7 +56,6 @@ class Request {
                 }
             }
         }.resume()
-        
     }
     
     func groupList(domain: String) -> Void {
@@ -70,13 +66,13 @@ class Request {
         
         session.dataTask(with: request) { (data, response, error) in
             if let data = data {
-                print(data)
                 do {
+                    print("GroupList OK")
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
                         
                         if let groupList = self.getGroupList(dict: json) {
                            
-                            guard let groupName = self.delegate?.getGroupName?(groups: groupList) else {
+                            guard let _ = self.delegate?.getGroupName?(groups: groupList) else {
                                 return
                             }
                         }
@@ -95,15 +91,14 @@ class Request {
         let encodedURL = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         guard let url = URL(string: encodedURL) else { return }
-        //                           https://api.docbase.io/teams/archive-asia/posts?q=group:練習はこちら
         
         let request = settingRequest(url: url, httpMethod: .get)
         
         session.dataTask(with: request) { (data, response, error) in
    
             if let data = data {
-                print(data)
                 do {
+                    print("getMemoList OK")
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                     var memos = [Any]()
                     for post in json["posts"] as! [Any] {

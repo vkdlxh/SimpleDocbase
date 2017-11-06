@@ -1,5 +1,5 @@
 //
-//  SettingItemViewController.swift
+//  RegisterTokenKeyViewController.swift
 //  SimpleDocbase
 //
 //  Created by jeon sangjun on 2017/10/26.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class SettingItemViewController: UIViewController {
+class RegisterTokenKeyViewController: UIViewController {
 
     // MARK: Properties
-    var settingMenu: SettingMenu?
+    var settingName: String = ""
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -21,7 +21,7 @@ class SettingItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = settingMenu?.name
+        self.title = settingName
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,24 +50,20 @@ class SettingItemViewController: UIViewController {
 }
 
 // MARK: Extensions
-extension SettingItemViewController: UITableViewDataSource {
+extension RegisterTokenKeyViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let rowCount = settingMenu?.service?.count else { return 0 }
-        return rowCount
+        return 1
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingItemCell", for: indexPath)
         
-        guard let service = settingMenu?.service?[indexPath.row] else { return cell }
-        
-        cell.textLabel?.text = service.name
         return cell
     }
     

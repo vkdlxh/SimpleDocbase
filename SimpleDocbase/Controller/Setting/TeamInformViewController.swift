@@ -1,33 +1,20 @@
 //
-//  SetTokenkeyViewController.swift
+//  TeamInformViewController.swift
 //  SimpleDocbase
 //
-//  Created by jeonsangjun on 2017/10/31.
+//  Created by jeonsangjun on 2017/11/06.
 //  Copyright © 2017年 jeon sangjun. All rights reserved.
 //
 
 import UIKit
 
-class SetTokenkeyViewController: UIViewController {
+class TeamInformViewController: UIViewController {
+    
+    var settingName: String = ""
 
-    @IBOutlet weak var paramTokenKey: UITextField!
-    
-    @IBAction func saveButton(_ sender: Any) {
-        
-        
-        let userDefaults = UserDefaults.standard
-        
-        userDefaults.set(paramTokenKey.text, forKey: "paramTokenKey")
-        
-        
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.title = settingName
     }
 
     override func didReceiveMemoryWarning() {

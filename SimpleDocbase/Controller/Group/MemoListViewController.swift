@@ -10,6 +10,7 @@ import UIKit
 
 class MemoListTableViewCell: UITableViewCell {
     
+    // MARK: IBOutlets
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 }
@@ -23,13 +24,12 @@ class MemoListViewController: UIViewController {
     
     var memos = [Memo]()
     
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableView.estimatedRowHeight = 168.0
-        self.tableView.rowHeight = UITableViewAutomaticDimension
 
     }
 
@@ -37,6 +37,7 @@ class MemoListViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         request.delegate = self
@@ -44,33 +45,33 @@ class MemoListViewController: UIViewController {
             request.MemoList(domain: domain, group: groupName)
         }
         
-        
         navigationItem.title = groupName
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped(sender:)))
-
-        
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
-        
+        performSegue(withIdentifier: "WriteMemoSegue", sender: self)
     }
-
-
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "WriteMemoSegue" {
+            if let destination = segue.destination as? WriteMemoViewController {
+                
+            }
+        } else if segue.identifier == "DetailMemoSegue" {
+            if let destination = segue.destination as? DetailMemoViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.memos.append(memos[selectedIndex])
+                }
+            }
+        }
     }
-    */
-
 }
-
 
 
 extension MemoListViewController: UITableViewDataSource {
@@ -94,7 +95,6 @@ extension MemoListViewController: UITableViewDataSource {
         let imageURLData = try? Data(contentsOf: imageURL!)
         cell.profileImageView.image = UIImage(data: imageURLData!)
         
-        
         return cell
     }
     
@@ -102,7 +102,7 @@ extension MemoListViewController: UITableViewDataSource {
 
 
 extension MemoListViewController: RequestDelegate {
-    
+
     func getMemoList(memos: Array<Any>) {
         if let paramMemo = memos as? [Memo] {
             self.memos = paramMemo
@@ -110,6 +110,7 @@ extension MemoListViewController: RequestDelegate {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        
+
     }
 }
+
