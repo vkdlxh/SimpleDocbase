@@ -49,6 +49,7 @@ class MemoListViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped(sender:)))
+        
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
@@ -59,11 +60,7 @@ class MemoListViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "WriteMemoSegue" {
-            if let destination = segue.destination as? WriteMemoViewController {
-                
-            }
-        } else if segue.identifier == "DetailMemoSegue" {
+        if segue.identifier == "DetailMemoSegue" {
             if let destination = segue.destination as? DetailMemoViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.memos.append(memos[selectedIndex])
@@ -71,6 +68,11 @@ class MemoListViewController: UIViewController {
             }
         }
     }
+    
+    
+    
+    
+    
 }
 
 
@@ -114,3 +116,11 @@ extension MemoListViewController: RequestDelegate {
     }
 }
 
+extension MemoListViewController: ModalDelegate {
+    
+    func modalDismissed() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}

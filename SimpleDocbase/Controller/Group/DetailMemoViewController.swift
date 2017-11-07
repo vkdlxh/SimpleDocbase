@@ -29,9 +29,10 @@ class DetailMemoViewController: UIViewController {
     
     //FIXME: Memoで値も引き出す方法
     override func viewWillAppear(_ animated: Bool) {
+
         titleLabel.text = memos.first?.title
         bodyTextView.text = memos.first?.body
-        
+       
     }
 
     override func didReceiveMemoryWarning() {

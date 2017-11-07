@@ -147,7 +147,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Gcq-qa-1OV" id="cBX-sb-Vzn"/>
-                        <segue destination="3Zy-4W-bCv" kind="show" identifier="WriteMemoSegue" id="hlP-ab-hCy"/>
+                        <segue destination="3Zy-4W-bCv" kind="modal" identifier="WriteMemoSegue" id="LZ6-x1-Wxl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uG6-zA-7yH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,7 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n76-Ki-26s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2564" y="142.57871064467767"/>
+            <point key="canvasLocation" x="2636" y="142"/>
         </scene>
         <!--Write Memo View Controller-->
         <scene sceneID="YDi-RZ-jTI">
@@ -226,42 +226,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title or URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
-                                <rect key="frame" x="85" y="136" width="240" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title or URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
+                                <rect key="frame" x="5" y="25" width="365" height="30"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the Tags" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQg-WV-W2b">
-                                <rect key="frame" x="85" y="174" width="240" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the Tags" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQg-WV-W2b">
+                                <rect key="frame" x="5" y="56" width="365" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PEI-h9-uAP">
-                                <rect key="frame" x="85" y="212" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PEI-h9-uAP">
+                                <rect key="frame" x="5" y="87" width="365" height="350"/>
                                 <color key="backgroundColor" red="0.94328745579999995" green="1" blue="0.3527270066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="wS1-Cm-eMH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGC-fM-4x7">
-                                <rect key="frame" x="154" y="451" width="102" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGC-fM-4x7">
+                                <rect key="frame" x="136" y="632" width="102" height="30"/>
                                 <state key="normal" title="Share to group"/>
+                                <connections>
+                                    <action selector="submitMemoButton:" destination="3Zy-4W-bCv" eventType="touchUpInside" id="jJe-jr-4ej"/>
+                                </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ter-PJ-Lf2">
+                                <rect key="frame" x="5" y="442" width="365" height="185"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3pq-9R-wFh" firstAttribute="bottom" secondItem="XGC-fM-4x7" secondAttribute="bottom" constant="5" id="7V9-z1-e2P"/>
+                            <constraint firstItem="PEI-h9-uAP" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" constant="5" id="LPH-XP-HDT"/>
+                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="PEI-h9-uAP" secondAttribute="trailing" constant="5" id="LfM-r8-6Kx"/>
+                            <constraint firstItem="rQg-WV-W2b" firstAttribute="top" secondItem="eaV-FH-bCC" secondAttribute="bottom" constant="1" id="OaO-d7-bZ6"/>
+                            <constraint firstItem="rQg-WV-W2b" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" constant="5" id="U3o-bp-WF0"/>
+                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="rQg-WV-W2b" secondAttribute="trailing" constant="5" id="Vf6-A4-m1G"/>
+                            <constraint firstItem="ter-PJ-Lf2" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" constant="5" id="YLF-5T-gsN"/>
+                            <constraint firstItem="XGC-fM-4x7" firstAttribute="centerX" secondItem="YU4-f1-4RM" secondAttribute="centerX" id="aFb-Nd-6gS"/>
+                            <constraint firstItem="PEI-h9-uAP" firstAttribute="top" secondItem="rQg-WV-W2b" secondAttribute="bottom" constant="1" id="eYB-Se-PnG"/>
+                            <constraint firstItem="eaV-FH-bCC" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" constant="5" id="lfO-Fx-BeY"/>
+                            <constraint firstItem="XGC-fM-4x7" firstAttribute="top" secondItem="ter-PJ-Lf2" secondAttribute="bottom" constant="5" id="q79-8p-m1D"/>
+                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="eaV-FH-bCC" secondAttribute="trailing" constant="5" id="tNa-Us-RAC"/>
+                            <constraint firstItem="ter-PJ-Lf2" firstAttribute="top" secondItem="PEI-h9-uAP" secondAttribute="bottom" constant="5" id="tUM-uj-7si"/>
+                            <constraint firstItem="eaV-FH-bCC" firstAttribute="top" secondItem="3pq-9R-wFh" secondAttribute="top" constant="5" id="wdQ-xA-eok"/>
+                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="ter-PJ-Lf2" secondAttribute="trailing" constant="5" id="zaB-ul-RKv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="3pq-9R-wFh"/>
                     </view>
+                    <connections>
+                        <outlet property="bodyTextView" destination="PEI-h9-uAP" id="1zv-zw-jas"/>
+                        <outlet property="groupPickerView" destination="ter-PJ-Lf2" id="cUa-yx-8Q3"/>
+                        <outlet property="tagsTextField" destination="rQg-WV-W2b" id="Ql0-ia-Z34"/>
+                        <outlet property="titleTextField" destination="eaV-FH-bCC" id="Jfs-LL-bVt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2S-eO-FWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2564" y="-527.58620689655174"/>
+            <point key="canvasLocation" x="2636" y="-574.36281859070471"/>
         </scene>
     </scenes>
 </document>
