@@ -10,7 +10,7 @@ import Foundation
 
 @objc protocol RequestDelegate {
     @objc optional func didRecivedTeamList(teams: Array<String>)
-    @objc optional func getGroupName(groups: Array<String>)
+    @objc optional func getGroupName(groups: Array<Any>)
     @objc optional func getMemoList(memos: Array<Any>)
 }
 
@@ -116,6 +116,33 @@ class Request {
             }.resume()
     }
     
+    func writeMemo(domain: String, dict: Dictionary<String, Any>) {
+         guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts") else { return }
+        
+        var request = settingRequest(url: url, httpMethod: .post)
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
+            return
+        }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                }catch {
+                    print(error)
+                }
+            }
+            }.resume()
+        
+        
+    }
+    
+    
     
     // MARK: Private Methods
     private func settingRequest(url: URL, httpMethod: MethodType) -> URLRequest {
@@ -131,6 +158,10 @@ class Request {
         return request
     }
     
+//    private func settingRequest(url: URL, httpMethod: MethodType, ) {
+//
+//    }
+    
     private func getTeamDomain(dict: [[String : String]]) -> [String]?{
         var teams = [String]()
         
@@ -144,13 +175,13 @@ class Request {
     }
     
     
-    private func getGroupList(dict: [[String: Any]]) -> [String]?{
-        var groups = [String]()
+    private func getGroupList(dict: [[String: Any]]) -> [Group]?{
+        var groups = [Group]()
         
         for group in dict {
             if let group = Group(group:group) {
                 
-                groups.append(group.name)
+                groups.append(group)
             }
         }
         return groups

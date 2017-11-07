@@ -12,7 +12,7 @@ class GroupViewController: UIViewController {
     
     // MARK: Properties
     let request: Request = Request()
-    var groupNames = [String]()
+    var groups = [Group]()
     
     
     // MARK: IBOutlets
@@ -42,7 +42,7 @@ class GroupViewController: UIViewController {
         if segue.identifier == "MemoListSegue" {
             if let destination = segue.destination as? MemoListViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.groupName = groupNames[selectedIndex]
+                    destination.groupName = groups[selectedIndex].name
                 }
             }
         }
@@ -59,13 +59,13 @@ extension GroupViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return groupNames.count
+        return groups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
         
-        let groupName = groupNames[indexPath.row]
+        let groupName = groups[indexPath.row].name
         cell.textLabel?.text = groupName
         return cell
     }
@@ -88,8 +88,10 @@ extension GroupViewController : RequestDelegate {
         }
     }
     
-    func getGroupName(groups: Array<String>) {
-        self.groupNames = groups
+    func getGroupName(groups: Array<Any>) {
+        if let paramGroup = groups as? [Group] {
+            self.groups = paramGroup
+        }
        
         DispatchQueue.main.async {
             self.tableView.reloadData()
