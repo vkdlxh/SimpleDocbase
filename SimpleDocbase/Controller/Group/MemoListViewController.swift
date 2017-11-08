@@ -21,8 +21,11 @@ class MemoListViewController: UIViewController {
     let request: Request = Request()
     var groupName: String = ""
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
-    
     var memos = [Memo]()
+    
+//    // FIXME:
+//    let modalView:WriteMemoViewController = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "WriteMemoViewController") as! WriteMemoViewController
+
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -30,7 +33,13 @@ class MemoListViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
+        
+        navigationItem.title = groupName
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(addTapped(sender:)))
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,15 +49,11 @@ class MemoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+//        modalView.modalDelegate = self
         request.delegate = self
         if let domain = domain {
             request.MemoList(domain: domain, group: groupName)
         }
-        
-        navigationItem.title = groupName
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(addTapped(sender:)))
         
     }
     
@@ -63,16 +68,17 @@ class MemoListViewController: UIViewController {
         if segue.identifier == "DetailMemoSegue" {
             if let destination = segue.destination as? DetailMemoViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.memos.append(memos[selectedIndex])
+                    destination.memo = memos[selectedIndex]
+                }
+            }
+        } else if segue.identifier == "WriteMemoSegue" {
+            if let destination = segue.destination as? UINavigationController {
+                if let tagetController = destination.topViewController as? WriteMemoViewController {
+                    tagetController.modalDelegate = self
                 }
             }
         }
     }
-    
-    
-    
-    
-    
 }
 
 
@@ -119,8 +125,12 @@ extension MemoListViewController: RequestDelegate {
 extension MemoListViewController: ModalDelegate {
     
     func modalDismissed() {
+       
+        dismiss(animated: true, completion: nil)
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
 }
+

@@ -16,6 +16,11 @@ class RegisterTokenKeyViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultTokenKey: UILabel!
+
+    @IBAction func setTokenKeyButton(_ sender: Any) {
+        performSegue(withIdentifier: "SetTokenKeySegue", sender: self)
+    }
+    
     
     // MARK: Lifecycle
     override func viewDidLoad() {

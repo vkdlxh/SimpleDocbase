@@ -29,6 +29,7 @@ class GroupViewController: UIViewController {
         
         request.delegate = self
         request.getTeamList()
+        print("WilAppear")
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,7 +78,6 @@ extension GroupViewController: UITableViewDataSource {
 //MARK: RequestDelegate
 extension GroupViewController : RequestDelegate {
     func didRecivedTeamList(teams: Array<String>) {
-        
         if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
               request.groupList(domain: domain)
         } else {
@@ -86,6 +86,7 @@ extension GroupViewController : RequestDelegate {
                 request.groupList(domain: domain)
             }
         }
+        print("didRecivedTeamList")
     }
     
     func getGroupName(groups: Array<Any>) {
@@ -95,6 +96,8 @@ extension GroupViewController : RequestDelegate {
        
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            print("Main Queue")
         }
+        print("getGroupName")
     }    
 }

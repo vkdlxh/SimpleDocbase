@@ -21,8 +21,9 @@ class Request {
     var delegate: RequestDelegate?
     let paramTokenKey = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
     // TokenKey : 8ZwKUqC7QkJJKZN2hP2i
+    let semaphore = DispatchSemaphore(value: 0)
     
-
+    
     enum MethodType: String {
         case get = "GET"
         case post = "POST"
@@ -32,6 +33,19 @@ class Request {
     }
     
     // MARK: Internal Methods
+    
+//    func getGroupFromTeam(domain: String) {
+//        let queue = DispatchQueue(label: "label")
+//        queue.async {
+//            self.getTeamList()
+//            self.groupList(domain: domain)
+//            
+//            DispatchQueue.main.async {
+//                <#code#>
+//            }
+//        }
+//    }
+    
     func getTeamList() {
         
         guard let url = URL(string: "https://api.docbase.io/teams") else { return }
@@ -50,12 +64,16 @@ class Request {
                                 return
                             }
                         }
+//                        self.semaphore.signal()
+                        print("delegate didRevivedTeamList")
                     }
                 } catch {
                 print(error)
                 }
             }
+            
         }.resume()
+//        self.semaphore.wait()
     }
     
     func groupList(domain: String) -> Void {
@@ -71,18 +89,20 @@ class Request {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
                         
                         if let groupList = self.getGroupList(dict: json) {
-                           
                             guard let _ = self.delegate?.getGroupName?(groups: groupList) else {
                                 return
                             }
                         }
+                        
+//                        self.semaphore.signal()
+                        print("delegate getGroupName")
                     }
                 } catch {
                     print(error)
                 }
             }
-            }.resume()
-        
+        }.resume()
+//        self.semaphore.wait()
     }
     
     func MemoList(domain: String, group: String) -> Void {
@@ -113,7 +133,7 @@ class Request {
                     print(error)
                 }
             }
-            }.resume()
+        }.resume()
     }
     
     func writeMemo(domain: String, dict: Dictionary<String, Any>) {
@@ -137,12 +157,9 @@ class Request {
                     print(error)
                 }
             }
-            }.resume()
-        
+        }.resume()
         
     }
-    
-    
     
     // MARK: Private Methods
     private func settingRequest(url: URL, httpMethod: MethodType) -> URLRequest {
@@ -157,11 +174,7 @@ class Request {
         
         return request
     }
-    
-//    private func settingRequest(url: URL, httpMethod: MethodType, ) {
-//
-//    }
-    
+
     private func getTeamDomain(dict: [[String : String]]) -> [String]?{
         var teams = [String]()
         
@@ -173,7 +186,6 @@ class Request {
         }
         return teams
     }
-    
     
     private func getGroupList(dict: [[String: Any]]) -> [Group]?{
         var groups = [Group]()
