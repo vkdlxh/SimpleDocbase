@@ -30,7 +30,10 @@ class MemoListViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        navigationItem.title = groupName
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(addTapped(sender:)))
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,11 +48,6 @@ class MemoListViewController: UIViewController {
             request.MemoList(domain: domain, group: groupName)
         }
         
-        navigationItem.title = groupName
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(addTapped(sender:)))
-        
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
@@ -63,15 +61,11 @@ class MemoListViewController: UIViewController {
         if segue.identifier == "DetailMemoSegue" {
             if let destination = segue.destination as? DetailMemoViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.memos.append(memos[selectedIndex])
+                    destination.memo = memos[selectedIndex]
                 }
             }
         }
     }
-    
-    
-    
-    
     
 }
 
@@ -124,3 +118,4 @@ extension MemoListViewController: ModalDelegate {
         }
     }
 }
+

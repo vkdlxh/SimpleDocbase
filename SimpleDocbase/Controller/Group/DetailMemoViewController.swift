@@ -10,7 +10,8 @@ import UIKit
 
 class DetailMemoViewController: UIViewController {
     
-    var memos = [Memo]()
+    // MARK: Properties
+    var memo: Any?
     var groups = [Group]()
     
     // MARK: IBOutlets
@@ -24,15 +25,10 @@ class DetailMemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-    
-    //FIXME: Memoで値も引き出す方法
-    override func viewWillAppear(_ animated: Bool) {
-
-        titleLabel.text = memos.first?.title
-        bodyTextView.text = memos.first?.body
-       
+        if let memo = self.memo as? Memo {
+            titleLabel.text = memo.title
+            bodyTextView.text = memo.body
+        }
     }
 
     override func didReceiveMemoryWarning() {

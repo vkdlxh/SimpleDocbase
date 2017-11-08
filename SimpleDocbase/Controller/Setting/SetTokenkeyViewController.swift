@@ -17,20 +17,21 @@ class SetTokenkeyViewController: UIViewController {
     @IBAction func saveButton(_ sender: Any) {
         
         let userDefaults = UserDefaults.standard
-        
         userDefaults.set(paramTokenKey.text, forKey: "paramTokenKey")
-        
         
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

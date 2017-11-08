@@ -54,9 +54,15 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
             request.writeMemo(domain: domain, dict: memo)
         }
         
-        modalDelegate?.modalDismissed()
-        dismiss(animated: true, completion: nil)
+//        modalDelegate?.modalDismissed()
+        dismiss(animated: true, completion: {
+            self.modalDelegate?.modalDismissed()
+        })
         
+    }
+    
+    @IBAction func backButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: Lifecycle

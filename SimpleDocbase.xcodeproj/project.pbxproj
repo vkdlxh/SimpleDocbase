@@ -29,6 +29,7 @@
 		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
 		DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CF1FA99C6100A368BC /* Comment.swift */; };
 		DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95D11FA99C7C00A368BC /* Tag.swift */; };
+		DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */; };
 		DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DAFA95CF1FA99C6100A368BC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		DAFA95D11FA99C7C00A368BC /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
 		DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTokenkeyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,8 +108,8 @@
 		DAC4E5591FA32B9800301844 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DAFB18271FB1DF2F00AA4DC7 /* Sheet */,
 				DAFA95CA1FA98E0800A368BC /* Group */,
-				DAFA95CB1FA98E1300A368BC /* Sheet */,
 				DAFA95CC1FA98E2000A368BC /* Setting */,
 			);
 			path = Controller;
@@ -153,13 +155,6 @@
 			path = Group;
 			sourceTree = "<group>";
 		};
-		DAFA95CB1FA98E1300A368BC /* Sheet */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Sheet;
-			sourceTree = "<group>";
-		};
 		DAFA95CC1FA98E2000A368BC /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +165,14 @@
 				DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		DAFB18271FB1DF2F00AA4DC7 /* Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */,
+			);
+			path = Sheet;
 			sourceTree = "<group>";
 		};
 		DAFF5C6D1FA836370087C871 /* Supportting Files */ = {
@@ -269,6 +272,7 @@
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
 				DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */,
 				DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */,
+				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
 				DAC4E54C1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift in Sources */,
