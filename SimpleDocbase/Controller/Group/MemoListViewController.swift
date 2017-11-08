@@ -23,8 +23,8 @@ class MemoListViewController: UIViewController {
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     var memos = [Memo]()
     
-    // FIXME:
-    let modalView:WriteMemoViewController = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "WriteMemoViewController") as! WriteMemoViewController
+//    // FIXME:
+//    let modalView:WriteMemoViewController = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "WriteMemoViewController") as! WriteMemoViewController
 
     
     // MARK: IBOutlets
@@ -49,7 +49,7 @@ class MemoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        modalView.modalDelegate = self
+//        modalView.modalDelegate = self
         request.delegate = self
         if let domain = domain {
             request.MemoList(domain: domain, group: groupName)
@@ -71,9 +71,14 @@ class MemoListViewController: UIViewController {
                     destination.memo = memos[selectedIndex]
                 }
             }
+        } else if segue.identifier == "WriteMemoSegue" {
+            if let destination = segue.destination as? UINavigationController {
+                if let tagetController = destination.topViewController as? WriteMemoViewController {
+                    tagetController.modalDelegate = self
+                }
+            }
         }
     }
-    
 }
 
 
@@ -121,11 +126,7 @@ extension MemoListViewController: ModalDelegate {
     
     func modalDismissed() {
        
-//        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "WriteMemoViewController") as? WriteMemoViewController {
-//            vc.dismiss(animated: true, completion: nil)
-//        }
-        
-        modalView.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
         
         DispatchQueue.main.async {
             self.tableView.reloadData()

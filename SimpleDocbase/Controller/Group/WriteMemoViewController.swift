@@ -53,12 +53,7 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
         if let domain = domain {
             request.writeMemo(domain: domain, dict: memo)
         }
-        
         self.modalDelegate?.modalDismissed()
-        
-//        dismiss(animated: true, completion: {
-//            self.modalDelegate?.modalDismissed()
-//        })
         
     }
     
