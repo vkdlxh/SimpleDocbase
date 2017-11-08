@@ -54,10 +54,11 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
             request.writeMemo(domain: domain, dict: memo)
         }
         
-//        modalDelegate?.modalDismissed()
-        dismiss(animated: true, completion: {
-            self.modalDelegate?.modalDismissed()
-        })
+        self.modalDelegate?.modalDismissed()
+        
+//        dismiss(animated: true, completion: {
+//            self.modalDelegate?.modalDismissed()
+//        })
         
     }
     

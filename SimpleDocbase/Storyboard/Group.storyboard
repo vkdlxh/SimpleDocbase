@@ -221,7 +221,7 @@
         <!--Write Memo View Controller-->
         <scene sceneID="YDi-RZ-jTI">
             <objects>
-                <viewController id="3Zy-4W-bCv" customClass="WriteMemoViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WriteMemoViewController" id="3Zy-4W-bCv" customClass="WriteMemoViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YU4-f1-4RM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
