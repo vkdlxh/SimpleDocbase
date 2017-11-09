@@ -22,20 +22,13 @@ class MemoListViewController: UIViewController {
     var groupName: String = ""
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     var memos = [Memo]()
-    
-//    // FIXME:
-//    let modalView:WriteMemoViewController = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "WriteMemoViewController") as! WriteMemoViewController
 
-    
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         navigationItem.title = groupName
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
@@ -49,7 +42,6 @@ class MemoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-//        modalView.modalDelegate = self
         request.delegate = self
         if let domain = domain {
             request.MemoList(domain: domain, group: groupName)
@@ -125,12 +117,13 @@ extension MemoListViewController: RequestDelegate {
 extension MemoListViewController: ModalDelegate {
     
     func modalDismissed() {
-       
+
         dismiss(animated: true, completion: nil)
-        
+            
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+
     }
 }
 

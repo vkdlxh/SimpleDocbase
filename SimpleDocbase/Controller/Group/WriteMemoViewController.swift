@@ -75,6 +75,10 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
             request.groupList(domain: domain)
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        dismiss(animated: false, completion: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

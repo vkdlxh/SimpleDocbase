@@ -21,7 +21,9 @@ class Request {
     var delegate: RequestDelegate?
     let paramTokenKey = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
     // TokenKey : 8ZwKUqC7QkJJKZN2hP2i
-    let semaphore = DispatchSemaphore(value: 0)
+//    let semaphore = DispatchSemaphore(value: 0)
+    
+    var teams = [String]()
     
     
     enum MethodType: String {
@@ -34,17 +36,20 @@ class Request {
     
     // MARK: Internal Methods
     
-//    func getGroupFromTeam(domain: String) {
-//        let queue = DispatchQueue(label: "label")
-//        queue.async {
-//            self.getTeamList()
-//            self.groupList(domain: domain)
-//            
-//            DispatchQueue.main.async {
-//                <#code#>
-//            }
-//        }
-//    }
+    func getGroupFromTeam() {
+        
+        DispatchQueue(label: "label").async {
+            self.getTeamList()
+            if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
+                self.groupList(domain: domain)
+            } else {
+                if let domain = self.teams.first {
+                    UserDefaults.standard.set(domain, forKey: "selectedDomain")
+                    self.groupList(domain: domain)
+                }
+            }
+        }
+    }
     
     func getTeamList() {
         
@@ -59,12 +64,12 @@ class Request {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
                         
                         if let teamList = self.getTeamDomain(dict: json){
+                            self.teams = teamList
                             
-                            guard let _ = self.delegate?.didRecivedTeamList?(teams: teamList) else {
-                                return
-                            }
+//                            guard let _ = self.delegate?.didRecivedTeamList?(teams: teamList) else {
+//                                return
+//                            }
                         }
-//                        self.semaphore.signal()
                         print("delegate didRevivedTeamList")
                     }
                 } catch {
@@ -73,7 +78,6 @@ class Request {
             }
             
         }.resume()
-//        self.semaphore.wait()
     }
     
     func groupList(domain: String) -> Void {
@@ -93,8 +97,6 @@ class Request {
                                 return
                             }
                         }
-                        
-//                        self.semaphore.signal()
                         print("delegate getGroupName")
                     }
                 } catch {
@@ -102,7 +104,6 @@ class Request {
                 }
             }
         }.resume()
-//        self.semaphore.wait()
     }
     
     func MemoList(domain: String, group: String) -> Void {

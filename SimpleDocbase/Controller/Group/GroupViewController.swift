@@ -28,7 +28,8 @@ class GroupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         request.delegate = self
-        request.getTeamList()
+//        request.getTeamList()
+        request.getGroupFromTeam()
         print("WilAppear")
     }
 
@@ -77,17 +78,17 @@ extension GroupViewController: UITableViewDataSource {
 
 //MARK: RequestDelegate
 extension GroupViewController : RequestDelegate {
-    func didRecivedTeamList(teams: Array<String>) {
-        if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
-              request.groupList(domain: domain)
-        } else {
-            if let domain = teams.first {
-                UserDefaults.standard.set(domain, forKey: "selectedDomain")
-                request.groupList(domain: domain)
-            }
-        }
-        print("didRecivedTeamList")
-    }
+//    func didRecivedTeamList(teams: Array<String>) {
+//        if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
+//              request.groupList(domain: domain)
+//        } else {
+//            if let domain = teams.first {
+//                UserDefaults.standard.set(domain, forKey: "selectedDomain")
+//                request.groupList(domain: domain)
+//            }
+//        }
+//        print("didRecivedTeamList")
+//    }
     
     func getGroupName(groups: Array<Any>) {
         if let paramGroup = groups as? [Group] {
