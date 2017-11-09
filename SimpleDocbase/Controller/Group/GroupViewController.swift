@@ -13,6 +13,7 @@ class GroupViewController: UIViewController {
     // MARK: Properties
     let request: Request = Request()
     var groups = [Group]()
+    var refreshControl: UIRefreshControl!
     
     
     // MARK: IBOutlets
@@ -23,6 +24,11 @@ class GroupViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
+        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +54,12 @@ class GroupViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    
+    @objc func refresh() {
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
 

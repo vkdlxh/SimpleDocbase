@@ -38,7 +38,7 @@ class Request {
     
     func getGroupFromTeam() {
         
-        DispatchQueue(label: "label").async {
+        DispatchQueue.global().async {
             self.getTeamList()
             if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
                 self.groupList(domain: domain)
@@ -49,6 +49,17 @@ class Request {
                 }
             }
         }
+//        DispatchQueue(label: "label").async {
+//            self.getTeamList()
+//            if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
+//                self.groupList(domain: domain)
+//            } else {
+//                if let domain = self.teams.first {
+//                    UserDefaults.standard.set(domain, forKey: "selectedDomain")
+//                    self.groupList(domain: domain)
+//                }
+//            }
+//        }
     }
     
     func getTeamList() {
@@ -66,9 +77,9 @@ class Request {
                         if let teamList = self.getTeamDomain(dict: json){
                             self.teams = teamList
                             
-//                            guard let _ = self.delegate?.didRecivedTeamList?(teams: teamList) else {
-//                                return
-//                            }
+                            guard let _ = self.delegate?.didRecivedTeamList?(teams: teamList) else {
+                                return
+                            }
                         }
                         print("delegate didRevivedTeamList")
                     }

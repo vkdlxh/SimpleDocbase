@@ -22,6 +22,7 @@ class MemoListViewController: UIViewController {
     var groupName: String = ""
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     var memos = [Memo]()
+    var refreshControl: UIRefreshControl!
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -33,6 +34,10 @@ class MemoListViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped(sender:)))
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
+        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +56,11 @@ class MemoListViewController: UIViewController {
     
     @objc func addTapped(sender: UIBarButtonItem) {
         performSegue(withIdentifier: "WriteMemoSegue", sender: self)
+    }
+    
+    @objc func refresh() {
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     // MARK: - Navigation
