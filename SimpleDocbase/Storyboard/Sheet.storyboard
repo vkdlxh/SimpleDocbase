@@ -4,55 +4,72 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--勤怠管理-->
+        <!--NavigationViewController-->
         <scene sceneID="nwd-XI-F2P">
             <objects>
-                <navigationController id="QEp-6e-Xbz" userLabel="勤怠管理" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="勤怠管理" id="ikD-8u-5c6" userLabel="勤怠管理"/>
+                <navigationController id="QEp-6e-Xbz" userLabel="NavigationViewController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="勤怠管理" id="ikD-8u-5c6"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="34N-x9-411">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="9Oo-A6-bDh" kind="relationship" relationship="rootViewController" id="K9e-5N-CNW"/>
+                        <segue destination="5wF-Iu-UcX" kind="relationship" relationship="rootViewController" id="CPk-lT-TV5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="70q-IB-rgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="874" y="268"/>
         </scene>
-        <!--勤怠管理-->
-        <scene sceneID="s6S-fG-AKT">
+        <!--Sheet View Controller-->
+        <scene sceneID="GdP-nI-7Vx">
             <objects>
-                <tableViewController storyboardIdentifier="UITableViewController-6Hf-t6-n5q" id="9Oo-A6-bDh" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cr1-RC-gH1">
+                <viewController storyboardIdentifier="SheetVC" id="5wF-Iu-UcX" customClass="SheetViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DHY-Ip-cza">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5hA-Xv-Hka">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkSheetCell" id="Rie-MA-mK4">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rie-MA-mK4" id="ys1-i9-aco">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="5wF-Iu-UcX" id="5jp-lZ-heA"/>
+                                    <outlet property="delegate" destination="5wF-Iu-UcX" id="8Mt-D0-Xyz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fCD-Wc-IVR">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fCD-Wc-IVR" id="XyJ-zp-wbj">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="9Oo-A6-bDh" id="Mtx-zq-gfa"/>
-                            <outlet property="delegate" destination="9Oo-A6-bDh" id="mpo-9q-pVw"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="勤怠管理" id="E4C-gg-moS"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2uy-h6-y8S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="5hA-Xv-Hka" firstAttribute="top" secondItem="aVt-8K-o24" secondAttribute="top" id="2IG-6Z-Bzf"/>
+                            <constraint firstItem="aVt-8K-o24" firstAttribute="bottom" secondItem="5hA-Xv-Hka" secondAttribute="bottom" id="9z3-Sg-ij4"/>
+                            <constraint firstItem="5hA-Xv-Hka" firstAttribute="leading" secondItem="aVt-8K-o24" secondAttribute="leading" id="DX0-bv-EEy"/>
+                            <constraint firstItem="aVt-8K-o24" firstAttribute="trailing" secondItem="5hA-Xv-Hka" secondAttribute="trailing" id="w2T-YI-qyL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aVt-8K-o24"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KqD-vb-E3y"/>
+                    <connections>
+                        <outlet property="sheetTableView" destination="5hA-Xv-Hka" id="zi1-An-ura"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IMt-JQ-jKd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1828" y="268"/>
+            <point key="canvasLocation" x="1730" y="268"/>
         </scene>
     </scenes>
 </document>

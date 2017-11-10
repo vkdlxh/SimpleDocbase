@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
 		DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A7E1FA6D3B500668EC9 /* Group.swift */; };
 		DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A801FA6D3DE00668EC9 /* Team.swift */; };
 		DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		DA2D5A7E1FA6D3B500668EC9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		DA2D5A801FA6D3DE00668EC9 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sheet.storyboard; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				DAFA95CD1FA99C4500A368BC /* User.swift */,
 				DAFA95D11FA99C7C00A368BC /* Tag.swift */,
 				DAFA95CF1FA99C6100A368BC /* Comment.swift */,
+				BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -213,7 +216,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "jeon sangjun";
+				ORGANIZATIONNAME = "archive-asia";
 				TargetAttributes = {
 					DAF6B94B1FA06F090042BEC0 = {
 						CreatedOnToolsVersion = 9.0.1;
@@ -270,6 +273,7 @@
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
 				DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */,
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
+				BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */,
 				DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */,
 				DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
