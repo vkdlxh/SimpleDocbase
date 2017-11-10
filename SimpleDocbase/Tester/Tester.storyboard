@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cIC-Vn-enf">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,25 +9,64 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tester View Controller-->
         <scene sceneID="IZG-si-MsY">
             <objects>
-                <viewController id="cIC-Vn-enf" sceneMemberID="viewController">
+                <viewController id="cIC-Vn-enf" customClass="TesterViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IlU-I2-RFa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rc-7B-xJd">
-                                <rect key="frame" x="157" y="256" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="TpY-OP-eD5">
+                                <rect key="frame" x="140" y="20" width="219" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="nMv-RH-hzF"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeamCell" id="p2w-VR-rpl">
+                                        <rect key="frame" x="0.0" y="28" width="219" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p2w-VR-rpl" id="Fr7-zv-b68">
+                                            <rect key="frame" x="0.0" y="0.0" width="219" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Snn-Yg-CDM">
+                                        <rect key="frame" x="0.0" y="72" width="219" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Snn-Yg-CDM" id="qLc-fv-YW0">
+                                            <rect key="frame" x="0.0" y="0.0" width="219" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="cIC-Vn-enf" id="3Hs-XG-3ff"/>
+                                    <outlet property="delegate" destination="cIC-Vn-enf" id="lQ7-oh-U7s"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lvf-Dj-EbX">
+                                <rect key="frame" x="20" y="69" width="85" height="30"/>
+                                <state key="normal" title="TeamListBtn"/>
+                                <connections>
+                                    <action selector="getTeamBtn:" destination="cIC-Vn-enf" eventType="touchUpInside" id="T5m-05-oK9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lvf-Dj-EbX" firstAttribute="leading" secondItem="wle-yG-awu" secondAttribute="leading" constant="20" id="Kyn-oX-a4O"/>
+                            <constraint firstItem="lvf-Dj-EbX" firstAttribute="top" secondItem="wle-yG-awu" secondAttribute="top" constant="49" id="cME-B4-f3g"/>
+                            <constraint firstItem="wle-yG-awu" firstAttribute="trailing" secondItem="TpY-OP-eD5" secondAttribute="trailing" constant="16" id="sl2-cL-loK"/>
+                            <constraint firstItem="TpY-OP-eD5" firstAttribute="leading" secondItem="lvf-Dj-EbX" secondAttribute="trailing" constant="35" id="uGk-In-a04"/>
+                            <constraint firstItem="TpY-OP-eD5" firstAttribute="top" secondItem="wle-yG-awu" secondAttribute="top" id="vvq-L1-eiG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="wle-yG-awu"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="TpY-OP-eD5" id="rBR-xx-aYr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QH2-0M-sYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

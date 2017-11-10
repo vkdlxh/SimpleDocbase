@@ -48,7 +48,6 @@ class Request {
         
         for group in dict {
             if let group = Group(group:group) {
-                
                 groups.append(group)
             }
         }
@@ -60,7 +59,6 @@ class Request {
         
         for team in dict {
             if let team = Team(team:team) {
-                
                 teams.append(team.domain)
             }
         }
