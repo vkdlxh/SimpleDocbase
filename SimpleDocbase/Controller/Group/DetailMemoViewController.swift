@@ -11,7 +11,7 @@ import UIKit
 class DetailMemoViewController: UIViewController {
     
     // MARK: Properties
-    var memo: Any?
+    var memo: Memo?
     var groups = [Group]()
     
     // MARK: IBOutlets
@@ -25,7 +25,7 @@ class DetailMemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let memo = self.memo as? Memo {
+        if let memo = self.memo {
             titleLabel.text = memo.title
             bodyTextView.text = memo.body
         }

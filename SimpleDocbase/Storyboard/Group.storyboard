@@ -48,7 +48,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="D05-NG-W8N" kind="show" identifier="MemoListSegue" id="qb7-ER-iAH"/>
+                                            <segue destination="D05-NG-W8N" kind="show" identifier="GoMemoListSegue" id="qb7-ER-iAH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -126,7 +126,7 @@
                                         <connections>
                                             <outlet property="profileImageView" destination="fG6-fB-qWI" id="5Xw-63-zDr"/>
                                             <outlet property="titleLabel" destination="4K9-7U-E26" id="0Y2-VG-2WJ"/>
-                                            <segue destination="5Vo-4F-n5z" kind="show" identifier="DetailMemoSegue" id="CDz-oQ-0FF"/>
+                                            <segue destination="5Vo-4F-n5z" kind="show" identifier="GoDetailMemoSegue" id="CDz-oQ-0FF"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -147,7 +147,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Gcq-qa-1OV" id="cBX-sb-Vzn"/>
-                        <segue destination="kGx-WW-xod" kind="modal" identifier="WriteMemoSegue" id="LZ6-x1-Wxl"/>
+                        <segue destination="kGx-WW-xod" kind="modal" identifier="GoWriteMemoSegue" id="LZ6-x1-Wxl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uG6-zA-7yH" userLabel="First Responder" sceneMemberID="firstResponder"/>

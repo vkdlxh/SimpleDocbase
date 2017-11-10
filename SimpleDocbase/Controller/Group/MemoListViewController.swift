@@ -18,28 +18,26 @@ class MemoListTableViewCell: UITableViewCell {
 class MemoListViewController: UIViewController {
     
     // MARK: Properties
-    let request: Request = Request()
+    let request: MemoRequest = MemoRequest()
     var groupName: String = ""
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     var memos = [Memo]()
-    
-//    // FIXME:
-//    let modalView:WriteMemoViewController = UIStoryboard(name: "Group", bundle: nil).instantiateViewController(withIdentifier: "WriteMemoViewController") as! WriteMemoViewController
+    var refreshControl: UIRefreshControl!
 
-    
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
         navigationItem.title = groupName
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped(sender:)))
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
+        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +47,6 @@ class MemoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-//        modalView.modalDelegate = self
         request.delegate = self
         if let domain = domain {
             request.MemoList(domain: domain, group: groupName)
@@ -58,23 +55,27 @@ class MemoListViewController: UIViewController {
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "WriteMemoSegue", sender: self)
+        performSegue(withIdentifier: "GoWriteMemoSegue", sender: self)
+    }
+    
+    @objc func refresh() {
+        tableView.reloadData()
     }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailMemoSegue" {
+        if segue.identifier == "GoDetailMemoSegue" {
             if let destination = segue.destination as? DetailMemoViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.memo = memos[selectedIndex]
                 }
             }
-        } else if segue.identifier == "WriteMemoSegue" {
+        } else if segue.identifier == "GoWriteMemoSegue" {
             if let destination = segue.destination as? UINavigationController {
                 if let tagetController = destination.topViewController as? WriteMemoViewController {
-                    tagetController.modalDelegate = self
+                    tagetController.delegate = self
                 }
             }
         }
@@ -122,15 +123,17 @@ extension MemoListViewController: RequestDelegate {
     }
 }
 
-extension MemoListViewController: ModalDelegate {
+extension MemoListViewController: WriteMemoViewControllerDelegate {
     
-    func modalDismissed() {
-       
+    func writeMemoViewSubmit() {
+
         dismiss(animated: true, completion: nil)
-        
+            
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
+
     }
 }
 

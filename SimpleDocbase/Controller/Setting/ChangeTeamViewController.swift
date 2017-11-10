@@ -11,7 +11,7 @@ import UIKit
 class ChangeTeamViewController: UIViewController {
 
     // MARK: Properties
-    let request: Request = Request()
+    let request: TeamRequest = TeamRequest()
     var settingName: String = ""
     var teamNames = [String]()
     let userDefaults = UserDefaults.standard

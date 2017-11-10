@@ -11,8 +11,9 @@ import UIKit
 class GroupViewController: UIViewController {
     
     // MARK: Properties
-    let request: Request = Request()
+    let request: GroupRequest = GroupRequest()
     var groups = [Group]()
+    var refreshControl: UIRefreshControl!
     
     
     // MARK: IBOutlets
@@ -23,13 +24,18 @@ class GroupViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
+        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         request.delegate = self
-        request.getTeamList()
-        print("WilAppear")
+        request.getGroupFromTeam()
+        print("GroupViewController WillAppear")
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,13 +46,17 @@ class GroupViewController: UIViewController {
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "MemoListSegue" {
+        if segue.identifier == "GoMemoListSegue" {
             if let destination = segue.destination as? MemoListViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.groupName = groups[selectedIndex].name
                 }
             }
         }
+    }
+    
+    @objc func refresh() {
+        request.getGroupFromTeam()
     }
 }
 
@@ -77,27 +87,17 @@ extension GroupViewController: UITableViewDataSource {
 
 //MARK: RequestDelegate
 extension GroupViewController : RequestDelegate {
-    func didRecivedTeamList(teams: Array<String>) {
-        if let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String {
-              request.groupList(domain: domain)
-        } else {
-            if let domain = teams.first {
-                UserDefaults.standard.set(domain, forKey: "selectedDomain")
-                request.groupList(domain: domain)
-            }
-        }
-        print("didRecivedTeamList")
-    }
     
-    func getGroupName(groups: Array<Any>) {
+    func didRecivedGroup(groups: Array<Any>) {
+        print("didRecivedGroup(groups: )")
         if let paramGroup = groups as? [Group] {
             self.groups = paramGroup
         }
        
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            print("Main Queue")
+            print("GroupViewController reloadData()")
+            self.refreshControl.endRefreshing()
         }
-        print("getGroupName")
     }    
 }
