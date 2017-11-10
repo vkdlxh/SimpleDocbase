@@ -30,6 +30,10 @@
 		DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CF1FA99C6100A368BC /* Comment.swift */; };
 		DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95D11FA99C7C00A368BC /* Tag.swift */; };
 		DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */; };
+		DAFD71041FB477F3004F3140 /* Tester.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFD71031FB477F3004F3140 /* Tester.storyboard */; };
+		DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71051FB47A8C004F3140 /* GroupRequest.swift */; };
+		DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71071FB53455004F3140 /* TeamRequest.swift */; };
+		DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71091FB5386B004F3140 /* MemoRequest.swift */; };
 		DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +63,10 @@
 		DAFA95CF1FA99C6100A368BC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		DAFA95D11FA99C7C00A368BC /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
+		DAFD71031FB477F3004F3140 /* Tester.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tester.storyboard; sourceTree = "<group>"; };
+		DAFD71051FB47A8C004F3140 /* GroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRequest.swift; sourceTree = "<group>"; };
+		DAFD71071FB53455004F3140 /* TeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRequest.swift; sourceTree = "<group>"; };
+		DAFD71091FB5386B004F3140 /* MemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoRequest.swift; sourceTree = "<group>"; };
 		DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTokenkeyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +109,9 @@
 			isa = PBXGroup;
 			children = (
 				DAC4E5511FA2F24D00301844 /* Request.swift */,
+				DAFD71051FB47A8C004F3140 /* GroupRequest.swift */,
+				DAFD71071FB53455004F3140 /* TeamRequest.swift */,
+				DAFD71091FB5386B004F3140 /* MemoRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -134,6 +145,7 @@
 		DAF6B94E1FA06F090042BEC0 /* SimpleDocbase */ = {
 			isa = PBXGroup;
 			children = (
+				DAFD71021FB477E1004F3140 /* Tester */,
 				DA2D5A911FA6EBB200668EC9 /* Storyboard */,
 				DAC4E5591FA32B9800301844 /* Controller */,
 				DAC4E5581FA32B9300301844 /* Request */,
@@ -173,6 +185,14 @@
 				DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */,
 			);
 			path = Sheet;
+			sourceTree = "<group>";
+		};
+		DAFD71021FB477E1004F3140 /* Tester */ = {
+			isa = PBXGroup;
+			children = (
+				DAFD71031FB477F3004F3140 /* Tester.storyboard */,
+			);
+			path = Tester;
 			sourceTree = "<group>";
 		};
 		DAFF5C6D1FA836370087C871 /* Supportting Files */ = {
@@ -248,6 +268,7 @@
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
 				DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */,
 				DA2D5AA21FA728CE00668EC9 /* Setting.storyboard in Resources */,
+				DAFD71041FB477F3004F3140 /* Tester.storyboard in Resources */,
 				DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */,
 				DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */,
 			);
@@ -264,7 +285,10 @@
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
+				DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */,
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
+				DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */,
+				DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */,
 				DABE7DB61FB0033D007AD68E /* TeamInformViewController.swift in Sources */,
 				DABE7DB41FB002C6007AD68E /* ChangeTeamViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,

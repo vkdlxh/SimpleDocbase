@@ -8,15 +8,16 @@
 
 import UIKit
 
-protocol ModalDelegate {
-    func modalDismissed()
+protocol WriteMemoViewControllerDelegate {
+    func writeMemoViewSubmit()
 }
 
 class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // MARK: Properties
-    var modalDelegate: ModalDelegate?
-    let request: Request = Request()
+    var delegate: WriteMemoViewControllerDelegate?
+    let groupRequest: GroupRequest = GroupRequest()
+    let memoRequest: MemoRequest = MemoRequest()
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     var groups = [Group]()
     var groupId: Int = 0
@@ -51,9 +52,9 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
         ]
 
         if let domain = domain {
-            request.writeMemo(domain: domain, dict: memo)
+            memoRequest.writeMemo(domain: domain, dict: memo)
         }
-        self.modalDelegate?.modalDismissed()
+        self.delegate?.writeMemoViewSubmit()
         
     }
     
@@ -70,14 +71,13 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        request.delegate = self
+        groupRequest.delegate = self
         if let domain = domain {
-            request.groupList(domain: domain)
+            groupRequest.getGroupList(domain: domain)
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        dismiss(animated: false, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

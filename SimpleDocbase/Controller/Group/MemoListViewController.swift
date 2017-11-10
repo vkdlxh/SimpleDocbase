@@ -18,7 +18,7 @@ class MemoListTableViewCell: UITableViewCell {
 class MemoListViewController: UIViewController {
     
     // MARK: Properties
-    let request: Request = Request()
+    let request: MemoRequest = MemoRequest()
     var groupName: String = ""
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     var memos = [Memo]()
@@ -55,28 +55,27 @@ class MemoListViewController: UIViewController {
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "WriteMemoSegue", sender: self)
+        performSegue(withIdentifier: "GoWriteMemoSegue", sender: self)
     }
     
     @objc func refresh() {
         tableView.reloadData()
-        refreshControl.endRefreshing()
     }
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailMemoSegue" {
+        if segue.identifier == "GoDetailMemoSegue" {
             if let destination = segue.destination as? DetailMemoViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.memo = memos[selectedIndex]
                 }
             }
-        } else if segue.identifier == "WriteMemoSegue" {
+        } else if segue.identifier == "GoWriteMemoSegue" {
             if let destination = segue.destination as? UINavigationController {
                 if let tagetController = destination.topViewController as? WriteMemoViewController {
-                    tagetController.modalDelegate = self
+                    tagetController.delegate = self
                 }
             }
         }
@@ -124,14 +123,15 @@ extension MemoListViewController: RequestDelegate {
     }
 }
 
-extension MemoListViewController: ModalDelegate {
+extension MemoListViewController: WriteMemoViewControllerDelegate {
     
-    func modalDismissed() {
+    func writeMemoViewSubmit() {
 
         dismiss(animated: true, completion: nil)
             
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
 
     }
