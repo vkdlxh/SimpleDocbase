@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
-		DA1D97DD1FB57940005A5C1D /* TesterClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* TesterClosure.swift */; };
+		DA1D97DD1FB57940005A5C1D /* RequestClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */; };
 		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
 		DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A7E1FA6D3B500668EC9 /* Group.swift */; };
 		DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A801FA6D3DE00668EC9 /* Team.swift */; };
@@ -42,7 +42,7 @@
 
 /* Begin PBXFileReference section */
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
-		DA1D97DC1FB57940005A5C1D /* TesterClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterClosure.swift; sourceTree = "<group>"; };
+		DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClosure.swift; sourceTree = "<group>"; };
 		DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
 		DA2D5A7E1FA6D3B500668EC9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		DA2D5A801FA6D3DE00668EC9 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 			children = (
 				DAFD71031FB477F3004F3140 /* Tester.storyboard */,
 				DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */,
-				DA1D97DC1FB57940005A5C1D /* TesterClosure.swift */,
+				DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */,
 			);
 			path = Tester;
 			sourceTree = "<group>";
@@ -298,7 +298,7 @@
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
 				DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */,
 				DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */,
-				DA1D97DD1FB57940005A5C1D /* TesterClosure.swift in Sources */,
+				DA1D97DD1FB57940005A5C1D /* RequestClosure.swift in Sources */,
 				DABE7DB61FB0033D007AD68E /* TeamInformViewController.swift in Sources */,
 				DABE7DB41FB002C6007AD68E /* ChangeTeamViewController.swift in Sources */,
 				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
