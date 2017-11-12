@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458741FB682AD00D5FF8E /* DaySheetViewController.swift */; };
 		400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */; };
+		40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F30E371FB88CE000014511 /* WorkSheetCell.swift */; };
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
 		DA1D97DD1FB57940005A5C1D /* RequestClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */; };
 		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		400458741FB682AD00D5FF8E /* DaySheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetViewController.swift; sourceTree = "<group>"; };
 		400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+WorkSheet.swift"; sourceTree = "<group>"; };
+		40F30E371FB88CE000014511 /* WorkSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetCell.swift; sourceTree = "<group>"; };
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClosure.swift; sourceTree = "<group>"; };
 		DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			children = (
 				DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */,
 				400458741FB682AD00D5FF8E /* DaySheetViewController.swift */,
+				40F30E371FB88CE000014511 /* WorkSheetCell.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */,
 				400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */,
 				DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */,
+				40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
