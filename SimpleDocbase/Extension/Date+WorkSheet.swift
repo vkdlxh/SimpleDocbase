@@ -16,7 +16,7 @@ import UIKit
 extension Date  {
     
     func defaultCalendar() -> Calendar {
-        let calendar = Calendar.current
+        var calendar = Calendar.current
         //calendar.locale = Locale(identifier: "ja_JP")
         //calendar.timeZone = TimeZone(identifier: "Asia/Tokyo")!
         
@@ -81,30 +81,5 @@ extension Date  {
         default:
             return false
         }
-    }
-    
-    func yearMonthString() -> String {
-        
-        let dateFormater = DateFormatter()
-        dateFormater.locale = Locale(identifier: "ja_JP")
-        //dateFormater.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        dateFormater.dateFormat = "yyyy/MM"
-        let dateString = dateFormater.string(from: self)
-        print(dateString)
-        
-        return dateString
-    }
-    
-    static func createDate(year: Int, month: Int) -> Date? {
-        
-        let conv_month = NSString(format: "%02d", month)
-        let dateStr = "\(year)\(conv_month)"
-        
-        let dateFormater = DateFormatter()
-        dateFormater.locale = Locale(identifier: "ja_JP")
-        dateFormater.dateFormat = "yyyyMM"
-        let date = dateFormater.date(from: dateStr)
-        return date
-        
     }
 }

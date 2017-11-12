@@ -9,15 +9,15 @@
 import Foundation
 
 struct WorkSheet {
-    var workdate: Date
-    var workTimeSum: Double
-    var workDaySum: Int
+    var title: String
+    var totalWorkTime: Double?
+    var totalWorkDay: Int?
     var items = [WorkSheetItem]()
     
-    init(date: Date) {
-        self.workdate = date
-        self.workTimeSum = 0
-        self.workDaySum = 0
+    init(title: String) {
+        self.title = title
+        self.totalWorkTime = 0
+        self.totalWorkDay = 0
     }
 }
 

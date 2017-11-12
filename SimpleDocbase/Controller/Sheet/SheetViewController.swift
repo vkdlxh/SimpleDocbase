@@ -68,12 +68,8 @@ final class SheetViewController : UIViewController {
     // MARK: Private Methods
     private func loadTestData() {
         for i in 0..<10 {
-            guard let year_month = Date.createDate(year: 2017, month: i+1) else {
-                continue
-            }
-            var work_sheet = WorkSheet(date:year_month)
-            work_sheet.workDaySum = 10 + Int(arc4random()%10)
-            work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
+            var work_sheet = WorkSheet(title: "タイトル_\(i)")
+            
             for j in 0..<31 {
                 let work_sheet_item = WorkSheetItem(year: "2017", month: "\(i)", day: "\(j)")
                 work_sheet.items.append(work_sheet_item)
@@ -88,7 +84,7 @@ final class SheetViewController : UIViewController {
 extension SheetViewController : UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0;
+        return 44.0;
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -105,11 +101,10 @@ extension SheetViewController : UITableViewDataSource {
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkSheetCell") as! WorkSheetCell
+        let cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: "WorkSheetCell")
         
         let workSheet = workSheets[indexPath.row]
-        cell.settingCell(workSheet)
-        
+        cell.textLabel?.text = workSheet.title
         return cell
     }
 
