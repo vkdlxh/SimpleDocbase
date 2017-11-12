@@ -30,6 +30,9 @@ class TesterViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        //week
+        testDateExtension()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,6 +40,17 @@ class TesterViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: Private
+    private func testDateExtension() {
+        
+        let test_date = Date()
+        
+        print("firstDay: \(test_date.firstDay())");
+        print("lastDay: \(test_date.lastDay())");
+        print("weekDay: \(test_date.weekDay())");
+        print("weekDayString: \(test_date.weekDayString())");
+        print("isHoliday: \(test_date.isHoliday())");
+    }
 }
 
 // MARK: Extensions
