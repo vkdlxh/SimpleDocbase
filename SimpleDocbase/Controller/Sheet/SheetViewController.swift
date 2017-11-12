@@ -8,11 +8,10 @@
 
 import UIKit
 
-final class SheetViewController : UIViewController {
+class SheetViewController: UIViewController {
 
     // MARK: Properties
     var workSheets = [WorkSheet]()
-    var selectedSheetItem : WorkSheetItem?
     
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
@@ -44,23 +43,15 @@ final class SheetViewController : UIViewController {
     }
     
 
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        if segue.identifier == "GoDetailWorkSheetSegue" {
-            if let destination = segue.destination as? DaySheetViewController {
-                if let selectedSheetItem = selectedSheetItem {
-                    destination.sheetItem = selectedSheetItem
-                }
-            }
-        }
-        
     }
- 
+    */
 
     // MARK: Internal Methods
     
@@ -90,7 +81,7 @@ extension SheetViewController : UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        self.performSegue(withIdentifier: "GoDetailWorkSheetSegue", sender: self)
+        //TODO:　詳細へ遷移
     }
 }
 
