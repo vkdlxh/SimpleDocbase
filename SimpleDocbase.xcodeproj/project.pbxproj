@@ -13,6 +13,7 @@
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
 		DA1D97DD1FB57940005A5C1D /* RequestClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */; };
 		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
+		DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */; };
 		DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A7E1FA6D3B500668EC9 /* Group.swift */; };
 		DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A801FA6D3DE00668EC9 /* Team.swift */; };
 		DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */; };
@@ -50,6 +51,7 @@
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClosure.swift; sourceTree = "<group>"; };
 		DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
+		DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterTokenKeyViewController.swift; sourceTree = "<group>"; };
 		DA2D5A7E1FA6D3B500668EC9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		DA2D5A801FA6D3DE00668EC9 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sheet.storyboard; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			children = (
 				DAFD71031FB477F3004F3140 /* Tester.storyboard */,
 				DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */,
+				DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */,
 				DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */,
 			);
 			path = Tester;
@@ -324,6 +327,7 @@
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
 				BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */,
 				DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */,
+				DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */,
 				400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */,
 				DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */,
 				40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */,

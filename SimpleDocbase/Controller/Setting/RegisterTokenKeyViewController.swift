@@ -42,6 +42,16 @@ class RegisterTokenKeyViewController: UIViewController {
             resultTokenKey.text = tokenKey
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SetTokenKeySegue" {
+            if let destination = segue.destination as? UINavigationController {
+                if let tagetController = destination.topViewController as? SetTokenkeyViewController {
+                    tagetController.delegate = self
+                }
+            }
+        }
+    }
 }
 
 // MARK: Extensions
@@ -60,5 +70,14 @@ extension RegisterTokenKeyViewController: UITableViewDataSource {
         
         return cell
     }
+    
+}
+
+extension RegisterTokenKeyViewController: SetTokenkeyViewControllerDelegate {
+    func sendTokenKey() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     
 }
