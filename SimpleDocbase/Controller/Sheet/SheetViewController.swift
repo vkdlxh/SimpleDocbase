@@ -8,10 +8,11 @@
 
 import UIKit
 
-class SheetViewController: UIViewController {
+final class SheetViewController : UIViewController {
 
     // MARK: Properties
     var workSheets = [WorkSheet]()
+    var selectedSheetItem : WorkSheetItem?
     
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
@@ -43,15 +44,23 @@ class SheetViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "GoDetailWorkSheetSegue" {
+            if let destination = segue.destination as? DaySheetViewController {
+                if let selectedSheetItem = selectedSheetItem {
+                    destination.sheetItem = selectedSheetItem
+                }
+            }
+        }
+        
     }
-    */
+ 
 
     // MARK: Internal Methods
     
@@ -59,8 +68,12 @@ class SheetViewController: UIViewController {
     // MARK: Private Methods
     private func loadTestData() {
         for i in 0..<10 {
-            var work_sheet = WorkSheet(title: "タイトル_\(i)")
-            
+            guard let year_month = Date.createDate(year: 2017, month: i+1) else {
+                continue
+            }
+            var work_sheet = WorkSheet(date:year_month)
+            work_sheet.workDaySum = 10 + Int(arc4random()%10)
+            work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
             for j in 0..<31 {
                 let work_sheet_item = WorkSheetItem(year: "2017", month: "\(i)", day: "\(j)")
                 work_sheet.items.append(work_sheet_item)
@@ -75,13 +88,13 @@ class SheetViewController: UIViewController {
 extension SheetViewController : UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44.0;
+        return 100.0;
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        //TODO:　詳細へ遷移
+        self.performSegue(withIdentifier: "GoDetailWorkSheetSegue", sender: self)
     }
 }
 
@@ -92,10 +105,11 @@ extension SheetViewController : UITableViewDataSource {
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = UITableViewCell(style: .default, reuseIdentifier: "WorkSheetCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WorkSheetCell") as! WorkSheetCell
         
         let workSheet = workSheets[indexPath.row]
-        cell.textLabel?.text = workSheet.title
+        cell.settingCell(workSheet)
+        
         return cell
     }
 
