@@ -11,25 +11,56 @@ import UIKit
 class TesterViewController: UIViewController {
 
     var teams = [String]()
+    var groups = [Group]()
 
     @IBOutlet weak var tableView: UITableView!
     
     
     @IBAction func getTeamBtn(_ sender: Any) {
         
-        RequestClosure.singletonRequest.getTeamListClosure() { (groups: [String]) in
-            self.teams = groups
+        RequestClosure.singletonRequest.getTeamListClosure() { (teams: [String]) in
+            self.teams = teams
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
         }
     }
+    
+    @IBAction func getGroupBtn(_ sender: Any) {
+        RequestClosure.singletonRequest.getGroupClosure() { (groups: [Group]) in
+            self.groups = groups
+            print(self.groups)
+        }
+    }
+    
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let alert: UIAlertController = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle:  UIAlertControllerStyle.alert)
 
-        // Do any additional setup after loading the view.
+        if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
+            print("No TokenKey")
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                self.performSegue(withIdentifier: "GoSetTokenKey", sender: self)
+                print("OK")
+            })
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{                
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+            })
+            
+            alert.addAction(defaultAction)
+            alert.addAction(cancelAction)
+            
+            DispatchQueue.main.async {
+                self.present(alert, animated: true, completion: nil)
+            }
+
+        }
         
         //week
         testDateExtension()
