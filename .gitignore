@@ -21,11 +21,12 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+*.DS_Store
 
 ## Obj-C/Swift specific
 *.hmap
 *.ipa
-*.dSYM.zip
+*.YM.zip
 *.dSYM
 
 ## Playgrounds
