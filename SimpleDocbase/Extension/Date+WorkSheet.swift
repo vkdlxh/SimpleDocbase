@@ -71,6 +71,11 @@ extension Date  {
         
     }
     
+    static func weekDayString(week: Int) -> String {
+        let calendar = Calendar.current
+        return calendar.shortStandaloneWeekdaySymbols[week-1]
+    }
+    
     func isHoliday() -> Bool {
         
         let week = weekDay()
@@ -95,14 +100,47 @@ extension Date  {
         return dateString
     }
     
+    func hourMinuteString() -> String {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "HH:mm"
+        let dateString = dateFormater.string(from: self)
+        print(dateString)
+        
+        return dateString
+    }
+    
+    static func hourString(begin: Date, end: Date) -> String {
+        let elapsed_sec = end.timeIntervalSince(begin) // 時刻の差
+        
+        if elapsed_sec <= 0 {
+            return "0"
+        }
+        
+        let hour = Double(elapsed_sec / 3600)
+        return String(format: "%.1f", hour)
+    }
+    
     static func createDate(year: Int, month: Int) -> Date? {
         
-        let conv_month = NSString(format: "%02d", month)
-        let dateStr = "\(year)\(conv_month)"
+        let dateStr = String(format: "%04d%02d", year, month)
         
         let dateFormater = DateFormatter()
         dateFormater.locale = Locale(identifier: "ja_JP")
         dateFormater.dateFormat = "yyyyMM"
+        let date = dateFormater.date(from: dateStr)
+        return date
+        
+    }
+    
+    static func createDate(year: Int, month: Int, day: Int) -> Date? {
+        
+        let dateStr = String(format: "%04d%02d%02d",year, month, day)
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "yyyyMMdd"
         let date = dateFormater.date(from: dateStr)
         return date
         
