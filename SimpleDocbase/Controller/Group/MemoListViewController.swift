@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MemoListTableViewCell: UITableViewCell {
     
@@ -47,6 +48,7 @@ class MemoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        SVProgressHUD.show()
         request.delegate = self
         if let domain = domain {
             request.MemoList(domain: domain, group: groupName)
@@ -118,6 +120,7 @@ extension MemoListViewController: RequestDelegate {
         }
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            SVProgressHUD.dismiss()
         }
 
     }

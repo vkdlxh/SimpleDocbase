@@ -8,8 +8,13 @@
 
 import UIKit
 
+protocol SetTokenkeyViewControllerDelegate {
+    func sendTokenKey()
+}
+
 class SetTokenkeyViewController: UIViewController {
 
+    var delegate: SetTokenkeyViewControllerDelegate?
     var settingName = ""
 
     @IBOutlet weak var paramTokenKey: UITextField!
@@ -19,7 +24,7 @@ class SetTokenkeyViewController: UIViewController {
         let userDefaults = UserDefaults.standard
         userDefaults.set(paramTokenKey.text, forKey: "paramTokenKey")
         
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.delegate?.sendTokenKey()
     }
     
     @IBAction func backButton(_ sender: Any) {
