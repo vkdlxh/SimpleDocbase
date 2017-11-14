@@ -52,6 +52,7 @@
 		40F30E371FB88CE000014511 /* WorkSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetCell.swift; sourceTree = "<group>"; };
 		BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetItemCell.swift; sourceTree = "<group>"; };
 		50BA2B0354AB199E568389D6 /* Pods-SimpleDocbase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.release.xcconfig"; sourceTree = "<group>"; };
+		BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetItemCell.swift; sourceTree = "<group>"; };
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		BB8642ABBE4D41B96C1B5FCA /* Pods-SimpleDocbase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.debug.xcconfig"; sourceTree = "<group>"; };
 		DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClosure.swift; sourceTree = "<group>"; };
