@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class GroupViewController: UIViewController {
     
@@ -38,7 +39,7 @@ class GroupViewController: UIViewController {
             
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
-                // TODO: SetTokenKeyViewControllerに移動させる
+                //FIXME: refreshができない
                 let storyboard = UIStoryboard(name: "Setting", bundle: nil)
                 if let tokenKeyViewController = storyboard.instantiateViewController(withIdentifier: "SetTokenkeyViewController") as? UINavigationController {
                     if let targetViewController = tokenKeyViewController.topViewController as? SetTokenkeyViewController {
@@ -63,10 +64,14 @@ class GroupViewController: UIViewController {
             }
             
         }
+        
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        SVProgressHUD.show()
         request.delegate = self
         request.getGroupFromTeam()
         print("GroupViewController WillAppear")
@@ -132,6 +137,7 @@ extension GroupViewController : RequestDelegate, SetTokenkeyViewControllerDelega
             self.tableView.reloadData()
             print("GroupViewController reloadData()")
             self.refreshControl.endRefreshing()
+            SVProgressHUD.dismiss()
         }
     }
     
