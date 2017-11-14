@@ -50,6 +50,10 @@ class TesterViewController: UIViewController {
         print("weekDay: \(test_date.weekDay())");
         print("weekDayString: \(test_date.weekDayString())");
         print("isHoliday: \(test_date.isHoliday())");
+        
+        let end_date = test_date.addingTimeInterval(60*60*8)    // +8hour
+        let work_time = Date.hourString(begin: test_date, end: end_date);
+        print("workTime: \(work_time)")
     }
 }
 

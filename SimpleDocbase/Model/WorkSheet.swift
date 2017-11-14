@@ -8,6 +8,16 @@
 
 import Foundation
 
+//enum WeekDay: Int {
+//    case Sun
+//    case Mon
+//    case Tue
+//    case Wed
+//    case Thu
+//    case Fri
+//    case Sat
+//}
+
 struct WorkSheet {
     var workdate: Date
     var workTimeSum: Double
@@ -22,23 +32,27 @@ struct WorkSheet {
 }
 
 struct WorkSheetItem {
-    var workYear: String      /// yyyy
-    var workMonth: String     /// mm
-    var workDay: String       /// dd
-    var week: Int
+    var workYear: Int      /// yyyy
+    var workMonth: Int     /// mm
+    var workDay: Int       /// dd
+    var workFlag: Bool?
+    var week: Int?
     var beginTime: Date?
     var endTime: Date?
+    var breakTime: Double?
     var duration: Double?
     var remark: String?
-    var dayOff: Bool
-    var breakTime: Double?
     
-    init(year: String, month: String, day: String) {
+    
+    init(year: Int, month: Int, day: Int) {
         self.workYear = year
         self.workMonth = month
         self.workDay = day
-        self.week = 1
-        self.dayOff = false
+        
+        if let workDate = Date.createDate(year: year, month: month, day: day) {
+            self.week = workDate.weekDay()
+            self.workFlag = !workDate.isHoliday()
+        }
     }
     
 }
