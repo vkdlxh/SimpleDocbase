@@ -12,7 +12,7 @@ final class SheetViewController : UIViewController {
 
     // MARK: Properties
     var workSheets = [WorkSheet]()
-    var selectedSheetItem : WorkSheetItem?
+    var selectedWorkSheet : WorkSheet?
     
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
@@ -53,12 +53,12 @@ final class SheetViewController : UIViewController {
         
         if segue.identifier == "GoDetailWorkSheetSegue" {
             if let destination = segue.destination as? DaySheetViewController {
-                if let selectedSheetItem = selectedSheetItem {
-                    destination.sheetItem = selectedSheetItem
+                if let selectedWorkSheet = selectedWorkSheet {
+                    destination.workDate = selectedWorkSheet.workdate
+                    destination.sheetItems = selectedWorkSheet.items
                 }
             }
         }
-        
     }
  
 
@@ -75,7 +75,7 @@ final class SheetViewController : UIViewController {
             work_sheet.workDaySum = 10 + Int(arc4random()%10)
             work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
             for j in 0..<31 {
-                let work_sheet_item = WorkSheetItem(year: "2017", month: "\(i)", day: "\(j)")
+                let work_sheet_item = WorkSheetItem(year: 2017, month:i, day:j)
                 work_sheet.items.append(work_sheet_item)
             }
             workSheets.append(work_sheet)
@@ -94,6 +94,7 @@ extension SheetViewController : UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        selectedWorkSheet = workSheets[indexPath.row]
         self.performSegue(withIdentifier: "GoDetailWorkSheetSegue", sender: self)
     }
 }
