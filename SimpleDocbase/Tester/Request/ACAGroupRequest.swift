@@ -34,7 +34,7 @@ class ACAGroupRequest: ACARequest {
                     if let data = data {
                         do {
                             if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
-                                
+
                                 if let groupList = self.makeGroupArray(dict: json) {
                                     completion(groupList)
                                 }

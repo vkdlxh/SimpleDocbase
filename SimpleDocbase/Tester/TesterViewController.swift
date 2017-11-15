@@ -18,6 +18,9 @@ class TesterViewController: UIViewController {
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var bodyTextView: UITextView!
+    
     
     // MARK: IBActions
     @IBAction func getTeamBtn(_ sender: Any) {
@@ -43,14 +46,36 @@ class TesterViewController: UIViewController {
                 print(memos)
             }
         }
+    }
+    
+    @IBAction func submitBtn(_ sender: Any) {
+        
+        let memo: [String : Any] = [
+            "title": titleTextField.text ?? "" ,
+            "body": bodyTextView.text ?? "" ,
+            "draft": false,
+            "tags": ["test"],
+            "scope": "group",
+            "groups": 4712,
+            "notice": true
+        ]
+        
+        ACAMemoRequest.singletonMemoRequest.writeMemo(domain: domain, dict: memo)
+        
+        DispatchQueue.main.async {
+            self.titleTextField.text = ""
+            self.bodyTextView.text = ""
+        }
         
     }
+    
     
 
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Alert
         let alert: UIAlertController = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle:  UIAlertControllerStyle.alert)
 
         if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
@@ -71,7 +96,14 @@ class TesterViewController: UIViewController {
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }
-
+        }
+        
+        // Team
+        ACATeamRequest.singletonTeamRequest.getTeamListClosure() { (teams: [String]) in
+            self.teams = teams
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
         
         //week
@@ -120,4 +152,14 @@ extension TesterViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+extension TesterViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+            UserDefaults.standard.set(teams[selectedIndex], forKey: "selectedDomain")
+            print("Team Changed \(teams[selectedIndex])")
+            self.tableView.reloadData()
+        }
+    }
 }
