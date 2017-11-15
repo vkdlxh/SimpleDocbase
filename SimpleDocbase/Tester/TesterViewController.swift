@@ -10,15 +10,18 @@ import UIKit
 
 class TesterViewController: UIViewController {
 
+    // MARK: Properties
     var teams = [String]()
     var groups = [Group]()
+    var memos: [Memo]?
+    let domain = UserDefaults.standard.object(forKey: "selectedDomain") as! String
 
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
-    
+    // MARK: IBActions
     @IBAction func getTeamBtn(_ sender: Any) {
-        
-        RequestClosure.singletonRequest.getTeamListClosure() { (teams: [String]) in
+        ACATeamRequest.singletonTeamRequest.getTeamListClosure() { (teams: [String]) in
             self.teams = teams
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -27,15 +30,24 @@ class TesterViewController: UIViewController {
     }
     
     @IBAction func getGroupBtn(_ sender: Any) {
-        RequestClosure.singletonRequest.getGroupClosure() { (groups: [Group]) in
+        ACAGroupRequest.singletonGroupRequest.getGroupClosure() { (groups: [Group]) in
             self.groups = groups
             print(self.groups)
         }
     }
     
+    @IBAction func getMemoListBtn(_ sender: Any) {
+        ACAMemoRequest.singletonMemoRequest.MemoList(domain: domain, group: (groups.first?.name)!) { (memos: [Memo]) in
+            self.memos = memos
+            if let memos = self.memos {
+                print(memos)
+            }
+        }
+        
+    }
     
 
-    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         

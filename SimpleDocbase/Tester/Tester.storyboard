@@ -53,6 +53,14 @@
                                     <action selector="getGroupBtn:" destination="cIC-Vn-enf" eventType="touchUpInside" id="1EY-bw-G2h"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGL-rF-6zm">
+                                <rect key="frame" x="216" y="196" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="MemoList"/>
+                                <connections>
+                                    <action selector="getMemoListBtn:" destination="cIC-Vn-enf" eventType="touchUpInside" id="PoR-7k-JaM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -73,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QH2-0M-sYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="719" y="-37"/>
+            <point key="canvasLocation" x="717.60000000000002" y="-37.331334332833585"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Qw7-g5-HDH">
