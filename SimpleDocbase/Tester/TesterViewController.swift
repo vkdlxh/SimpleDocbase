@@ -10,35 +10,78 @@ import UIKit
 
 class TesterViewController: UIViewController {
 
+    // MARK: Properties
     var teams = [String]()
     var groups = [Group]()
+    var memos: [Memo]?
+    let domain = UserDefaults.standard.object(forKey: "selectedDomain") as! String
 
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var bodyTextView: UITextView!
     
     
+    // MARK: IBActions
     @IBAction func getTeamBtn(_ sender: Any) {
-        
-        RequestClosure.singletonRequest.getTeamListClosure() { (teams: [String]) in
-            self.teams = teams
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        ACATeamRequest.init().getTeamListClosure() { (teams: [String]?) in
+            if let teams = teams {
+                self.teams = teams
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
     @IBAction func getGroupBtn(_ sender: Any) {
-        RequestClosure.singletonRequest.getGroupClosure() { (groups: [Group]) in
-            self.groups = groups
-            print(self.groups)
+        ACAGroupRequest.init().getGroupClosure() { (groups: [Group]?) in
+            if let groups = groups {
+                self.groups = groups
+                print(self.groups)
+            }
         }
+    }
+    
+    @IBAction func getMemoListBtn(_ sender: Any) {
+        ACAMemoRequest.init().MemoList(domain: domain, group: (groups.first?.name)!) { (memos: [Memo]?) in
+            if let memos = memos {
+                self.memos = memos
+                if let memos = self.memos {
+                    print(memos)
+                }
+            }
+        }
+    }
+    
+    @IBAction func submitBtn(_ sender: Any) {
+        
+        let memo: [String : Any] = [
+            "title": titleTextField.text ?? "" ,
+            "body": bodyTextView.text ?? "" ,
+            "draft": false,
+            "tags": ["test"],
+            "scope": "group",
+            "groups": 4712,
+            "notice": true
+        ]
+        
+        ACAMemoRequest.init().writeMemo(domain: domain, dict: memo)
+        
+        DispatchQueue.main.async {
+            self.titleTextField.text = ""
+            self.bodyTextView.text = ""
+        }
+        
     }
     
     
 
-    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Alert
         let alert: UIAlertController = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle:  UIAlertControllerStyle.alert)
 
         if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
@@ -59,7 +102,16 @@ class TesterViewController: UIViewController {
             DispatchQueue.main.async {
                 self.present(alert, animated: true, completion: nil)
             }
-
+        }
+        
+        // Team
+        ACATeamRequest.init().getTeamListClosure() { (teams: [String]?) in
+            if let teams = teams {
+                self.teams = teams
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
         
         //week
@@ -108,4 +160,14 @@ extension TesterViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+extension TesterViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+            UserDefaults.standard.set(teams[selectedIndex], forKey: "selectedDomain")
+            print("Team Changed \(teams[selectedIndex])")
+            self.tableView.reloadData()
+        }
+    }
 }

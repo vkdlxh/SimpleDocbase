@@ -1,16 +1,16 @@
 //
-//  MemoRequest.swift
+//  ACAMemoRequest.swift
 //  SimpleDocbase
 //
-//  Created by jeonsangjun on 2017/11/10.
+//  Created by jeonsangjun on 2017/11/15.
 //  Copyright © 2017年 archive-asia. All rights reserved.
 //
 
 import Foundation
 
-class MemoRequest: Request {
+class ACAMemoRequest: ACARequest {
     
-    func MemoList(domain: String, group: String) -> Void {
+    func MemoList(domain: String, group: String, completion: @escaping ([Memo]?) -> ()) {
         print("MemoList(domain:, group:)")
         let urlStr = "https://api.docbase.io/teams/\(domain)/posts?q=group:\(group)"
         let encodedURL = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -24,20 +24,21 @@ class MemoRequest: Request {
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    var memos = [Any]()
+                    var memos: [Memo]?
+                    memos = []
                     for post in json["posts"] as! [Any] {
-                        
                         guard let memo = Memo(dict: post as! [String:Any]) else { return }
-                        memos.append(memo)
-                        
+                        memos?.append(memo)
                     }
-                    guard let _ = self.delegate?.getMemoList?(memos: memos) else { return }
-                    
+                    if let memos = memos {
+                        completion(memos)
+                    }
                 } catch {
                     print(error)
+                    completion(nil)
                 }
             }
-            }.resume()
+        }.resume()
     }
     
     func writeMemo(domain: String, dict: Dictionary<String, Any>) {
@@ -65,4 +66,5 @@ class MemoRequest: Request {
             }.resume()
         
     }
+    
 }

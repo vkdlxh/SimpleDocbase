@@ -13,7 +13,7 @@
 		40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F30E371FB88CE000014511 /* WorkSheetCell.swift */; };
 		BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */; };
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
-		DA1D97DD1FB57940005A5C1D /* RequestClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */; };
+		DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* ACARequest.swift */; };
 		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
 		DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */; };
 		DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A7E1FA6D3B500668EC9 /* Group.swift */; };
@@ -22,6 +22,9 @@
 		DA2D5AA21FA728CE00668EC9 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */; };
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
 		DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C80F01FA729D400AC3E3D /* Group.storyboard */; };
+		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
+		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
+		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
 		DABE7DB41FB002C6007AD68E /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABE7DB31FB002C6007AD68E /* ChangeTeamViewController.swift */; };
 		DABE7DB61FB0033D007AD68E /* TeamInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABE7DB51FB0033D007AD68E /* TeamInformViewController.swift */; };
 		DAC4E54C1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E54B1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift */; };
@@ -50,13 +53,11 @@
 		400458741FB682AD00D5FF8E /* DaySheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetViewController.swift; sourceTree = "<group>"; };
 		400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+WorkSheet.swift"; sourceTree = "<group>"; };
 		40F30E371FB88CE000014511 /* WorkSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetCell.swift; sourceTree = "<group>"; };
-		BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetItemCell.swift; sourceTree = "<group>"; };
 		50BA2B0354AB199E568389D6 /* Pods-SimpleDocbase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.release.xcconfig"; sourceTree = "<group>"; };
 		BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetItemCell.swift; sourceTree = "<group>"; };
-		50BA2B0354AB199E568389D6 /* Pods-SimpleDocbase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.release.xcconfig"; sourceTree = "<group>"; };
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		BB8642ABBE4D41B96C1B5FCA /* Pods-SimpleDocbase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.debug.xcconfig"; sourceTree = "<group>"; };
-		DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestClosure.swift; sourceTree = "<group>"; };
+		DA1D97DC1FB57940005A5C1D /* ACARequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACARequest.swift; sourceTree = "<group>"; };
 		DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
 		DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterTokenKeyViewController.swift; sourceTree = "<group>"; };
 		DA2D5A7E1FA6D3B500668EC9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
@@ -65,6 +66,9 @@
 		DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA8C80F01FA729D400AC3E3D /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
+		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
+		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
+		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
 		DABE7DB31FB002C6007AD68E /* ChangeTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamViewController.swift; sourceTree = "<group>"; };
 		DABE7DB51FB0033D007AD68E /* TeamInformViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInformViewController.swift; sourceTree = "<group>"; };
 		DAC4E54B1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +142,17 @@
 				DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DAA340091FBBDC7B009658EF /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				DA1D97DC1FB57940005A5C1D /* ACARequest.swift */,
+				DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */,
+				DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */,
+				DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */,
+			);
+			path = Request;
 			sourceTree = "<group>";
 		};
 		DAC4E5571FA32B8800301844 /* Model */ = {
@@ -245,10 +260,10 @@
 		DAFD71021FB477E1004F3140 /* Tester */ = {
 			isa = PBXGroup;
 			children = (
+				DAA340091FBBDC7B009658EF /* Request */,
 				DAFD71031FB477F3004F3140 /* Tester.storyboard */,
 				DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */,
 				DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */,
-				DA1D97DC1FB57940005A5C1D /* RequestClosure.swift */,
 			);
 			path = Tester;
 			sourceTree = "<group>";
@@ -397,6 +412,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */,
+				DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */,
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
@@ -404,8 +420,9 @@
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
 				DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */,
 				DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */,
-				DA1D97DD1FB57940005A5C1D /* RequestClosure.swift in Sources */,
+				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
 				DABE7DB61FB0033D007AD68E /* TeamInformViewController.swift in Sources */,
+				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
 				DABE7DB41FB002C6007AD68E /* ChangeTeamViewController.swift in Sources */,
 				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
@@ -419,6 +436,7 @@
 				40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,
+				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,

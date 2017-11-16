@@ -53,6 +53,37 @@
                                     <action selector="getGroupBtn:" destination="cIC-Vn-enf" eventType="touchUpInside" id="1EY-bw-G2h"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGL-rF-6zm">
+                                <rect key="frame" x="216" y="196" width="68" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="MemoList"/>
+                                <connections>
+                                    <action selector="getMemoListBtn:" destination="cIC-Vn-enf" eventType="touchUpInside" id="PoR-7k-JaM"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yFh-ww-QrF">
+                                <rect key="frame" x="20" y="266" width="240" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.39779540116602929" green="1" blue="0.79217331823161774" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="A04-ot-9Qe">
+                                <rect key="frame" x="20" y="311" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.94328745579999995" green="1" blue="0.3527270066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tm3-7b-JrY">
+                                <rect key="frame" x="116" y="466" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitBtn:" destination="cIC-Vn-enf" eventType="touchUpInside" id="8TP-Ab-Kgm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -65,7 +96,9 @@
                         <viewLayoutGuide key="safeArea" id="wle-yG-awu"/>
                     </view>
                     <connections>
+                        <outlet property="bodyTextView" destination="A04-ot-9Qe" id="5qA-ac-S9E"/>
                         <outlet property="tableView" destination="TpY-OP-eD5" id="rBR-xx-aYr"/>
+                        <outlet property="titleTextField" destination="yFh-ww-QrF" id="JQI-pt-VsA"/>
                         <segue destination="aqZ-uq-ySz" kind="show" id="9MK-TE-d2J"/>
                         <segue destination="zW3-JG-nVh" kind="show" id="ZQC-eT-JKI"/>
                         <segue destination="Rai-4N-E7F" kind="show" identifier="GoSetTokenKey" id="Q02-lQ-ltG"/>
@@ -73,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QH2-0M-sYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="719" y="-37"/>
+            <point key="canvasLocation" x="717.60000000000002" y="-37.331334332833585"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Qw7-g5-HDH">

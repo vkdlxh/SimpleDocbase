@@ -3,7 +3,7 @@
 //  SimpleDocbase
 //
 //  Created by jeon sangjun on 2017/10/26.
-//  Copyright © 2017年 jeon sangjun. All rights reserved.
+//  Copyright © 2017年 archive-asia. All rights reserved.
 //
 
 import UIKit
