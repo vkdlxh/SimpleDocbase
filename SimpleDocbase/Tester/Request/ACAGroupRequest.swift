@@ -10,15 +10,13 @@ import Foundation
 
 class ACAGroupRequest: ACARequest {
     
-    static var singletonGroupRequest = ACAGroupRequest()
-    
-    func getGroupClosure(completion: @escaping ([Group]) -> ()) {
+    func getGroupClosure(completion: @escaping ([Group]?) -> ()) {
         print("getGroupClosure()")
-        ACATeamRequest.singletonTeamRequest.getTeamListClosure() { (teams: [String]) in
+        ACATeamRequest.init().getTeamListClosure() { (teams: [String]?) in
             let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
             
             if domain == nil {
-                UserDefaults.standard.set(teams.first, forKey: "selectedDomain")
+                UserDefaults.standard.set(teams?.first, forKey: "selectedDomain")
             }
             
             if let domain = domain {
@@ -41,6 +39,7 @@ class ACAGroupRequest: ACARequest {
                             }
                         } catch {
                             print(error)
+                            completion(nil)
                         }
                     }
                 }.resume()

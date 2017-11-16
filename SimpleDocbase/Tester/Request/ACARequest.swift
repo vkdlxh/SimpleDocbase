@@ -10,19 +10,17 @@ import Foundation
 
 class ACARequest {
     
-    // MARK: Properties
-    static var singletonRequest = ACARequest()
-    
+    // MARK: Properties    
     var url: URL?
     let session: URLSession = URLSession.shared
     let tokenKey = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
     
     enum MethodType: String {
-        case get = "GET"
-        case post = "POST"
+        case get    = "GET"
+        case post   = "POST"
         case delete = "DELETE"
-        case put = "PUT"
-        case patch = "PATCH"
+        case put    = "PUT"
+        case patch  = "PATCH"
     }
 
     // MARK: Internal Methods

@@ -9,10 +9,8 @@
 import Foundation
 
 class ACATeamRequest: ACARequest {
-    
-    static var singletonTeamRequest = ACATeamRequest()
-    
-    func getTeamListClosure(completion: @escaping ([String]) -> ()) {
+
+    func getTeamListClosure(completion: @escaping ([String]?) -> ()) {
         print("getTeamListClosure()")
         guard let url = URL(string: "https://api.docbase.io/teams") else { return }
         
@@ -29,6 +27,7 @@ class ACATeamRequest: ACARequest {
                     }
                 } catch {
                     print(error)
+                    completion(nil)
                 }
             }
         }.resume()

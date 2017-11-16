@@ -10,9 +10,7 @@ import Foundation
 
 class ACAMemoRequest: ACARequest {
     
-    static var singletonMemoRequest = ACAMemoRequest()
-    
-    func MemoList(domain: String, group: String, completion: @escaping ([Memo]) -> ()) {
+    func MemoList(domain: String, group: String, completion: @escaping ([Memo]?) -> ()) {
         print("MemoList(domain:, group:)")
         let urlStr = "https://api.docbase.io/teams/\(domain)/posts?q=group:\(group)"
         let encodedURL = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
@@ -37,6 +35,7 @@ class ACAMemoRequest: ACARequest {
                     }
                 } catch {
                     print(error)
+                    completion(nil)
                 }
             }
         }.resume()

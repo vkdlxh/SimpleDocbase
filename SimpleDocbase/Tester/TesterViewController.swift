@@ -24,26 +24,32 @@ class TesterViewController: UIViewController {
     
     // MARK: IBActions
     @IBAction func getTeamBtn(_ sender: Any) {
-        ACATeamRequest.singletonTeamRequest.getTeamListClosure() { (teams: [String]) in
-            self.teams = teams
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        ACATeamRequest.init().getTeamListClosure() { (teams: [String]?) in
+            if let teams = teams {
+                self.teams = teams
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
     @IBAction func getGroupBtn(_ sender: Any) {
-        ACAGroupRequest.singletonGroupRequest.getGroupClosure() { (groups: [Group]) in
-            self.groups = groups
-            print(self.groups)
+        ACAGroupRequest.init().getGroupClosure() { (groups: [Group]?) in
+            if let groups = groups {
+                self.groups = groups
+                print(self.groups)
+            }
         }
     }
     
     @IBAction func getMemoListBtn(_ sender: Any) {
-        ACAMemoRequest.singletonMemoRequest.MemoList(domain: domain, group: (groups.first?.name)!) { (memos: [Memo]) in
-            self.memos = memos
-            if let memos = self.memos {
-                print(memos)
+        ACAMemoRequest.init().MemoList(domain: domain, group: (groups.first?.name)!) { (memos: [Memo]?) in
+            if let memos = memos {
+                self.memos = memos
+                if let memos = self.memos {
+                    print(memos)
+                }
             }
         }
     }
@@ -60,7 +66,7 @@ class TesterViewController: UIViewController {
             "notice": true
         ]
         
-        ACAMemoRequest.singletonMemoRequest.writeMemo(domain: domain, dict: memo)
+        ACAMemoRequest.init().writeMemo(domain: domain, dict: memo)
         
         DispatchQueue.main.async {
             self.titleTextField.text = ""
@@ -99,10 +105,12 @@ class TesterViewController: UIViewController {
         }
         
         // Team
-        ACATeamRequest.singletonTeamRequest.getTeamListClosure() { (teams: [String]) in
-            self.teams = teams
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        ACATeamRequest.init().getTeamListClosure() { (teams: [String]?) in
+            if let teams = teams {
+                self.teams = teams
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
         
