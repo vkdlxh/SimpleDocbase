@@ -48,20 +48,11 @@ class SFRegisterTokenKeyViewController: FormViewController {
         case .valid:
             let userDefaults = UserDefaults.standard
             userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
-            form_simpleAlert("登録", "Tokenを登録しました。")
+            success_simpleAlert("登録", "Tokenを登録しました。")
         case let .invalid(item, message):
             let title = item.elementIdentifier ?? "失敗"
-            form_simpleAlert(title, message)
+            fail_simpleAlert(title, message)
         }
     }
-    
-//    @objc func tokenKeySubmitAction(_ sender: AnyObject?) {
-//        let userDefaults = UserDefaults.standard
-//        userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
-//        print("change tokenKey: \(tokenKey.value)")
-//
-//        _ = navigationController?.popViewController(animated: true)
-//
-//    }
 
 }

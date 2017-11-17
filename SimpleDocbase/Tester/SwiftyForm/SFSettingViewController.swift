@@ -16,9 +16,32 @@ class SFSettingViewController: FormViewController {
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
         builder += SectionHeaderTitleFormItem().title("OPTION")
-        builder += ViewControllerFormItem().title("Token登録").placeholder(userDefaults.object(forKey: "paramTokenKey") as! String).viewController(SFRegisterTokenKeyViewController.self)
-        builder += ViewControllerFormItem().title("勤怠管理グループ設定").viewController(SFChangeTeamViewController.self)
+        builder += ViewControllerFormItem().title("Token登録").viewController(SFRegisterTokenKeyViewController.self)
+        builder += groupListPiker
         builder += ViewControllerFormItem().title("所属チーム情報").viewController(SFTeamInfomationViewController.self)
+        builder += SectionHeaderTitleFormItem().title("APP Info")
+        builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
+       
     }
+    
+    lazy var groupListPiker: OptionPickerFormItem = {
+        let instance = OptionPickerFormItem()
+        instance.title("勤怠管理グループ設定")
+        ACAGroupRequest.init().getGroupClosure { groupList in
+            if let groupList = groupList {
+                for group in groupList {
+                    instance.append(group.name)
+                }
+            }
+        }
+        if let selectedGroup = userDefaults.object(forKey: "SelectedGroup") as? String {
+            instance.placeholder(selectedGroup)
+        }
+        instance.valueDidChange = { (selected: OptionRowModel?) in
+            print("adopt bitcoin: \(String(describing: selected))")
+            self.userDefaults.set(selected?.title, forKey: "SelectedGroup")
+        }
+        return instance
+    }()
 
 }
