@@ -12,6 +12,7 @@
 		400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */; };
 		40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F30E371FB88CE000014511 /* WorkSheetCell.swift */; };
 		BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */; };
+		BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */; };
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
 		DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* ACARequest.swift */; };
 		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
@@ -55,6 +56,7 @@
 		40F30E371FB88CE000014511 /* WorkSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetCell.swift; sourceTree = "<group>"; };
 		50BA2B0354AB199E568389D6 /* Pods-SimpleDocbase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.release.xcconfig"; sourceTree = "<group>"; };
 		BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetItemCell.swift; sourceTree = "<group>"; };
+		BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetHeaderView.swift; sourceTree = "<group>"; };
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		BB8642ABBE4D41B96C1B5FCA /* Pods-SimpleDocbase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.debug.xcconfig"; sourceTree = "<group>"; };
 		DA1D97DC1FB57940005A5C1D /* ACARequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACARequest.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */,
 				40F30E371FB88CE000014511 /* WorkSheetCell.swift */,
 				400458741FB682AD00D5FF8E /* DaySheetViewController.swift */,
+				BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */,
 				BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */,
 			);
 			path = Sheet;
@@ -433,6 +436,7 @@
 				DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */,
 				400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */,
 				DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */,
+				BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */,
 				40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,

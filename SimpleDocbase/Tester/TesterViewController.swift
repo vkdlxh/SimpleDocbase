@@ -14,7 +14,7 @@ class TesterViewController: UIViewController {
     var teams = [String]()
     var groups = [Group]()
     var memos: [Memo]?
-    let domain = UserDefaults.standard.object(forKey: "selectedDomain") as! String
+    let domain = ""//UserDefaults.standard.object(forKey: "selectedDomain") as! String
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!

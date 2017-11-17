@@ -16,6 +16,7 @@ final class DaySheetViewController : UIViewController {
     
     // MARK: IBOutlet
     @IBOutlet var daySheetTableView: UITableView!
+    @IBOutlet var daySheetHeaderView: DaySheetHeaderView!
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -44,6 +45,10 @@ extension DaySheetViewController : UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         //TODO: 入力picker
+    }
+    
+    internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return daySheetHeaderView;
     }
 }
 
