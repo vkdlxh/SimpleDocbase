@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Setting View Controller-->
+        <!--設定-->
         <scene sceneID="4Ma-SN-Fx7">
             <objects>
                 <viewController id="frm-9f-2th" customClass="SFSettingViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +19,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="lES-xV-vSX"/>
                     </view>
-                    <navigationItem key="navigationItem" id="PLP-LI-IO2"/>
+                    <navigationItem key="navigationItem" title="設定" id="PLP-LI-IO2"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qXQ-Yy-nPK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

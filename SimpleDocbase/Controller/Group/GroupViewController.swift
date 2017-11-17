@@ -20,18 +20,51 @@ class GroupViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
-    // UIRefreshControl
-    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshControlAction()
+        checkTokenKeyAlert()
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         
+        SVProgressHUD.show()
+        request.delegate = self
+        request.getGroupFromTeam()
+        print("GroupViewController WillAppear")
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    // MARK: - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoMemoListSegue" {
+            if let destination = segue.destination as? MemoListViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.groupName = groups[selectedIndex].name
+                }
+            }
+        }
+    }
+    
+    @objc func refresh() {
+        request.getGroupFromTeam()
+    }
+    
+    func refreshControlAction() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
-        
-        // Tokenkey Check Alert
+    }
+    
+    func checkTokenKeyAlert() {
         let alert: UIAlertController = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle:  UIAlertControllerStyle.alert)
         
         if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
@@ -64,38 +97,6 @@ class GroupViewController: UIViewController {
             }
             
         }
-        
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        SVProgressHUD.show()
-        request.delegate = self
-        request.getGroupFromTeam()
-        print("GroupViewController WillAppear")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoMemoListSegue" {
-            if let destination = segue.destination as? MemoListViewController {
-                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.groupName = groups[selectedIndex].name
-                }
-            }
-        }
-    }
-    
-    @objc func refresh() {
-        request.getGroupFromTeam()
     }
 }
 
