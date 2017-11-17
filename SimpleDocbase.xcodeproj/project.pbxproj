@@ -21,6 +21,7 @@
 		DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */; };
 		DA2D5AA21FA728CE00668EC9 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */; };
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
+		DA5099241FBED26B005052F2 /* NewSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* NewSetting.storyboard */; };
 		DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C80F01FA729D400AC3E3D /* Group.storyboard */; };
 		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
@@ -69,6 +70,7 @@
 		DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sheet.storyboard; sourceTree = "<group>"; };
 		DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DA5099231FBED26B005052F2 /* NewSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewSetting.storyboard; sourceTree = "<group>"; };
 		DA8C80F01FA729D400AC3E3D /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				DA8C80F01FA729D400AC3E3D /* Group.storyboard */,
 				DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */,
 				DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */,
+				DA5099231FBED26B005052F2 /* NewSetting.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
 				DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */,
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
+				DA5099241FBED26B005052F2 /* NewSetting.storyboard in Resources */,
 				DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */,
 				DA2D5AA21FA728CE00668EC9 /* Setting.storyboard in Resources */,
 				DAFD71041FB477F3004F3140 /* Tester.storyboard in Resources */,

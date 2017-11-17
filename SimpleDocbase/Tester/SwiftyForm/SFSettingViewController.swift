@@ -19,7 +19,7 @@ class SFSettingViewController: FormViewController {
         builder += ViewControllerFormItem().title("Token登録").viewController(SFRegisterTokenKeyViewController.self)
         builder += groupListPiker
         builder += ViewControllerFormItem().title("所属チーム情報").viewController(SFTeamInfomationViewController.self)
-        builder += SectionHeaderTitleFormItem().title("APP Info")
+        builder += SectionHeaderTitleFormItem().title("APP INFO")
         builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
        
     }

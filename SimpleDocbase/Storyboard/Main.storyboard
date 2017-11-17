@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="62N-3Y-DQj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="62N-3Y-DQj">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,6 +22,7 @@
                         <segue destination="Hrq-Pb-0wJ" kind="relationship" relationship="viewControllers" id="sUJ-hD-xoO"/>
                         <segue destination="jiT-5W-DS5" kind="relationship" relationship="viewControllers" id="6kH-CO-cbl"/>
                         <segue destination="9Sh-WG-HeX" kind="relationship" relationship="viewControllers" id="aij-Va-NhH"/>
+                        <segue destination="86a-41-1jd" kind="relationship" relationship="viewControllers" id="JeP-Tz-lZN"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qZx-ge-pov" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -47,6 +48,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kwB-ll-ODn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-58" y="416"/>
+        </scene>
+        <!--NewSetting-->
+        <scene sceneID="o5P-hf-nKH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NewSetting" id="86a-41-1jd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="wib-kH-oXt"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9sp-jt-3LK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-66" y="550"/>
         </scene>
         <!--Group-->
         <scene sceneID="Rgo-16-PPi">
