@@ -37,6 +37,10 @@
 		DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */; };
 		DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */; };
 		DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAF917841FBE9B2700D18FAB /* Settings.bundle */; };
+		DAF917891FBEA1AA00D18FAB /* SFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF917881FBEA1AA00D18FAB /* SFSettingViewController.swift */; };
+		DAF9178C1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift */; };
+		DAF9178E1FBEA67400D18FAB /* SFChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178D1FBEA67400D18FAB /* SFChangeTeamViewController.swift */; };
+		DAF917901FBEA68900D18FAB /* SFTeamInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178F1FBEA68900D18FAB /* SFTeamInfomationViewController.swift */; };
 		DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */; };
 		DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */; };
 		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
@@ -84,6 +88,10 @@
 		DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		DAF917841FBE9B2700D18FAB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		DAF917881FBEA1AA00D18FAB /* SFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSettingViewController.swift; sourceTree = "<group>"; };
+		DAF9178B1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFRegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
+		DAF9178D1FBEA67400D18FAB /* SFChangeTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFChangeTeamViewController.swift; sourceTree = "<group>"; };
+		DAF9178F1FBEA68900D18FAB /* SFTeamInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFTeamInfomationViewController.swift; sourceTree = "<group>"; };
 		DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoViewController.swift; sourceTree = "<group>"; };
 		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -226,6 +234,17 @@
 			path = SimpleDocbase;
 			sourceTree = "<group>";
 		};
+		DAF917871FBEA19700D18FAB /* SwiftyForm */ = {
+			isa = PBXGroup;
+			children = (
+				DAF917881FBEA1AA00D18FAB /* SFSettingViewController.swift */,
+				DAF9178B1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift */,
+				DAF9178D1FBEA67400D18FAB /* SFChangeTeamViewController.swift */,
+				DAF9178F1FBEA68900D18FAB /* SFTeamInfomationViewController.swift */,
+			);
+			path = SwiftyForm;
+			sourceTree = "<group>";
+		};
 		DAFA95CA1FA98E0800A368BC /* Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +282,7 @@
 		DAFD71021FB477E1004F3140 /* Tester */ = {
 			isa = PBXGroup;
 			children = (
+				DAF917871FBEA19700D18FAB /* SwiftyForm */,
 				DAA340091FBBDC7B009658EF /* Request */,
 				DAFD71031FB477F3004F3140 /* Tester.storyboard */,
 				DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */,
@@ -365,10 +385,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyFORM/SwiftyFORM.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyFORM.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -419,11 +441,13 @@
 				DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */,
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
+				DAF917891FBEA1AA00D18FAB /* SFSettingViewController.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
 				DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */,
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
 				DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */,
 				DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */,
+				DAF9178C1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift in Sources */,
 				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
 				DABE7DB61FB0033D007AD68E /* TeamInformViewController.swift in Sources */,
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
@@ -431,6 +455,7 @@
 				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
 				DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */,
+				DAF917901FBEA68900D18FAB /* SFTeamInfomationViewController.swift in Sources */,
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
 				BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */,
 				DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */,
@@ -442,6 +467,7 @@
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,
 				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
+				DAF9178E1FBEA67400D18FAB /* SFChangeTeamViewController.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
 				DAC4E54C1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift in Sources */,
