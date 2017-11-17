@@ -36,6 +36,7 @@
 		DAF6B9681FA082EC0042BEC0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */; };
 		DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */; };
 		DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */; };
+		DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAF917841FBE9B2700D18FAB /* Settings.bundle */; };
 		DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */; };
 		DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */; };
 		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
@@ -82,6 +83,7 @@
 		DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
+		DAF917841FBE9B2700D18FAB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoViewController.swift; sourceTree = "<group>"; };
 		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				DAC4E5571FA32B8800301844 /* Model */,
 				DAFF5C6D1FA836370087C871 /* Supportting Files */,
 				DAF6B95B1FA06F090042BEC0 /* Info.plist */,
+				DAF917841FBE9B2700D18FAB /* Settings.bundle */,
 			);
 			path = SimpleDocbase;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
 				DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */,
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
 				DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */,

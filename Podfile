@@ -9,3 +9,10 @@ target 'SimpleDocbase' do
   pod 'SVProgressHUD'
 
 end
+
+post_install do | installer |
+  require 'fileutils'
+
+  FileUtils.cp_r('Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase-acknowledgements.plist', ‘SimpleDocbase/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+
+end
