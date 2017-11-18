@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cIC-Vn-enf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eUL-6W-ftT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -107,6 +107,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QH2-0M-sYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="717.60000000000002" y="-37.331334332833585"/>
+        </scene>
+        <!--Pagination Test View Controller-->
+        <scene sceneID="k8H-I1-k9v">
+            <objects>
+                <viewController id="eUL-6W-ftT" customClass="PaginationTestViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rlj-9s-fjY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9hZ-06-Yia">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TestCell" id="zin-3c-No6">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zin-3c-No6" id="4xb-MN-MZ9">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eUL-6W-ftT" id="oSl-ch-sVT"/>
+                                    <outlet property="delegate" destination="eUL-6W-ftT" id="HW8-F2-42s"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tef-4f-de9" firstAttribute="trailing" secondItem="9hZ-06-Yia" secondAttribute="trailing" id="8oW-Ey-Fgc"/>
+                            <constraint firstItem="tef-4f-de9" firstAttribute="bottom" secondItem="9hZ-06-Yia" secondAttribute="bottom" id="PAJ-ro-fXO"/>
+                            <constraint firstItem="9hZ-06-Yia" firstAttribute="top" secondItem="tef-4f-de9" secondAttribute="top" id="Qc0-f3-keI"/>
+                            <constraint firstItem="9hZ-06-Yia" firstAttribute="leading" secondItem="tef-4f-de9" secondAttribute="leading" id="VL0-Mv-3Gl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tef-4f-de9"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="9hZ-06-Yia" id="Teq-Ci-oAy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B4y-V4-taj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="682" y="-755"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Qw7-g5-HDH">
