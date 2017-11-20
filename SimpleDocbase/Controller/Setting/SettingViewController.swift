@@ -2,102 +2,46 @@
 //  SettingViewController.swift
 //  SimpleDocbase
 //
-//  Created by jeon sangjun on 2017/10/25.
+//  Created by jeonsangjun on 2017/11/17.
 //  Copyright © 2017年 archive-asia. All rights reserved.
 //
 
 import UIKit
+import SwiftyFORM
 
-class SettingViewController: UIViewController {
+class SettingViewController: FormViewController {
     
-    // MARK: Properties
-    var settingMenu = ["Token登録",
-                       "勤怠管理グループ設定",
-                       "所属チーム情報"]
-    
-    
-    // MARK: IBOutlets
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var appVersionLabel: UILabel!
-    
-    // MARK: Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
-            self.appVersionLabel.text = version
-        }
+    let userDefaults = UserDefaults.standard
 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func populate(_ builder: FormBuilder) {
+        builder.navigationTitle = "設定"
+        builder += SectionHeaderTitleFormItem().title("OPTION")
+        builder += ViewControllerFormItem().title("Token登録").viewController(RegisterTokenKeyViewController.self)
+        builder += groupListPiker
+        builder += ViewControllerFormItem().title("所属チーム情報").viewController(TeamInfomationViewController.self)
+        builder += SectionHeaderTitleFormItem().title("APP INFO")
+        builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
+       
     }
     
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-       if segue.identifier == "GoRegisterTokenKeySegue" {
-            if let destination = segue.destination as? RegisterTokenKeyViewController {
-                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.settingName = settingMenu[selectedIndex]
-                }
-            }
-       } else if segue.identifier == "GoChangeTeamSegue" {
-            if let destination = segue.destination as? ChangeTeamViewController {
-                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.settingName = settingMenu[selectedIndex]
-                }
-            }
-       } else if segue.identifier == "GoTeamInformSegue" {
-            if let destination = segue.destination as? TeamInformViewController {
-                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.settingName = settingMenu[selectedIndex]
+    lazy var groupListPiker: OptionPickerFormItem = {
+        let instance = OptionPickerFormItem()
+        instance.title("勤怠管理グループ設定")
+        ACAGroupRequest.init().getGroupList { groupList in
+            if let groupList = groupList {
+                for group in groupList {
+                    instance.append(group.name)
                 }
             }
         }
-    }
-}
-
-// MARK: Extensions
-extension SettingViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowConut = settingMenu.count
-        return rowConut
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath)
-        
-        let setting = settingMenu[indexPath.row]
-        cell.textLabel?.text = setting
-        return cell
-    }
-    
-}
-
-extension SettingViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            performSegue(withIdentifier: "GoRegisterTokenKeySegue", sender: self)
-            print("tapped indexPath.row: \(indexPath.row)")
-        } else if indexPath.row == 1 {
-            performSegue(withIdentifier: "GoChangeTeamSegue", sender: self)
-            print("tapped indexPath.row: \(indexPath.row)")
-        } else if indexPath.row == 2 {
-            performSegue(withIdentifier: "GoTeamInformSegue", sender: self)
-            print("tapped indexPath.row: \(indexPath.row)")
+        if let selectedGroup = userDefaults.object(forKey: "SelectedGroup") as? String {
+            instance.placeholder(selectedGroup)
         }
-    }
+        instance.valueDidChange = { (selected: OptionRowModel?) in
+            print("adopt bitcoin: \(String(describing: selected))")
+            self.userDefaults.set(selected?.title, forKey: "SelectedGroup")
+        }
+        return instance
+    }()
+
 }
-
-

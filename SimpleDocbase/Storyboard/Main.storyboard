@@ -21,7 +21,6 @@
                     <connections>
                         <segue destination="Hrq-Pb-0wJ" kind="relationship" relationship="viewControllers" id="sUJ-hD-xoO"/>
                         <segue destination="jiT-5W-DS5" kind="relationship" relationship="viewControllers" id="6kH-CO-cbl"/>
-                        <segue destination="9Sh-WG-HeX" kind="relationship" relationship="viewControllers" id="aij-Va-NhH"/>
                         <segue destination="86a-41-1jd" kind="relationship" relationship="viewControllers" id="JeP-Tz-lZN"/>
                     </connections>
                 </tabBarController>
@@ -40,24 +39,14 @@
             <point key="canvasLocation" x="-51" y="201"/>
         </scene>
         <!--Setting-->
-        <scene sceneID="wQB-Wf-5hc">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Setting" storyboardName="Setting" referencedIdentifier="Setting" id="9Sh-WG-HeX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="K8X-7m-hQw"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kwB-ll-ODn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-58" y="416"/>
-        </scene>
-        <!--NewSetting-->
         <scene sceneID="o5P-hf-nKH">
             <objects>
-                <viewControllerPlaceholder storyboardName="NewSetting" id="86a-41-1jd" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Setting" id="86a-41-1jd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="wib-kH-oXt"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9sp-jt-3LK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-66" y="550"/>
+            <point key="canvasLocation" x="-66" y="407"/>
         </scene>
         <!--Group-->
         <scene sceneID="Rgo-16-PPi">
