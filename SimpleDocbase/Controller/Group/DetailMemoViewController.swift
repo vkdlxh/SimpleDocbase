@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SwiftyMarkdown
 
 class DetailMemoViewController: UIViewController {
     
     // MARK: Properties
     var memo: Memo?
     var groups = [Group]()
+    
     
     // MARK: IBOutlets
     @IBOutlet weak var titleLabel: UILabel!
@@ -27,7 +29,20 @@ class DetailMemoViewController: UIViewController {
 
         if let memo = self.memo {
             titleLabel.text = memo.title
-            bodyTextView.text = memo.body
+            bodyTextView.attributedText = SwiftyMarkdown(string: memo.body).attributedString()
+            
+            var groups: [String] = []
+            for i in 0..<memo.groups.count{
+                groups.append(memo.groups[i].name)
+            }
+            groupLabel.text = groups.joined(separator: ", ")
+            
+            var tags: [String] = []
+            for i in 0..<memo.tags.count{
+                tags.append(memo.tags[i].name)
+            }
+            tagLabel.text = tags.joined(separator: ", ")
+            
         }
     }
 
