@@ -18,6 +18,7 @@
 		DA0CE9871FC2C87300B4850D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */; };
 		DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490021FC4019D001E0159 /* ACAColor.swift */; };
 		DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490041FC403D1001E0159 /* ColorRGB.swift */; };
+		DA0CE9871FC2C87300B4850D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */; };
 		DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* ACARequest.swift */; };
 		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
 		DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */; };
@@ -66,6 +67,7 @@
 		DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		DA1490021FC4019D001E0159 /* ACAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAColor.swift; sourceTree = "<group>"; };
 		DA1490041FC403D1001E0159 /* ColorRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRGB.swift; sourceTree = "<group>"; };
+		DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		DA1D97DC1FB57940005A5C1D /* ACARequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACARequest.swift; sourceTree = "<group>"; };
 		DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
 		DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterTokenKeyViewController.swift; sourceTree = "<group>"; };

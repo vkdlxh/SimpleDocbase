@@ -45,6 +45,10 @@ class MemoListViewController: UIViewController {
                 }
             }
         }
+        
+        
+        self.tableView.estimatedRowHeight = 90
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     // MARK: Internal Methods
