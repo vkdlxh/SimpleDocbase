@@ -20,28 +20,23 @@
 		DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A7E1FA6D3B500668EC9 /* Group.swift */; };
 		DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A801FA6D3DE00668EC9 /* Team.swift */; };
 		DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */; };
-		DA2D5AA21FA728CE00668EC9 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */; };
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
-		DA5099241FBED26B005052F2 /* NewSetting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* NewSetting.storyboard */; };
+		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
 		DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C80F01FA729D400AC3E3D /* Group.storyboard */; };
 		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
-		DABE7DB41FB002C6007AD68E /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABE7DB31FB002C6007AD68E /* ChangeTeamViewController.swift */; };
-		DABE7DB61FB0033D007AD68E /* TeamInformViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DABE7DB51FB0033D007AD68E /* TeamInformViewController.swift */; };
-		DAC4E54C1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E54B1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift */; };
 		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
 		DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF6B9561FA06F090042BEC0 /* Assets.xcassets */; };
 		DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF6B9581FA06F090042BEC0 /* LaunchScreen.storyboard */; };
-		DAF6B9681FA082EC0042BEC0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */; };
 		DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */; };
 		DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */; };
 		DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAF917841FBE9B2700D18FAB /* Settings.bundle */; };
-		DAF917891FBEA1AA00D18FAB /* SFSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF917881FBEA1AA00D18FAB /* SFSettingViewController.swift */; };
-		DAF9178C1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift */; };
-		DAF917901FBEA68900D18FAB /* SFTeamInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178F1FBEA68900D18FAB /* SFTeamInfomationViewController.swift */; };
+		DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */; };
+		DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */; };
+		DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178F1FBEA68900D18FAB /* TeamInfomationViewController.swift */; };
 		DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */; };
 		DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */; };
 		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
@@ -52,7 +47,6 @@
 		DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71051FB47A8C004F3140 /* GroupRequest.swift */; };
 		DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71071FB53455004F3140 /* TeamRequest.swift */; };
 		DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71091FB5386B004F3140 /* MemoRequest.swift */; };
-		DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,16 +64,12 @@
 		DA2D5A7E1FA6D3B500668EC9 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		DA2D5A801FA6D3DE00668EC9 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sheet.storyboard; sourceTree = "<group>"; };
-		DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		DA5099231FBED26B005052F2 /* NewSetting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NewSetting.storyboard; sourceTree = "<group>"; };
+		DA5099231FBED26B005052F2 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA8C80F01FA729D400AC3E3D /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
-		DABE7DB31FB002C6007AD68E /* ChangeTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamViewController.swift; sourceTree = "<group>"; };
-		DABE7DB51FB0033D007AD68E /* TeamInformViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInformViewController.swift; sourceTree = "<group>"; };
-		DAC4E54B1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMemoViewController.swift; sourceTree = "<group>"; };
 		DAF6B94C1FA06F090042BEC0 /* SimpleDocbase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDocbase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,13 +77,12 @@
 		DAF6B9561FA06F090042BEC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAF6B9591FA06F090042BEC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAF6B95B1FA06F090042BEC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
 		DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		DAF917841FBE9B2700D18FAB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		DAF917881FBEA1AA00D18FAB /* SFSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSettingViewController.swift; sourceTree = "<group>"; };
-		DAF9178B1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFRegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
-		DAF9178F1FBEA68900D18FAB /* SFTeamInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFTeamInfomationViewController.swift; sourceTree = "<group>"; };
+		DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
+		DAF9178F1FBEA68900D18FAB /* TeamInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfomationViewController.swift; sourceTree = "<group>"; };
 		DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoViewController.swift; sourceTree = "<group>"; };
 		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -104,7 +93,6 @@
 		DAFD71051FB47A8C004F3140 /* GroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRequest.swift; sourceTree = "<group>"; };
 		DAFD71071FB53455004F3140 /* TeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamRequest.swift; sourceTree = "<group>"; };
 		DAFD71091FB5386B004F3140 /* MemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoRequest.swift; sourceTree = "<group>"; };
-		DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTokenkeyViewController.swift; sourceTree = "<group>"; };
 		E82A45EBF124ED586B28613A /* Pods_SimpleDocbase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleDocbase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,8 +139,7 @@
 				DA2D5AA31FA7296100668EC9 /* Main.storyboard */,
 				DA8C80F01FA729D400AC3E3D /* Group.storyboard */,
 				DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */,
-				DA2D5AA11FA728CE00668EC9 /* Setting.storyboard */,
-				DA5099231FBED26B005052F2 /* NewSetting.storyboard */,
+				DA5099231FBED26B005052F2 /* Setting.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -237,16 +224,6 @@
 			path = SimpleDocbase;
 			sourceTree = "<group>";
 		};
-		DAF917871FBEA19700D18FAB /* SwiftyForm */ = {
-			isa = PBXGroup;
-			children = (
-				DAF917881FBEA1AA00D18FAB /* SFSettingViewController.swift */,
-				DAF9178B1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift */,
-				DAF9178F1FBEA68900D18FAB /* SFTeamInfomationViewController.swift */,
-			);
-			path = SwiftyForm;
-			sourceTree = "<group>";
-		};
 		DAFA95CA1FA98E0800A368BC /* Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,11 +238,9 @@
 		DAFA95CC1FA98E2000A368BC /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				DAF6B9671FA082EC0042BEC0 /* SettingViewController.swift */,
-				DAC4E54B1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift */,
-				DABE7DB31FB002C6007AD68E /* ChangeTeamViewController.swift */,
-				DABE7DB51FB0033D007AD68E /* TeamInformViewController.swift */,
-				DAFF5C701FA8664E0087C871 /* SetTokenkeyViewController.swift */,
+				DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */,
+				DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */,
+				DAF9178F1FBEA68900D18FAB /* TeamInfomationViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -285,7 +260,6 @@
 		DAFD71021FB477E1004F3140 /* Tester */ = {
 			isa = PBXGroup;
 			children = (
-				DAF917871FBEA19700D18FAB /* SwiftyForm */,
 				DAA340091FBBDC7B009658EF /* Request */,
 				DAFD71031FB477F3004F3140 /* Tester.storyboard */,
 				DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */,
@@ -369,9 +343,8 @@
 				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
 				DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */,
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
-				DA5099241FBED26B005052F2 /* NewSetting.storyboard in Resources */,
+				DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */,
 				DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */,
-				DA2D5AA21FA728CE00668EC9 /* Setting.storyboard in Resources */,
 				DAFD71041FB477F3004F3140 /* Tester.storyboard in Resources */,
 				DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */,
 				DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */,
@@ -445,27 +418,24 @@
 				DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */,
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
-				DAF917891FBEA1AA00D18FAB /* SFSettingViewController.swift in Sources */,
+				DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
 				DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */,
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
 				DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */,
 				DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */,
-				DAF9178C1FBEA64F00D18FAB /* SFRegisterTokenKeyViewController.swift in Sources */,
+				DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */,
 				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
-				DABE7DB61FB0033D007AD68E /* TeamInformViewController.swift in Sources */,
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
-				DABE7DB41FB002C6007AD68E /* ChangeTeamViewController.swift in Sources */,
 				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
 				DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */,
-				DAF917901FBEA68900D18FAB /* SFTeamInfomationViewController.swift in Sources */,
+				DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */,
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
 				BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */,
 				DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */,
 				DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */,
 				400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */,
-				DAFF5C711FA8664E0087C871 /* SetTokenkeyViewController.swift in Sources */,
 				BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */,
 				40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
@@ -474,8 +444,6 @@
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
-				DAC4E54C1FA1EB0C00301844 /* RegisterTokenKeyViewController.swift in Sources */,
-				DAF6B9681FA082EC0042BEC0 /* SettingViewController.swift in Sources */,
 				DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

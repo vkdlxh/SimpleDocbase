@@ -1,83 +1,58 @@
+
 //
 //  RegisterTokenKeyViewController.swift
 //  SimpleDocbase
 //
-//  Created by jeon sangjun on 2017/10/26.
+//  Created by jeonsangjun on 2017/11/17.
 //  Copyright © 2017年 archive-asia. All rights reserved.
 //
 
 import UIKit
+import SwiftyFORM
 
-class RegisterTokenKeyViewController: UIViewController {
+class RegisterTokenKeyViewController: FormViewController {
 
-    // MARK: Properties
-    var settingName: String = ""
+    let userDefaults = UserDefaults.standard
     
-    // MARK: IBOutlets
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var resultTokenKey: UILabel!
-
-    @IBAction func setTokenKeyButton(_ sender: Any) {
-        performSegue(withIdentifier: "SetTokenKeySegue", sender: self)
-    }
-    
-    
-    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title = settingName
+        tokenKeySubmitButton()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func populate(_ builder: FormBuilder) {
+        builder.navigationTitle = "Token登録"
+        builder.toolbarMode = .simple
+        builder += tokenKey
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        let userDefaults = UserDefaults.standard
-        
-        if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
-            resultTokenKey.text = tokenKey
+    lazy var tokenKey: TextFieldFormItem = {
+        let instance = TextFieldFormItem()
+        instance.title("TokenKey").placeholder("ここにTokenKeyの入力")
+        instance.submitValidate(CountSpecification.min(1), message: "正しい値を入力してください。")
+        return instance
+    }()
+    
+    func tokenKeySubmitButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(tokenKeySubmitAction(_:)))
+    }
+    
+    @objc public func tokenKeySubmitAction(_ sender: AnyObject?) {
+        formBuilder.validateAndUpdateUI()
+        let result = formBuilder.validate()
+        print("result \(result)")
+        tokenKey_showSubmitResult(result)
+    }
+    
+    func tokenKey_showSubmitResult(_ result: FormBuilder.FormValidateResult) {
+        switch result {
+        case .valid:
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
+            success_simpleAlert("登録", "Tokenを登録しました。")
+        case let .invalid(item, message):
+            let title = item.elementIdentifier ?? "失敗"
+            fail_simpleAlert(title, message)
         }
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SetTokenKeySegue" {
-            if let destination = segue.destination as? UINavigationController {
-                if let tagetController = destination.topViewController as? SetTokenkeyViewController {
-                    tagetController.delegate = self
-                }
-            }
-        }
-    }
-}
 
-// MARK: Extensions
-extension RegisterTokenKeyViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingItemCell", for: indexPath)
-        
-        return cell
-    }
-    
-}
-
-extension RegisterTokenKeyViewController: SetTokenkeyViewControllerDelegate {
-    func sendTokenKey() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
 }

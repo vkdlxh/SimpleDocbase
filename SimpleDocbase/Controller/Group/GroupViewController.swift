@@ -72,15 +72,15 @@ class GroupViewController: UIViewController {
             
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
-                //FIXME: refreshができない
-                let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-                if let tokenKeyViewController = storyboard.instantiateViewController(withIdentifier: "SetTokenkeyViewController") as? UINavigationController {
-                    if let targetViewController = tokenKeyViewController.topViewController as? SetTokenkeyViewController {
-                        targetViewController.delegate = self
-                        self.present(tokenKeyViewController, animated: true, completion: nil)
-                    }
-                }
-                
+//                //FIXME: refreshができない
+//                let storyboard = UIStoryboard(name: "Setting", bundle: nil)
+//                if let tokenKeyViewController = storyboard.instantiateViewController(withIdentifier: "SetTokenkeyViewController") as? UINavigationController {
+//                    if let targetViewController = tokenKeyViewController.topViewController as? SetTokenkeyViewController {
+//                        targetViewController.delegate = self
+//                        self.present(tokenKeyViewController, animated: true, completion: nil)
+//                    }
+//                }
+//                
                 print("OK")
             })
             
@@ -126,7 +126,7 @@ extension GroupViewController: UITableViewDataSource {
 
 
 //MARK: RequestDelegate
-extension GroupViewController : RequestDelegate, SetTokenkeyViewControllerDelegate {
+extension GroupViewController : RequestDelegate{
     
     func didRecivedGroup(groups: Array<Any>) {
         print("didRecivedGroup(groups: )")
@@ -141,15 +141,5 @@ extension GroupViewController : RequestDelegate, SetTokenkeyViewControllerDelega
             SVProgressHUD.dismiss()
         }
     }
-    
-    func sendTokenKey() {
-        
-        dismiss(animated: true, completion: nil)
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            print("sendTokenKey Reload")
-        }
-        
-    }
+
 }
