@@ -68,21 +68,17 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
         
         groupPickerView.dataSource = self
         groupPickerView.delegate = self
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        groupRequest.delegate = self
-        if let domain = domain {
-            groupRequest.getGroupList(domain: domain)
+        
+        ACAGroupRequest.init().getGroupList { groups in
+            if let groups = groups {
+                self.groups = groups
+            }
+            DispatchQueue.main.async {
+                self.groupPickerView.reloadAllComponents()
+            }
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -97,17 +93,5 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         groupId = groups[row].id
-    }
-}
-
-extension WriteMemoViewController : RequestDelegate {
-    
-    func getGroupName(groups: Array<Any>) {
-        if let paramGroup = groups as? [Group] {
-            self.groups = paramGroup
-        }
-        DispatchQueue.main.async {
-            self.groupPickerView.reloadAllComponents()
-        }
     }
 }

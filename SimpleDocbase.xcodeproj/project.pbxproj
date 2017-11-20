@@ -157,13 +157,6 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		DAA340091FBBDC7B009658EF /* Request */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Request;
-			sourceTree = "<group>";
-		};
 		DAC4E5571FA32B8800301844 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				DA0CE9811FC2793400B4850D /* DelegateRequest */,
-				DAA340091FBBDC7B009658EF /* Request */,
 				DAFD71031FB477F3004F3140 /* Tester.storyboard */,
 				DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */,
 				DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */,

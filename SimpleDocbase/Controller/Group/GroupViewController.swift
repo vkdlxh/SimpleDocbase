@@ -75,35 +75,35 @@ class GroupViewController: UIViewController {
     }
     
     func checkTokenKeyAlert() {
-        let alert: UIAlertController = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle:  UIAlertControllerStyle.alert)
+        let ac = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle: .alert)
+        ac.addTextField()
         
         if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
             print("No TokenKey")
             
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
-                (action: UIAlertAction!) -> Void in
-//                //FIXME: refreshができない
-                let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-                if let tokenKeyViewController = storyboard.instantiateViewController(withIdentifier: "RegisterTokenKeyViewController") as? RegisterTokenKeyViewController {
-                    self.present(tokenKeyViewController, animated: true, completion: nil)
+            let submitAction = UIAlertAction(title: "TokenKey登録", style: .default) { [unowned ac] _ in
+                if let tokenKey = ac.textFields?[0].text {
+                    UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
+                    self.tableView.reloadData()
                 }
-                print("OK")
-            })
-            
-            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-                print("Cancel")
-            })
-            
-            alert.addAction(defaultAction)
-            alert.addAction(cancelAction)
-            
-            DispatchQueue.main.async {
-                self.present(alert, animated: true, completion: nil)
             }
             
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+            }
+            
+            ac.addAction(submitAction)
+            ac.addAction(cancelAction)
+            
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.present(ac, animated: true, completion: nil)
+            }
         }
+  
     }
+    
 }
 
 
