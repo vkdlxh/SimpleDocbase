@@ -42,19 +42,8 @@ class GroupViewController: UIViewController {
         
         print("GroupViewController WillAppear")
     }
-
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoMemoListSegue" {
-            if let destination = segue.destination as? MemoListViewController {
-                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.groupName = groups[selectedIndex].name
-                }
-            }
-        }
-    }
     
+    // MARK: Internal Methods
     @objc func refresh() {
         ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
@@ -101,7 +90,18 @@ class GroupViewController: UIViewController {
                 self.present(ac, animated: true, completion: nil)
             }
         }
-  
+    }
+    
+    // MARK: - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoMemoListSegue" {
+            if let destination = segue.destination as? MemoListViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.groupName = groups[selectedIndex].name
+                }
+            }
+        }
     }
     
 }

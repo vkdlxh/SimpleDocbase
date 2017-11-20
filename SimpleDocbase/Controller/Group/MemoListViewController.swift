@@ -9,13 +9,6 @@
 import UIKit
 import SVProgressHUD
 
-class MemoListTableViewCell: UITableViewCell {
-    
-    // MARK: IBOutlets
-    @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-}
-
 class MemoListViewController: UIViewController {
     
     // MARK: Properties
@@ -52,8 +45,13 @@ class MemoListViewController: UIViewController {
                 }
             }
         }
+        
+        
+        self.tableView.estimatedRowHeight = 90
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    // MARK: Internal Methods
     @objc func addTapped(sender: UIBarButtonItem) {
         performSegue(withIdentifier: "GoWriteMemoSegue", sender: self)
     }
@@ -118,7 +116,17 @@ extension MemoListViewController: UITableViewDataSource {
         
         let memo = memos[indexPath.row]
         
+        
         cell.titleLabel.text = memo.title
+        cell.bodyLabel.text = memo.body
+
+        var tags: [String] = []
+        for i in 0..<memo.tags.count{
+           tags.append(memo.tags[i].name)
+        }
+        cell.tagLabel.text = tags.joined(separator: ", ")
+        
+        
         let imageURL = URL(string: memo.user.profile_image_url)
         let imageURLData = try? Data(contentsOf: imageURL!)
         cell.profileImageView.image = UIImage(data: imageURLData!)
