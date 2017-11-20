@@ -19,11 +19,13 @@ class MemoListTableViewCell: UITableViewCell {
 class MemoListViewController: UIViewController {
     
     // MARK: Properties
-    let request: MemoRequest = MemoRequest()
     var groupName: String = ""
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     var memos = [Memo]()
     var refreshControl: UIRefreshControl!
+    //Pagination
+    var isDataLoading:Bool=false
+    var pageNum: Int = 1
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -35,33 +37,47 @@ class MemoListViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped(sender:)))
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
-        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.addSubview(refreshControl)
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        refreshControlAction()
         
         SVProgressHUD.show()
-        request.delegate = self
         if let domain = domain {
-            request.MemoList(domain: domain, group: groupName)
+            ACAMemoRequest.init().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+                if let memos = memos {
+                    self.memos = memos
+                }
+                self.pageNum += 1
+                DispatchQueue.main.async {
+                    SVProgressHUD.dismiss()
+                    self.tableView.reloadData()
+                }
+            }
         }
-        
     }
     
     @objc func addTapped(sender: UIBarButtonItem) {
         performSegue(withIdentifier: "GoWriteMemoSegue", sender: self)
     }
     
+    func refreshControlAction() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
+        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
+    }
+    
     @objc func refresh() {
-        tableView.reloadData()
+        pageNum = 1
+        if let domain = domain {
+            ACAMemoRequest.init().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+                if let memos = memos {
+                    self.memos = memos
+                }
+            }
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: - Navigation
@@ -112,20 +128,6 @@ extension MemoListViewController: UITableViewDataSource {
 }
 
 
-extension MemoListViewController: RequestDelegate {
-
-    func getMemoList(memos: Array<Any>) {
-        if let paramMemo = memos as? [Memo] {
-            self.memos = paramMemo
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            SVProgressHUD.dismiss()
-        }
-
-    }
-}
-
 extension MemoListViewController: WriteMemoViewControllerDelegate {
     
     func writeMemoViewSubmit() {
@@ -138,5 +140,38 @@ extension MemoListViewController: WriteMemoViewControllerDelegate {
         }
 
     }
+}
+
+extension MemoListViewController: UIScrollViewDelegate {
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print("scrollViewWillBeginDragging")
+        isDataLoading = false
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        print("scrollViewDidEndDragging")
+        if scrollView == tableView {
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) {
+                if !isDataLoading{
+                    SVProgressHUD.show()
+                    isDataLoading = true
+                    if let domain = domain {
+                        ACAMemoRequest.init().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+                            if let memos = memos {
+                                self.memos += memos
+                            }
+                            self.pageNum += 1
+                            DispatchQueue.main.async {
+                                SVProgressHUD.dismiss()
+                                self.tableView.reloadData()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }
 

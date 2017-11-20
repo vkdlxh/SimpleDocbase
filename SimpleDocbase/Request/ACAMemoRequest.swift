@@ -10,9 +10,9 @@ import Foundation
 
 class ACAMemoRequest: ACARequest {
     
-    func MemoList(domain: String, group: String, completion: @escaping ([Memo]?) -> ()) {
-        print("MemoList(domain:, group:)")
-        let urlStr = "https://api.docbase.io/teams/\(domain)/posts?q=group:\(group)"
+    func getMemoList(domain: String, group: String, pageNum: Int, completion: @escaping ([Memo]?) -> ()) {
+        print("getMemoList(domain:,group:,pageNum:)")
+        let urlStr = "https://api.docbase.io/teams/\(domain)/posts?page=\(pageNum)&per_page=20&q=group:\(group)"
         let encodedURL = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         
         guard let url = URL(string: encodedURL) else { return }
@@ -24,15 +24,13 @@ class ACAMemoRequest: ACARequest {
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    var memos: [Memo]?
-                    memos = []
+                    var memos: [Memo] = []
                     for post in json["posts"] as! [Any] {
                         guard let memo = Memo(dict: post as! [String:Any]) else { return }
-                        memos?.append(memo)
+                        memos.append(memo)
                     }
-                    if let memos = memos {
-                        completion(memos)
-                    }
+                    completion(memos)
+
                 } catch {
                     print(error)
                     completion(nil)

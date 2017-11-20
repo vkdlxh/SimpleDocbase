@@ -12,7 +12,6 @@ import SVProgressHUD
 class GroupViewController: UIViewController {
     
     // MARK: Properties
-    let request: GroupRequest = GroupRequest()
     var groups = [Group]()
     var refreshControl: UIRefreshControl!
     
@@ -31,14 +30,17 @@ class GroupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         SVProgressHUD.show()
-        request.delegate = self
-        request.getGroupFromTeam()
+        ACAGroupRequest.init().getGroupList { groups in
+            if let groups = groups {
+                self.groups = groups
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                SVProgressHUD.dismiss()
+            }
+        }
+        
         print("GroupViewController WillAppear")
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Navigation
@@ -54,7 +56,15 @@ class GroupViewController: UIViewController {
     }
     
     @objc func refresh() {
-        request.getGroupFromTeam()
+        ACAGroupRequest.init().getGroupList { groups in
+            if let groups = groups {
+                self.groups = groups
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+        }
     }
     
     func refreshControlAction() {
@@ -73,14 +83,10 @@ class GroupViewController: UIViewController {
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
 //                //FIXME: refreshができない
-//                let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-//                if let tokenKeyViewController = storyboard.instantiateViewController(withIdentifier: "SetTokenkeyViewController") as? UINavigationController {
-//                    if let targetViewController = tokenKeyViewController.topViewController as? SetTokenkeyViewController {
-//                        targetViewController.delegate = self
-//                        self.present(tokenKeyViewController, animated: true, completion: nil)
-//                    }
-//                }
-//                
+                let storyboard = UIStoryboard(name: "Setting", bundle: nil)
+                if let tokenKeyViewController = storyboard.instantiateViewController(withIdentifier: "RegisterTokenKeyViewController") as? RegisterTokenKeyViewController {
+                    self.present(tokenKeyViewController, animated: true, completion: nil)
+                }
                 print("OK")
             })
             
@@ -123,23 +129,3 @@ extension GroupViewController: UITableViewDataSource {
 
 }
 
-
-
-//MARK: RequestDelegate
-extension GroupViewController : RequestDelegate{
-    
-    func didRecivedGroup(groups: Array<Any>) {
-        print("didRecivedGroup(groups: )")
-        if let paramGroup = groups as? [Group] {
-            self.groups = paramGroup
-        }
-       
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            print("GroupViewController reloadData()")
-            self.refreshControl.endRefreshing()
-            SVProgressHUD.dismiss()
-        }
-    }
-
-}

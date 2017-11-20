@@ -10,8 +10,8 @@ import Foundation
 
 class ACATeamRequest: ACARequest {
 
-    func getTeamListClosure(completion: @escaping ([String]?) -> ()) {
-        print("getTeamListClosure()")
+    func getTeamList(completion: @escaping ([String]?) -> ()) {
+        print("getTeamList()")
         guard let url = URL(string: "https://api.docbase.io/teams") else { return }
         
         let request = settingRequest(url: url, httpMethod: .get)

@@ -24,7 +24,7 @@ class TesterViewController: UIViewController {
     
     // MARK: IBActions
     @IBAction func getTeamBtn(_ sender: Any) {
-        ACATeamRequest.init().getTeamListClosure() { (teams: [String]?) in
+        ACATeamRequest.init().getTeamList() { (teams: [String]?) in
             if let teams = teams {
                 self.teams = teams
                 DispatchQueue.main.async {
@@ -35,7 +35,7 @@ class TesterViewController: UIViewController {
     }
     
     @IBAction func getGroupBtn(_ sender: Any) {
-        ACAGroupRequest.init().getGroupClosure() { (groups: [Group]?) in
+        ACAGroupRequest.init().getGroupList() { (groups: [Group]?) in
             if let groups = groups {
                 self.groups = groups
                 print(self.groups)
@@ -43,16 +43,16 @@ class TesterViewController: UIViewController {
         }
     }
     
-    @IBAction func getMemoListBtn(_ sender: Any) {
-        ACAMemoRequest.init().MemoList(domain: domain, group: (groups.first?.name)!) { (memos: [Memo]?) in
-            if let memos = memos {
-                self.memos = memos
-                if let memos = self.memos {
-                    print(memos)
-                }
-            }
-        }
-    }
+//    @IBAction func getMemoListBtn(_ sender: Any) {
+//        ACAMemoRequest.init().getMemoList(domain: domain, group: (groups.first?.name)!) { (memos: [Memo]?) in
+//            if let memos = memos {
+//                self.memos = memos
+//                if let memos = self.memos {
+//                    print(memos)
+//                }
+//            }
+//        }
+//    }
     
     @IBAction func submitBtn(_ sender: Any) {
         
@@ -105,7 +105,7 @@ class TesterViewController: UIViewController {
         }
         
         // Team
-        ACATeamRequest.init().getTeamListClosure() { (teams: [String]?) in
+        ACATeamRequest.init().getTeamList() { (teams: [String]?) in
             if let teams = teams {
                 self.teams = teams
                 DispatchQueue.main.async {

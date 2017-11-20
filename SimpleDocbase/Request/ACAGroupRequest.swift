@@ -10,9 +10,9 @@ import Foundation
 
 class ACAGroupRequest: ACARequest {
     
-    func getGroupClosure(completion: @escaping ([Group]?) -> ()) {
-        print("getGroupClosure()")
-        ACATeamRequest.init().getTeamListClosure() { (teams: [String]?) in
+    func getGroupList(completion: @escaping ([Group]?) -> ()) {
+        print("getGroupList()")
+        ACATeamRequest.init().getTeamList() { (teams: [String]?) in
             let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
             
             if domain == nil {

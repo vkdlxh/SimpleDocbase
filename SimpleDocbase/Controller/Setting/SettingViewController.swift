@@ -27,7 +27,7 @@ class SettingViewController: FormViewController {
     lazy var groupListPiker: OptionPickerFormItem = {
         let instance = OptionPickerFormItem()
         instance.title("勤怠管理グループ設定")
-        ACAGroupRequest.init().getGroupClosure { groupList in
+        ACAGroupRequest.init().getGroupList { groupList in
             if let groupList = groupList {
                 for group in groupList {
                     instance.append(group.name)
