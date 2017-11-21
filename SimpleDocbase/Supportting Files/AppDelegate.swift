@@ -21,11 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tableViewAppearance = UITableView.appearance()
         let tableViewCellAppearance = UITableViewCell.appearance()
         
-        navigataionBarAppearance.barTintColor = ACAColor().ACAApricot
+//        navigataionBarAppearance.barTintColor = ACAColor().ACAApricot
         navigataionBarAppearance.tintColor = ACAColor().ACADarkRed
         navigataionBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: ACAColor().ACADarkRed]
-        tabBarAppearance.barTintColor = ACAColor().ACAApricot
-        tabBarAppearance.unselectedItemTintColor = ACAColor().ACADeepPink
+//        tabBarAppearance.barTintColor = ACAColor().ACAApricot
+        tabBarAppearance.unselectedItemTintColor = ACAColor().ACAApricot
         tabBarAppearance.tintColor = ACAColor().ACADarkRed
         
         
