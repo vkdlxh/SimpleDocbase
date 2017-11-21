@@ -43,7 +43,6 @@ class GroupViewController: UIViewController {
                     } else {
                         SVProgressHUD.dismiss()
                     }
-                    
                 }
             }
         }
