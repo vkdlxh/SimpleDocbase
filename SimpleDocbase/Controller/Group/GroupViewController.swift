@@ -30,7 +30,7 @@ class GroupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         SVProgressHUD.show()
-        ACAGroupRequest.init().getGroupList { groups in
+        ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
                 self.groups = groups
             }
@@ -56,7 +56,7 @@ class GroupViewController: UIViewController {
     }
     
     @objc func refresh() {
-        ACAGroupRequest.init().getGroupList { groups in
+        ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
                 self.groups = groups
             }

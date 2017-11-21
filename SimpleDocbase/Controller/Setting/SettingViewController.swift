@@ -27,10 +27,12 @@ class SettingViewController: FormViewController {
     lazy var groupListPiker: OptionPickerFormItem = {
         let instance = OptionPickerFormItem()
         instance.title("勤怠管理グループ設定")
-        ACAGroupRequest.init().getGroupList { groupList in
+        ACAGroupRequest().getGroupList { groupList in
             if let groupList = groupList {
-                for group in groupList {
-                    instance.append(group.name)
+                DispatchQueue.main.async {
+                    for group in groupList {
+                        instance.append(group.name)
+                    }
                 }
             }
         }
@@ -41,6 +43,7 @@ class SettingViewController: FormViewController {
             print("adopt bitcoin: \(String(describing: selected))")
             self.userDefaults.set(selected?.title, forKey: "SelectedGroup")
         }
+        
         return instance
     }()
 
