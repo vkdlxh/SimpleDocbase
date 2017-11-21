@@ -133,6 +133,7 @@ extension GroupViewController: UITableViewDataSource {
         
         let groupName = groups[indexPath.row].name
         cell.textLabel?.text = groupName
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         return cell
     }
 
