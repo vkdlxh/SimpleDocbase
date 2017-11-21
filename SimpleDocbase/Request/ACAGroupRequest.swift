@@ -36,6 +36,9 @@ class ACAGroupRequest: ACARequest {
                                 if let groupList = self.makeGroupArray(dict: json) {
                                     completion(groupList)
                                 }
+                            } else {
+                                print("Can't GroupList JSON parse")
+                                completion(nil)
                             }
                         } catch {
                             print(error)
@@ -43,6 +46,9 @@ class ACAGroupRequest: ACARequest {
                         }
                     }
                 }.resume()
+            } else {
+                print("No URL -> Check TeamRequest")
+                completion(nil)
             }
         }
     }

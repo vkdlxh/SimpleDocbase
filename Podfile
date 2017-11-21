@@ -8,6 +8,7 @@ target 'SimpleDocbase' do
   # Pods for SimpleDocbase
   pod 'SVProgressHUD'
   pod 'SwiftyFORM'
+  pod 'SwiftyMarkdown'
 
 end
 

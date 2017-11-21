@@ -15,6 +15,7 @@
 		BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */; };
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
 		DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9831FC29F4B00B4850D /* Meta.swift */; };
+		DA0CE9871FC2C87300B4850D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */; };
 		DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* ACARequest.swift */; };
 		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
 		DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */; };
@@ -60,6 +61,7 @@
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		BB8642ABBE4D41B96C1B5FCA /* Pods-SimpleDocbase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.debug.xcconfig"; sourceTree = "<group>"; };
 		DA0CE9831FC29F4B00B4850D /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		DA1D97DC1FB57940005A5C1D /* ACARequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACARequest.swift; sourceTree = "<group>"; };
 		DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
 		DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterTokenKeyViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */,
 				DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */,
 				DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */,
+				DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -366,11 +369,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyFORM/SwiftyFORM.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyMarkdown/SwiftyMarkdown.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyFORM.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyMarkdown.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,6 +429,7 @@
 				DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */,
 				DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
+				DA0CE9871FC2C87300B4850D /* MemoListTableViewCell.swift in Sources */,
 				DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */,
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
 				DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */,

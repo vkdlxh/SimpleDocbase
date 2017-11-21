@@ -29,32 +29,30 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        SVProgressHUD.show()
-        ACAGroupRequest.init().getGroupList { groups in
-            if let groups = groups {
-                self.groups = groups
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                SVProgressHUD.dismiss()
-            }
-        }
-        
-        print("GroupViewController WillAppear")
-    }
-
-    // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "GoMemoListSegue" {
-            if let destination = segue.destination as? MemoListViewController {
-                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.groupName = groups[selectedIndex].name
+        SVProgressHUD.show(withStatus: "更新中")
+        DispatchQueue.global().async {
+            ACAGroupRequest.init().getGroupList { groups in
+                if let groups = groups {
+                    self.groups = groups
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    if groups == nil {
+                        SVProgressHUD.showError(withStatus: "ERROR")
+                        SVProgressHUD.dismiss(withDelay: 1)
+                    } else {
+                        SVProgressHUD.dismiss()
+                    }
+                    
                 }
             }
         }
+        
+        
+        print("GroupViewController WillAppear")
     }
     
+    // MARK: Internal Methods
     @objc func refresh() {
         ACAGroupRequest.init().getGroupList { groups in
             if let groups = groups {
@@ -101,7 +99,18 @@ class GroupViewController: UIViewController {
                 self.present(ac, animated: true, completion: nil)
             }
         }
-  
+    }
+    
+    // MARK: - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "GoMemoListSegue" {
+            if let destination = segue.destination as? MemoListViewController {
+                if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.groupName = groups[selectedIndex].name
+                }
+            }
+        }
     }
     
 }
