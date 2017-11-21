@@ -54,7 +54,7 @@ class GroupViewController: UIViewController {
     
     // MARK: Internal Methods
     @objc func refresh() {
-        ACAGroupRequest.init().getGroupList { groups in
+        ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
                 self.groups = groups
             }

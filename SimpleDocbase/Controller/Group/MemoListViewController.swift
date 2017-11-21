@@ -34,7 +34,7 @@ class MemoListViewController: UIViewController {
         
         SVProgressHUD.show()
         if let domain = domain {
-            ACAMemoRequest.init().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
                 if let memos = memos {
                     self.memos = memos
                 }
@@ -62,7 +62,7 @@ class MemoListViewController: UIViewController {
     @objc func refresh() {
         pageNum = 1
         if let domain = domain {
-            ACAMemoRequest.init().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
                 if let memos = memos {
                     self.memos = memos
                 }
@@ -162,7 +162,7 @@ extension MemoListViewController: UIScrollViewDelegate {
                     SVProgressHUD.show()
                     isDataLoading = true
                     if let domain = domain {
-                        ACAMemoRequest.init().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+                        ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
                             if let memos = memos {
                                 self.memos += memos
                             }

@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        let navigataionBarAppearance = UINavigationBar.appearance()
+        let tabBarAppearance = UITabBar.appearance()
+        
+        navigataionBarAppearance.barTintColor = ACAColor().ACALightBeige
+        navigataionBarAppearance.tintColor = ACAColor().ACADarkRed
+        navigataionBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: ACAColor().ACADarkRed]
+        tabBarAppearance.barTintColor = ACAColor().ACALightBeige
+        tabBarAppearance.unselectedItemTintColor = ACAColor().ACAOrange
+        tabBarAppearance.tintColor = ACAColor().ACADarkRed
+        
+        
         return true
     }
 

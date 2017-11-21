@@ -16,8 +16,6 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     // MARK: Properties
     var delegate: WriteMemoViewControllerDelegate?
-    let groupRequest: GroupRequest = GroupRequest()
-    let memoRequest: MemoRequest = MemoRequest()
     let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
     var groups = [Group]()
     var groupId: Int = 0
@@ -52,7 +50,7 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
         ]
 
         if let domain = domain {
-            memoRequest.writeMemo(domain: domain, dict: memo)
+            ACAMemoRequest().writeMemo(domain: domain, dict: memo)
         }
         self.delegate?.writeMemoViewSubmit()
         
@@ -69,7 +67,7 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
         groupPickerView.dataSource = self
         groupPickerView.delegate = self
         
-        ACAGroupRequest.init().getGroupList { groups in
+        ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
                 self.groups = groups
             }
