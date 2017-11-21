@@ -34,12 +34,16 @@ class GroupViewController: UIViewController {
             ACAGroupRequest.init().getGroupList { groups in
                 if let groups = groups {
                     self.groups = groups
-                } else {
-                    print("groyplist else")
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
-                    SVProgressHUD.dismiss()
+                    if groups == nil {
+                        SVProgressHUD.showError(withStatus: "ERROR")
+                        SVProgressHUD.dismiss(withDelay: 1)
+                    } else {
+                        SVProgressHUD.dismiss()
+                    }
+                    
                 }
             }
         }
