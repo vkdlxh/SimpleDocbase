@@ -18,12 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigataionBarAppearance = UINavigationBar.appearance()
         let tabBarAppearance = UITabBar.appearance()
+        let tableViewAppearance = UITableView.appearance()
+        let tableViewCellAppearance = UITableViewCell.appearance()
         
-        navigataionBarAppearance.barTintColor = ACAColor().ACALightBeige
+        navigataionBarAppearance.barTintColor = ACAColor().ACAApricot
         navigataionBarAppearance.tintColor = ACAColor().ACADarkRed
         navigataionBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: ACAColor().ACADarkRed]
-        tabBarAppearance.barTintColor = ACAColor().ACALightBeige
-        tabBarAppearance.unselectedItemTintColor = ACAColor().ACAOrange
+        tabBarAppearance.barTintColor = ACAColor().ACAApricot
+        tabBarAppearance.unselectedItemTintColor = ACAColor().ACADeepPink
         tabBarAppearance.tintColor = ACAColor().ACADarkRed
         
         
