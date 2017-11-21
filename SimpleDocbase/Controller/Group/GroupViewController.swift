@@ -43,7 +43,6 @@ class GroupViewController: UIViewController {
                     } else {
                         SVProgressHUD.dismiss()
                     }
-                    
                 }
             }
         }
@@ -54,7 +53,7 @@ class GroupViewController: UIViewController {
     
     // MARK: Internal Methods
     @objc func refresh() {
-        ACAGroupRequest.init().getGroupList { groups in
+        ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
                 self.groups = groups
             }
@@ -133,6 +132,7 @@ extension GroupViewController: UITableViewDataSource {
         
         let groupName = groups[indexPath.row].name
         cell.textLabel?.text = groupName
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         return cell
     }
 
