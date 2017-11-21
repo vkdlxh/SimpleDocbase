@@ -29,16 +29,21 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        SVProgressHUD.show()
-        ACAGroupRequest.init().getGroupList { groups in
-            if let groups = groups {
-                self.groups = groups
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-                SVProgressHUD.dismiss()
+        SVProgressHUD.show(withStatus: "更新中")
+        DispatchQueue.global().async {
+            ACAGroupRequest.init().getGroupList { groups in
+                if let groups = groups {
+                    self.groups = groups
+                } else {
+                    print("groyplist else")
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    SVProgressHUD.dismiss()
+                }
             }
         }
+        
         
         print("GroupViewController WillAppear")
     }

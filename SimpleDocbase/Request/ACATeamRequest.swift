@@ -24,6 +24,9 @@ class ACATeamRequest: ACARequest {
                             
                             completion(teamList)
                         }
+                    } else {
+                        print("Can't TeamList JSON parse")
+                        completion(nil)
                     }
                 } catch {
                     print(error)
