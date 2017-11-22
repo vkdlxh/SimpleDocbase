@@ -65,12 +65,10 @@ class GroupViewController: UIViewController {
             print("No TokenKey")
             
             let submitAction = UIAlertAction(title: "TokenKey登録", style: .default) { [unowned ac] _ in
-                DispatchQueue.global().async {
-                    if let tokenKey = ac.textFields?[0].text {
-                        UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
-                    }
-                    self.getGroupListFromRequest()
-                } 
+                if let tokenKey = ac.textFields?[0].text {
+                    UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
+                }
+                self.getGroupListFromRequest()
             }
             
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
