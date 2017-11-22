@@ -154,14 +154,29 @@ extension GroupViewController: UITableViewDataSource {
         case 0:
             if let team = UserDefaults.standard.object(forKey: "selectedTeam") as? String {
                 cell.textLabel?.text = team
+                cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+                cell.textLabel?.textColor = ACAColor().ACADarkRed
             }
         case 1:
             cell.textLabel?.text = groups[indexPath.row].name
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            cell.textLabel?.textColor = ACAColor().ACADarkRed
         default:
             break
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let headerLabel = UILabel(frame: CGRect(x: 20, y: 10, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.textColor = ACAColor().ACADeepPink
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        
+        return headerView
     }
     
 }
