@@ -48,9 +48,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="D05-NG-W8N" kind="show" identifier="GoMemoListSegue" id="qb7-ER-iAH"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -71,11 +68,13 @@
                     <navigationItem key="navigationItem" title="グループ" id="IiZ-jL-kSl"/>
                     <connections>
                         <outlet property="tableView" destination="hZl-RH-6l6" id="vLh-iS-kY4"/>
+                        <segue destination="D05-NG-W8N" kind="show" identifier="GoMemoListSegue" id="eTs-91-vtY"/>
+                        <segue destination="RNf-6k-whU" kind="show" identifier="GoChangeTeam" id="Sr1-vy-Vx1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="olr-Oa-j3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="-205"/>
+            <point key="canvasLocation" x="945" y="-205"/>
         </scene>
         <!--Memo List View Controller-->
         <scene sceneID="Nc5-Ne-N8r">
@@ -93,7 +92,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="172"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZBc-Dd-KCc" id="rQ2-vK-BB1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="171.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fG6-fB-qWI">
@@ -317,6 +316,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2S-eO-FWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3470" y="-575"/>
+        </scene>
+        <!--Change Team View Controller-->
+        <scene sceneID="bW4-fm-jDf">
+            <objects>
+                <viewController id="RNf-6k-whU" customClass="ChangeTeamViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NwB-wP-lLz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ved-cc-2nQ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TeamCell" id="iwf-HH-b1L">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iwf-HH-b1L" id="wi4-0G-ptt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="RNf-6k-whU" id="IIg-X6-Mhh"/>
+                                    <outlet property="delegate" destination="RNf-6k-whU" id="xHn-ki-acr"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Ved-cc-2nQ" firstAttribute="top" secondItem="8HV-Fj-7IF" secondAttribute="top" id="5Hw-ZX-1z9"/>
+                            <constraint firstItem="8HV-Fj-7IF" firstAttribute="trailing" secondItem="Ved-cc-2nQ" secondAttribute="trailing" id="BeW-qJ-Ar2"/>
+                            <constraint firstItem="Ved-cc-2nQ" firstAttribute="bottom" secondItem="8HV-Fj-7IF" secondAttribute="bottom" id="r8W-X4-hSN"/>
+                            <constraint firstItem="Ved-cc-2nQ" firstAttribute="leading" secondItem="8HV-Fj-7IF" secondAttribute="leading" id="s1f-5S-8m9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8HV-Fj-7IF"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Ved-cc-2nQ" id="4ug-Mc-vIT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vJq-j5-Flx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1766" y="-898"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="gUi-l5-bi5">
