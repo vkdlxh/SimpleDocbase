@@ -18,7 +18,6 @@
 		DA0CE9871FC2C87300B4850D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */; };
 		DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490021FC4019D001E0159 /* ACAColor.swift */; };
 		DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490041FC403D1001E0159 /* ColorRGB.swift */; };
-		DA0CE9871FC2C87300B4850D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */; };
 		DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* ACARequest.swift */; };
 		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
 		DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */; };
@@ -27,6 +26,7 @@
 		DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */; };
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
 		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
+		DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */; };
 		DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C80F01FA729D400AC3E3D /* Group.storyboard */; };
 		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
@@ -67,7 +67,6 @@
 		DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		DA1490021FC4019D001E0159 /* ACAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAColor.swift; sourceTree = "<group>"; };
 		DA1490041FC403D1001E0159 /* ColorRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRGB.swift; sourceTree = "<group>"; };
-		DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
 		DA1D97DC1FB57940005A5C1D /* ACARequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACARequest.swift; sourceTree = "<group>"; };
 		DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterViewController.swift; sourceTree = "<group>"; };
 		DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterTokenKeyViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sheet.storyboard; sourceTree = "<group>"; };
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA5099231FBED26B005052F2 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamViewController.swift; sourceTree = "<group>"; };
 		DA8C80F01FA729D400AC3E3D /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
@@ -253,6 +253,7 @@
 				DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */,
 				DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */,
 				DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */,
+				DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -471,6 +472,7 @@
 				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
+				DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
 				DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */,
 			);

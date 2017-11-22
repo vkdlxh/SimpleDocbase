@@ -13,12 +13,13 @@ class MemoListViewController: UIViewController {
     
     // MARK: Properties
     var groupName: String = ""
-    let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
+    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var memos = [Memo]()
     var refreshControl: UIRefreshControl!
     //Pagination
-    var isDataLoading:Bool=false
+    var isDataLoading:Bool = false
     var pageNum: Int = 1
+    let perPage: Int = 20
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -32,9 +33,9 @@ class MemoListViewController: UIViewController {
                                                             action: #selector(addTapped(sender:)))
         refreshControlAction()
         
-        SVProgressHUD.show()
+        SVProgressHUD.show(withStatus: "更新中")
         if let domain = domain {
-            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
                 if let memos = memos {
                     self.memos = memos
                 }
@@ -62,7 +63,7 @@ class MemoListViewController: UIViewController {
     @objc func refresh() {
         pageNum = 1
         if let domain = domain {
-            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
                 if let memos = memos {
                     self.memos = memos
                 }
@@ -103,15 +104,12 @@ extension MemoListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return memos.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MemoListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoListTableViewCell
-        
         let memo = memos[indexPath.row]
-        
         
         cell.titleLabel.text = memo.title
         cell.bodyLabel.text = memo.body
@@ -121,7 +119,6 @@ extension MemoListViewController: UITableViewDataSource {
            tags.append(memo.tags[i].name)
         }
         cell.tagLabel.text = tags.joined(separator: ", ")
-        
         
         let imageURL = URL(string: memo.user.profile_image_url)
         let imageURLData = try? Data(contentsOf: imageURL!)
@@ -159,10 +156,10 @@ extension MemoListViewController: UIScrollViewDelegate {
         if scrollView == tableView {
             if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) {
                 if !isDataLoading{
-                    SVProgressHUD.show()
+                    SVProgressHUD.show(withStatus: "更新中")
                     isDataLoading = true
                     if let domain = domain {
-                        ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum) { memos in
+                        ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
                             if let memos = memos {
                                 self.memos += memos
                             }

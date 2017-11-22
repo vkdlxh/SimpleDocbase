@@ -13,10 +13,10 @@ class ACAGroupRequest: ACARequest {
     func getGroupList(completion: @escaping ([Group]?) -> ()) {
         print("getGroupList()")
         ACATeamRequest.init().getTeamList() { (teams: [String]?) in
-            let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
+            let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
             
             if domain == nil {
-                UserDefaults.standard.set(teams?.first, forKey: "selectedDomain")
+                UserDefaults.standard.set(teams?.first, forKey: "selectedTeam")
             }
             
             if let domain = domain {

@@ -12,8 +12,10 @@ import SVProgressHUD
 class GroupViewController: UIViewController {
     
     // MARK: Properties
-    var groups = [Group]()
+    var groups: [Group] = []
     var refreshControl: UIRefreshControl!
+    
+    let sectionTitle = ["チーム変更", "グループリスト"]
     
     
     // MARK: IBOutlets
@@ -30,23 +32,7 @@ class GroupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         SVProgressHUD.show(withStatus: "更新中")
-        DispatchQueue.global().async {
-            ACAGroupRequest.init().getGroupList { groups in
-                if let groups = groups {
-                    self.groups = groups
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    if groups == nil {
-                        SVProgressHUD.showError(withStatus: "ERROR")
-                        SVProgressHUD.dismiss(withDelay: 1)
-                    } else {
-                        SVProgressHUD.dismiss()
-                    }
-                }
-            }
-        }
-        
+        self.getGroupListFromRequest()
         
         print("GroupViewController WillAppear")
     }
@@ -79,10 +65,12 @@ class GroupViewController: UIViewController {
             print("No TokenKey")
             
             let submitAction = UIAlertAction(title: "TokenKey登録", style: .default) { [unowned ac] _ in
-                if let tokenKey = ac.textFields?[0].text {
-                    UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
-                    self.tableView.reloadData()
-                }
+                DispatchQueue.global().async {
+                    if let tokenKey = ac.textFields?[0].text {
+                        UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
+                    }
+                    self.getGroupListFromRequest()
+                } 
             }
             
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
@@ -96,6 +84,25 @@ class GroupViewController: UIViewController {
             DispatchQueue.main.async {
                 SVProgressHUD.dismiss()
                 self.present(ac, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func getGroupListFromRequest() {
+        DispatchQueue.global().async {
+            ACAGroupRequest.init().getGroupList { groups in
+                if let groups = groups {
+                    self.groups = groups
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    if groups == nil {
+                        SVProgressHUD.showError(withStatus: "ERROR")
+                        SVProgressHUD.dismiss(withDelay: 1)
+                    } else {
+                        SVProgressHUD.dismiss()
+                    }
+                }
             }
         }
     }
@@ -119,22 +126,55 @@ class GroupViewController: UIViewController {
 extension GroupViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        if groups.count == 0 {
+            return 0
+        } else {
+            return sectionTitle.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sectionTitle[section]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return groups.count
+        default:
+            return 0
+        }
         
-        return groups.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
         
-        let groupName = groups[indexPath.row].name
-        cell.textLabel?.text = groupName
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
+        switch indexPath.section {
+        case 0:
+            if let team = UserDefaults.standard.object(forKey: "selectedTeam") as? String {
+                cell.textLabel?.text = team
+            }
+        case 1:
+            cell.textLabel?.text = groups[indexPath.row].name
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
+        default:
+            break
+        }
         return cell
     }
+    
+}
 
+extension GroupViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            self.performSegue(withIdentifier: "GoChangeTeam", sender: nil)
+        } else if indexPath.section == 1 {
+            self.performSegue(withIdentifier: "GoMemoListSegue", sender: nil)
+        }
+    }
 }
 

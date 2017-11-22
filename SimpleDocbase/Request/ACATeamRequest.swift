@@ -21,7 +21,6 @@ class ACATeamRequest: ACARequest {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
                         if let teamList = self.makeTeamDomainArray(dict: json){
-                            
                             completion(teamList)
                         }
                     } else {
@@ -32,6 +31,10 @@ class ACATeamRequest: ACARequest {
                     print(error)
                     completion(nil)
                 }
+            } else {
+                print("TeamList No data. Check TokenKey")
+                UserDefaults.standard.set(nil, forKey: "selectedTeam")
+                completion(nil)
             }
         }.resume()
     }
