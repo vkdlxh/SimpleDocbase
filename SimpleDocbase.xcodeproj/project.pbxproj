@@ -10,6 +10,7 @@
 		207A2E2402EBA709A1863CB2 /* Pods_SimpleDocbase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82A45EBF124ED586B28613A /* Pods_SimpleDocbase.framework */; };
 		400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458741FB682AD00D5FF8E /* DaySheetViewController.swift */; };
 		400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */; };
+		40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */; };
 		40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F30E371FB88CE000014511 /* WorkSheetCell.swift */; };
 		BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */; };
 		BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */; };
@@ -57,6 +58,7 @@
 /* Begin PBXFileReference section */
 		400458741FB682AD00D5FF8E /* DaySheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetViewController.swift; sourceTree = "<group>"; };
 		400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+WorkSheet.swift"; sourceTree = "<group>"; };
+		40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkSheetManager.swift; sourceTree = "<group>"; };
 		40F30E371FB88CE000014511 /* WorkSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetCell.swift; sourceTree = "<group>"; };
 		50BA2B0354AB199E568389D6 /* Pods-SimpleDocbase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.release.xcconfig"; sourceTree = "<group>"; };
 		BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetItemCell.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 				DA1490041FC403D1001E0159 /* ColorRGB.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		40DB928B1FC67F3400B21440 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		A03E253E293E4B7F7214E376 /* Frameworks */ = {
@@ -231,6 +241,7 @@
 		DAF6B94E1FA06F090042BEC0 /* SimpleDocbase */ = {
 			isa = PBXGroup;
 			children = (
+				40DB928B1FC67F3400B21440 /* Manager */,
 				DA1490011FC40117001E0159 /* Utils */,
 				DAFD71021FB477E1004F3140 /* Tester */,
 				400458761FB6852B00D5FF8E /* Extension */,
@@ -456,6 +467,7 @@
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
 				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
+				40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */,
 				DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */,
 				DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */,
 				DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */,

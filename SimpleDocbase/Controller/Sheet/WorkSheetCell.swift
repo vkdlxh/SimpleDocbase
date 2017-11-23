@@ -33,12 +33,19 @@ class WorkSheetCell: UITableViewCell {
     //MARK: Internal
     internal func settingCell(_ workSheet: WorkSheet) {
         
-        yearMonthLabel.text = workSheet.workdate.yearMonthString()
-        workDaySumLabel.text = "\(workSheet.workDaySum) Days"
-        workTimeSumLabel.text = "\(workSheet.workTimeSum) Hours"
+        if let workYearMonth = workSheet.workdate?.yearMonthString() {
+            yearMonthLabel.text = workYearMonth
+        }
         
-        //TODO: 設定から指定した時間もしくは営業時間を計算したものにする。かりで１６０にした。
-        remainTimeLabel.text = "\(160-workSheet.workTimeSum) Remains"
+        if let workDaySum = workSheet.workDaySum {
+            workDaySumLabel.text = "\(workDaySum) Days"
+        }
+        
+        if let workTimeSum = workSheet.workTimeSum {
+            workTimeSumLabel.text = "\(workTimeSum) Hours"
+            //TODO: 設定から指定した時間もしくは営業時間を計算したものにする。かりで１６０にした。
+            remainTimeLabel.text = "\(160-workTimeSum) Remains"
+        }
     }
 
 }

@@ -38,7 +38,7 @@ final class DaySheetViewController : UIViewController {
 extension DaySheetViewController : UITableViewDelegate {
     
     internal func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 24.0;
+        return 40.0;
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

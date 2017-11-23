@@ -59,7 +59,12 @@ class GroupViewController: UIViewController {
     
     func checkTokenKeyAlert() {
         let ac = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle: .alert)
-        ac.addTextField()
+        
+        //test code.
+        //ac.addTextField()
+        ac.addTextField { (textfield) in
+            textfield.text = "8ZwKUqC7QkJJKZN2hP2i"
+        }
         
         if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
             print("No TokenKey")
