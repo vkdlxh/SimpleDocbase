@@ -28,6 +28,9 @@
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
 		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
 		DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */; };
+		DA6608B71FC6F8E4007ADFBE /* DetailMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */; };
+		DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */; };
+		DA6608BB1FC6FA95007ADFBE /* DetailMemoAndCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608BA1FC6FA95007ADFBE /* DetailMemoAndCommentViewController.swift */; };
 		DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C80F01FA729D400AC3E3D /* Group.storyboard */; };
 		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
@@ -78,6 +81,9 @@
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA5099231FBED26B005052F2 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamViewController.swift; sourceTree = "<group>"; };
+		DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoCell.swift; sourceTree = "<group>"; };
+		DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		DA6608BA1FC6FA95007ADFBE /* DetailMemoAndCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoAndCommentViewController.swift; sourceTree = "<group>"; };
 		DA8C80F01FA729D400AC3E3D /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
@@ -263,8 +269,11 @@
 				DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */,
 				DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */,
 				DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */,
+				DA6608BA1FC6FA95007ADFBE /* DetailMemoAndCommentViewController.swift */,
 				DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */,
 				DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */,
+				DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */,
+				DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -469,7 +478,9 @@
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
 				40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */,
 				DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */,
+				DA6608BB1FC6FA95007ADFBE /* DetailMemoAndCommentViewController.swift in Sources */,
 				DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */,
+				DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */,
 				DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */,
 				DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */,
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
@@ -482,6 +493,7 @@
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,
 				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,
+				DA6608B71FC6F8E4007ADFBE /* DetailMemoCell.swift in Sources */,
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
 				DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */,
