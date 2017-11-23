@@ -480,6 +480,7 @@
 				40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */,
 				DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */,
 				DA6608BB1FC6FA95007ADFBE /* DetailMemoAndCommentViewController.swift in Sources */,
+				40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */,
 				DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */,
 				DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */,
 				DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */,
