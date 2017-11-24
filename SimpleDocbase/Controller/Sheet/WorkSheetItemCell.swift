@@ -33,7 +33,9 @@ class WorkSheetItemCell: UITableViewCell {
     
     internal func settingCell(_ sheetItem: WorkSheetItem) {
         
-        dayLabel.text = String(format: "%d", sheetItem.workDay)
+        if let workDay = sheetItem.workDay {
+            dayLabel.text = String(format: "%d", workDay)
+        }
         
         if let week = sheetItem.week {
             weekLabel.text = Date.weekDayString(week:week)

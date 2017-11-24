@@ -41,14 +41,14 @@ class DaySheetHeaderView: UIView {
     
     //Private
     private func setup() {
-        dayLabel.text       = "日"
-        weekLabel.text      = "曜日"
-        workDayLabel.text   = "作業日"
-        beginTimeLabel.text = "開始時間"
-        endTimeLabel.text   = "終了時間"
-        breakTimeLabel.text = "休憩"
-        workTimeLabel.text  = "勤務時間"
-        remarkLabel.text    = "備考"
+//        dayLabel.text       = "日"
+//        weekLabel.text      = "曜日"
+//        workDayLabel.text   = "作業日"
+//        beginTimeLabel.text = "開始時間"
+//        endTimeLabel.text   = "終了時間"
+//        breakTimeLabel.text = "休憩"
+//        workTimeLabel.text  = "勤務時間"
+//        remarkLabel.text    = "備考"
     }
     
     
