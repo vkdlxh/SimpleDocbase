@@ -66,7 +66,7 @@ class TesterViewController: UIViewController {
             "notice": true
         ]
         
-        ACAMemoRequest.init().writeMemo(domain: domain, dict: memo)
+//        ACAMemoRequest.init().writeMemo(domain: domain, dict: memo)
         
         DispatchQueue.main.async {
             self.titleTextField.text = ""

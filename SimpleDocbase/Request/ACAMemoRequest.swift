@@ -39,7 +39,7 @@ class ACAMemoRequest: ACARequest {
         }.resume()
     }
     
-    func writeMemo(domain: String, dict: Dictionary<String, Any>) {
+    func writeMemo(domain: String, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         print("writeMemo(domain: , dict: )")
         guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts") else { return }
         
@@ -56,12 +56,16 @@ class ACAMemoRequest: ACARequest {
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    completion(true)
                     print(json)
                 }catch {
                     print(error)
                 }
+            } else {
+                completion(false)
+                print("Write Memo Fail")
             }
-            }.resume()
+        }.resume()
         
     }
     

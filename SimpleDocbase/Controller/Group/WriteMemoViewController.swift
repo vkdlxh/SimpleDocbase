@@ -16,9 +16,11 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
     
     // MARK: Properties
     var delegate: WriteMemoViewControllerDelegate?
-    let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
+    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var groups = [Group]()
     var groupId: Int = 0
+    
+    var checkWriteSuccess = false
     
     
     // MARK: IBOutlets
@@ -50,9 +52,50 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
         ]
 
         if let domain = domain {
-            ACAMemoRequest().writeMemo(domain: domain, dict: memo)
+           
+            
+            // 여기서 참 거짓 확인해서 얼럿 띄우고 딜리게이트 보내면 될까?
+            DispatchQueue.global().async {
+                ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
+                    if check == true {
+                        self.checkWriteSuccess = true
+                    }
+                }
+                DispatchQueue.main.async {
+                    
+                    if self.checkWriteSuccess == true {
+                        self.delegate?.writeMemoViewSubmit()
+                    } else {
+                        
+                    }
+                    
+                }
+                
+            }
+            
         }
-        self.delegate?.writeMemoViewSubmit()
+        
+        func checkWriteSuccessAlert(result: String) {
+            let ac = UIAlertController(title: result, message: nil, preferredStyle: .alert)
+        
+            if result == "Success" {
+                let successAction = UIAlertAction(title: "TokenKey登録", style: .default) { action in
+                    print("Write Memo Success")
+                    
+                }
+                ac.addAction(successAction)
+                
+                } else {
+                let failAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
+                    (action: UIAlertAction!) -> Void in
+                    print("Write Memo Faill")
+                }
+                ac.addAction(failAction)
+            }
+            
+            self.present(ac, animated: true, completion: nil)
+            
+        }
         
     }
     
