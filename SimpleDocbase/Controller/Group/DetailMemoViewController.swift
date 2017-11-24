@@ -2,48 +2,75 @@
 //  DetailMemoViewController.swift
 //  SimpleDocbase
 //
-//  Created by jeonsangjun on 2017/11/01.
+//  Created by jeonsangjun on 2017/11/23.
 //  Copyright © 2017年 archive-asia. All rights reserved.
 //
 
 import UIKit
-import SwiftyMarkdown
 
 class DetailMemoViewController: UIViewController {
     
     // MARK: Properties
     var memo: Memo?
-    var groups = [Group]()
-    
+    var sectionList = ["Memo", "Comment"]
     
     // MARK: IBOutlets
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var groupLabel: UILabel!
-    @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var bodyTextView: UITextView!
-    
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let memo = self.memo {
-            titleLabel.text = memo.title
-            bodyTextView.attributedText = SwiftyMarkdown(string: memo.body).attributedString()
-            
-            var groups: [String] = []
-            for i in 0..<memo.groups.count{
-                groups.append(memo.groups[i].name)
-            }
-            groupLabel.text = groups.joined(separator: ", ")
-            
-            var tags: [String] = []
-            for i in 0..<memo.tags.count{
-                tags.append(memo.tags[i].name)
-            }
-            tagLabel.text = tags.joined(separator: ", ")
-            
-        }
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
     }
+
+}
+
+// MARK: Extensions
+extension DetailMemoViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sectionList.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let sectionTitle = sectionList[section]
+        switch sectionTitle {
+        case "Memo":
+            return 1
+        case "Comment":
+            guard let commentCount = memo?.comments.count else {
+                return 0
+            }
+            return commentCount
+        default:
+            return 0
+        }
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let sectionTitle = sectionList[indexPath.section]
+        switch sectionTitle {
+        case "Memo":
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as? DetailMemoCell {
+                cell.memo = memo
+                return cell
+            }
+        case "Comment":
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as? CommentCell {
+                guard let comment = memo?.comments[indexPath.row] else {
+                    return cell
+                }
+                cell.comment = comment
+                return cell
+            }
+        default:
+            break
+        }
+        return UITableViewCell()
+    }
+    
 
 }

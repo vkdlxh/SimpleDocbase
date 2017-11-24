@@ -21,6 +21,9 @@ class ChangeTeamViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationItem.title = "チーム変更"
+        
         SVProgressHUD.show()
 
         ACATeamRequest().getTeamList { teams in

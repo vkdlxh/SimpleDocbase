@@ -16,7 +16,7 @@
 		BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */; };
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
 		DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9831FC29F4B00B4850D /* Meta.swift */; };
-		DA0CE9871FC2C87300B4850D /* MemoListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */; };
+		DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListCell.swift */; };
 		DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490021FC4019D001E0159 /* ACAColor.swift */; };
 		DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490041FC403D1001E0159 /* ColorRGB.swift */; };
 		DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* ACARequest.swift */; };
@@ -28,11 +28,15 @@
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
 		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
 		DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */; };
+		DA6608B71FC6F8E4007ADFBE /* DetailMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */; };
+		DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */; };
+		DA6608BB1FC6FA95007ADFBE /* DetailMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608BA1FC6FA95007ADFBE /* DetailMemoViewController.swift */; };
 		DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA8C80F01FA729D400AC3E3D /* Group.storyboard */; };
 		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
 		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
+		DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
 		DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF6B9561FA06F090042BEC0 /* Assets.xcassets */; };
@@ -44,7 +48,6 @@
 		DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */; };
 		DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178F1FBEA68900D18FAB /* TeamInfomationViewController.swift */; };
 		DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */; };
-		DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */; };
 		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
 		DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CF1FA99C6100A368BC /* Comment.swift */; };
 		DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95D11FA99C7C00A368BC /* Tag.swift */; };
@@ -66,7 +69,7 @@
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		BB8642ABBE4D41B96C1B5FCA /* Pods-SimpleDocbase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.debug.xcconfig"; sourceTree = "<group>"; };
 		DA0CE9831FC29F4B00B4850D /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
-		DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListTableViewCell.swift; sourceTree = "<group>"; };
+		DA0CE9861FC2C87300B4850D /* MemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListCell.swift; sourceTree = "<group>"; };
 		DA1490021FC4019D001E0159 /* ACAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAColor.swift; sourceTree = "<group>"; };
 		DA1490041FC403D1001E0159 /* ColorRGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRGB.swift; sourceTree = "<group>"; };
 		DA1D97DC1FB57940005A5C1D /* ACARequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACARequest.swift; sourceTree = "<group>"; };
@@ -78,11 +81,15 @@
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA5099231FBED26B005052F2 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamViewController.swift; sourceTree = "<group>"; };
+		DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoCell.swift; sourceTree = "<group>"; };
+		DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		DA6608BA1FC6FA95007ADFBE /* DetailMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoViewController.swift; sourceTree = "<group>"; };
 		DA8C80F01FA729D400AC3E3D /* Group.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Group.storyboard; sourceTree = "<group>"; };
 		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SimpleDocbaselogo.png; sourceTree = "<group>"; };
 		DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMemoViewController.swift; sourceTree = "<group>"; };
 		DAF6B94C1FA06F090042BEC0 /* SimpleDocbase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDocbase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +103,6 @@
 		DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
 		DAF9178F1FBEA68900D18FAB /* TeamInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfomationViewController.swift; sourceTree = "<group>"; };
 		DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
-		DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoViewController.swift; sourceTree = "<group>"; };
 		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DAFA95CF1FA99C6100A368BC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		DAFA95D11FA99C7C00A368BC /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
@@ -262,9 +268,11 @@
 				DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */,
 				DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */,
 				DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */,
-				DAFA95C81FA98DFE00A368BC /* DetailMemoViewController.swift */,
-				DA0CE9861FC2C87300B4850D /* MemoListTableViewCell.swift */,
+				DA6608BA1FC6FA95007ADFBE /* DetailMemoViewController.swift */,
 				DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */,
+				DA0CE9861FC2C87300B4850D /* MemoListCell.swift */,
+				DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */,
+				DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -305,6 +313,7 @@
 		DAFF5C6D1FA836370087C871 /* Supportting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */,
 				DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */,
 				DAF6B9561FA06F090042BEC0 /* Assets.xcassets */,
 				DAF6B9581FA06F090042BEC0 /* LaunchScreen.storyboard */,
@@ -375,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
+				DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */,
 				DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */,
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
 				DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */,
@@ -457,7 +467,7 @@
 				DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */,
 				DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
-				DA0CE9871FC2C87300B4850D /* MemoListTableViewCell.swift in Sources */,
+				DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */,
 				DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */,
 				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
 				DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */,
@@ -467,9 +477,10 @@
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
 				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
+				DA6608BB1FC6FA95007ADFBE /* DetailMemoViewController.swift in Sources */,
 				40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */,
-				DAFA95C91FA98DFE00A368BC /* DetailMemoViewController.swift in Sources */,
 				DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */,
+				DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */,
 				DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */,
 				DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */,
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
@@ -482,6 +493,7 @@
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,
 				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,
+				DA6608B71FC6F8E4007ADFBE /* DetailMemoCell.swift in Sources */,
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
 				DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */,
