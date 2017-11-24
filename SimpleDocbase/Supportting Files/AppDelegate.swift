@@ -17,15 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         let navigataionBarAppearance = UINavigationBar.appearance()
-        let tabBarAppearance = UITabBar.appearance()
-        let tableViewHeaderFooterViewAppearance = UITableViewHeaderFooterView.appearance()
-        
+            
+        navigataionBarAppearance.barTintColor = ACAColor().ACAApricot
         navigataionBarAppearance.tintColor = ACAColor().ACADarkRed
-        navigataionBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: ACAColor().ACADarkRed]
-        tabBarAppearance.unselectedItemTintColor = ACAColor().ACAApricot
-        tabBarAppearance.tintColor = ACAColor().ACADarkRed
-        tableViewHeaderFooterViewAppearance.textLabel?.textColor = ACAColor().ACAOrange
-        
+        navigataionBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
         return true
     }

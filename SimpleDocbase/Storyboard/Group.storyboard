@@ -179,69 +179,6 @@
             <point key="canvasLocation" x="1780" y="-206.44677661169416"/>
         </scene>
         <!--Detail Memo View Controller-->
-        <scene sceneID="dzd-cH-Zz8">
-            <objects>
-                <viewController id="5Vo-4F-n5z" customClass="DetailMemoViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dwX-BJ-lR3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9OD-Dd-ap4">
-                                <rect key="frame" x="5" y="30" width="365" height="24"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tex-Hj-HNi">
-                                <rect key="frame" x="5" y="54" width="37.5" height="16"/>
-                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OE5-06-6HL">
-                                <rect key="frame" x="44.5" y="54" width="22" height="16"/>
-                                <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Body" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="drs-iq-XJ6">
-                                <rect key="frame" x="5" y="78" width="365" height="584"/>
-                                <color key="backgroundColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Rhb-bm-iEL" firstAttribute="bottom" secondItem="drs-iq-XJ6" secondAttribute="bottom" constant="5" id="1JS-mq-UDG"/>
-                            <constraint firstItem="OE5-06-6HL" firstAttribute="top" secondItem="9OD-Dd-ap4" secondAttribute="bottom" id="6ga-2g-dNZ"/>
-                            <constraint firstItem="drs-iq-XJ6" firstAttribute="leading" secondItem="Rhb-bm-iEL" secondAttribute="leading" constant="5" id="7tw-Pa-J8W"/>
-                            <constraint firstItem="drs-iq-XJ6" firstAttribute="top" secondItem="Tex-Hj-HNi" secondAttribute="bottom" constant="8" id="H5V-9y-Cta" userLabel="Text View.top = Group.bottom + 3"/>
-                            <constraint firstItem="OE5-06-6HL" firstAttribute="leading" secondItem="Tex-Hj-HNi" secondAttribute="trailing" constant="2" id="HGG-Zv-ucB"/>
-                            <constraint firstItem="Rhb-bm-iEL" firstAttribute="trailing" secondItem="drs-iq-XJ6" secondAttribute="trailing" constant="5" id="X2y-gp-VFU"/>
-                            <constraint firstItem="Rhb-bm-iEL" firstAttribute="trailing" secondItem="9OD-Dd-ap4" secondAttribute="trailing" constant="5" id="b45-rf-kGg"/>
-                            <constraint firstItem="9OD-Dd-ap4" firstAttribute="top" secondItem="Rhb-bm-iEL" secondAttribute="top" constant="10" id="b5j-Ij-nD7"/>
-                            <constraint firstItem="Tex-Hj-HNi" firstAttribute="top" secondItem="9OD-Dd-ap4" secondAttribute="bottom" id="i4E-er-McY"/>
-                            <constraint firstItem="9OD-Dd-ap4" firstAttribute="leading" secondItem="Rhb-bm-iEL" secondAttribute="leading" constant="5" id="qxT-OJ-3xk"/>
-                            <constraint firstItem="Tex-Hj-HNi" firstAttribute="leading" secondItem="Rhb-bm-iEL" secondAttribute="leading" constant="5" id="tiU-mP-XGv"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Rhb-bm-iEL"/>
-                    </view>
-                    <connections>
-                        <outlet property="bodyTextView" destination="drs-iq-XJ6" id="3eR-Fr-6vs"/>
-                        <outlet property="groupLabel" destination="Tex-Hj-HNi" id="QsT-Ud-34d"/>
-                        <outlet property="tagLabel" destination="OE5-06-6HL" id="A6A-Lb-o3g"/>
-                        <outlet property="titleLabel" destination="9OD-Dd-ap4" id="nUV-b9-SzU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="n76-Ki-26s" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2636" y="142"/>
-        </scene>
-        <!--Detail Memo View Controller-->
         <scene sceneID="IQn-wl-54f">
             <objects>
                 <viewController id="GVC-Sf-pHd" customClass="DetailMemoViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
@@ -326,9 +263,9 @@
                                                         <constraint firstAttribute="height" constant="25" id="imn-7B-FOv"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DJu-Gt-dmf">
-                                                    <rect key="frame" x="35" y="5" width="335" height="97.5"/>
-                                                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DJu-Gt-dmf">
+                                                    <rect key="frame" x="25" y="11" width="335" height="97.5"/>
+                                                    <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -369,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acn-sO-iEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2608.8000000000002" y="855.9220389805098"/>
+            <point key="canvasLocation" x="2634" y="197"/>
         </scene>
         <!--Write Memo View Controller-->
         <scene sceneID="YDi-RZ-jTI">

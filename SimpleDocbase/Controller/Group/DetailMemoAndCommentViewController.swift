@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SwiftyMarkdown
 
 class DetailMemoViewController: UIViewController {
     
