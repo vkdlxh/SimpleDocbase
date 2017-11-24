@@ -1,5 +1,5 @@
 //
-//  DetailMemoAndCommentViewController.swift
+//  DetailMemoViewController.swift
 //  SimpleDocbase
 //
 //  Created by jeonsangjun on 2017/11/23.
@@ -9,20 +9,16 @@
 import UIKit
 import SwiftyMarkdown
 
-class DetailMemoAndCommentViewController: UIViewController {
+class DetailMemoViewController: UIViewController {
     
     // MARK: Properties
     var memo: Memo?
     var sectionList = ["Memo", "Comment"]
     
-//    enum DetailMemo {
-//        case Memo
-//        case Commnet
-//    }
-    
+    // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
-
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +28,8 @@ class DetailMemoAndCommentViewController: UIViewController {
 
 }
 
-extension DetailMemoAndCommentViewController: UITableViewDataSource {
+// MARK: Extensions
+extension DetailMemoViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionList.count
@@ -59,24 +56,7 @@ extension DetailMemoAndCommentViewController: UITableViewDataSource {
         switch sectionTitle {
         case "Memo":
             if let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as? DetailMemoCell {
-                guard let memo = memo else {
-                    return cell
-                }
-                cell.titleLabel.text = memo.title
-                cell.bodyTextView.attributedText = SwiftyMarkdown(string: memo.body).attributedString()
-                
-                var groups: [String] = []
-                for i in 0..<memo.groups.count{
-                    groups.append(memo.groups[i].name)
-                }
-                cell.groupLabel.text = groups.joined(separator: ", ")
-                
-                var tags: [String] = []
-                for i in 0..<memo.tags.count{
-                    tags.append(memo.tags[i].name)
-                }
-                cell.tagLabel.text = tags.joined(separator: ", ")
-                
+                cell.memo = memo
                 return cell
             }
         case "Comment":
@@ -84,15 +64,7 @@ extension DetailMemoAndCommentViewController: UITableViewDataSource {
                 guard let comment = memo?.comments[indexPath.row] else {
                     return cell
                 }
-                guard let user = comment.user else {
-                    return cell
-                }
-                let imageURL = URL(string: user.profile_image_url)
-                let imageURLData = try? Data(contentsOf: imageURL!)
-                cell.profileImageView.image = UIImage(data: imageURLData!)
-                
-                cell.bodyTextView.attributedText = SwiftyMarkdown(string: comment.body).attributedString()
-                
+                cell.comment = comment
                 return cell
             }
         default:

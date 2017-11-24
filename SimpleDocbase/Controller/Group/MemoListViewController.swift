@@ -80,7 +80,7 @@ class MemoListViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "GoDetailMemoSegue" {
-            if let destination = segue.destination as? DetailMemoAndCommentViewController {
+            if let destination = segue.destination as? DetailMemoViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.memo = memos[selectedIndex]
                 }
@@ -108,23 +108,12 @@ extension MemoListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MemoListTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoListTableViewCell
-        let memo = memos[indexPath.row]
-        
-        cell.titleLabel.text = memo.title
-        cell.bodyLabel.text = memo.body
-
-        var tags: [String] = []
-        for i in 0..<memo.tags.count{
-           tags.append(memo.tags[i].name)
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as? MemoListCell {
+            let memo = memos[indexPath.row]
+            cell.memo = memo
+            return cell
         }
-        cell.tagLabel.text = tags.joined(separator: ", ")
-        
-        let imageURL = URL(string: memo.user.profile_image_url)
-        let imageURLData = try? Data(contentsOf: imageURL!)
-        cell.profileImageView.image = UIImage(data: imageURLData!)
-        
-        return cell
+        return UITableViewCell()
     }
     
 }

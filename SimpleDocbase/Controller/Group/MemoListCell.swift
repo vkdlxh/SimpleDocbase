@@ -1,20 +1,20 @@
 //
-//  DetailMemoCell.swift
+//  MemoListCell.swift
 //  SimpleDocbase
 //
-//  Created by jeonsangjun on 2017/11/23.
+//  Created by jeonsangjun on 2017/11/20.
 //  Copyright © 2017年 archive-asia. All rights reserved.
 //
 
 import UIKit
-import SwiftyMarkdown
 
-class DetailMemoCell: UITableViewCell {
+class MemoListCell: UITableViewCell {
     
+    // MARK: IBOutlets
+    @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var groupLabel: UILabel!
+    @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
-    @IBOutlet weak var bodyTextView: UITextView!
     
     var memo: Memo? {
         didSet {
@@ -23,20 +23,18 @@ class DetailMemoCell: UITableViewCell {
             }
             
             titleLabel.text = memo.title
-            bodyTextView.attributedText = SwiftyMarkdown(string: memo.body).attributedString()
-            
-            var groups: [String] = []
-            for i in 0..<memo.groups.count{
-                groups.append(memo.groups[i].name)
-            }
-            groupLabel.text = groups.joined(separator: ", ")
+            bodyLabel.text = memo.body
             
             var tags: [String] = []
             for i in 0..<memo.tags.count{
                 tags.append(memo.tags[i].name)
             }
             tagLabel.text = tags.joined(separator: ", ")
+            
+            let imageURL = URL(string: memo.user.profile_image_url)
+            let imageURLData = try? Data(contentsOf: imageURL!)
+            profileImageView.image = UIImage(data: imageURLData!)
         }
     }
-    
 }
+

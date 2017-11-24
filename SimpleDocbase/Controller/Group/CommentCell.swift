@@ -7,10 +7,29 @@
 //
 
 import UIKit
+import SwiftyMarkdown
 
 class CommentCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var bodyTextView: UITextView!
+    
+    var comment: Comment? {
+        didSet {
+            guard let comment = comment else {
+                return
+            }
+            guard let user = comment.user else {
+                return
+            }
+            
+            let imageURL = URL(string: user.profile_image_url)
+            let imageURLData = try? Data(contentsOf: imageURL!)
+            profileImageView.image = UIImage(data: imageURLData!)
+            
+            bodyTextView.attributedText = SwiftyMarkdown(string: comment.body).attributedString()
+            
+        }
+    }
     
 }

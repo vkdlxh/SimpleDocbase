@@ -88,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemoCell" rowHeight="172" id="ZBc-Dd-KCc" customClass="MemoListTableViewCell" customModule="SimpleDocbase" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemoCell" rowHeight="172" id="ZBc-Dd-KCc" customClass="MemoListCell" customModule="SimpleDocbase" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="172"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZBc-Dd-KCc" id="rQ2-vK-BB1">
@@ -241,10 +241,10 @@
             </objects>
             <point key="canvasLocation" x="2636" y="142"/>
         </scene>
-        <!--Detail Memo And Comment View Controller-->
+        <!--Detail Memo View Controller-->
         <scene sceneID="IQn-wl-54f">
             <objects>
-                <viewController id="GVC-Sf-pHd" customClass="DetailMemoAndCommentViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GVC-Sf-pHd" customClass="DetailMemoViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nKh-A0-Qgn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
