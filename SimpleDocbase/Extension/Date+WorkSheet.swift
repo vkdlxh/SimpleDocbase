@@ -100,6 +100,17 @@ extension Date  {
         return dateString
     }
     
+    func yearMonthDayString() -> String {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "yyyy/MM/dd(EEEE)"
+        let dateString = dateFormater.string(from: self)
+        print(dateString)
+        
+        return dateString
+    }
+    
     func hourMinuteString() -> String {
         
         let dateFormater = DateFormatter()
