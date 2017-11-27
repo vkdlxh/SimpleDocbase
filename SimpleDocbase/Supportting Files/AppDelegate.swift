@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        UIApplication.shared.statusBarView?.backgroundColor = .white
+        
         let navigataionBarAppearance = UINavigationBar.appearance()
             
         navigataionBarAppearance.barTintColor = ACAColor().ACAApricot

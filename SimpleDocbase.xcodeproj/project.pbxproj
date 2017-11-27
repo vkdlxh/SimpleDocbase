@@ -37,6 +37,7 @@
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
 		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
 		DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */; };
+		DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
 		DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF6B9561FA06F090042BEC0 /* Assets.xcassets */; };
@@ -90,6 +91,7 @@
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SimpleDocbaselogo.png; sourceTree = "<group>"; };
+		DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarColor.swift; sourceTree = "<group>"; };
 		DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMemoViewController.swift; sourceTree = "<group>"; };
 		DAF6B94C1FA06F090042BEC0 /* SimpleDocbase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDocbase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */,
 				DA1490041FC403D1001E0159 /* ColorRGB.swift */,
+				DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */,
 				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
+				DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */,
 				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
 				DA6608BB1FC6FA95007ADFBE /* DetailMemoViewController.swift in Sources */,
