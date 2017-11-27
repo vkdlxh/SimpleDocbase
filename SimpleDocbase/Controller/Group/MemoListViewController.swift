@@ -12,7 +12,7 @@ import SVProgressHUD
 class MemoListViewController: UIViewController {
     
     // MARK: Properties
-    var groupName: String = ""
+    var group: Group?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var memos = [Memo]()
     var refreshControl: UIRefreshControl!
@@ -27,22 +27,25 @@ class MemoListViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = groupName
+        navigationItem.title = group?.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped(sender:)))
         refreshControlAction()
         
         SVProgressHUD.show(withStatus: "更新中")
+       
         if let domain = domain {
-            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
-                if let memos = memos {
-                    self.memos = memos
-                }
-                self.pageNum += 1
-                DispatchQueue.main.async {
-                    SVProgressHUD.dismiss()
-                    self.tableView.reloadData()
+            if let groupName = group?.name {
+                ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
+                    if let memos = memos {
+                        self.memos = memos
+                    }
+                    self.pageNum += 1
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
@@ -62,15 +65,18 @@ class MemoListViewController: UIViewController {
     
     @objc func refresh() {
         pageNum = 1
+        
         if let domain = domain {
-            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
-                if let memos = memos {
-                    self.memos = memos
+            if let groupName = group?.name {
+                ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
+                    if let memos = memos {
+                        self.memos = memos
+                    }
                 }
-            }
-            DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -89,7 +95,7 @@ class MemoListViewController: UIViewController {
             if let destination = segue.destination as? UINavigationController {
                 if let tagetController = destination.topViewController as? WriteMemoViewController {
                     tagetController.delegate = self
-                    tagetController.groupName = self.groupName
+                    tagetController.group = self.group
                 }
             }
         }
@@ -155,14 +161,16 @@ extension MemoListViewController: UIScrollViewDelegate {
                     SVProgressHUD.show(withStatus: "更新中")
                     isDataLoading = true
                     if let domain = domain {
-                        ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
-                            if let memos = memos {
-                                self.memos += memos
-                            }
-                            self.pageNum += 1
-                            DispatchQueue.main.async {
-                                SVProgressHUD.dismiss()
-                                self.tableView.reloadData()
+                        if let groupName = group?.name {
+                            ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
+                                if let memos = memos {
+                                    self.memos += memos
+                                }
+                                self.pageNum += 1
+                                DispatchQueue.main.async {
+                                    SVProgressHUD.dismiss()
+                                    self.tableView.reloadData()
+                                }
                             }
                         }
                     }

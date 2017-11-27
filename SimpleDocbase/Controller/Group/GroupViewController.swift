@@ -117,7 +117,7 @@ class GroupViewController: UIViewController {
         if segue.identifier == "GoMemoListSegue" {
             if let destination = segue.destination as? MemoListViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.groupName = groups[selectedIndex].name
+                    destination.group = groups[selectedIndex]
                 }
             }
         }

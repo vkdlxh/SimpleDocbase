@@ -17,7 +17,7 @@ class WriteMemoViewController: UIViewController {
     // MARK: Properties
     var delegate: WriteMemoViewControllerDelegate?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
-    var groupName: String = ""
+    var group: Group?
     
     var checkWriteSuccess = false
     
@@ -46,7 +46,7 @@ class WriteMemoViewController: UIViewController {
             "draft": false,
             "tags": tags,
             "scope": "group",
-            "groups": [groupName],
+            "groups": [group?.id],
             "notice": true
         ]
 
@@ -70,8 +70,10 @@ class WriteMemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = groupName
-        
+        if let groupName = group?.name {
+            navigationItem.title = groupName
+        }
+    
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -81,6 +83,7 @@ class WriteMemoViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.view.endEditing(true)
     }
+    
     
     // MARK: Internal Methods
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -103,6 +106,7 @@ class WriteMemoViewController: UIViewController {
             ac = UIAlertController(title: "メモ登録成功", message: nil, preferredStyle: .alert)
             let successAction = UIAlertAction(title: "確認", style: .default) { action in
                 print("Write Memo Success")
+                self.view.endEditing(true)
                 self.delegate?.writeMemoViewSubmit()
                 
             }

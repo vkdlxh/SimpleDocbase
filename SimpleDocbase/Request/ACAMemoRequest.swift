@@ -50,13 +50,16 @@ class ACAMemoRequest: ACARequest {
         request.httpBody = httpBody
         
         session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print(response)
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
+                print("statusCode should be 201, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+                completion(false)
+            } else {
+                completion(true)
             }
             if let data = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    completion(true)
                     print(json)
                 }catch {
                     print(error)
