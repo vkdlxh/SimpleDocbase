@@ -53,50 +53,16 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
 
         if let domain = domain {
            
-            
             // 여기서 참 거짓 확인해서 얼럿 띄우고 딜리게이트 보내면 될까?
             DispatchQueue.global().async {
                 ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
                     if check == true {
                         self.checkWriteSuccess = true
                     }
+                    self.checkWriteSuccessAlert(result: self.checkWriteSuccess)
                 }
-                DispatchQueue.main.async {
-                    
-                    if self.checkWriteSuccess == true {
-                        self.delegate?.writeMemoViewSubmit()
-                    } else {
-                        
-                    }
-                    
-                }
-                
             }
-            
         }
-        
-        func checkWriteSuccessAlert(result: String) {
-            let ac = UIAlertController(title: result, message: nil, preferredStyle: .alert)
-        
-            if result == "Success" {
-                let successAction = UIAlertAction(title: "TokenKey登録", style: .default) { action in
-                    print("Write Memo Success")
-                    
-                }
-                ac.addAction(successAction)
-                
-                } else {
-                let failAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
-                    (action: UIAlertAction!) -> Void in
-                    print("Write Memo Faill")
-                }
-                ac.addAction(failAction)
-            }
-            
-            self.present(ac, animated: true, completion: nil)
-            
-        }
-        
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -115,9 +81,40 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
                 self.groups = groups
             }
             DispatchQueue.main.async {
+                self.groupPickerView.selectRow(0, inComponent: 0, animated: false)
                 self.groupPickerView.reloadAllComponents()
             }
         }
+
+    }
+    
+    // MARK: Internal Methods
+    func checkWriteSuccessAlert(result: Bool) {
+        
+        var ac = UIAlertController()
+        
+        if result == true {
+            ac = UIAlertController(title: "メモ登録成功", message: nil, preferredStyle: .alert)
+            let successAction = UIAlertAction(title: "確認", style: .default) { action in
+                print("Write Memo Success")
+                self.delegate?.writeMemoViewSubmit()
+                
+            }
+            ac.addAction(successAction)
+            
+        } else {
+            ac = UIAlertController(title: "メモ登録失敗", message: nil, preferredStyle: .alert)
+            let failAction: UIAlertAction = UIAlertAction(title: "確認", style: .cancel) {
+                (action: UIAlertAction!) -> Void in
+                print("Write Memo Faill")
+            }
+            ac.addAction(failAction)
+        }
+        
+        DispatchQueue.main.async {
+            self.present(ac, animated: true, completion: nil)
+        }
+        
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
