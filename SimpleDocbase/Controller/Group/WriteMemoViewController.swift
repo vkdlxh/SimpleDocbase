@@ -12,13 +12,12 @@ protocol WriteMemoViewControllerDelegate {
     func writeMemoViewSubmit()
 }
 
-class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class WriteMemoViewController: UIViewController {
     
     // MARK: Properties
     var delegate: WriteMemoViewControllerDelegate?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
-    var groups = [Group]()
-    var groupId: Int = 0
+    var groupName: String = ""
     
     var checkWriteSuccess = false
     
@@ -27,7 +26,7 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
-    @IBOutlet weak var groupPickerView: UIPickerView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
@@ -47,13 +46,11 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
             "draft": false,
             "tags": tags,
             "scope": "group",
-            "groups": [groupId],
+            "groups": [groupName],
             "notice": true
         ]
 
         if let domain = domain {
-           
-            // 여기서 참 거짓 확인해서 얼럿 띄우고 딜리게이트 보내면 될까?
             DispatchQueue.global().async {
                 ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
                     if check == true {
@@ -73,22 +70,31 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        groupPickerView.dataSource = self
-        groupPickerView.delegate = self
+        navigationItem.title = groupName
         
-        ACAGroupRequest().getGroupList { groups in
-            if let groups = groups {
-                self.groups = groups
-            }
-            DispatchQueue.main.async {
-                self.groupPickerView.selectRow(0, inComponent: 0, animated: false)
-                self.groupPickerView.reloadAllComponents()
-            }
-        }
-
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.view.endEditing(true)
     }
     
     // MARK: Internal Methods
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let userInfo = (notification as NSNotification).userInfo!
+        let keyboardHeight =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        bottomConstraint.constant = keyboardHeight.height
+    }
+    
+    @objc func keyboardWillHide(_ notification: Notification) {
+        bottomConstraint.constant = 0
+    }
+    
+    
+    
     func checkWriteSuccessAlert(result: Bool) {
         
         var ac = UIAlertController()
@@ -115,21 +121,5 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
             self.present(ac, animated: true, completion: nil)
         }
         
-    }
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return groups.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return groups[row].name
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        groupId = groups[row].id
     }
 }

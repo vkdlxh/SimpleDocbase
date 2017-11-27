@@ -263,8 +263,8 @@
                                                         <constraint firstAttribute="height" constant="25" id="imn-7B-FOv"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DJu-Gt-dmf">
-                                                    <rect key="frame" x="25" y="11" width="335" height="97.5"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DJu-Gt-dmf">
+                                                    <rect key="frame" x="35" y="5" width="335" height="97.5"/>
                                                     <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -316,48 +316,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title or URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
-                                <rect key="frame" x="5" y="69" width="365" height="30"/>
-                                <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the Tags" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQg-WV-W2b">
-                                <rect key="frame" x="5" y="100" width="365" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PEI-h9-uAP">
-                                <rect key="frame" x="5" y="131" width="365" height="426"/>
-                                <color key="backgroundColor" red="0.94328745579999995" green="1" blue="0.3527270066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <pickerView contentMode="scaleToFill" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ter-PJ-Lf2">
-                                <rect key="frame" x="5" y="562" width="365" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4J-ZY-RmB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title or URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PEI-h9-uAP">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="543"/>
+                                        <color key="backgroundColor" red="0.94328745579999995" green="1" blue="0.3527270066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the Tags" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQg-WV-W2b">
+                                        <rect key="frame" x="0.0" y="30" width="375" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="764-f7-wEJ"/>
+                                    <constraint firstItem="eaV-FH-bCC" firstAttribute="top" secondItem="z4J-ZY-RmB" secondAttribute="top" id="0Eq-GU-BZ4"/>
+                                    <constraint firstItem="PEI-h9-uAP" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" id="4N6-Up-f5J"/>
+                                    <constraint firstAttribute="trailing" secondItem="eaV-FH-bCC" secondAttribute="trailing" id="4PV-fE-Sbj"/>
+                                    <constraint firstAttribute="trailing" secondItem="rQg-WV-W2b" secondAttribute="trailing" id="WUL-qe-hBZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="PEI-h9-uAP" secondAttribute="trailing" id="dUb-fJ-CLQ"/>
+                                    <constraint firstItem="PEI-h9-uAP" firstAttribute="top" secondItem="rQg-WV-W2b" secondAttribute="bottom" id="euV-Cx-6Aq"/>
+                                    <constraint firstItem="rQg-WV-W2b" firstAttribute="top" secondItem="eaV-FH-bCC" secondAttribute="bottom" id="iNj-ZG-iSf"/>
+                                    <constraint firstItem="rQg-WV-W2b" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" id="j0e-Ud-Dxy"/>
+                                    <constraint firstItem="eaV-FH-bCC" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" id="kj6-8M-QTS"/>
+                                    <constraint firstAttribute="bottom" secondItem="PEI-h9-uAP" secondAttribute="bottom" id="q9g-c2-F7K"/>
                                 </constraints>
-                            </pickerView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="PEI-h9-uAP" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" constant="5" id="LPH-XP-HDT"/>
-                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="PEI-h9-uAP" secondAttribute="trailing" constant="5" id="LfM-r8-6Kx"/>
-                            <constraint firstItem="rQg-WV-W2b" firstAttribute="top" secondItem="eaV-FH-bCC" secondAttribute="bottom" constant="1" id="OaO-d7-bZ6"/>
-                            <constraint firstItem="rQg-WV-W2b" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" constant="5" id="U3o-bp-WF0"/>
-                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="rQg-WV-W2b" secondAttribute="trailing" constant="5" id="Vf6-A4-m1G"/>
-                            <constraint firstItem="ter-PJ-Lf2" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" constant="5" id="YLF-5T-gsN"/>
-                            <constraint firstItem="3pq-9R-wFh" firstAttribute="bottom" secondItem="ter-PJ-Lf2" secondAttribute="bottom" constant="5" id="e4J-Uy-gmP"/>
-                            <constraint firstItem="PEI-h9-uAP" firstAttribute="top" secondItem="rQg-WV-W2b" secondAttribute="bottom" constant="1" id="eYB-Se-PnG"/>
-                            <constraint firstItem="eaV-FH-bCC" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" constant="5" id="lfO-Fx-BeY"/>
-                            <constraint firstItem="ter-PJ-Lf2" firstAttribute="top" secondItem="PEI-h9-uAP" secondAttribute="bottom" constant="5" id="m7P-lg-fVr"/>
-                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="eaV-FH-bCC" secondAttribute="trailing" constant="5" id="tNa-Us-RAC"/>
-                            <constraint firstItem="eaV-FH-bCC" firstAttribute="top" secondItem="3pq-9R-wFh" secondAttribute="top" constant="5" id="wdQ-xA-eok"/>
-                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="ter-PJ-Lf2" secondAttribute="trailing" constant="5" id="zaB-ul-RKv"/>
+                            <constraint firstItem="z4J-ZY-RmB" firstAttribute="leading" secondItem="3pq-9R-wFh" secondAttribute="leading" id="JyP-BY-VAG"/>
+                            <constraint firstItem="z4J-ZY-RmB" firstAttribute="top" secondItem="3pq-9R-wFh" secondAttribute="top" id="YNO-hh-438"/>
+                            <constraint firstItem="3pq-9R-wFh" firstAttribute="bottom" secondItem="z4J-ZY-RmB" secondAttribute="bottom" id="c8Y-od-iko"/>
+                            <constraint firstItem="3pq-9R-wFh" firstAttribute="trailing" secondItem="z4J-ZY-RmB" secondAttribute="trailing" id="mta-kB-fQM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3pq-9R-wFh"/>
                     </view>
@@ -375,7 +378,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bodyTextView" destination="PEI-h9-uAP" id="1zv-zw-jas"/>
-                        <outlet property="groupPickerView" destination="ter-PJ-Lf2" id="cUa-yx-8Q3"/>
+                        <outlet property="bottomConstraint" destination="c8Y-od-iko" id="sey-PV-Ges"/>
                         <outlet property="tagsTextField" destination="rQg-WV-W2b" id="Ql0-ia-Z34"/>
                         <outlet property="titleTextField" destination="eaV-FH-bCC" id="Jfs-LL-bVt"/>
                     </connections>

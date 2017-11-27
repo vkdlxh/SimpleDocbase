@@ -89,6 +89,7 @@ class MemoListViewController: UIViewController {
             if let destination = segue.destination as? UINavigationController {
                 if let tagetController = destination.topViewController as? WriteMemoViewController {
                     tagetController.delegate = self
+                    tagetController.groupName = self.groupName
                 }
             }
         }
