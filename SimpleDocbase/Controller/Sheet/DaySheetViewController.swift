@@ -21,6 +21,8 @@ final class DaySheetViewController : UIViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initControls()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,6 +33,30 @@ final class DaySheetViewController : UIViewController {
         }
         
     }
+    
+    // MARK: Action
+    @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
+        //入力された勤務表をDocbaseへアップロード
+        let uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
+        uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
+            //TODO: メモ投稿処理
+            print("post memo!")
+        }))
+        uploadAlertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler:nil))
+        present(uploadAlertVC, animated: true, completion: nil)
+    }
+    
+    // MARK: Private
+    private func initControls() {
+        
+        let uploadBarButton = UIBarButtonItem(barButtonSystemItem: .action,
+                                              target: self,
+                                              action: #selector(DaySheetViewController.uploadButtonTouched(_ :)))
+        
+        navigationItem.rightBarButtonItems = [uploadBarButton]
+    }
+    
+    
 }
 
 
@@ -44,7 +70,8 @@ extension DaySheetViewController : UITableViewDelegate {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        //TODO: 入力picker
+        let editVC = DaySheetEditViewController()
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
     internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

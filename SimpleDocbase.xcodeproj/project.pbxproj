@@ -10,6 +10,7 @@
 		207A2E2402EBA709A1863CB2 /* Pods_SimpleDocbase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82A45EBF124ED586B28613A /* Pods_SimpleDocbase.framework */; };
 		400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458741FB682AD00D5FF8E /* DaySheetViewController.swift */; };
 		400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */; };
+		40D9E4751FC91A99003B353F /* DaySheetEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9E4741FC91A99003B353F /* DaySheetEditViewController.swift */; };
 		40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */; };
 		40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F30E371FB88CE000014511 /* WorkSheetCell.swift */; };
 		BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		400458741FB682AD00D5FF8E /* DaySheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetViewController.swift; sourceTree = "<group>"; };
 		400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+WorkSheet.swift"; sourceTree = "<group>"; };
+		40D9E4741FC91A99003B353F /* DaySheetEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetEditViewController.swift; sourceTree = "<group>"; };
 		40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkSheetManager.swift; sourceTree = "<group>"; };
 		40F30E371FB88CE000014511 /* WorkSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetCell.swift; sourceTree = "<group>"; };
 		50BA2B0354AB199E568389D6 /* Pods-SimpleDocbase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.release.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.release.xcconfig"; sourceTree = "<group>"; };
@@ -219,8 +221,8 @@
 		DAC4E5591FA32B9800301844 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DAFB18271FB1DF2F00AA4DC7 /* Sheet */,
 				DAFA95CA1FA98E0800A368BC /* Group */,
+				DAFB18271FB1DF2F00AA4DC7 /* Sheet */,
 				DAFA95CC1FA98E2000A368BC /* Setting */,
 			);
 			path = Controller;
@@ -295,6 +297,7 @@
 				400458741FB682AD00D5FF8E /* DaySheetViewController.swift */,
 				BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */,
 				BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */,
+				40D9E4741FC91A99003B353F /* DaySheetEditViewController.swift */,
 			);
 			path = Sheet;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
 				DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */,
 				DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */,
+				40D9E4751FC91A99003B353F /* DaySheetEditViewController.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
 				DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */,
 				DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */,
