@@ -34,7 +34,7 @@ class RegisterTokenKeyViewController: FormViewController {
     }()
     
     func tokenKeySubmitButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Submit", style: .plain, target: self, action: #selector(tokenKeySubmitAction(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登録", style: .plain, target: self, action: #selector(tokenKeySubmitAction(_:)))
     }
     
     @objc public func tokenKeySubmitAction(_ sender: AnyObject?) {
@@ -49,6 +49,8 @@ class RegisterTokenKeyViewController: FormViewController {
         case .valid:
             let userDefaults = UserDefaults.standard
             userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
+            userDefaults.set(nil, forKey: "selectedTeam")
+            userDefaults.set(nil, forKey: "SelectedGroup")
             success_simpleAlert("登録", "Tokenを登録しました。")
         case let .invalid(item, message):
             let title = item.elementIdentifier ?? "失敗"

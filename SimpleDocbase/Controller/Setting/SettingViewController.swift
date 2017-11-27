@@ -16,12 +16,41 @@ class SettingViewController: FormViewController {
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
         builder += SectionHeaderTitleFormItem().title("OPTION")
-        builder += ViewControllerFormItem().title("Token登録").viewController(RegisterTokenKeyViewController.self)
+        builder += tokenKeyViewControllerForm
         builder += groupListPiker
-        builder += ViewControllerFormItem().title("所属チーム情報").viewController(TeamInfomationViewController.self)
+        builder += teamNameTextForm
         builder += SectionHeaderTitleFormItem().title("APP INFO")
         builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
+        updateForm()
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        updateForm()
+    }
+
+    lazy var tokenKeyViewControllerForm: ViewControllerFormItem = {
+        return ViewControllerFormItem().title("Token登録").viewController(RegisterTokenKeyViewController.self)
+    }()
+    
+    lazy var teamNameTextForm: StaticTextFormItem = {
+        return StaticTextFormItem().title("所属チーム情報")
+    }()
+    
+    func updateForm() {
+        if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
+            tokenKeyViewControllerForm.placeholder = "\(tokenKey)"
+        } else {
+            tokenKeyViewControllerForm.placeholder = "None"
+        }
+        
+        
+        if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {
+            teamNameTextForm.value = "\(selectedTeam)"
+        } else {
+            teamNameTextForm.value = "None"
+        }
+        
     }
     
     lazy var groupListPiker: OptionPickerFormItem = {

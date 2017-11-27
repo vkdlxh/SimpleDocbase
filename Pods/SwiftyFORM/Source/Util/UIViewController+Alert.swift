@@ -14,8 +14,10 @@ extension UIViewController {
     
     public func success_simpleAlert(_ title: String, _ message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.navigationController?.popViewController(animated: true)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            self.navigationController?.popViewController(animated: true)
+        })
+        self.present(alert, animated: true, completion: nil)
     }
     public func form_simpleAlert(_ title: String, _ message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
