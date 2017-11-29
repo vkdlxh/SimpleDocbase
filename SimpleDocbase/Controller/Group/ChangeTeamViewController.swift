@@ -61,8 +61,10 @@ extension ChangeTeamViewController: UITableViewDataSource {
         let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
         if cell.textLabel?.text == domain {
             cell.textLabel?.textColor = ACAColor().ACADarkRed
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         } else {
             cell.textLabel?.textColor = ACAColor().ACAOrange
+            cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
         }
         return cell
     }

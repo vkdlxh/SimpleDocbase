@@ -23,6 +23,7 @@ class RegisterTokenKeyViewController: FormViewController {
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "Token登録"
         builder.toolbarMode = .simple
+        builder += SectionHeaderTitleFormItem().title("登録")
         builder += tokenKey
     }
     
@@ -51,6 +52,7 @@ class RegisterTokenKeyViewController: FormViewController {
             userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
             userDefaults.set(nil, forKey: "selectedTeam")
             userDefaults.set(nil, forKey: "SelectedGroup")
+            self.view.endEditing(true)
             success_simpleAlert("登録", "Tokenを登録しました。")
         case let .invalid(item, message):
             let title = item.elementIdentifier ?? "失敗"
