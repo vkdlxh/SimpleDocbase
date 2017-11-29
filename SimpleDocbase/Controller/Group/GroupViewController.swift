@@ -98,13 +98,14 @@ class GroupViewController: UIViewController {
                     self.groups = groups
                 }
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
                     if groups == nil {
                         SVProgressHUD.showError(withStatus: "ERROR")
                         SVProgressHUD.dismiss(withDelay: 1)
+                        self.groups.removeAll()
                     } else {
                         SVProgressHUD.dismiss()
                     }
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -116,7 +117,7 @@ class GroupViewController: UIViewController {
         if segue.identifier == "GoMemoListSegue" {
             if let destination = segue.destination as? MemoListViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
-                    destination.groupName = groups[selectedIndex].name
+                    destination.group = groups[selectedIndex]
                 }
             }
         }
@@ -165,7 +166,6 @@ extension GroupViewController: UITableViewDataSource {
         default:
             break
         }
-//        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 17)
         return cell
     }
     

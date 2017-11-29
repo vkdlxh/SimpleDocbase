@@ -39,7 +39,7 @@ class ACAMemoRequest: ACARequest {
         }.resume()
     }
     
-    func writeMemo(domain: String, dict: Dictionary<String, Any>) {
+    func writeMemo(domain: String, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         print("writeMemo(domain: , dict: )")
         guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts") else { return }
         
@@ -50,8 +50,12 @@ class ACAMemoRequest: ACARequest {
         request.httpBody = httpBody
         
         session.dataTask(with: request) { (data, response, error) in
-            if let response = response {
-                print(response)
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
+                print("statusCode should be 201, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+                completion(false)
+            } else {
+                completion(true)
             }
             if let data = data {
                 do {
@@ -60,8 +64,11 @@ class ACAMemoRequest: ACARequest {
                 }catch {
                     print(error)
                 }
+            } else {
+                completion(false)
+                print("Write Memo Fail")
             }
-            }.resume()
+        }.resume()
         
     }
     

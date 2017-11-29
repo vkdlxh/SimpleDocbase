@@ -12,20 +12,21 @@ protocol WriteMemoViewControllerDelegate {
     func writeMemoViewSubmit()
 }
 
-class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class WriteMemoViewController: UIViewController {
     
     // MARK: Properties
     var delegate: WriteMemoViewControllerDelegate?
-    let domain = UserDefaults.standard.object(forKey: "selectedDomain") as? String
-    var groups = [Group]()
-    var groupId: Int = 0
+    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
+    var group: Group?
+    
+    var checkWriteSuccess = false
     
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
-    @IBOutlet weak var groupPickerView: UIPickerView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
@@ -45,15 +46,20 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
             "draft": false,
             "tags": tags,
             "scope": "group",
-            "groups": [groupId],
+            "groups": [group?.id],
             "notice": true
         ]
 
         if let domain = domain {
-            ACAMemoRequest().writeMemo(domain: domain, dict: memo)
+            DispatchQueue.global().async {
+                ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
+                    if check == true {
+                        self.checkWriteSuccess = true
+                    }
+                    self.checkWriteSuccessAlert(result: self.checkWriteSuccess)
+                }
+            }
         }
-        self.delegate?.writeMemoViewSubmit()
-        
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -64,32 +70,60 @@ class WriteMemoViewController: UIViewController, UIPickerViewDataSource, UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        groupPickerView.dataSource = self
-        groupPickerView.delegate = self
-        
-        ACAGroupRequest().getGroupList { groups in
-            if let groups = groups {
-                self.groups = groups
-            }
-            DispatchQueue.main.async {
-                self.groupPickerView.reloadAllComponents()
-            }
+        if let groupName = group?.name {
+            navigationItem.title = groupName
         }
-    }
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+    
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return groups.count
+    override func viewWillDisappear(_ animated: Bool) {
+        self.view.endEditing(true)
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return groups[row].name
+    
+    // MARK: Internal Methods
+    @objc func keyboardWillShow(_ notification: Notification) {
+        let userInfo = (notification as NSNotification).userInfo!
+        let keyboardHeight =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        bottomConstraint.constant = keyboardHeight.height
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        groupId = groups[row].id
+    @objc func keyboardWillHide(_ notification: Notification) {
+        bottomConstraint.constant = 0
+    }
+    
+    
+    
+    func checkWriteSuccessAlert(result: Bool) {
+        
+        var ac = UIAlertController()
+        
+        if result == true {
+            ac = UIAlertController(title: "メモ登録成功", message: nil, preferredStyle: .alert)
+            let successAction = UIAlertAction(title: "確認", style: .default) { action in
+                print("Write Memo Success")
+                self.view.endEditing(true)
+                self.delegate?.writeMemoViewSubmit()
+                
+            }
+            ac.addAction(successAction)
+            
+        } else {
+            ac = UIAlertController(title: "メモ登録失敗", message: nil, preferredStyle: .alert)
+            let failAction: UIAlertAction = UIAlertAction(title: "確認", style: .cancel) {
+                (action: UIAlertAction!) -> Void in
+                print("Write Memo Faill")
+            }
+            ac.addAction(failAction)
+        }
+        
+        DispatchQueue.main.async {
+            self.present(ac, animated: true, completion: nil)
+        }
+        
     }
 }

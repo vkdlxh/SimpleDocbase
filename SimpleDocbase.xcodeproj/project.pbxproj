@@ -38,6 +38,7 @@
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
 		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
 		DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */; };
+		DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
 		DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAF6B9561FA06F090042BEC0 /* Assets.xcassets */; };
@@ -47,7 +48,6 @@
 		DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAF917841FBE9B2700D18FAB /* Settings.bundle */; };
 		DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */; };
 		DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */; };
-		DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178F1FBEA68900D18FAB /* TeamInfomationViewController.swift */; };
 		DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */; };
 		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
 		DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CF1FA99C6100A368BC /* Comment.swift */; };
@@ -92,6 +92,7 @@
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SimpleDocbaselogo.png; sourceTree = "<group>"; };
+		DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarColor.swift; sourceTree = "<group>"; };
 		DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMemoViewController.swift; sourceTree = "<group>"; };
 		DAF6B94C1FA06F090042BEC0 /* SimpleDocbase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDocbase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +104,6 @@
 		DAF917841FBE9B2700D18FAB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
-		DAF9178F1FBEA68900D18FAB /* TeamInfomationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfomationViewController.swift; sourceTree = "<group>"; };
 		DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DAFA95CF1FA99C6100A368BC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -133,6 +133,7 @@
 			children = (
 				400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */,
 				DA1490041FC403D1001E0159 /* ColorRGB.swift */,
+				DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -284,7 +285,6 @@
 			children = (
 				DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */,
 				DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */,
-				DAF9178F1FBEA68900D18FAB /* TeamInfomationViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -479,13 +479,13 @@
 				DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */,
 				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
+				DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */,
 				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
 				DA6608BB1FC6FA95007ADFBE /* DetailMemoViewController.swift in Sources */,
 				40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */,
 				DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */,
 				DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */,
-				DAF917901FBEA68900D18FAB /* TeamInfomationViewController.swift in Sources */,
 				DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */,
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
 				BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */,
