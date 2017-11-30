@@ -33,6 +33,7 @@ class GroupViewController: UIViewController {
         
         SVProgressHUD.show(withStatus: "更新中")
         self.getGroupListFromRequest()
+        passGroupToSheetViewController()
         
         print("GroupViewController WillAppear")
     }
@@ -107,6 +108,15 @@ class GroupViewController: UIViewController {
                     }
                     self.tableView.reloadData()
                 }
+            }
+        }
+    }
+    
+    func passGroupToSheetViewController() {
+        if let navController = self.tabBarController?.viewControllers?[1] as? UINavigationController{
+            if let sheetVC = navController.childViewControllers.first as? SheetViewController{
+                sheetVC.groups = groups
+//                self.tabBarController?.selectedIndex = 1
             }
         }
     }

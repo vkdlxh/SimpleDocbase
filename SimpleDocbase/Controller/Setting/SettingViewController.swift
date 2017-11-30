@@ -60,12 +60,12 @@ class SettingViewController: FormViewController {
             }
         }
         
-        if let selectedGroup = userDefaults.object(forKey: "SelectedGroup") as? String {
+        if let selectedGroup = userDefaults.object(forKey: "selectedGroup") as? String {
             instance.placeholder(selectedGroup)
             
         }
         instance.valueDidChange = { (selected: OptionRowModel?) in
-            self.userDefaults.set(selected?.title, forKey: "SelectedGroup")
+            self.userDefaults.set(selected?.title, forKey: "selectedGroup")
         }
         
         return instance

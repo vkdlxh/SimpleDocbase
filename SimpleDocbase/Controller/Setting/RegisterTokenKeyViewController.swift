@@ -51,7 +51,7 @@ class RegisterTokenKeyViewController: FormViewController {
             let userDefaults = UserDefaults.standard
             userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
             userDefaults.set(nil, forKey: "selectedTeam")
-            userDefaults.set(nil, forKey: "SelectedGroup")
+            userDefaults.set(nil, forKey: "selectedGroup")
             self.view.endEditing(true)
             success_simpleAlert("登録", "Tokenを登録しました。")
         case let .invalid(item, message):

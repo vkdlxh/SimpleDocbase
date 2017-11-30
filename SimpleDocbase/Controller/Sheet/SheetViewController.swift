@@ -13,6 +13,7 @@ final class SheetViewController : UIViewController {
     // MARK: Properties
     var workSheets = [WorkSheet]()
     var selectedWorkSheet : WorkSheet?
+    var groups: [Group] = []
     
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
@@ -56,6 +57,7 @@ final class SheetViewController : UIViewController {
                 if let selectedWorkSheet = selectedWorkSheet {
                     destination.workDate = selectedWorkSheet.workdate
                     destination.sheetItems = selectedWorkSheet.items
+                    destination.groups = groups
                 }
             }
         }

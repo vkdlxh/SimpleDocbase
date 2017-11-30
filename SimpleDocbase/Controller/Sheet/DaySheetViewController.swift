@@ -13,6 +13,10 @@ final class DaySheetViewController : UIViewController {
     // MARK: Properties
     var workDate: Date?
     var sheetItems = [WorkSheetItem]()
+    var groups: [Group] = []
+    var groupId: Int = 0
+    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as! String
+    var group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
     
     // MARK: IBOutlet
     @IBOutlet var daySheetTableView: UITableView!
@@ -23,6 +27,9 @@ final class DaySheetViewController : UIViewController {
         super.viewDidLoad()
         
         initControls()
+        if let groupId = getSelectedGoupdId() {
+            self.groupId = groupId
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,18 +39,86 @@ final class DaySheetViewController : UIViewController {
             self.title = yearmonth + "_勤務表"
         }
         
+        receiveValue()
     }
     
     // MARK: Action
     @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
         //入力された勤務表をDocbaseへアップロード
-        let uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
-        uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
-            //TODO: メモ投稿処理
-            print("post memo!")
-        }))
-        uploadAlertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler:nil))
+        var uploadAlertVC = UIAlertController()
+        if group == nil {
+            
+            uploadAlertVC = UIAlertController(title: "アップロード失敗", message: "勤怠管理のグループを指定してください。", preferredStyle: .alert)
+            uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
+            
+        } else {
+            
+            uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
+            uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
+                
+                // Test
+                let testMemo: [String : Any] = [
+                    "title": "Test WorkSheet",
+                    "body": "Test WorkSheet",
+                    "draft": false,
+                    "tags": ["Test WorkSheet"],
+                    "scope": "group",
+                    "groups": [self.groupId],
+                    "notice": true
+                ]
+                
+                //TODO: メモ投稿処理
+                ACAMemoRequest().writeMemo(domain: self.domain, dict: testMemo, completion: { result in
+                    self.checkUploadSuccessAlert(result: result)
+                })
+                print("post memo!")
+            }))
+            uploadAlertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler:nil))
+            
+        }
+        
+        
         present(uploadAlertVC, animated: true, completion: nil)
+    }
+    
+    func checkUploadSuccessAlert(result: Bool) {
+        
+        var ac = UIAlertController()
+        
+        if result == true {
+            ac = UIAlertController(title: "Upload成功", message: nil, preferredStyle: .alert)
+            let successAction = UIAlertAction(title: "OK", style: .default) { action in
+                print("WorkSheet Upload Success.")
+            }
+            ac.addAction(successAction)
+            
+        } else {
+            ac = UIAlertController(title: "Upload失敗", message: nil, preferredStyle: .alert)
+            let failAction: UIAlertAction = UIAlertAction(title: "OK", style: .cancel) {
+                (action: UIAlertAction!) -> Void in
+                print("WorkSheet Upload Success.")
+            }
+            ac.addAction(failAction)
+        }
+        
+        DispatchQueue.main.async {
+            self.present(ac, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func getSelectedGoupdId() -> Int? {
+        
+        let groupId = groups.filter { $0.name == self.group }.first?.id
+        
+        guard let selectedGroupId = groupId else { return nil }
+        
+        return selectedGroupId
+    }
+    
+    func receiveValue() {
+        group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
+        print("receive Group")
     }
     
     // MARK: Private
