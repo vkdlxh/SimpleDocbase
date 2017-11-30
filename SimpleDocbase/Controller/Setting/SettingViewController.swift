@@ -95,7 +95,7 @@ class SettingViewController: FormViewController {
                 picker.placeholder = ""
                 preTeam = currentTeam
             }
-            groupListPiker.options.removeAll()
+            picker.options.removeAll()
             for group in groups {
                 picker.append(group.name)
             }

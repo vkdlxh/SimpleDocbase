@@ -63,6 +63,22 @@ class MemoListViewController: UIViewController {
         self.tableView.addSubview(refreshControl)
     }
     
+    func deleteMemoAlert(completion: @escaping (Bool) -> ()) {
+        let deleteMemoAC = UIAlertController(title: "Memo削除", message: "Memoを削除しますか？", preferredStyle: .alert)
+        let deleteButton = UIAlertAction(title: "削除", style: .default) { action in
+            completion(true)
+            print("tapped Memo delete Button")
+        }
+        let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel) { action in
+            completion(false)
+            print("tapped Memo cancel Button")
+        }
+        
+        deleteMemoAC.addAction(deleteButton)
+        deleteMemoAC.addAction(cancelButton)
+        present(deleteMemoAC, animated: true, completion: nil)
+    }
+    
     @objc func refresh() {
         pageNum = 1
         
@@ -121,6 +137,41 @@ extension MemoListViewController: UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            let memoNum = memos[indexPath.row].id
+            
+            deleteMemoAlert(completion: { checkBtn in
+                if checkBtn == true {
+                    self.tableView.beginUpdates()
+                    DispatchQueue.global().async {
+                        if let domain = self.domain {
+                            ACAMemoRequest().delete(domain: domain, num: memoNum) { response in
+                                if response == true {
+                                    print("Memo Deleted")
+                                    
+                                    self.memos.remove(at: indexPath.row)
+                                    DispatchQueue.main.async {
+                                        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                                        self.tableView.endUpdates()
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                } else {
+                    tableView.setEditing(false, animated: true)
+                }
+            })
+        }
     }
     
 }
