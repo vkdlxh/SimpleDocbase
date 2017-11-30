@@ -14,7 +14,7 @@ final class DaySheetViewController : UIViewController {
     var workDate: Date?
     var sheetItems = [WorkSheetItem]()
     var groups: [Group] = []
-    var groupId: Int = 0
+    var groupId: Int?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as! String
     var group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
     
@@ -25,11 +25,7 @@ final class DaySheetViewController : UIViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         initControls()
-        if let groupId = getSelectedGoupdId() {
-            self.groupId = groupId
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,19 +36,20 @@ final class DaySheetViewController : UIViewController {
         }
         
         receiveValue()
+        if let groupId = getSelectedGoupdId() {
+            self.groupId = groupId
+        }
     }
     
     // MARK: Action
     @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
         //入力された勤務表をDocbaseへアップロード
         var uploadAlertVC = UIAlertController()
-        if group == nil {
-            
-            uploadAlertVC = UIAlertController(title: "アップロード失敗", message: "勤怠管理のグループを指定してください。", preferredStyle: .alert)
+        if groupId == nil {
+            uploadAlertVC = UIAlertController(title: "アップロード失敗", message: "勤怠管理のグループを確認してください。", preferredStyle: .alert)
             uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
             
         } else {
-            
             uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
             uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
                 
@@ -76,7 +73,6 @@ final class DaySheetViewController : UIViewController {
             uploadAlertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler:nil))
             
         }
-        
         
         present(uploadAlertVC, animated: true, completion: nil)
     }
@@ -130,7 +126,6 @@ final class DaySheetViewController : UIViewController {
         
         navigationItem.rightBarButtonItems = [uploadBarButton]
     }
-    
     
 }
 
