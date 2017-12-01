@@ -81,7 +81,6 @@ class MemoListViewController: UIViewController {
     
     @objc func refresh() {
         pageNum = 1
-        
         if let domain = domain {
             if let groupName = group?.name {
                 ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
@@ -207,7 +206,7 @@ extension MemoListViewController: UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         print("scrollViewDidEndDragging")
         if scrollView == tableView {
-            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) {
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) && self.memos.count > 4{
                 if !isDataLoading{
                     SVProgressHUD.show(withStatus: "更新中")
                     isDataLoading = true
