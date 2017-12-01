@@ -30,7 +30,7 @@ class WorkSheetManager: NSObject {
     private let headerColumn = "| 日 | 曜日 | 作業日 | 開始時間| 終了時間 | 休憩 | 勤務時間 | 備考 |"
     private let headerLine = "|:--:|:---:|:-----:|:------:|:------:|:---:|:------:|:----:|"
     
-    private let filenamePrifix = "worksheet_"   //例）worksheet_201711
+    private let filenamePrifix = "worksheet_"   //例）worksheet_201711 worksheet.json
     
     //singleton
     static let sharedManager = WorkSheetManager()

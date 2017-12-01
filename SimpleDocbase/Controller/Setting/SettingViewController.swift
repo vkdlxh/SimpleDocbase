@@ -88,6 +88,7 @@ class SettingViewController: FormViewController {
         if let currentTeam = currentTeam {
             if preTeam != currentTeam {
                 picker.selected = nil
+                userDefaults.set(nil, forKey: "selectedGroup")
                 preTeam = currentTeam
             }
             picker.options.removeAll()
