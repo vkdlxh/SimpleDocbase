@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import SwiftyFORM
 
 class GroupViewController: UIViewController {
     
@@ -26,13 +27,15 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         refreshControlAction()
         checkTokenKeyAlert()
+        
+        self.tabBarController?.delegate = self
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         SVProgressHUD.show(withStatus: "更新中")
-        self.getGroupListFromRequest()
+        getGroupListFromRequest()
         
         print("GroupViewController WillAppear")
     }
@@ -191,5 +194,26 @@ extension GroupViewController: UITableViewDelegate {
             self.performSegue(withIdentifier: "GoMemoListSegue", sender: nil)
         }
     }
+}
+
+extension GroupViewController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        
+        if let navController = tabBarController.viewControllers?[1] as? UINavigationController {
+            if let sheetVC = navController.childViewControllers.first as? SheetViewController{
+                sheetVC.groups = groups
+            }
+        }
+        
+        if let navController = self.tabBarController?.viewControllers?[2] as? UINavigationController {
+            if let settingVC = navController.childViewControllers.first as? SettingViewController {
+                settingVC.groups = groups
+            }
+        }
+        
+        return true
+    }
+
 }
 

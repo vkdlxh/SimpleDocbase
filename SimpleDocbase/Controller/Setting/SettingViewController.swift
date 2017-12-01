@@ -24,13 +24,11 @@ class SettingViewController: FormViewController {
         builder += teamNameTextForm
         builder += SectionHeaderTitleFormItem().title("APP INFO")
         builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
-        getGroupList()
         updateForm()
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        getGroupList()
         updateForm()
         updateGroupPicker(groupListPiker)
     }
@@ -50,22 +48,20 @@ class SettingViewController: FormViewController {
     lazy var groupListPiker: OptionPickerFormItem = {
         let instance = OptionPickerFormItem()
         instance.title("勤怠管理グループ設定")
-        ACAGroupRequest().getGroupList { groupList in
-            if let groupList = groupList {
-                DispatchQueue.main.async {
-                    for group in groupList {
-                        instance.append(group.name)
-                    }
-                }
+        
+        for group in groups {
+            instance.append(group.name)
+        }
+        
+        if let selectedGroup = userDefaults.object(forKey: "selectedGroup") as? String {
+            let selectedOption = instance.options.filter{ $0.title == selectedGroup }.first
+            if let selectedOption = selectedOption {
+                instance.setSelectedOptionRow(selectedOption)
             }
         }
         
-        if let selectedGroup = userDefaults.object(forKey: "SelectedGroup") as? String {
-            instance.placeholder(selectedGroup)
-            
-        }
         instance.valueDidChange = { (selected: OptionRowModel?) in
-            self.userDefaults.set(selected?.title, forKey: "SelectedGroup")
+            self.userDefaults.set(selected?.title, forKey: "selectedGroup")
         }
         
         return instance
@@ -92,7 +88,6 @@ class SettingViewController: FormViewController {
         if let currentTeam = currentTeam {
             if preTeam != currentTeam {
                 picker.selected = nil
-                picker.placeholder = ""
                 preTeam = currentTeam
             }
             picker.options.removeAll()
@@ -101,23 +96,8 @@ class SettingViewController: FormViewController {
             }
         } else {
             picker.options.removeAll()
-            picker.placeholder = ""
         }
-        
-    }
-    
-    func getGroupList() {
-        var groups = [Group]()
-        ACAGroupRequest().getGroupList { groupList in
-            if let groupList = groupList {
-                for group in groupList {
-                    groups.append(group)
-                }
-            }
-            DispatchQueue.main.async {
-                self.groups = groups
-            }
-        }
+
     }
 
 }
