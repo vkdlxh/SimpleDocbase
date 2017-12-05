@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -108,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="717.60000000000002" y="-37.331334332833585"/>
         </scene>
-        <!--View Controller-->
+        <!--Tester Work Sheet View Controller-->
         <scene sceneID="DtU-Iw-rZd">
             <objects>
-                <viewController id="aLE-yp-R3M" sceneMemberID="viewController">
+                <viewController id="aLE-yp-R3M" customClass="TesterWorkSheetViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7YZ-RZ-vsX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
