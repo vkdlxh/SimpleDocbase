@@ -24,52 +24,21 @@ class TesterWorkSheetViewController: UIViewController {
         
         loadTestData()
         
-//        let workSheetDict = testArary.first?.convertworkSheetTodictionary()
-//        print(workSheetDict)
-        
-        
-        
-        
         let testFileName = "201712"
         guard let testWorkSheet = testArary.first else { return }
-
-        testSaveToJsonFile(testFileName, workSheet: testWorkSheet)
-//
-//        if let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-//            let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
-//            let fileUrlPath = fileUrl.path
-//            if(FileManager.default.fileExists(atPath: fileUrlPath)) {
-//                print("file exists")
-//                worksheetManager.loadLocalWorkSheets()
-//            }
-//        }
-//
-//        worksheetManager.saveLocalWorkSheet(testFileName, workSheet: testWorkSheet)
         
-    }
+        worksheetManager.saveLocalWorkSheet(testFileName, workSheet: testWorkSheet)
 
-//    func testSaveWorkSheet() {
-//        let fileName = "201712"
-//        let workSheet = WorkSheet
-//        worksheetManager.saveLocalWorkSheet(<#T##filename: String##String#>, workSheet: <#T##WorkSheet#>)
-//    }
-    
-    
-    func testSaveToJsonFile(_ filename: String, workSheet: WorkSheet) {
-
-        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-
-        let fileUrl = documentDirectoryUrl.appendingPathComponent(filename + ".json")
-        let workSheetDict = workSheet.convertworkSheetTodictionary()
-        
-        do {
-            let data = try JSONSerialization.data(withJSONObject: workSheetDict, options: [])
-            try data.write(to: fileUrl, options: [])
-        } catch {
-            print(error)
+        if let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
+            let fileUrlPath = fileUrl.path
+            if(FileManager.default.fileExists(atPath: fileUrlPath)) {
+                print("file exists")
+                worksheetManager.loadLocalWorkSheets()
+            }
         }
+        
     }
-    
     
     // MARK: Private Methods
     private func loadTestData() {

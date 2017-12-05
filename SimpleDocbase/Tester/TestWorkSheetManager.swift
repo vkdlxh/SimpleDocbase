@@ -25,7 +25,7 @@ import UIKit
 
 class TestWorkSheetManager: NSObject {
     
-    internal var worksheetDict: [String: WorkSheet]?
+    var worksheetDict: [String: Any] = [:]
     private let docSignCreateby = "<!-- generated from SimpleDocbase. -->"
     private let headerColumn = "| 日 | 曜日 | 作業日 | 開始時間| 終了時間 | 休憩 | 勤務時間 | 備考 |"
     private let headerLine = "|:--:|:---:|:-----:|:------:|:------:|:---:|:------:|:----:|"
@@ -65,27 +65,11 @@ class TestWorkSheetManager: NSObject {
     
     internal func saveLocalWorkSheet(_ filename: String, workSheet: WorkSheet) {
         //TODO: 保存、すでに存在したら上書き
-        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
-        let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
+        let workSheetDict = workSheet.convertworkSheetTodictionary()
         
-        guard let jsonData = try? Data(contentsOf: fileUrl) else {
-            return
-        }
-        
-        guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-            return
-        }
-        
-        guard var jsonDict = convertToDictionary(jsonString) else {
-            return
-        }
-        
-        if let fileName = jsonDict[filename] {
-            jsonDict[filename] = workSheet
-        } else {
-            saveToJsonFile(filename, workSheet: workSheet)
-        }
+        saveToJsonFile(filename, workSheetDict: workSheetDict)
+
 
     }
     
@@ -152,14 +136,16 @@ class TestWorkSheetManager: NSObject {
         return markdownStr
     }
     
-    private func saveToJsonFile(_ filename: String, workSheet: WorkSheet) {
+    private func saveToJsonFile(_ filename: String, workSheetDict: [String: Any]) {
+        
+        worksheetDict[filename] = workSheetDict
         
         guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
         let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
 
         do {
-            let data = try JSONSerialization.data(withJSONObject: workSheet, options: [])
+            let data = try JSONSerialization.data(withJSONObject: worksheetDict, options: [])
             try data.write(to: fileUrl, options: [])
         } catch {
             print(error)
