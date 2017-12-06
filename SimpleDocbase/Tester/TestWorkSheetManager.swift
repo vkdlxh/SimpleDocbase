@@ -61,6 +61,8 @@ class TestWorkSheetManager: NSObject {
         
         worksheetDict = jsonDict
         
+        print(worksheetDict)
+        
     }
     
     internal func saveLocalWorkSheet(_ filename: String, workSheet: WorkSheet) {
@@ -73,8 +75,24 @@ class TestWorkSheetManager: NSObject {
 
     }
     
-    internal func removeLocalWorkSheet(_ :WorkSheet) {
+    internal func removeLocalWorkSheet() {
         //TODO: 削除、存在しなければ無視
+        let fileManager = FileManager.default
+        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
+        let fileUrlPath = fileUrl.path
+        
+        do {
+            if(FileManager.default.fileExists(atPath: fileUrlPath)) {
+                print("file exists.")
+                try fileManager.removeItem(atPath: fileUrlPath)
+            } else {
+                print("file not exists.")
+            }
+        } catch {
+            print("could net remove file.")
+        }
+        
         
     }
     
@@ -153,11 +171,11 @@ class TestWorkSheetManager: NSObject {
         
     }
     
-    private func convertToDictionary(_ text: String) -> [String: WorkSheet]? {
+    private func convertToDictionary(_ text: String) -> [String: Any]? {
         
         if let data = text.data(using: .utf8) {
             do {
-                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: WorkSheet]
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             } catch {
                 print(error.localizedDescription)
             }
