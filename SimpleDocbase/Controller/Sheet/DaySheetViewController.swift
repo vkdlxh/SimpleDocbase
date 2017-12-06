@@ -18,6 +18,9 @@ final class DaySheetViewController : UIViewController {
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as! String
     var group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
     
+    // Test
+    var testArary = [WorkSheet]()
+    
     // MARK: IBOutlet
     @IBOutlet var daySheetTableView: UITableView!
     @IBOutlet var daySheetHeaderView: DaySheetHeaderView!
@@ -26,6 +29,16 @@ final class DaySheetViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initControls()
+        
+        // Test
+        loadTestData()
+        let workMG = WorkSheetManager.sharedManager
+        guard let yearmonth = workDate?.yearMonthString() else {
+            return
+        }
+        if let testWorkSheet = testArary.first {
+            workMG.saveLocalWorkSheet(yearmonth, workSheet: testWorkSheet)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +55,16 @@ final class DaySheetViewController : UIViewController {
     }
     
     // MARK: Action
+    
     @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
+        
+        let worksheetManager = WorkSheetManager.sharedManager
+        worksheetManager.loadLocalWorkSheets()
+        let worksheetDict = worksheetManager.worksheetDict
+        guard let yearmonth = workDate?.yearMonthString() else {
+            return
+        }
+        
         //入力された勤務表をDocbaseへアップロード
         var uploadAlertVC = UIAlertController()
         if groupId == nil {
@@ -51,29 +73,16 @@ final class DaySheetViewController : UIViewController {
             
         } else {
             uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
-            uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
-                
+            uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default) { action in
                 // Test
-                let testMemo: [String : Any] = [
-                    "title": "Test WorkSheet",
-                    "body": "Test WorkSheet",
-                    "draft": false,
-                    "tags": ["Test WorkSheet"],
-                    "scope": "group",
-                    "groups": [self.groupId],
-                    "notice": true
-                ]
-                
-                //TODO: メモ投稿処理
-                ACAMemoRequest().writeMemo(domain: self.domain, dict: testMemo, completion: { result in
-                    self.checkUploadSuccessAlert(result: result)
-                })
-                print("post memo!")
-            }))
+                if let groupid = self.groupId {
+                    worksheetManager.uploadWorkSheet(domain: self.domain, month: yearmonth, groupId: groupid, dict: worksheetDict) { result in
+                        self.checkUploadSuccessAlert(result: result)
+                    }
+                }
+            })
             uploadAlertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler:nil))
-            
         }
-        
         present(uploadAlertVC, animated: true, completion: nil)
     }
     
@@ -125,6 +134,30 @@ final class DaySheetViewController : UIViewController {
                                               action: #selector(DaySheetViewController.uploadButtonTouched(_ :)))
         
         navigationItem.rightBarButtonItems = [uploadBarButton]
+    }
+    
+    // Test
+    private func loadTestData() {
+        for i in 1..<10 {
+            guard let year_month = Date.createDate(year: 2017, month: i+1) else {
+                continue
+            }
+            var work_sheet = WorkSheet(date:year_month)
+            work_sheet.workDaySum = 10 + Int(arc4random()%10)
+            work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
+            for j in 1..<31 {
+                var work_sheet_item = WorkSheetItem(year: 2017, month:i, day:j)
+                work_sheet_item.beginTime = Date()
+                work_sheet_item.endTime = Date()
+                work_sheet_item.breakTime = 1.0
+                work_sheet_item.duration = 8.0
+                work_sheet_item.remark = "備考"
+                work_sheet_item.week = 1
+                work_sheet_item.workFlag = false
+                work_sheet.items?.append(work_sheet_item)
+            }
+            testArary.append(work_sheet)
+        }
     }
     
 }

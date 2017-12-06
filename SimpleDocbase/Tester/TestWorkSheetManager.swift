@@ -1,11 +1,10 @@
 //
-//  WorkSheetManager.swift
+//  TestWorkSheetManager.swift
 //  SimpleDocbase
 //
-//  Created by jaeeun on 2017/11/23.
+//  Created by jeonsangjun on 2017/12/05.
 //  Copyright © 2017年 archive-asia. All rights reserved.
 //
-
 import UIKit
 //        dayLabel.text       = "日"
 //        weekLabel.text      = "曜日"
@@ -23,62 +22,30 @@ import UIKit
  | row2 | row2 | row2 | row2 | row2 | row2 | row2 | row2 |
  ...
  */
- 
-class WorkSheetManager: NSObject {
+
+class TestWorkSheetManager: NSObject {
     
     var worksheetDict: [String: Any] = [:]
     private let docSignCreateby = "<!-- generated from SimpleDocbase. -->"
     private let headerColumn = "| 日 | 曜日 | 作業日 | 開始時間| 終了時間 | 休憩 | 勤務時間 | 備考 |"
     private let headerLine = "|:--:|:---:|:-----:|:------:|:------:|:---:|:------:|:----:|"
-    private let fileName = "worksheet"   //例）worksheet.json
+    
+    private let filenamePrifix = "worksheet_"   //例）worksheet_201711 worksheet.json
     
     //singleton
-    static let sharedManager = WorkSheetManager()
+    static let sharedManager = TestWorkSheetManager()
     override private init() {
         //
     }
     
     //MARK: Internal - File
-    internal func createWorkSheet(_ yyyymm :String ) -> WorkSheet? {
-
-        let yearString = yyyymm[..<yyyymm.index(yyyymm.startIndex, offsetBy: 4)]
-        let monthString = yyyymm[yyyymm.index(yyyymm.startIndex, offsetBy: 4)...]
-        let year = Int(yearString)!
-        let month = Int(monthString)!
-
-        let workDate = Date.createDate(year: year, month: month)
-        
-        guard let work_date = workDate else {
-            return nil
-        }
-        
-        var work_sheet = WorkSheet(date:work_date)
-        work_sheet.workDaySum = 10 + Int(arc4random()%10)
-        work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
-        var items = [WorkSheetItem]()
-        for day in 1...work_date.lastDay() {
-            var work_sheet_item = WorkSheetItem(year: year, month:month, day:day)
-            work_sheet_item.beginTime = nil//Date()
-            work_sheet_item.endTime = nil//Date()
-            work_sheet_item.breakTime = 1.0
-            work_sheet_item.duration = 8.0
-            work_sheet_item.remark = ""
-            work_sheet_item.week = work_date.weekDay()
-            work_sheet_item.workFlag = !work_date.isHoliday()
-            items.append(work_sheet_item)
-        }
-        
-        work_sheet.items = items
-        
-        return work_sheet
-    }
-    
     internal func loadLocalWorkSheets() {
+        
         //worksheet_から始まるファイル全て取得
         
         //Dictionaryへ変換
         guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName + ".json")
+        let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
         
         guard let jsonData = try? Data(contentsOf: fileUrl) else {
             return
@@ -94,21 +61,22 @@ class WorkSheetManager: NSObject {
         
         worksheetDict = jsonDict
         
-//        print(worksheetDict)
+        print(worksheetDict)
+        
     }
     
-    internal func saveLocalWorkSheet(_ jsonKeyMonth: String, workSheet: WorkSheet) {
+    internal func saveLocalWorkSheet(_ filename: String, workSheet: WorkSheet) {
         //TODO: 保存、すでに存在したら上書き
         let workSheetDict = workSheet.convertworkSheetTodictionary()
         
-        saveToJsonFile(jsonKeyMonth, workSheetDict: workSheetDict)
+        saveToJsonFile(filename, workSheetDict: workSheetDict)
     }
     
     internal func removeLocalWorkSheet() {
         //TODO: 削除、存在しなければ無視
         let fileManager = FileManager.default
         guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName + ".json")
+        let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
         let fileUrlPath = fileUrl.path
         
         do {
@@ -182,8 +150,8 @@ class WorkSheetManager: NSObject {
     private func generateWorksheetMarkdown(_ items: Array<WorkSheetItem>) -> String {
         
         var markdownStr = docSignCreateby + "\n" +
-                        headerColumn + "\n" +
-                        headerLine + "\n"
+            headerColumn + "\n" +
+            headerLine + "\n"
         
         for item: WorkSheetItem in items {
             markdownStr += "| "
@@ -231,14 +199,14 @@ class WorkSheetManager: NSObject {
         return markdownStr
     }
     
-    private func saveToJsonFile(_ jsonKeyMonth: String, workSheetDict: [String: Any]) {
+    private func saveToJsonFile(_ filename: String, workSheetDict: [String: Any]) {
         
-        worksheetDict[jsonKeyMonth] = workSheetDict
+        worksheetDict[filename] = workSheetDict
         
         guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
-        let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName + ".json")
-        
+        let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
+
         do {
             let data = try JSONSerialization.data(withJSONObject: worksheetDict, options: [])
             try data.write(to: fileUrl, options: [])

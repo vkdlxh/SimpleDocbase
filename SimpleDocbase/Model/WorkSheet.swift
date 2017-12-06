@@ -56,6 +56,86 @@ struct WorkSheet {
             }
         }
     }
+    
+    
+    func convertworkSheetTodictionary() -> [String: Any] {
+        
+        var resultDict = [String: Any]()
+        
+        if let workdate = self.workdate {
+            resultDict["workYear"] = "\(workdate)"
+        }
+        
+        if let workTimeSum = self.workTimeSum {
+            resultDict["workTimeSum"] = workTimeSum
+        }
+
+        if let workDaySum = self.workDaySum {
+            resultDict["workDaySum"] = workDaySum
+        }
+        
+        guard let items = self.items else {
+            return resultDict
+        }
+        resultDict["items"] = convertworkSheetItemTodictionary(items)
+        
+        return resultDict
+    }
+    
+    private func convertworkSheetItemTodictionary(_ items: [WorkSheetItem]) -> [[String: Any]] {
+        
+        var resultItem: [String: Any] = [:]
+        var resultItems: [[String: Any]] = []
+        
+        for item in items {
+            if let workYear = item.workYear {
+                resultItem["workYear"] = workYear
+            }
+            
+            if let workMonth = item.workMonth {
+                
+                resultItem["workMonth"] = workMonth
+            }
+            
+            if let workDay = item.workDay {
+                resultItem["workDay"] = workDay
+            }
+            
+            if let workFlag = item.workFlag {
+                resultItem["workFlag"] = workFlag
+            }
+            
+            if let week = item.week {
+                resultItem["week"] = week
+            }
+            
+            if let beginTime = item.beginTime {
+                resultItem["beginTime"] = "\(beginTime)"
+            }
+            
+            if let endTime = item.endTime {
+                resultItem["endTime"] = "\(endTime)"
+            }
+            
+            if let breakTime = item.breakTime {
+                resultItem["breakTime"] = breakTime
+            }
+            
+            if let duration = item.duration {
+                resultItem["duration"] = duration
+            }
+            
+            if let remark = item.remark {
+                resultItem["remark"] = remark
+            }
+            
+            resultItems.append(resultItem)
+        }
+        
+        return resultItems
+    }
+
+    
 }
 
 struct WorkSheetItem {
@@ -74,8 +154,6 @@ struct WorkSheetItem {
         
         if let workYear = dict["workYear"] as? Int {
             self.workYear = workYear
-        }else {
-            
         }
         
         if let workMonth = dict["workMonth"] as? Int {
