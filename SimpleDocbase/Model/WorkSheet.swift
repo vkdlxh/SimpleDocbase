@@ -22,12 +22,14 @@ struct WorkSheet {
     var workdate: Date?
     var workTimeSum: Double?
     var workDaySum: Int?
-    var items = [WorkSheetItem]()
+    var items: [WorkSheetItem]?
     
     init(date: Date) {
         self.workdate = date
         self.workTimeSum = 0
         self.workDaySum = 0
+        
+        self.items = [WorkSheetItem]()
     }
     
     init(dict: Dictionary<String, Any>) {
@@ -45,10 +47,12 @@ struct WorkSheet {
         }
         
         if let items = dict["items"] as? Array<Dictionary<String, Any>> {
+            self.items = [WorkSheetItem]()
+            
             for item in items {
                 let sheet = WorkSheetItem(dict: item)
                 
-                self.items.append(sheet)
+                self.items?.append(sheet)
             }
         }
     }
