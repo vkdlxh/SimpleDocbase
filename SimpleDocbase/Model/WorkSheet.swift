@@ -74,7 +74,9 @@ struct WorkSheet {
             resultDict["workDaySum"] = workDaySum
         }
         
-        let items = self.items
+        guard let items = self.items else {
+            return resultDict
+        }
         resultDict["items"] = convertworkSheetItemTodictionary(items)
         
         return resultDict

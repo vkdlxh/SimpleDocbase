@@ -56,16 +56,7 @@ final class DaySheetViewController : UIViewController {
     
     // MARK: Action
     
-    // Test
     @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
-        
-        // Test
-//        let worksheetManager = TestWorkSheetManager.sharedManager
-//        worksheetManager.loadLocalWorkSheets()
-//        let worksheetDict = worksheetManager.worksheetDict
-//        guard let yearmonth = workDate?.yearMonthString() else {
-//            return
-//        }
         
         let worksheetManager = WorkSheetManager.sharedManager
         worksheetManager.loadLocalWorkSheets()
@@ -163,7 +154,7 @@ final class DaySheetViewController : UIViewController {
                 work_sheet_item.remark = "備考"
                 work_sheet_item.week = 1
                 work_sheet_item.workFlag = false
-                work_sheet.items.append(work_sheet_item)
+                work_sheet.items?.append(work_sheet_item)
             }
             testArary.append(work_sheet)
         }

@@ -62,7 +62,7 @@ class TesterWorkSheetViewController: UIViewController {
                 work_sheet_item.remark = "備考"
                 work_sheet_item.week = 1
                 work_sheet_item.workFlag = false
-                work_sheet.items.append(work_sheet_item)
+//                work_sheet.items.append(work_sheet_item)
             }
             testArary.append(work_sheet)
         }

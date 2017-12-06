@@ -131,7 +131,9 @@ class WorkSheetManager: NSObject {
             return
         }
         let convertWorkSheet = WorkSheet(dict: selectedMonth)
-        let items = convertWorkSheet.items
+        guard let items = convertWorkSheet.items else {
+            return
+        }
         let generatedMakedownBody = generateWorksheetMarkdown(items)
         
         // Test
