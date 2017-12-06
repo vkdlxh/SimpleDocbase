@@ -10,6 +10,7 @@
 		207A2E2402EBA709A1863CB2 /* Pods_SimpleDocbase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82A45EBF124ED586B28613A /* Pods_SimpleDocbase.framework */; };
 		400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458741FB682AD00D5FF8E /* DaySheetViewController.swift */; };
 		400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */; };
+		4029E8BA1FD7A90500B89E73 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 4029E8B91FD7A90500B89E73 /* test.json */; };
 		40D9E4751FC91A99003B353F /* DaySheetEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9E4741FC91A99003B353F /* DaySheetEditViewController.swift */; };
 		40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */; };
 		40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F30E371FB88CE000014511 /* WorkSheetCell.swift */; };
@@ -62,6 +63,7 @@
 /* Begin PBXFileReference section */
 		400458741FB682AD00D5FF8E /* DaySheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetViewController.swift; sourceTree = "<group>"; };
 		400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+WorkSheet.swift"; sourceTree = "<group>"; };
+		4029E8B91FD7A90500B89E73 /* test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = test.json; sourceTree = "<group>"; };
 		40D9E4741FC91A99003B353F /* DaySheetEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetEditViewController.swift; sourceTree = "<group>"; };
 		40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkSheetManager.swift; sourceTree = "<group>"; };
 		40F30E371FB88CE000014511 /* WorkSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheetCell.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 		DAFD71021FB477E1004F3140 /* Tester */ = {
 			isa = PBXGroup;
 			children = (
+				4029E8B91FD7A90500B89E73 /* test.json */,
 				DA0CE9811FC2793400B4850D /* DelegateRequest */,
 				DAFD71031FB477F3004F3140 /* Tester.storyboard */,
 				DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */,
@@ -393,6 +396,7 @@
 				DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */,
 				DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */,
 				DAFD71041FB477F3004F3140 /* Tester.storyboard in Resources */,
+				4029E8BA1FD7A90500B89E73 /* test.json in Resources */,
 				DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */,
 				DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */,
 			);

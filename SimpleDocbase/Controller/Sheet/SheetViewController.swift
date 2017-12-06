@@ -28,6 +28,8 @@ final class SheetViewController : UIViewController {
 
         self.title = "勤怠管理"
         
+        initControls()
+        
         // Do any additional setup after loading the view.
         //REMARK: テストデータ
         loadTestData()
@@ -45,6 +47,42 @@ final class SheetViewController : UIViewController {
     }
     
 
+    // MARK: Actinos
+    @objc func addSheetButtonTouched(_ sender: UIBarButtonItem) {
+        
+        print("addSheetButtonTouched!!")
+        
+        let alert = UIAlertController(title:"勤務表追加",
+                                      message: "作成する年月を入力してください。",
+                                      preferredStyle: .alert)
+        
+        alert.addTextField { (textfield : UITextField) in
+            textfield.placeholder = "YYYYMM"
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel",
+                                      style: .cancel,
+                                      handler:nil))
+        
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .default,
+                                      handler:{
+                                        (action:UIAlertAction!) -> Void in
+                                        print("OK")
+                                        
+                                        let textFields:Array<UITextField>? =  alert.textFields as Array<UITextField>?
+                                        if textFields != nil {
+                                            for textField:UITextField in textFields! {
+                                                //print(textField.text)
+                                            }
+                                        }
+                                        
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -68,6 +106,11 @@ final class SheetViewController : UIViewController {
     
     
     // MARK: Private Methods
+    private func initControls() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(SheetViewController.addSheetButtonTouched(_ :)))
+        self.navigationItem.rightBarButtonItems = [addButton]
+    }
+    
     private func loadTestData() {
         for i in 0..<10 {
             guard let year_month = Date.createDate(year: 2017, month: i+1) else {
@@ -98,6 +141,17 @@ extension SheetViewController : UITableViewDelegate {
         
         selectedWorkSheet = workSheets[indexPath.row]
         self.performSegue(withIdentifier: "GoDetailWorkSheetSegue", sender: self)
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
+            self.workSheets.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+        deleteButton.backgroundColor = UIColor.red
+        
+        return [deleteButton]
     }
 }
 

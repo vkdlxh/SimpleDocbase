@@ -90,6 +90,8 @@ class DaySheetEditViewController: FormViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        initControls()
 
         // Do any additional setup after loading the view.
     }
@@ -116,4 +118,19 @@ class DaySheetEditViewController: FormViewController {
     }
     */
 
+    // MARK: Actions
+    @objc private func saveButtonTouched(_ sender: UIBarButtonItem) {
+        print("saveButtonTouched!!")
+        
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: Private
+    private func initControls() {
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DaySheetEditViewController.saveButtonTouched(_ :)))
+        self.navigationItem.rightBarButtonItems = [saveButton]
+    }
+    
+    
+    
 }
