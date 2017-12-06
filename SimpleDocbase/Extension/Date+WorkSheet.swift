@@ -122,6 +122,22 @@ extension Date  {
         return dateString
     }
     
+    func duration() -> Double {
+        
+        let calendar = defaultCalendar()
+        let comps = calendar.dateComponents([.hour, .minute], from: self)
+        
+        guard let hour = comps.hour else {
+            return 0
+        }
+        guard let minute = comps.minute else {
+            return 0
+        }
+        
+        let duration = (Double(hour) + Double(minute/60))
+        return duration
+    }
+    
     static func hourString(begin: Date, end: Date) -> String {
         let elapsed_sec = end.timeIntervalSince(begin) // 時刻の差
         
@@ -155,5 +171,27 @@ extension Date  {
         let date = dateFormater.date(from: dateStr)
         return date
         
+    }
+    
+    static func createTime(hour: Int, minute: Int) -> Date? {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "yyyyMMdd"
+        let dateString = dateFormater.string(from: Date())
+        
+        let dateStr = String(format: "\(dateString)%02d%02d", hour, minute)
+        dateFormater.dateFormat = "yyyyMMddHHmm"
+        let date = dateFormater.date(from: dateStr)
+        return date
+        
+    }
+    
+    static func createDate(_ duration: Double ) -> Date? {
+        
+        let hour = Int(floor(duration))
+        let minute = Int((duration - Double(hour)) * 60)    //0.5 ->30min
+        
+        return Date.createTime(hour: hour, minute: minute)
     }
 }

@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -93,18 +94,29 @@
                                     <outlet property="delegate" destination="5wF-Iu-UcX" id="8Mt-D0-Xyz"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データがありません。" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSu-Ib-ff0">
+                                <rect key="frame" x="0.0" y="323" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5hA-Xv-Hka" firstAttribute="top" secondItem="aVt-8K-o24" secondAttribute="top" id="2IG-6Z-Bzf"/>
                             <constraint firstItem="aVt-8K-o24" firstAttribute="bottom" secondItem="5hA-Xv-Hka" secondAttribute="bottom" id="9z3-Sg-ij4"/>
                             <constraint firstItem="5hA-Xv-Hka" firstAttribute="leading" secondItem="aVt-8K-o24" secondAttribute="leading" id="DX0-bv-EEy"/>
+                            <constraint firstItem="aVt-8K-o24" firstAttribute="trailing" secondItem="dSu-Ib-ff0" secondAttribute="trailing" id="Nmg-hW-Ud8"/>
+                            <constraint firstItem="dSu-Ib-ff0" firstAttribute="leading" secondItem="aVt-8K-o24" secondAttribute="leading" id="dM8-SB-uLS"/>
+                            <constraint firstItem="dSu-Ib-ff0" firstAttribute="centerY" secondItem="DHY-Ip-cza" secondAttribute="centerY" id="fmU-Gt-oDC"/>
+                            <constraint firstItem="dSu-Ib-ff0" firstAttribute="centerX" secondItem="DHY-Ip-cza" secondAttribute="centerX" id="uJK-v9-8P9"/>
                             <constraint firstItem="aVt-8K-o24" firstAttribute="trailing" secondItem="5hA-Xv-Hka" secondAttribute="trailing" id="w2T-YI-qyL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aVt-8K-o24"/>
                     </view>
                     <navigationItem key="navigationItem" id="KqD-vb-E3y"/>
                     <connections>
+                        <outlet property="messageLabel" destination="dSu-Ib-ff0" id="b6r-I7-WXk"/>
                         <outlet property="sheetTableView" destination="5hA-Xv-Hka" id="zi1-An-ura"/>
                         <segue destination="bgQ-Dk-3CG" kind="show" identifier="GoDetailWorkSheetSegue" id="AZy-d5-vR1"/>
                     </connections>

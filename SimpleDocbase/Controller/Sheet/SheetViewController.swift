@@ -17,6 +17,7 @@ final class SheetViewController : UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
+    @IBOutlet weak var messageLabel: UILabel?
     
     // MARK: IBActions
     
@@ -32,10 +33,8 @@ final class SheetViewController : UIViewController {
         
         // Do any additional setup after loading the view.
         //REMARK: テストデータ
-//        loadTestData()
+        loadTestData()
         
-        let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet("201711")
-        print("")
      }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +74,18 @@ final class SheetViewController : UIViewController {
                                         let textFields:Array<UITextField>? =  alert.textFields as Array<UITextField>?
                                         if textFields != nil {
                                             for textField:UITextField in textFields! {
-                                                //print(textField.text)
+                                                
+                                                //TODO: 6桁数字なのかをチェック
+                                                
+                                                
+                                                //let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet("201711")
+                                                
+                                                guard let yyyymm = textField.text else {
+                                                    return
+                                                }
+                                                let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet(yyyymm)
+                                                
+                                                //TODO: 生成されたmodelをjson形式で保存
                                             }
                                         }
                                         
@@ -128,6 +138,12 @@ final class SheetViewController : UIViewController {
             workSheets.append(work_sheet)
         }
     }
+    
+    private func emptyMessage(_ on: Bool) {
+        messageLabel?.isHidden = !on
+        sheetTableView?.backgroundView = on ? messageLabel : nil;
+        sheetTableView?.separatorStyle = on ? .none : .singleLine;
+    }
 }
 
 
@@ -160,6 +176,9 @@ extension SheetViewController : UITableViewDelegate {
 extension SheetViewController : UITableViewDataSource {
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        emptyMessage(workSheets.count == 0)
+        
         return workSheets.count
     }
     
@@ -173,7 +192,5 @@ extension SheetViewController : UITableViewDataSource {
     }
 
 }
-
-
 
 

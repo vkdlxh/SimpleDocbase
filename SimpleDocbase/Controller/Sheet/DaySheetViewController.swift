@@ -141,6 +141,19 @@ extension DaySheetViewController : UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let editVC = DaySheetEditViewController()
+        let sheetItem = sheetItems?[indexPath.row]
+        
+        //MARK: test code.
+        //実際のデータを渡すようにしてください。これはテストデータです。
+        //editVC.worksheetItem = sheetItem
+        var test_item = WorkSheetItem(year: 2017, month: 1, day: 22)
+        test_item.workFlag = true
+        test_item.beginTime = Date(timeIntervalSinceNow: -1*60*60*9)    //9時間前に。。
+        test_item.endTime = Date()
+        test_item.remark = "dummy data."
+        editVC.worksheetItem = test_item
+        ///// test code.
+        
         navigationController?.pushViewController(editVC, animated: true)
     }
     

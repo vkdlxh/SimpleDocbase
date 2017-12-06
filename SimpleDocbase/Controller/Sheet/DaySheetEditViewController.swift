@@ -11,11 +11,13 @@ import SwiftyFORM
 
 class DaySheetEditViewController: FormViewController {
 
-    var editDate = Date()
+    internal var worksheetItem : WorkSheetItem?
     
     override func populate(_ builder: FormBuilder) {
-        builder.navigationTitle = editDate.yearMonthDayString()
         
+        if let year = worksheetItem?.workYear, let month = worksheetItem?.workMonth  {
+            builder.navigationTitle = String(format: "%04d.%02d", year, month)
+        }
         builder += SectionHeaderTitleFormItem().title("勤務設定")
         builder += workFlagSwitch
         
@@ -34,8 +36,17 @@ class DaySheetEditViewController: FormViewController {
         instance.datePickerMode = .time
         instance.minuteInterval = 30
         instance.behavior = .collapsed
+        
+        if let begin_time = worksheetItem?.beginTime {
+            instance.setValue(begin_time, animated: false)
+        }else {
+            if let time = Date.createTime(hour: 9, minute: 0) {
+                instance.setValue(time, animated: false)
+            }
+        }
+        
         instance.valueDidChangeBlock = { [weak self] _ in
-            //self?.updateSummary()
+            self?.updateDuration()
         }
         return instance
     }()
@@ -46,8 +57,17 @@ class DaySheetEditViewController: FormViewController {
         instance.datePickerMode = .time
         instance.minuteInterval = 30
         instance.behavior = .collapsed
+        
+        if let end_time = worksheetItem?.endTime {
+            instance.setValue(end_time, animated: false)
+        }else {
+            if let time = Date.createTime(hour: 9, minute: 0) {
+                instance.setValue(time, animated: false)
+            }
+        }
+        
         instance.valueDidChangeBlock = { [weak self] _ in
-            //self?.updateSummary()
+            self?.updateDuration()
         }
         return instance
     }()
@@ -55,6 +75,10 @@ class DaySheetEditViewController: FormViewController {
     lazy var workFlagSwitch: SwitchFormItem = {
         let instance = SwitchFormItem()
         instance.title = "作業日"
+        
+        if let flag = worksheetItem?.workFlag {
+            instance.value = flag
+        }
         instance.switchDidChangeBlock = { (value: Bool) in
             //
         }
@@ -68,8 +92,22 @@ class DaySheetEditViewController: FormViewController {
         instance.behavior = .collapsed
         instance.minimumDate = Date(timeIntervalSince1970: 0)
         instance.minuteInterval = 30
+        
+        if let break_time = worksheetItem?.breakTime {
+            let hour = Int(floor(break_time))
+            let minute = Int((break_time - Double(hour)) * 60)    //0.5 ->30min
+            
+            if let time = Date.createTime(hour: hour, minute: minute) {
+                instance.setValue(time, animated: false)
+            }
+        }else {
+            if let time = Date.createTime(hour: 1, minute: 0) {
+                instance.setValue(time, animated: false)
+            }
+        }
+        
         instance.valueDidChangeBlock = { [weak self] _ in
-            //self?.updateSummary()
+            self?.updateDuration()
         }
         return instance
     }()
@@ -77,13 +115,37 @@ class DaySheetEditViewController: FormViewController {
     lazy var durationText: StaticTextFormItem = {
         let instance = StaticTextFormItem()
         instance.title = "勤務時間"
-        instance.value = "8.0"
+        
+        let calendar = NSCalendar.current
+        
+        guard let begin_time = worksheetItem?.beginTime else {
+            return instance
+        }
+        
+        guard let end_tiem = worksheetItem?.endTime else {
+            return instance
+        }
+        
+        let comps = calendar.dateComponents([.hour, .minute], from: begin_time, to: end_tiem)
+        
+        guard let hour = comps.hour else {
+            return instance
+        }
+        guard let minute = comps.minute else {
+            return instance
+        }
+        
+        let duration = (Double(hour) + Double(minute/60)) - (worksheetItem?.breakTime ?? 0)
+        instance.value = String(format:"%.2f",duration)
         
         return instance
     }()
     
     lazy var remarkTextView: TextViewFormItem = {
         let instance = TextViewFormItem().placeholder("内容を入力してください。")
+        if let remark = worksheetItem?.remark {
+            instance.value = remark
+        }
         return instance
     }()
     
@@ -120,7 +182,29 @@ class DaySheetEditViewController: FormViewController {
 
     // MARK: Actions
     @objc private func saveButtonTouched(_ sender: UIBarButtonItem) {
-        print("saveButtonTouched!!")
+        
+        print("\n\(workFlagSwitch.value),\n\(beginTimePicker.value.hourMinuteString()),\n\(endTimePicker.value.hourMinuteString()),\n\(breakTimePicker.value.hourMinuteString()),\n\(durationText.value),\n\(remarkTextView.value)")
+        
+//        workFlagSwitch.value
+//        beginTimePicker.value
+//        endTimePicker.value
+//        breakTimePicker.value
+//        durationText.value
+//        remarkTextView.value
+        
+        //update worksheet item
+        worksheetItem?.workFlag = workFlagSwitch.value
+        worksheetItem?.beginTime = beginTimePicker.value
+        worksheetItem?.endTime = endTimePicker.value
+        worksheetItem?.breakTime = breakTimePicker.value.duration()
+        worksheetItem?.remark = remarkTextView.value
+        
+        print(worksheetItem)
+        
+        //TODO: 保存処理をする
+        //保存処理を実装してください。
+        
+        
         
         self.navigationController?.popViewController(animated: true)
     }
@@ -131,6 +215,22 @@ class DaySheetEditViewController: FormViewController {
         self.navigationItem.rightBarButtonItems = [saveButton]
     }
     
-    
+    private func updateDuration() {
+        
+        let calendar = NSCalendar.current
+        
+        let comps = calendar.dateComponents([.hour, .minute], from: beginTimePicker.value, to: endTimePicker.value)
+        
+        guard let hour = comps.hour else {
+            return
+        }
+        guard let minute = comps.minute else {
+            return
+        }
+        
+        let duration = (Double(hour) + Double(minute/60)) - (worksheetItem?.breakTime ?? 0)
+        durationText.value = String(format:"%.2f",duration)
+        
+    }
     
 }
