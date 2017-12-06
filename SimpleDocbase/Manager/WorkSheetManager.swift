@@ -26,11 +26,11 @@ import UIKit
  
 class WorkSheetManager: NSObject {
     
+    var worksheetDict: [String: Any] = [:]
     private let docSignCreateby = "<!-- generated from SimpleDocbase. -->"
     private let headerColumn = "| 日 | 曜日 | 作業日 | 開始時間| 終了時間 | 休憩 | 勤務時間 | 備考 |"
     private let headerLine = "|:--:|:---:|:-----:|:------:|:------:|:---:|:------:|:----:|"
-    
-    private let filenamePrifix = "worksheet_"   //例）worksheet_201711 worksheet.json
+    private let fileName = "worksheet"   //例）worksheet.json
     
     //singleton
     static let sharedManager = WorkSheetManager()
@@ -73,71 +73,107 @@ class WorkSheetManager: NSObject {
         return work_sheet
     }
     
-    internal func loadLocalWorkSheets() -> Array<WorkSheet>? {
-        
+    internal func loadLocalWorkSheets() {
         //worksheet_から始まるファイル全て取得
         
-        let documentPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        
-        var fileNames: [String] {
-            do {
-                return try FileManager.default.contentsOfDirectory(atPath: documentPath)
-            } catch {
-                return []
-            }
-        }
-    
-        let worksheetNames = fileNames.filter({ (fname: String) -> Bool in
-                return fname.hasPrefix(filenamePrifix)
-        })
-        
-        print("worhsheet list:", worksheetNames)
-            
-            
         //Dictionaryへ変換
-        var worksheets = [WorkSheet]()
-        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
-    
-        for filename in worksheetNames {
-            
-            let fileUrl = documentDirectoryUrl.appendingPathComponent(filename + ".json")
-            guard let jsonData = try? Data(contentsOf: fileUrl) else {
-                continue
-                
-            }
-            guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-                continue
-            }
-            
-            print("jsonString \(jsonString)") // This prints what looks to be JSON encoded data.
-            
-            guard let jsonDict = convertToDictionary(jsonString) else {
-                continue
-            }
-            
-            print("jsonDict \(jsonDict)")
-            let w = WorkSheet(dict: jsonDict)
-            
-            worksheets.append(w)
+        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName + ".json")
+        
+        guard let jsonData = try? Data(contentsOf: fileUrl) else {
+            return
         }
         
-        return worksheets
+        guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+            return
+        }
         
+        guard let jsonDict = convertToDictionary(jsonString) else {
+            return
+        }
+        
+        worksheetDict = jsonDict
+        
+//        print(worksheetDict)
     }
     
-    internal func saveLocalWorkSheet(_ :WorkSheet) {
+    internal func saveLocalWorkSheet(_ jsonKeyMonth: String, workSheet: WorkSheet) {
         //TODO: 保存、すでに存在したら上書き
+        let workSheetDict = workSheet.convertworkSheetTodictionary()
         
+        saveToJsonFile(jsonKeyMonth, workSheetDict: workSheetDict)
     }
     
-    internal func removeLocalWorkSheet(_ :WorkSheet) {
+    internal func removeLocalWorkSheet() {
         //TODO: 削除、存在しなければ無視
+        let fileManager = FileManager.default
+        guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName + ".json")
+        let fileUrlPath = fileUrl.path
         
+        do {
+            if(FileManager.default.fileExists(atPath: fileUrlPath)) {
+                print("file exists.")
+                try fileManager.removeItem(atPath: fileUrlPath)
+            } else {
+                print("file not exists.")
+            }
+        } catch {
+            print("could not remove file.")
+        }
     }
     
     //MARK: Internal - Request
-    internal func uploadWorkSheet(_ :WorkSheet) {
+    internal func uploadWorkSheet(domain: String, month: String, groupId: Int, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         //TODO: Docbaseへアップロード
+        let titlePrifix = "SimpleDocbase_"
+        guard let selectedMonth = dict[month] as? [String: Any] else {
+            return
+        }
+        let convertWorkSheet = WorkSheet(dict: selectedMonth)
+        let items = convertWorkSheet.items
+        let generatedMakedownBody = generateWorksheetMarkdown(items)
+        
+        // Test
+        let worksheetData: [String : Any] = [
+            "title": titlePrifix + month,
+            "body": generatedMakedownBody,
+            "draft": false,
+            "tags": ["SimpleDocbase"],
+            "scope": "group",
+            "groups": [groupId],
+            "notice": true
+        ]
+        
+        let acaRequest = ACARequest()
+        let session = acaRequest.session
+        guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts") else { return }
+        var request = acaRequest.settingRequest(url: url, httpMethod: .post)
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: worksheetData, options: []) else {
+            return
+        }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { (data, response, error) in
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
+                print("statusCode should be 201, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+                completion(false)
+            } else {
+                completion(true)
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                }catch {
+                    print(error)
+                }
+            } else {
+                completion(false)
+                print("FileUpload Fail")
+            }
+            }.resume()
     }
     
     //MARK: Private
@@ -193,18 +229,21 @@ class WorkSheetManager: NSObject {
         return markdownStr
     }
     
-    private func saveToJsonFile(_ filename: String, workSheet: WorkSheet) {
+    private func saveToJsonFile(_ jsonKeyMonth: String, workSheetDict: [String: Any]) {
+        
+        worksheetDict[jsonKeyMonth] = workSheetDict
         
         guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
-        let fileUrl = documentDirectoryUrl.appendingPathComponent(filename + ".json")
+        let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName + ".json")
         
         do {
-            let data = try JSONSerialization.data(withJSONObject: workSheet, options: [])
+            let data = try JSONSerialization.data(withJSONObject: worksheetDict, options: [])
             try data.write(to: fileUrl, options: [])
         } catch {
             print(error)
         }
+        
     }
     
     private func convertToDictionary(_ text: String) -> [String: Any]? {

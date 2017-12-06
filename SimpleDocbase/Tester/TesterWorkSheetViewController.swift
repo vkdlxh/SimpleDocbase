@@ -15,18 +15,11 @@ class TesterWorkSheetViewController: UIViewController {
     
     var testArary = [WorkSheet]()
     
-//    let testDict = ["Key1" : "value1",
-//                    "Key2" : "value2",
-//                    "Key3" : "value3",
-//                    "Key4" : "value4",]
-    
-    
     @IBAction func testUploadBtn(_ sender: Any) {
-        let worksheetDict = worksheetManager.worksheetDict
+//        let worksheetDict = worksheetManager.worksheetDict
+//        worksheetManager.uploadWorkSheet(domain: domain, month: "201712", groupId: 3, dict: worksheetDict) { check in
         
-        worksheetManager.uploadWorkSheet(domain: domain, month: "201712", groupId: 3, dict: worksheetDict) { check in
-            
-        }
+//        }
     }
     
     override func viewDidLoad() {

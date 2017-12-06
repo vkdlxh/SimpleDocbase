@@ -67,12 +67,9 @@ class TestWorkSheetManager: NSObject {
     
     internal func saveLocalWorkSheet(_ filename: String, workSheet: WorkSheet) {
         //TODO: 保存、すでに存在したら上書き
-        
         let workSheetDict = workSheet.convertworkSheetTodictionary()
         
         saveToJsonFile(filename, workSheetDict: workSheetDict)
-
-
     }
     
     internal func removeLocalWorkSheet() {
@@ -90,31 +87,25 @@ class TestWorkSheetManager: NSObject {
                 print("file not exists.")
             }
         } catch {
-            print("could net remove file.")
+            print("could not remove file.")
         }
-        
-        
     }
     
     //MARK: Internal - Request
     internal func uploadWorkSheet(domain: String, month: String, groupId: Int, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         //TODO: Docbaseへアップロード
         let titlePrifix = "SimpleDocbase_"
-        let acaRequest = ACARequest()
-        let session = acaRequest.session
         guard let selectedMonth = dict[month] as? [String: Any] else {
             return
         }
         let convertWorkSheet = WorkSheet(dict: selectedMonth)
-        
-        // TODO: convert Model
         let items = convertWorkSheet.items
-        let generateMakedown = generateWorksheetMarkdown(items)
+        let generatedMakedownBody = generateWorksheetMarkdown(items)
         
         // Test
         let worksheetData: [String : Any] = [
             "title": titlePrifix + month,
-            "body": generateMakedown,
+            "body": generatedMakedownBody,
             "draft": false,
             "tags": ["SimpleDocbase"],
             "scope": "group",
@@ -122,8 +113,9 @@ class TestWorkSheetManager: NSObject {
             "notice": true
         ]
         
+        let acaRequest = ACARequest()
+        let session = acaRequest.session
         guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts") else { return }
-        
         var request = acaRequest.settingRequest(url: url, httpMethod: .post)
         guard let httpBody = try? JSONSerialization.data(withJSONObject: worksheetData, options: []) else {
             return
