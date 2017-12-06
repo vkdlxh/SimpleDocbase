@@ -42,7 +42,15 @@ final class DaySheetViewController : UIViewController {
     }
     
     // MARK: Action
+    
+    // Test
     @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
+        
+        // Test
+        let worksheetManager = TestWorkSheetManager.sharedManager
+        worksheetManager.loadLocalWorkSheets()
+        let worksheetDict = worksheetManager.worksheetDict
+        
         //入力された勤務表をDocbaseへアップロード
         var uploadAlertVC = UIAlertController()
         if groupId == nil {
@@ -54,21 +62,13 @@ final class DaySheetViewController : UIViewController {
             uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
                 
                 // Test
-                let testMemo: [String : Any] = [
-                    "title": "Test WorkSheet",
-                    "body": "Test WorkSheet",
-                    "draft": false,
-                    "tags": ["Test WorkSheet"],
-                    "scope": "group",
-                    "groups": [self.groupId],
-                    "notice": true
-                ]
+                if let groupid = self.groupId {
+                    worksheetManager.uploadWorkSheet(domain: self.domain, month: "201712", groupId: groupid, dict: worksheetDict, completion: {  result in
+                        self.checkUploadSuccessAlert(result: result)
+                    })
+                }
                 
-                //TODO: メモ投稿処理
-                ACAMemoRequest().writeMemo(domain: self.domain, dict: testMemo, completion: { result in
-                    self.checkUploadSuccessAlert(result: result)
-                })
-                print("post memo!")
+                
             }))
             uploadAlertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler:nil))
             
@@ -76,6 +76,40 @@ final class DaySheetViewController : UIViewController {
         
         present(uploadAlertVC, animated: true, completion: nil)
     }
+//    @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
+//        //入力された勤務表をDocbaseへアップロード
+//        var uploadAlertVC = UIAlertController()
+//        if groupId == nil {
+//            uploadAlertVC = UIAlertController(title: "アップロード失敗", message: "勤怠管理のグループを確認してください。", preferredStyle: .alert)
+//            uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
+//
+//        } else {
+//            uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
+//            uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction) in
+//
+//                // Test
+//                let testMemo: [String : Any] = [
+//                    "title": "Test WorkSheet",
+//                    "body": "Test WorkSheet",
+//                    "draft": false,
+//                    "tags": ["Test WorkSheet"],
+//                    "scope": "group",
+//                    "groups": [self.groupId],
+//                    "notice": true
+//                ]
+//
+//                //TODO: メモ投稿処理
+//                ACAMemoRequest().writeMemo(domain: self.domain, dict: testMemo, completion: { result in
+//                    self.checkUploadSuccessAlert(result: result)
+//                })
+//                print("post memo!")
+//            }))
+//            uploadAlertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler:nil))
+//
+//        }
+//
+//        present(uploadAlertVC, animated: true, completion: nil)
+//    }
     
     func checkUploadSuccessAlert(result: Bool) {
         

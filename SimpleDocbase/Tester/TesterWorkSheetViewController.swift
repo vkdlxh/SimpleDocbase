@@ -11,6 +11,7 @@ import UIKit
 class TesterWorkSheetViewController: UIViewController {
 
     let worksheetManager = TestWorkSheetManager.sharedManager
+    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as! String
     
     var testArary = [WorkSheet]()
     
@@ -19,25 +20,34 @@ class TesterWorkSheetViewController: UIViewController {
 //                    "Key3" : "value3",
 //                    "Key4" : "value4",]
     
+    
+    @IBAction func testUploadBtn(_ sender: Any) {
+        let worksheetDict = worksheetManager.worksheetDict
+        
+        worksheetManager.uploadWorkSheet(domain: domain, month: "201712", groupId: 3, dict: worksheetDict) { check in
+            
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        loadTestData()
-//
-//        let testFileName = "201712"
-//        guard let testWorkSheet = testArary.first else { return }
-//
-//        worksheetManager.saveLocalWorkSheet(testFileName, workSheet: testWorkSheet)
-//
-//        if let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-//            let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
-//            let fileUrlPath = fileUrl.path
-//            if(FileManager.default.fileExists(atPath: fileUrlPath)) {
-//                print("file exists")
-//                worksheetManager.loadLocalWorkSheets()
-//            }
-//        }
-        worksheetManager.removeLocalWorkSheet()
+        loadTestData()
+
+        let testFileName = "201712"
+        guard let testWorkSheet = testArary.first else { return }
+
+        worksheetManager.saveLocalWorkSheet(testFileName, workSheet: testWorkSheet)
+
+        if let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileUrl = documentDirectoryUrl.appendingPathComponent("test.json")
+            let fileUrlPath = fileUrl.path
+            if(FileManager.default.fileExists(atPath: fileUrlPath)) {
+                print("file exists")
+                worksheetManager.loadLocalWorkSheets()
+            }
+        }
+//        worksheetManager.removeLocalWorkSheet()
         
     }
     

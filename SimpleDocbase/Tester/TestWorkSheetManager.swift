@@ -97,8 +97,59 @@ class TestWorkSheetManager: NSObject {
     }
     
     //MARK: Internal - Request
-    internal func uploadWorkSheet(_ :WorkSheet) {
+    internal func uploadWorkSheet(domain: String, month: String, groupId: Int, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         //TODO: Docbaseへアップロード
+        let titlePrifix = "SimpleDocbase_"
+        let acaRequest = ACARequest()
+        let session = acaRequest.session
+        guard let selectedMonth = dict[month] as? [String: Any] else {
+            return
+        }
+        let convertWorkSheet = WorkSheet(dict: selectedMonth)
+        
+        // TODO: convert Model
+        let items = convertWorkSheet.items
+        let generateMakedown = generateWorksheetMarkdown(items)
+        
+        // Test
+        let worksheetData: [String : Any] = [
+            "title": titlePrifix + month,
+            "body": generateMakedown,
+            "draft": false,
+            "tags": ["SimpleDocbase"],
+            "scope": "group",
+            "groups": [groupId],
+            "notice": true
+        ]
+        
+        guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts") else { return }
+        
+        var request = acaRequest.settingRequest(url: url, httpMethod: .post)
+        guard let httpBody = try? JSONSerialization.data(withJSONObject: worksheetData, options: []) else {
+            return
+        }
+        request.httpBody = httpBody
+        
+        session.dataTask(with: request) { (data, response, error) in
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
+                print("statusCode should be 201, but is \(httpStatus.statusCode)")
+                print("response = \(String(describing: response))")
+                completion(false)
+            } else {
+                completion(true)
+            }
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                }catch {
+                    print(error)
+                }
+            } else {
+                completion(false)
+                print("FileUpload Fail")
+            }
+            }.resume()
     }
     
     //MARK: Private
