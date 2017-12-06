@@ -32,8 +32,10 @@ final class SheetViewController : UIViewController {
         
         // Do any additional setup after loading the view.
         //REMARK: テストデータ
-        loadTestData()
+//        loadTestData()
         
+        let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet("201711")
+        print("")
      }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,7 +123,7 @@ final class SheetViewController : UIViewController {
             work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
             for j in 0..<31 {
                 let work_sheet_item = WorkSheetItem(year: 2017, month:i, day:j)
-                work_sheet.items.append(work_sheet_item)
+                work_sheet.items?.append(work_sheet_item)
             }
             workSheets.append(work_sheet)
         }

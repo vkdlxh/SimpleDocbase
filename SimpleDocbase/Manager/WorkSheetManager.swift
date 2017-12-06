@@ -39,34 +39,39 @@ class WorkSheetManager: NSObject {
     }
     
     //MARK: Internal - File
-//    internal func createWorkSheet(_ yyyymm :String ) -> WorkSheet {
-//
-//        let yearString = yyyymm[..<yyyymm.index(yyyymm.startIndex, offsetBy: 4)]
-//        let monthString = yyyymm[yyyymm.index(text.startIndex, offsetBy: 1)..<yyyymm.index(text.startIndex, offsetBy: 4)]
-//        let year = Int(String())
-//
-//        let workDate = Date.createDate(year: <#T##Int#>, month: <#T##Int#>)
-//        for i in 1..<10 {
-//            guard let year_month = Date.createDate(year: 2017, month: i+1) else {
-//                continue
-//            }
-//            var work_sheet = WorkSheet(date:year_month)
-//            work_sheet.workDaySum = 10 + Int(arc4random()%10)
-//            work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
-//            for j in 1..<31 {
-//                var work_sheet_item = WorkSheetItem(year: 2017, month:i, day:j)
-//                work_sheet_item.beginTime = Date()
-//                work_sheet_item.endTime = Date()
-//                work_sheet_item.breakTime = 1.0
-//                work_sheet_item.duration = 8.0
-//                work_sheet_item.remark = "備考"
-//                work_sheet_item.week = 1
-//                work_sheet_item.workFlag = false
-//                work_sheet.items.append(work_sheet_item)
-//            }
-//            testArary.append(work_sheet)
-//        }
-//    }
+    internal func createWorkSheet(_ yyyymm :String ) -> WorkSheet? {
+
+        let yearString = yyyymm[..<yyyymm.index(yyyymm.startIndex, offsetBy: 4)]
+        let monthString = yyyymm[yyyymm.index(yyyymm.startIndex, offsetBy: 4)...]
+        let year = Int(yearString)!
+        let month = Int(monthString)!
+
+        let workDate = Date.createDate(year: year, month: month)
+        
+        guard let work_date = workDate else {
+            return nil
+        }
+        
+        var work_sheet = WorkSheet(date:work_date)
+        work_sheet.workDaySum = 10 + Int(arc4random()%10)
+        work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
+        var items = [WorkSheetItem]()
+        for day in 1...work_date.lastDay() {
+            var work_sheet_item = WorkSheetItem(year: year, month:month, day:day)
+            work_sheet_item.beginTime = nil//Date()
+            work_sheet_item.endTime = nil//Date()
+            work_sheet_item.breakTime = 1.0
+            work_sheet_item.duration = 8.0
+            work_sheet_item.remark = ""
+            work_sheet_item.week = work_date.weekDay()
+            work_sheet_item.workFlag = !work_date.isHoliday()
+            items.append(work_sheet_item)
+        }
+        
+        work_sheet.items = items
+        
+        return work_sheet
+    }
     
     internal func loadLocalWorkSheets() -> Array<WorkSheet>? {
         

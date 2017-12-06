@@ -12,7 +12,7 @@ final class DaySheetViewController : UIViewController {
     
     // MARK: Properties
     var workDate: Date?
-    var sheetItems = [WorkSheetItem]()
+    var sheetItems: [WorkSheetItem]?
     var groups: [Group] = []
     var groupId: Int?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as! String
@@ -152,14 +152,14 @@ extension DaySheetViewController : UITableViewDelegate {
 extension DaySheetViewController : UITableViewDataSource {
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sheetItems.count
+        return sheetItems?.count ?? 0
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WorkSheetItemCell") as! WorkSheetItemCell
         
-        let sheetItem = sheetItems[indexPath.row]
-        cell.settingCell(sheetItem)
+        let sheetItem = sheetItems?[indexPath.row]
+        cell.settingCell(sheetItem!)
         
         return cell
     }
