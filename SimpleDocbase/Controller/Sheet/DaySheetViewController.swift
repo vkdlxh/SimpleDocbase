@@ -59,7 +59,7 @@ final class DaySheetViewController : UIViewController {
     @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
         
         let worksheetManager = WorkSheetManager.sharedManager
-        worksheetManager.loadLocalWorkSheets()
+//        worksheetManager.loadLocalWorkSheets()
         let worksheetDict = worksheetManager.worksheetDict
         guard let yearmonth = workDate?.yearMonthString() else {
             return

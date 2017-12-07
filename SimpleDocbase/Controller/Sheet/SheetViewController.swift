@@ -15,6 +15,8 @@ final class SheetViewController : UIViewController {
     var selectedWorkSheet : WorkSheet?
     var groups: [Group] = []
     
+    let worksheetManager = WorkSheetManager.sharedManager
+    
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
     @IBOutlet weak var messageLabel: UILabel?
@@ -33,13 +35,13 @@ final class SheetViewController : UIViewController {
         
         // Do any additional setup after loading the view.
         //REMARK: テストデータ
-        loadTestData()
-        
+//        loadTestData()
+
      }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        insertWorkSheetAferloadLoaclWorkSheet()
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,36 +62,42 @@ final class SheetViewController : UIViewController {
         alert.addTextField { (textfield : UITextField) in
             textfield.placeholder = "YYYYMM"
         }
-        
+
         alert.addAction(UIAlertAction(title: "Cancel",
                                       style: .cancel,
                                       handler:nil))
         
-        alert.addAction(UIAlertAction(title: "OK",
-                                      style: .default,
-                                      handler:{
-                                        (action:UIAlertAction!) -> Void in
-                                        print("OK")
-                                        
-                                        let textFields:Array<UITextField>? =  alert.textFields as Array<UITextField>?
-                                        if textFields != nil {
-                                            for textField:UITextField in textFields! {
-                                                
-                                                //TODO: 6桁数字なのかをチェック
-                                                
-                                                
-                                                //let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet("201711")
-                                                
-                                                guard let yyyymm = textField.text else {
-                                                    return
-                                                }
-                                                let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet(yyyymm)
-                                                
-                                                //TODO: 生成されたmodelをjson形式で保存
-                                            }
-                                        }
-                                        
-        }))
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            print("OK")
+
+            let textFields:Array<UITextField>? =  alert.textFields as Array<UITextField>?
+            if textFields != nil {
+                for textField:UITextField in textFields! {
+                    //TODO: 6桁数字なのかをチェック
+                    if textField.text?.count != 6 {
+                        let alert = UIAlertController(title:"勤務表追加失敗",
+                                                      message: "YYYYMMの形式で入力してください。",
+                                                      preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK",
+                                                      style: .cancel) { action in
+                            })
+                        self.present(alert, animated: true, completion: nil)
+                    } else {
+                        guard let yyyymm = textField.text else {
+                            return
+                        }
+                        let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet(yyyymm)
+                        
+                        //TODO: 生成されたmodelをjson形式で保存
+                        if let testWorkSheet = test_worksheet {
+                            self.worksheetManager.saveLocalWorkSheet(yyyymm, workSheet: testWorkSheet)
+                        }
+                        self.insertWorkSheetAferloadLoaclWorkSheet()
+                        
+                    }
+                }
+            }
+        })
         
         self.present(alert, animated: true, completion: nil)
         
@@ -123,26 +131,39 @@ final class SheetViewController : UIViewController {
         self.navigationItem.rightBarButtonItems = [addButton]
     }
     
-    private func loadTestData() {
-        for i in 0..<10 {
-            guard let year_month = Date.createDate(year: 2017, month: i+1) else {
-                continue
-            }
-            var work_sheet = WorkSheet(date:year_month)
-            work_sheet.workDaySum = 10 + Int(arc4random()%10)
-            work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
-            for j in 0..<31 {
-                let work_sheet_item = WorkSheetItem(year: 2017, month:i, day:j)
-                work_sheet.items?.append(work_sheet_item)
-            }
-            workSheets.append(work_sheet)
-        }
-    }
+//    private func loadTestData() {
+//        for i in 0..<10 {
+//            guard let year_month = Date.createDate(year: 2017, month: i+1) else {
+//                continue
+//            }
+//            var work_sheet = WorkSheet(date:year_month)
+//            work_sheet.workDaySum = 10 + Int(arc4random()%10)
+//            work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
+//            for j in 0..<31 {
+//                let work_sheet_item = WorkSheetItem(year: 2017, month:i, day:j)
+//                work_sheet.items?.append(work_sheet_item)
+//            }
+//            workSheets.append(work_sheet)
+//        }
+//    }
     
     private func emptyMessage(_ on: Bool) {
         messageLabel?.isHidden = !on
         sheetTableView?.backgroundView = on ? messageLabel : nil;
         sheetTableView?.separatorStyle = on ? .none : .singleLine;
+    }
+    
+    private func insertWorkSheetAferloadLoaclWorkSheet() {
+        workSheets.removeAll()
+        worksheetManager.loadLocalWorkSheets()
+        let workSheetDict = worksheetManager.worksheetDict
+        for dictValue in workSheetDict.values {
+            if let dictValue = dictValue as? [String: Any] {
+                let workSheet = WorkSheet(dict: dictValue)
+                workSheets.append(workSheet)
+            }
+        }
+        sheetTableView?.reloadData()
     }
 }
 
