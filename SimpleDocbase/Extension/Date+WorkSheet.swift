@@ -125,6 +125,18 @@ extension Date  {
         return dateInt
     }
     
+    func yearMonthKey() -> String? {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "yyyyMM"
+        let dateString = dateFormater.string(from: self)
+        print(dateString)
+        
+        return dateString
+    }
+    // TEST
+    
     func hourMinuteString() -> String {
         
         let dateFormater = DateFormatter()
@@ -174,6 +186,21 @@ extension Date  {
         return date
         
     }
+    
+    //TEST:
+    static func createDate(yyyymm: String) -> Date? {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "yyyyMM"
+        guard let date = dateFormater.date(from: yyyymm) else {
+            return nil
+        }
+        let addOneDay = Calendar.current.date(byAdding: .day, value: 1, to: date)
+        return addOneDay
+        
+    }
+    // TEST
     
     static func createDate(year: Int, month: Int, day: Int) -> Date? {
         

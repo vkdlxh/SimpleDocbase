@@ -46,7 +46,9 @@ class WorkSheetManager: NSObject {
         let year = Int(yearString)!
         let month = Int(monthString)!
 
-        let workDate = Date.createDate(year: year, month: month)
+//        let workDate = Date.createDate(year: year, month: month)
+        
+        let workDate = Date.createDate(yyyymm: yyyymm)
         
         guard let work_date = workDate else {
             return nil
@@ -104,23 +106,23 @@ class WorkSheetManager: NSObject {
         saveToJsonFile(jsonKeyMonth, workSheetDict: workSheetDict)
     }
     
-    internal func removeLocalWorkSheet() {
+    internal func removeLocalWorkSheet(yearMonth: String) {
         //TODO: 削除、存在しなければ無視
-        let fileManager = FileManager.default
+        worksheetDict.removeValue(forKey: yearMonth)
+        
         guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
         let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName + ".json")
-        let fileUrlPath = fileUrl.path
         
         do {
-            if(FileManager.default.fileExists(atPath: fileUrlPath)) {
-                print("file exists.")
-                try fileManager.removeItem(atPath: fileUrlPath)
-            } else {
-                print("file not exists.")
-            }
+            let data = try JSONSerialization.data(withJSONObject: worksheetDict, options: [])
+            try data.write(to: fileUrl, options: [])
         } catch {
-            print("could not remove file.")
+            print(error)
         }
+        
+        print("Delete WorkSheet \(yearMonth)")
+        
     }
     
     //MARK: Internal - Request

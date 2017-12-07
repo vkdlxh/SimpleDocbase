@@ -86,6 +86,8 @@ final class SheetViewController : UIViewController {
                         guard let yyyymm = textField.text else {
                             return
                         }
+                        
+                        
                         let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet(yyyymm)
                         
                         //TODO: 生成されたmodelをjson形式で保存
@@ -154,13 +156,27 @@ final class SheetViewController : UIViewController {
             guard let secondWorkSheet = secondWorkSheet.workdate?.MonthInt() else {
                 return false
             }
-            
             return firstWorkSheet < secondWorkSheet
-            
         }
-        
         sheetTableView?.reloadData()
     }
+    
+    private func deleteWorkSheetAlert(completion: @escaping (Bool) -> ()) {
+        let deleteWorkSheetAC = UIAlertController(title: "勤務表削除", message: "本当に勤務表を削除しますか？", preferredStyle: .alert)
+        let deleteButton = UIAlertAction(title: "削除", style: .default) { action in
+            completion(true)
+            print("tapped WorkSheet delete Button")
+        }
+        let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel) { action in
+            completion(false)
+            print("tapped WorkSheet cancel Button")
+        }
+        
+        deleteWorkSheetAC.addAction(deleteButton)
+        deleteWorkSheetAC.addAction(cancelButton)
+        present(deleteWorkSheetAC, animated: true, completion: nil)
+    }
+    
 }
 
 
@@ -181,9 +197,26 @@ extension SheetViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
-            self.workSheets.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            //TODO: 勤務表削除アラート
+            self.deleteWorkSheetAlert { check in
+                if check == true {
+                    
+                    //TODO: delete worksheet in jsonfile
+                    let selectedWorkSheet = self.workSheets[indexPath.row]
+                    
+                    if let key = selectedWorkSheet.workdate?.yearMonthKey() {
+                        self.worksheetManager.removeLocalWorkSheet(yearMonth: key)
+                        self.workSheets.remove(at: indexPath.row)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        self.insertWorkSheetAferloadLoaclWorkSheet()
+                    }
+                } else {
+                    tableView.setEditing(false, animated: true)
+                }
+            }
         }
+        
         deleteButton.backgroundColor = UIColor.red
         
         return [deleteButton]
