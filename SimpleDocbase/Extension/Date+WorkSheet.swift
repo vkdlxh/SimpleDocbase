@@ -111,6 +111,20 @@ extension Date  {
         return dateString
     }
     
+    //TODO: TEST
+    func MonthInt() -> Int? {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "MM"
+        let dateString = dateFormater.string(from: self)
+        guard let dateInt = Int(dateString) else {
+            return nil
+        }
+        
+        return dateInt
+    }
+    
     func hourMinuteString() -> String {
         
         let dateFormater = DateFormatter()

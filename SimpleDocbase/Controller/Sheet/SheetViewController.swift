@@ -131,22 +131,6 @@ final class SheetViewController : UIViewController {
         self.navigationItem.rightBarButtonItems = [addButton]
     }
     
-//    private func loadTestData() {
-//        for i in 0..<10 {
-//            guard let year_month = Date.createDate(year: 2017, month: i+1) else {
-//                continue
-//            }
-//            var work_sheet = WorkSheet(date:year_month)
-//            work_sheet.workDaySum = 10 + Int(arc4random()%10)
-//            work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
-//            for j in 0..<31 {
-//                let work_sheet_item = WorkSheetItem(year: 2017, month:i, day:j)
-//                work_sheet.items?.append(work_sheet_item)
-//            }
-//            workSheets.append(work_sheet)
-//        }
-//    }
-    
     private func emptyMessage(_ on: Bool) {
         messageLabel?.isHidden = !on
         sheetTableView?.backgroundView = on ? messageLabel : nil;
@@ -163,6 +147,18 @@ final class SheetViewController : UIViewController {
                 workSheets.append(workSheet)
             }
         }
+        workSheets.sort { firstWorkSheet, secondWorkSheet -> Bool in
+            guard let firstWorkSheet = firstWorkSheet.workdate?.MonthInt() else {
+                return false
+            }
+            guard let secondWorkSheet = secondWorkSheet.workdate?.MonthInt() else {
+                return false
+            }
+            
+            return firstWorkSheet < secondWorkSheet
+            
+        }
+        
         sheetTableView?.reloadData()
     }
 }

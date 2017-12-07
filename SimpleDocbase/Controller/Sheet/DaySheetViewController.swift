@@ -29,16 +29,6 @@ final class DaySheetViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initControls()
-        
-        // Test
-        loadTestData()
-        let workMG = WorkSheetManager.sharedManager
-        guard let yearmonth = workDate?.yearMonthString() else {
-            return
-        }
-        if let testWorkSheet = testArary.first {
-            workMG.saveLocalWorkSheet(yearmonth, workSheet: testWorkSheet)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
