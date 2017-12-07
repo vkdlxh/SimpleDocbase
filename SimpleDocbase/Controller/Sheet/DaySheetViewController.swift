@@ -51,7 +51,7 @@ final class DaySheetViewController : UIViewController {
         let worksheetManager = WorkSheetManager.sharedManager
 //        worksheetManager.loadLocalWorkSheets()
         let worksheetDict = worksheetManager.worksheetDict
-        guard let yearmonth = workDate?.yearMonthString() else {
+        guard let yearmonth = workDate?.yearMonthKey() else {
             return
         }
         
