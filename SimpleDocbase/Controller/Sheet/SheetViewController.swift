@@ -115,8 +115,9 @@ final class SheetViewController : UIViewController {
         if segue.identifier == "GoDetailWorkSheetSegue" {
             if let destination = segue.destination as? DaySheetViewController {
                 if let selectedWorkSheet = selectedWorkSheet {
-                    destination.workDate = selectedWorkSheet.workdate
-                    destination.sheetItems = selectedWorkSheet.items
+                    if let yearMonth = selectedWorkSheet.workdate?.yearMonthKey() {
+                        destination.yearMonth = yearMonth
+                    }
                     destination.groups = groups
                 }
             }

@@ -125,6 +125,14 @@ class WorkSheetManager: NSObject {
         
     }
     
+    func findWorkSheetFromWorkSheetDict(yearMonth: String) -> WorkSheet? {
+        guard let workSheetValue = worksheetDict[yearMonth] as? [String: Any] else {
+            return nil
+        }
+        let workSheet = WorkSheet(dict: workSheetValue)
+        return workSheet
+    }
+    
     //MARK: Internal - Request
     internal func uploadWorkSheet(domain: String, month: String, groupId: Int, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         //TODO: Docbaseへアップロード
