@@ -1,33 +1,28 @@
-## SimpleDocbase アプリ概要
-Docbase APIを利用して自分のグループが閲覧できて、投稿ができる簡易アプリ
+# SimpleDocbase
 
-## 概要
-- 自分が所属しているグループが表示できること
-- 勤怠管理ができること（これはあとで実装します。）
+SimpleDocbaseは[Docbasse](https://docbase.io/)リダー及び勤怠を入力できるようにSwiftで作られたアプリです。
 
-## 画面構成
-- グループリスト画面
-    - メモリスト（削除）
-        - 投稿詳細(編集、削除)
-- メモ投稿画面(Modal)
-- 勤怠管理画面
-- 設定画面
-    - Token登録 
-    - 勤怠管理グループ登録
-    - 所属チーム情報
-    - バージョン情報
+## Features
 
-## 実装の時必要なスキル
-- タイムライン画面
-    - Docbase API利用する (Request処理)
-- メモ投稿画面(Modal)
-     - 作成途中の内容をアプリ内のdocumentの保存する
-- 勤怠管理画面 **（あとで実装します。）**
-- 設定画面
-    - 設定情報はUserDefaultを利用し保存する
+* グループ、勤務表、設定の３つの画面に構成されています。
+* グループ投稿、コメントを閲覧できます。
+* 勤務表を作成し、Docbaseへアップロード（Markdown形式）できます。
+* 使われた[Docbasse API](https://help.docbase.io/posts/45703).
 
-## 画面構成
+## Getting Started
 
-- UITabBarController基盤で作成してください。
-- 各Top画面はUINavigationViewControllerで作成してください。
-- 画面パーツはできるだけ、基本UIを使ってください。
+1. `git clone https://github.com/vkdlxh/SimpleDocbase.git`
+2. `cd SimpleDocbase`
+3. `pod install` (requires [CocoaPods](https://cocoapods.org))
+4. Open `SimpleDocbase.xcworkspace` in Xcode 9.0 or higher.
+
+## Screenshots
+
+![Group View](Resources/screenshot1.png)
+![Worksheet View](Resources/screenshot2.png)
+![DayWorksheet View](Resources/screenshot3.png)
+![Setting View](Resources/screenshot4.png)
+
+## License
+
+[MIT](LICENSE)
