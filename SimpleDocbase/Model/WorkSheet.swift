@@ -183,12 +183,20 @@ struct WorkSheetItem {
             self.week = week
         }
         
-        if let beginTime = dict["beginTime"] as? Date {
-            self.beginTime = beginTime
+//        if let beginTime = dict["beginTime"] as? Date {
+//            self.beginTime = beginTime
+//        }
+//
+//        if let endTime = dict["endTime"] as? Date {
+//            self.endTime = endTime
+//        }
+        
+        if let beginTime = dict["beginTime"] as? String {
+            self.beginTime = beginTime.stringDate()
         }
         
-        if let endTime = dict["endTime"] as? Date {
-            self.endTime = endTime
+        if let endTime = dict["endTime"] as? String {
+            self.endTime = endTime.stringDate()
         }
         
         if let breakTime = dict["breakTime"] as? Double {

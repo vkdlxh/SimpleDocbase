@@ -119,27 +119,31 @@ class DaySheetEditViewController: FormViewController {
         let instance = StaticTextFormItem()
         instance.title = "勤務時間"
         
-        let calendar = NSCalendar.current
-        
-        guard let begin_time = worksheetItem?.beginTime else {
+//        let calendar = NSCalendar.current
+//
+//        guard let begin_time = worksheetItem?.beginTime else {
+//            return instance
+//        }
+//
+//        guard let end_tiem = worksheetItem?.endTime else {
+//            return instance
+//        }
+//
+//        let comps = calendar.dateComponents([.hour, .minute], from: begin_time, to: end_tiem)
+//
+//        guard let hour = comps.hour else {
+//            return instance
+//        }
+//        guard let minute = comps.minute else {
+//            return instance
+//        }
+//
+//        let duration = (Double(hour) + Double(minute/60)) - (worksheetItem?.breakTime ?? 0)
+//        instance.value = String(format:"%.2f",duration)
+        guard let duration = worksheetItem?.duration else {
             return instance
         }
-        
-        guard let end_tiem = worksheetItem?.endTime else {
-            return instance
-        }
-        
-        let comps = calendar.dateComponents([.hour, .minute], from: begin_time, to: end_tiem)
-        
-        guard let hour = comps.hour else {
-            return instance
-        }
-        guard let minute = comps.minute else {
-            return instance
-        }
-        
-        let duration = (Double(hour) + Double(minute/60)) - (worksheetItem?.breakTime ?? 0)
-        instance.value = String(format:"%.2f",duration)
+        instance.value = String(format:"%.2f", duration)
         
         return instance
     }()
@@ -188,19 +192,13 @@ class DaySheetEditViewController: FormViewController {
         
         print("\n\(workFlagSwitch.value),\n\(beginTimePicker.value.hourMinuteString()),\n\(endTimePicker.value.hourMinuteString()),\n\(breakTimePicker.value.hourMinuteString()),\n\(durationText.value),\n\(remarkTextView.value)")
         
-//        workFlagSwitch.value
-//        beginTimePicker.value
-//        endTimePicker.value
-//        breakTimePicker.value
-//        durationText.value
-//        remarkTextView.value
-        
         //update worksheet item
         worksheetItem?.workFlag = workFlagSwitch.value
         worksheetItem?.beginTime = beginTimePicker.value
         worksheetItem?.endTime = endTimePicker.value
         worksheetItem?.breakTime = breakTimePicker.value.duration()
         worksheetItem?.remark = remarkTextView.value
+        worksheetItem?.duration = Double(durationText.value)
         
         print(worksheetItem)
         

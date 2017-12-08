@@ -31,6 +31,7 @@
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
 		DA4EE3F51FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4EE3F41FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift */; };
 		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
+		DA6043DB1FDA80000073AFE2 /* String+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */; };
 		DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */; };
 		DA6608B71FC6F8E4007ADFBE /* DetailMemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */; };
 		DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */; };
@@ -88,6 +89,7 @@
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA4EE3F41FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterWorkSheetViewController.swift; sourceTree = "<group>"; };
 		DA5099231FBED26B005052F2 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WorkSheet.swift"; sourceTree = "<group>"; };
 		DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTeamViewController.swift; sourceTree = "<group>"; };
 		DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoCell.swift; sourceTree = "<group>"; };
 		DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */,
+				DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */,
 				DA1490041FC403D1001E0159 /* ColorRGB.swift */,
 				DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */,
 			);
@@ -478,6 +481,7 @@
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
 				DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */,
+				DA6043DB1FDA80000073AFE2 /* String+WorkSheet.swift in Sources */,
 				DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */,
 				40D9E4751FC91A99003B353F /* DaySheetEditViewController.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,

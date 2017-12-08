@@ -48,8 +48,11 @@ class WorkSheetItemCell: UITableViewCell {
         endTimeLabel.text = sheetItem.endTime?.hourMinuteString()
         breakTimeLabel.text =  String(format: "%.1f", sheetItem.breakTime ?? 0)
         
-        if let bt = sheetItem.beginTime, let et = sheetItem.endTime {
-            workTimeLabel.text = Date.hourString(begin: bt, end: et)
+//        if let bt = sheetItem.beginTime, let et = sheetItem.endTime {
+//            workTimeLabel.text = Date.hourString(begin: bt, end: et)
+//        }
+        if let duration = sheetItem.duration {
+            workTimeLabel.text = String(format: "%.1f", duration)
         }
         
         remarkLabel.text = sheetItem.remark
