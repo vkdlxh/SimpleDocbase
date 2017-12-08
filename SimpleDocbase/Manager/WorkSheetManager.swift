@@ -133,6 +133,27 @@ class WorkSheetManager: NSObject {
         return workSheet
     }
     
+    func saveSheetItem(yearMonth: String, sheetItems: [WorkSheetItem]) {   
+        if var workSheet = findWorkSheetFromWorkSheetDict(yearMonth: yearMonth) {
+            var workSheetItems = workSheet.items
+            workSheetItems?.removeAll()
+            workSheetItems = sheetItems
+            
+            workSheetItems?.sort(by: { firstItem, secondItem -> Bool in
+                guard let firstItemDay = firstItem.workDay else {
+                    return false
+                }
+                guard let secondItemDay = secondItem.workDay else {
+                    return false
+                }
+               return firstItemDay  < secondItemDay
+            })
+            workSheet.items = workSheetItems
+            
+            saveLocalWorkSheet(yearMonth, workSheet: workSheet)
+        }
+    }
+    
     //MARK: Internal - Request
     internal func uploadWorkSheet(domain: String, month: String, groupId: Int, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         //TODO: Docbaseへアップロード

@@ -12,11 +12,14 @@ import SwiftyFORM
 class DaySheetEditViewController: FormViewController {
 
     internal var worksheetItem : WorkSheetItem?
+    var workSheetmanager = WorkSheetManager.sharedManager
+    var yearMonth: String = ""
+    var sheetItems: [WorkSheetItem]?
     
     override func populate(_ builder: FormBuilder) {
         
-        if let year = worksheetItem?.workYear, let month = worksheetItem?.workMonth  {
-            builder.navigationTitle = String(format: "%04d.%02d", year, month)
+        if let year = worksheetItem?.workYear, let month = worksheetItem?.workMonth, let day = worksheetItem?.workDay  {
+            builder.navigationTitle = String(format: "%04d.%02d.%02d", year, month, day)
         }
         builder += SectionHeaderTitleFormItem().title("勤務設定")
         builder += workFlagSwitch
@@ -203,9 +206,12 @@ class DaySheetEditViewController: FormViewController {
         
         //TODO: 保存処理をする
         //保存処理を実装してください。
-        
-        
-        
+        if let worksheetItem = worksheetItem {
+            if var sheetItems = sheetItems {
+                sheetItems.append(worksheetItem)
+                workSheetmanager.saveSheetItem(yearMonth: yearMonth, sheetItems: sheetItems)
+            }
+        }
         self.navigationController?.popViewController(animated: true)
     }
     

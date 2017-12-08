@@ -138,6 +138,10 @@ extension DaySheetViewController : UITableViewDelegate {
         let editVC = DaySheetEditViewController()
         let sheetItem = sheetItems?[indexPath.row]
         editVC.worksheetItem = sheetItem
+        // TEST
+        sheetItems?.remove(at: indexPath.row)
+        editVC.sheetItems = sheetItems
+        editVC.yearMonth = self.yearMonth
         
         navigationController?.pushViewController(editVC, animated: true)
     }
