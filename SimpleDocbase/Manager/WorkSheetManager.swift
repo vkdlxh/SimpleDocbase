@@ -55,21 +55,16 @@ class WorkSheetManager: NSObject {
         }
         
         var work_sheet = WorkSheet(date:work_date)
-        work_sheet.workDaySum = 10 + Int(arc4random()%10)
-        work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
-        var items = [WorkSheetItem]()
+        var items: [WorkSheetItem] = []
         for day in 1...work_date.lastDay() {
             var work_sheet_item = WorkSheetItem(year: year, month:month, day:day)
             work_sheet_item.beginTime = nil//Date()
             work_sheet_item.endTime = nil//Date()
             work_sheet_item.breakTime = 1.0
-            work_sheet_item.duration = 8.0
+//            work_sheet_item.duration = 8.0
             work_sheet_item.remark = ""
-            work_sheet_item.week = work_date.weekDay()
-            work_sheet_item.workFlag = !work_date.isHoliday()
             items.append(work_sheet_item)
         }
-        
         work_sheet.items = items
         
         return work_sheet
@@ -149,6 +144,16 @@ class WorkSheetManager: NSObject {
                return firstItemDay  < secondItemDay
             })
             workSheet.items = workSheetItems
+            
+            let workTimeSum = workSheetItems?.filter { $0.workFlag == true }.reduce(0) { (sum: Double , item) in
+                guard let duration = item.duration else {
+                    return sum
+                }
+                return sum + duration
+            }
+            workSheet.workTimeSum = workTimeSum
+            let workDaySum = workSheetItems?.filter { $0.workFlag == true }.count
+            workSheet.workDaySum = workDaySum
             
             saveLocalWorkSheet(yearMonth, workSheet: workSheet)
         }

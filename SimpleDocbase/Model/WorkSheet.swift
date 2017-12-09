@@ -33,20 +33,9 @@ struct WorkSheet {
     }
     
     init(dict: Dictionary<String, Any>) {
-        
-//        if let workdate = dict["workdata"] as? Date {
-//            self.workdate = workdate
-//        }
-        
-        if let workdate = dict["workdata"] as? String {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
-            let date = dateFormatter.date(from:workdate)!
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
-            let finalDate = calendar.date(from:components)
-            
-            self.workdate = finalDate
+
+        if let workdate = dict["workdata"] as? String {       
+            self.workdate = workdate.stringDate()
         }
         
         if let workTimeSum = dict["workTimeSum"] as? Double {
@@ -182,14 +171,6 @@ struct WorkSheetItem {
         if let week = dict["week"] as? Int {
             self.week = week
         }
-        
-//        if let beginTime = dict["beginTime"] as? Date {
-//            self.beginTime = beginTime
-//        }
-//
-//        if let endTime = dict["endTime"] as? Date {
-//            self.endTime = endTime
-//        }
         
         if let beginTime = dict["beginTime"] as? String {
             self.beginTime = beginTime.stringDate()

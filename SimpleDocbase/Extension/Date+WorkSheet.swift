@@ -209,7 +209,11 @@ extension Date  {
         let dateFormater = DateFormatter()
         dateFormater.locale = Locale(identifier: "ja_JP")
         dateFormater.dateFormat = "yyyyMMdd"
-        let date = dateFormater.date(from: dateStr)
+        guard let date = dateFormater.date(from: dateStr) else {
+            return nil
+        }
+//        let addOneDay = Calendar.current.date(byAdding: .day, value: 1, to: date)
+//        return addOneDay
         return date
         
     }

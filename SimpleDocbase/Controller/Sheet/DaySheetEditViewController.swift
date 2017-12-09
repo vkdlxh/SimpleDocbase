@@ -38,6 +38,7 @@ class DaySheetEditViewController: FormViewController {
         instance.title = "開始時間"
         instance.datePickerMode = .time
         instance.minuteInterval = 30
+        instance.locale = Locale(identifier: "en_GB")
         instance.behavior = .collapsed
         
         if let begin_time = worksheetItem?.beginTime {
@@ -59,6 +60,7 @@ class DaySheetEditViewController: FormViewController {
         instance.title = "終了時間"
         instance.datePickerMode = .time
         instance.minuteInterval = 30
+        instance.locale = Locale(identifier: "en_GB")
         instance.behavior = .collapsed
         
         if let end_time = worksheetItem?.endTime {
@@ -95,6 +97,7 @@ class DaySheetEditViewController: FormViewController {
         instance.behavior = .collapsed
         instance.minimumDate = Date(timeIntervalSince1970: 0)
         instance.minuteInterval = 30
+        instance.locale = Locale(identifier: "en_GB")
         
         if let break_time = worksheetItem?.breakTime {
             let hour = Int(floor(break_time))
@@ -234,7 +237,6 @@ class DaySheetEditViewController: FormViewController {
         
         let duration = (Double(hour) + Double(minute/60)) - (worksheetItem?.breakTime ?? 0)
         durationText.value = String(format:"%.2f",duration)
-        
     }
     
 }

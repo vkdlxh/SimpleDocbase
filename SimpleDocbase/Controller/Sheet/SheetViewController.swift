@@ -14,7 +14,6 @@ final class SheetViewController : UIViewController {
     var workSheets = [WorkSheet]()
     var selectedWorkSheet : WorkSheet?
     var groups: [Group] = []
-    
     let worksheetManager = WorkSheetManager.sharedManager
     
     // MARK: IBOutlets
@@ -87,8 +86,7 @@ final class SheetViewController : UIViewController {
                             return
                         }
                         
-                        
-                        let test_worksheet = WorkSheetManager.sharedManager.createWorkSheet(yyyymm)
+                        let test_worksheet = self.worksheetManager.createWorkSheet(yyyymm)
                         
                         //TODO: 生成されたmodelをjson形式で保存
                         if let testWorkSheet = test_worksheet {
