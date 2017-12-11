@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 final class DaySheetViewController : UIViewController {
     
@@ -54,9 +55,13 @@ final class DaySheetViewController : UIViewController {
             uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
             uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default) { action in
                 // Test
+                SVProgressHUD.show(withStatus: "アップロード中")
                 if let groupid = self.groupId {
                     self.workSheetManager.uploadWorkSheet(domain: self.domain, month: self.yearMonth, groupId: groupid, dict: worksheetDict) { result in
                         self.checkUploadSuccessAlert(result: result)
+                        DispatchQueue.main.async {
+                            SVProgressHUD.dismiss()
+                        }
                     }
                 }
             })

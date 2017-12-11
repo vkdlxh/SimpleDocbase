@@ -21,6 +21,7 @@ class SettingViewController: FormViewController {
         builder += tokenKeyViewControllerForm
         builder += SectionHeaderTitleFormItem().title("OPTION")
         builder += groupListPiker
+        builder += minuteIntervalSetting
         builder += teamNameTextForm
         builder += SectionHeaderTitleFormItem().title("APP INFO")
         builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
@@ -67,6 +68,27 @@ class SettingViewController: FormViewController {
         return instance
     }()
     
+    lazy var minuteIntervalSetting: SegmentedControlFormItem = {
+        let instance = SegmentedControlFormItem()
+        instance.title = "minuteInterval"
+        instance.items = ["15","30"]
+        
+        if let minuteInterval = userDefaults.object(forKey: "minuteInterval") as? String {
+            if let selectedItemIndex = instance.items.index(where: { $0 == minuteInterval }) {
+                instance.selected = selectedItemIndex
+            }
+        } else {
+            // Default Interval = 30 min
+            userDefaults.set("30", forKey: "minuteInterval")
+            instance.selected = 1
+        }
+        instance.valueDidChangeBlock = { [weak self] _ in
+            self?.updateIntervalTime()
+        }
+        
+        return instance
+    }()
+    
     func updateForm() {
         
         if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
@@ -98,7 +120,11 @@ class SettingViewController: FormViewController {
         } else {
             picker.options.removeAll()
         }
-
+    }
+    
+    func updateIntervalTime() {
+        userDefaults.set(minuteIntervalSetting.selectedItem, forKey: "minuteInterval")
+        print("Changed IntervalTime \(String(describing: minuteIntervalSetting.selectedItem))")
     }
 
 }

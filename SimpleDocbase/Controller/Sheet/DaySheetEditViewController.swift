@@ -12,12 +12,13 @@ import SwiftyFORM
 class DaySheetEditViewController: FormViewController {
 
     internal var worksheetItem : WorkSheetItem?
-    var workSheetmanager = WorkSheetManager.sharedManager
+    let workSheetmanager = WorkSheetManager.sharedManager
     var yearMonth: String = ""
     var sheetItems: [WorkSheetItem]?
+    var intervalTime: Int = 30
     
     override func populate(_ builder: FormBuilder) {
-        
+        getIntervalTime()
         if let year = worksheetItem?.workYear, let month = worksheetItem?.workMonth, let day = worksheetItem?.workDay  {
             builder.navigationTitle = String(format: "%04d.%02d.%02d", year, month, day)
         }
@@ -37,7 +38,7 @@ class DaySheetEditViewController: FormViewController {
         let instance = DatePickerFormItem()
         instance.title = "開始時間"
         instance.datePickerMode = .time
-        instance.minuteInterval = 30
+        instance.minuteInterval = intervalTime
         instance.locale = Locale(identifier: "en_GB")
         instance.behavior = .collapsed
         
@@ -59,7 +60,7 @@ class DaySheetEditViewController: FormViewController {
         let instance = DatePickerFormItem()
         instance.title = "終了時間"
         instance.datePickerMode = .time
-        instance.minuteInterval = 30
+        instance.minuteInterval = intervalTime
         instance.locale = Locale(identifier: "en_GB")
         instance.behavior = .collapsed
         
@@ -96,7 +97,7 @@ class DaySheetEditViewController: FormViewController {
         instance.datePickerMode = .time
         instance.behavior = .collapsed
         instance.minimumDate = Date(timeIntervalSince1970: 0)
-        instance.minuteInterval = 30
+        instance.minuteInterval = intervalTime
         instance.locale = Locale(identifier: "en_GB")
         
         if let break_time = worksheetItem?.breakTime {
@@ -237,6 +238,12 @@ class DaySheetEditViewController: FormViewController {
         
         let duration = (Double(hour) + Double(minute/60)) - (worksheetItem?.breakTime ?? 0)
         durationText.value = String(format:"%.2f",duration)
+    }
+    
+    private func getIntervalTime() {
+        if let intervalTime = UserDefaults.standard.object(forKey: "minuteInterval") as? String {
+            self.intervalTime = Int(intervalTime)!
+        }
     }
     
 }
