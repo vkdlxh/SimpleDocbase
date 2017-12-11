@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Xo-3S-ZSe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9Xo-3S-ZSe">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,9 +56,17 @@
                                     <outlet property="delegate" destination="Vp1-qw-AuF" id="Zhs-Eb-iH7"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データがありません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-t5-hxn">
+                                <rect key="frame" x="100" y="323" width="173.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QX2-t5-hxn" firstAttribute="centerY" secondItem="fBk-CM-ufW" secondAttribute="centerY" id="BMM-ng-RLJ"/>
+                            <constraint firstItem="QX2-t5-hxn" firstAttribute="centerX" secondItem="fBk-CM-ufW" secondAttribute="centerX" id="S46-5N-IO2"/>
                             <constraint firstItem="hZl-RH-6l6" firstAttribute="top" secondItem="fGB-ye-2I0" secondAttribute="top" id="UOA-o3-g3W"/>
                             <constraint firstItem="hZl-RH-6l6" firstAttribute="leading" secondItem="fGB-ye-2I0" secondAttribute="leading" id="W1Q-wi-xj3"/>
                             <constraint firstItem="fGB-ye-2I0" firstAttribute="trailing" secondItem="hZl-RH-6l6" secondAttribute="trailing" id="WNL-0E-B2b"/>
@@ -67,6 +76,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="グループ" id="IiZ-jL-kSl"/>
                     <connections>
+                        <outlet property="messageLabel" destination="QX2-t5-hxn" id="X28-Bi-hVB"/>
                         <outlet property="tableView" destination="hZl-RH-6l6" id="vLh-iS-kY4"/>
                         <segue destination="D05-NG-W8N" kind="show" identifier="GoMemoListSegue" id="eTs-91-vtY"/>
                         <segue destination="RNf-6k-whU" kind="show" identifier="GoChangeTeam" id="Sr1-vy-Vx1"/>

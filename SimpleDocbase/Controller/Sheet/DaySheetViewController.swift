@@ -52,7 +52,7 @@ final class DaySheetViewController : UIViewController {
             uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
             
         } else {
-            uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
+            uploadAlertVC = UIAlertController(title: group!, message: "勤務表を上記のグループへ登録しますか。", preferredStyle: .alert)
             uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default) { action in
                 // Test
                 SVProgressHUD.show(withStatus: "アップロード中")
