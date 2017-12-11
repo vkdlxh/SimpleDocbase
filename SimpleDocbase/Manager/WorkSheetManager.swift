@@ -134,7 +134,7 @@ class WorkSheetManager: NSObject {
             workSheetItems?.removeAll()
             workSheetItems = sheetItems
             
-            workSheetItems?.sort(by: { firstItem, secondItem -> Bool in
+            workSheetItems?.sort { firstItem, secondItem in
                 guard let firstItemDay = firstItem.workDay else {
                     return false
                 }
@@ -142,7 +142,7 @@ class WorkSheetManager: NSObject {
                     return false
                 }
                return firstItemDay  < secondItemDay
-            })
+            }
             workSheet.items = workSheetItems
             
             let workTimeSum = workSheetItems?.filter { $0.workFlag == true }.reduce(0) { (sum: Double , item) in

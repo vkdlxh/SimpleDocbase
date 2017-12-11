@@ -83,17 +83,16 @@ struct WorkSheet {
     }
     
     private func convertworkSheetItemTodictionary(_ items: [WorkSheetItem]) -> [[String: Any]] {
-        
-        var resultItem: [String: Any] = [:]
         var resultItems: [[String: Any]] = []
         
         for item in items {
+            var resultItem: [String: Any] = [:]
+            
             if let workYear = item.workYear {
                 resultItem["workYear"] = workYear
             }
             
             if let workMonth = item.workMonth {
-                
                 resultItem["workMonth"] = workMonth
             }
             
