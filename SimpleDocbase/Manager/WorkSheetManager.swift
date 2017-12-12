@@ -46,28 +46,25 @@ class WorkSheetManager: NSObject {
         let year = Int(yearString)!
         let month = Int(monthString)!
 
-        let workDate = Date.createDate(year: year, month: month)
+//        let workDate = Date.createDate(year: year, month: month)
+        
+        let workDate = Date.createDate(yyyymm: yyyymm)
         
         guard let work_date = workDate else {
             return nil
         }
         
         var work_sheet = WorkSheet(date:work_date)
-        work_sheet.workDaySum = 10 + Int(arc4random()%10)
-        work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
-        var items = [WorkSheetItem]()
+        var items: [WorkSheetItem] = []
         for day in 1...work_date.lastDay() {
             var work_sheet_item = WorkSheetItem(year: year, month:month, day:day)
             work_sheet_item.beginTime = nil//Date()
             work_sheet_item.endTime = nil//Date()
             work_sheet_item.breakTime = 1.0
-            work_sheet_item.duration = 8.0
+//            work_sheet_item.duration = 8.0
             work_sheet_item.remark = ""
-            work_sheet_item.week = work_date.weekDay()
-            work_sheet_item.workFlag = !work_date.isHoliday()
             items.append(work_sheet_item)
         }
-        
         work_sheet.items = items
         
         return work_sheet
@@ -104,22 +101,61 @@ class WorkSheetManager: NSObject {
         saveToJsonFile(jsonKeyMonth, workSheetDict: workSheetDict)
     }
     
-    internal func removeLocalWorkSheet() {
+    internal func removeLocalWorkSheet(yearMonth: String) {
         //TODO: 削除、存在しなければ無視
-        let fileManager = FileManager.default
+        worksheetDict.removeValue(forKey: yearMonth)
+        
         guard let documentDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
         let fileUrl = documentDirectoryUrl.appendingPathComponent(fileName + ".json")
-        let fileUrlPath = fileUrl.path
         
         do {
-            if(FileManager.default.fileExists(atPath: fileUrlPath)) {
-                print("file exists.")
-                try fileManager.removeItem(atPath: fileUrlPath)
-            } else {
-                print("file not exists.")
-            }
+            let data = try JSONSerialization.data(withJSONObject: worksheetDict, options: [])
+            try data.write(to: fileUrl, options: [])
         } catch {
-            print("could not remove file.")
+            print(error)
+        }
+        
+        print("Delete WorkSheet \(yearMonth)")
+        
+    }
+    
+    func findWorkSheetFromWorkSheetDict(yearMonth: String) -> WorkSheet? {
+        guard let workSheetValue = worksheetDict[yearMonth] as? [String: Any] else {
+            return nil
+        }
+        let workSheet = WorkSheet(dict: workSheetValue)
+        return workSheet
+    }
+    
+    func saveSheetItem(yearMonth: String, sheetItems: [WorkSheetItem]) {   
+        if var workSheet = findWorkSheetFromWorkSheetDict(yearMonth: yearMonth) {
+            var workSheetItems = workSheet.items
+            workSheetItems?.removeAll()
+            workSheetItems = sheetItems
+            
+            workSheetItems?.sort { firstItem, secondItem in
+                guard let firstItemDay = firstItem.workDay else {
+                    return false
+                }
+                guard let secondItemDay = secondItem.workDay else {
+                    return false
+                }
+               return firstItemDay  < secondItemDay
+            }
+            workSheet.items = workSheetItems
+            
+            let workTimeSum = workSheetItems?.filter { $0.workFlag == true }.reduce(0) { (sum: Double , item) in
+                guard let duration = item.duration else {
+                    return sum
+                }
+                return sum + duration
+            }
+            workSheet.workTimeSum = workTimeSum
+            let workDaySum = workSheetItems?.filter { $0.workFlag == true }.count
+            workSheet.workDaySum = workDaySum
+            
+            saveLocalWorkSheet(yearMonth, workSheet: workSheet)
         }
     }
     

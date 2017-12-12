@@ -21,6 +21,7 @@ class GroupViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -41,7 +42,7 @@ class GroupViewController: UIViewController {
     }
     
     // MARK: Internal Methods
-    @objc func refresh() {
+    @objc private func refresh() {
         ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
                 self.groups = groups
@@ -53,14 +54,14 @@ class GroupViewController: UIViewController {
         }
     }
     
-    func refreshControlAction() {
+    private func refreshControlAction() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
     }
     
-    func checkTokenKeyAlert() {
+    private func checkTokenKeyAlert() {
         let ac = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle: .alert)
         
         //test code.
@@ -94,7 +95,7 @@ class GroupViewController: UIViewController {
         }
     }
     
-    func getGroupListFromRequest() {
+    private func getGroupListFromRequest() {
         DispatchQueue.global().async {
             ACAGroupRequest.init().getGroupList { groups in
                 if let groups = groups {
@@ -112,6 +113,12 @@ class GroupViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    private func emptyMessage(_ on: Bool) {
+        messageLabel?.isHidden = !on
+        tableView?.backgroundView = on ? messageLabel : nil;
+//        tableView?.separatorStyle = on ? .none : .singleLine;
     }
     
     // MARK: - Navigation
@@ -145,6 +152,7 @@ extension GroupViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        emptyMessage(groups.count == 0)
         switch section {
         case 0:
             return 1

@@ -33,9 +33,9 @@ struct WorkSheet {
     }
     
     init(dict: Dictionary<String, Any>) {
-        
-        if let workdate = dict["workdata"] as? Date {
-            self.workdate = workdate
+
+        if let workdate = dict["workdata"] as? String {       
+            self.workdate = workdate.stringDate()
         }
         
         if let workTimeSum = dict["workTimeSum"] as? Double {
@@ -63,7 +63,7 @@ struct WorkSheet {
         var resultDict = [String: Any]()
         
         if let workdate = self.workdate {
-            resultDict["workYear"] = "\(workdate)"
+            resultDict["workdata"] = "\(workdate)"
         }
         
         if let workTimeSum = self.workTimeSum {
@@ -83,17 +83,16 @@ struct WorkSheet {
     }
     
     private func convertworkSheetItemTodictionary(_ items: [WorkSheetItem]) -> [[String: Any]] {
-        
-        var resultItem: [String: Any] = [:]
         var resultItems: [[String: Any]] = []
         
         for item in items {
+            var resultItem: [String: Any] = [:]
+            
             if let workYear = item.workYear {
                 resultItem["workYear"] = workYear
             }
             
             if let workMonth = item.workMonth {
-                
                 resultItem["workMonth"] = workMonth
             }
             
@@ -172,12 +171,12 @@ struct WorkSheetItem {
             self.week = week
         }
         
-        if let beginTime = dict["beginTime"] as? Date {
-            self.beginTime = beginTime
+        if let beginTime = dict["beginTime"] as? String {
+            self.beginTime = beginTime.stringDate()
         }
         
-        if let endTime = dict["endTime"] as? Date {
-            self.endTime = endTime
+        if let endTime = dict["endTime"] as? String {
+            self.endTime = endTime.stringDate()
         }
         
         if let breakTime = dict["breakTime"] as? Double {

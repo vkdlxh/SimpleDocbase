@@ -7,19 +7,20 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 final class DaySheetViewController : UIViewController {
     
-    // MARK: Properties
-    var workDate: Date?
-    var sheetItems: [WorkSheetItem]?
     var groups: [Group] = []
     var groupId: Int?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as! String
     var group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
-    
-    // Test
-    var testArary = [WorkSheet]()
+
+    //TODO: WorkSheetDictのKey(yearMonth)を使ってWorkSheetを呼び出す
+    let workSheetManager = WorkSheetManager.sharedManager
+    var workSheet: WorkSheet?
+    var yearMonth: String = ""
+    var sheetItems: [WorkSheetItem]?
     
     // MARK: IBOutlet
     @IBOutlet var daySheetTableView: UITableView!
@@ -29,41 +30,20 @@ final class DaySheetViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initControls()
-        
-        // Test
-        loadTestData()
-        let workMG = WorkSheetManager.sharedManager
-        guard let yearmonth = workDate?.yearMonthString() else {
-            return
-        }
-        if let testWorkSheet = testArary.first {
-            workMG.saveLocalWorkSheet(yearmonth, workSheet: testWorkSheet)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if let yearmonth = workDate?.yearMonthString() {
-            self.title = yearmonth + "_勤務表"
-        }
+        self.title = yearMonth + "_勤務表"
         
         receiveValue()
-        if let groupId = getSelectedGoupdId() {
-            self.groupId = groupId
-        }
     }
     
     // MARK: Action
     
     @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
         
-        let worksheetManager = WorkSheetManager.sharedManager
-        worksheetManager.loadLocalWorkSheets()
-        let worksheetDict = worksheetManager.worksheetDict
-        guard let yearmonth = workDate?.yearMonthString() else {
-            return
-        }
+        let worksheetDict = workSheetManager.worksheetDict
         
         //入力された勤務表をDocbaseへアップロード
         var uploadAlertVC = UIAlertController()
@@ -72,12 +52,16 @@ final class DaySheetViewController : UIViewController {
             uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
             
         } else {
-            uploadAlertVC = UIAlertController(title: "アップロード", message: "勤務表をDocbaseへ登録しますか。", preferredStyle: .alert)
+            uploadAlertVC = UIAlertController(title: group!, message: "勤務表を上記のグループへ登録しますか。", preferredStyle: .alert)
             uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default) { action in
                 // Test
+                SVProgressHUD.show(withStatus: "アップロード中")
                 if let groupid = self.groupId {
-                    worksheetManager.uploadWorkSheet(domain: self.domain, month: yearmonth, groupId: groupid, dict: worksheetDict) { result in
+                    self.workSheetManager.uploadWorkSheet(domain: self.domain, month: self.yearMonth, groupId: groupid, dict: worksheetDict) { result in
                         self.checkUploadSuccessAlert(result: result)
+                        DispatchQueue.main.async {
+                            SVProgressHUD.dismiss()
+                        }
                     }
                 }
             })
@@ -112,7 +96,8 @@ final class DaySheetViewController : UIViewController {
         
     }
     
-    func getSelectedGoupdId() -> Int? {
+    // MARK: Private
+    private func getSelectedGoupdId() -> Int? {
         
         let groupId = groups.filter { $0.name == self.group }.first?.id
         
@@ -121,12 +106,18 @@ final class DaySheetViewController : UIViewController {
         return selectedGroupId
     }
     
-    func receiveValue() {
+    private func receiveValue() {
+        if let groupId = getSelectedGoupdId() {
+            self.groupId = groupId
+        }
         group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
         print("receive Group")
+        workSheet = workSheetManager.findWorkSheetFromWorkSheetDict(yearMonth: yearMonth)
+        sheetItems = workSheet?.items
+        
+        daySheetTableView.reloadData()
     }
     
-    // MARK: Private
     private func initControls() {
         
         let uploadBarButton = UIBarButtonItem(barButtonSystemItem: .action,
@@ -134,30 +125,6 @@ final class DaySheetViewController : UIViewController {
                                               action: #selector(DaySheetViewController.uploadButtonTouched(_ :)))
         
         navigationItem.rightBarButtonItems = [uploadBarButton]
-    }
-    
-    // Test
-    private func loadTestData() {
-        for i in 1..<10 {
-            guard let year_month = Date.createDate(year: 2017, month: i+1) else {
-                continue
-            }
-            var work_sheet = WorkSheet(date:year_month)
-            work_sheet.workDaySum = 10 + Int(arc4random()%10)
-            work_sheet.workTimeSum = Double(120) + Double(arc4random()%20)
-            for j in 1..<31 {
-                var work_sheet_item = WorkSheetItem(year: 2017, month:i, day:j)
-                work_sheet_item.beginTime = Date()
-                work_sheet_item.endTime = Date()
-                work_sheet_item.breakTime = 1.0
-                work_sheet_item.duration = 8.0
-                work_sheet_item.remark = "備考"
-                work_sheet_item.week = 1
-                work_sheet_item.workFlag = false
-                work_sheet.items?.append(work_sheet_item)
-            }
-            testArary.append(work_sheet)
-        }
     }
     
 }
@@ -175,17 +142,11 @@ extension DaySheetViewController : UITableViewDelegate {
         
         let editVC = DaySheetEditViewController()
         let sheetItem = sheetItems?[indexPath.row]
-        
-        //MARK: test code.
-        //実際のデータを渡すようにしてください。これはテストデータです。
-        //editVC.worksheetItem = sheetItem
-        var test_item = WorkSheetItem(year: 2017, month: 1, day: 22)
-        test_item.workFlag = true
-        test_item.beginTime = Date(timeIntervalSinceNow: -1*60*60*9)    //9時間前に。。
-        test_item.endTime = Date()
-        test_item.remark = "dummy data."
-        editVC.worksheetItem = test_item
-        ///// test code.
+        editVC.worksheetItem = sheetItem
+        // TEST
+        sheetItems?.remove(at: indexPath.row)
+        editVC.sheetItems = sheetItems
+        editVC.yearMonth = self.yearMonth
         
         navigationController?.pushViewController(editVC, animated: true)
     }
@@ -211,3 +172,4 @@ extension DaySheetViewController : UITableViewDataSource {
     }
     
 }
+

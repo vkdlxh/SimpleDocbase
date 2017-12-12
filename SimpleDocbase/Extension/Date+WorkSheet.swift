@@ -111,6 +111,32 @@ extension Date  {
         return dateString
     }
     
+    //TODO: TEST
+    func MonthInt() -> Int? {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "MM"
+        let dateString = dateFormater.string(from: self)
+        guard let dateInt = Int(dateString) else {
+            return nil
+        }
+        
+        return dateInt
+    }
+    
+    func yearMonthKey() -> String? {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "yyyyMM"
+        let dateString = dateFormater.string(from: self)
+        print(dateString)
+        
+        return dateString
+    }
+    // TEST
+    
     func hourMinuteString() -> String {
         
         let dateFormater = DateFormatter()
@@ -161,6 +187,21 @@ extension Date  {
         
     }
     
+    //TEST:
+    static func createDate(yyyymm: String) -> Date? {
+        
+        let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "ja_JP")
+        dateFormater.dateFormat = "yyyyMM"
+        guard let date = dateFormater.date(from: yyyymm) else {
+            return nil
+        }
+        let addOneDay = Calendar.current.date(byAdding: .day, value: 1, to: date)
+        return addOneDay
+        
+    }
+    // TEST
+    
     static func createDate(year: Int, month: Int, day: Int) -> Date? {
         
         let dateStr = String(format: "%04d%02d%02d",year, month, day)
@@ -168,7 +209,11 @@ extension Date  {
         let dateFormater = DateFormatter()
         dateFormater.locale = Locale(identifier: "ja_JP")
         dateFormater.dateFormat = "yyyyMMdd"
-        let date = dateFormater.date(from: dateStr)
+        guard let date = dateFormater.date(from: dateStr) else {
+            return nil
+        }
+//        let addOneDay = Calendar.current.date(byAdding: .day, value: 1, to: date)
+//        return addOneDay
         return date
         
     }
