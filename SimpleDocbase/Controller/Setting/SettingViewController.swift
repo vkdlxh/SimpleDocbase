@@ -17,7 +17,7 @@ class SettingViewController: FormViewController {
 
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
-        builder += SectionHeaderTitleFormItem().title("Token登録")
+        builder += SectionHeaderTitleFormItem().title("トークン登録")
         builder += tokenKeyViewControllerForm
         
         builder += SectionHeaderTitleFormItem().title("勤怠管理設定")
@@ -36,10 +36,7 @@ class SettingViewController: FormViewController {
     override func viewWillAppear(_ animated: Bool) {
         updateForm()
         updateGroupPicker(groupListPiker)
-        
-        if let indexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
+        reloadForm()
     }
     
     lazy var tokenKeyViewControllerForm: ViewControllerFormItem = {
@@ -102,7 +99,7 @@ class SettingViewController: FormViewController {
         if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
             tokenKeyViewControllerForm.title("\(tokenKey)")
         } else {
-            tokenKeyViewControllerForm.title = "TokenKeyを登録してください。"
+            tokenKeyViewControllerForm.title = "トークンを登録してください。"
         }
         
         if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {

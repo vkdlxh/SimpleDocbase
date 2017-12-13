@@ -1,7 +1,7 @@
 PODS:
   - SVProgressHUD (2.2.2)
   - SwiftyFORM (1.5.0)
-  - SwiftyMarkdown (0.5.0)
+  - SwiftyMarkdown (0.5.1)
 
 DEPENDENCIES:
   - SVProgressHUD
@@ -11,7 +11,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   SVProgressHUD: 59b2d3dabacbd051576d21d32293ca7228dc18b0
   SwiftyFORM: dc40697dd6f776bc8fdf095ba637f99c55009a01
-  SwiftyMarkdown: 6dfc24a82dcb4410d89d8fe3159182395ee0c988
+  SwiftyMarkdown: 743af3e87931391bc4836b825fec3d98785b2e3a
 
 PODFILE CHECKSUM: 760cdf975e6a887aa02b81936a37f0ca944952bd
 
