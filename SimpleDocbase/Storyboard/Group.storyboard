@@ -330,38 +330,37 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title or URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                        <rect key="frame" x="5" y="0.0" width="365" height="30"/>
                                         <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PEI-h9-uAP">
-                                        <rect key="frame" x="0.0" y="60" width="375" height="543"/>
+                                        <rect key="frame" x="5" y="56" width="365" height="547"/>
                                         <color key="backgroundColor" red="0.94328745579999995" green="1" blue="0.3527270066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="「,」でTagを区分しなさい" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQg-WV-W2b">
-                                        <rect key="frame" x="0.0" y="30" width="375" height="30"/>
-                                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGm-aC-isK">
+                                        <rect key="frame" x="5" y="30" width="42" height="21"/>
+                                        <color key="backgroundColor" red="1" green="0.49757936296544936" blue="0.57719256148303877" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="eaV-FH-bCC" firstAttribute="top" secondItem="z4J-ZY-RmB" secondAttribute="top" id="0Eq-GU-BZ4"/>
-                                    <constraint firstItem="PEI-h9-uAP" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" id="4N6-Up-f5J"/>
-                                    <constraint firstAttribute="trailing" secondItem="eaV-FH-bCC" secondAttribute="trailing" id="4PV-fE-Sbj"/>
-                                    <constraint firstAttribute="trailing" secondItem="rQg-WV-W2b" secondAttribute="trailing" id="WUL-qe-hBZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="PEI-h9-uAP" secondAttribute="trailing" id="dUb-fJ-CLQ"/>
-                                    <constraint firstItem="PEI-h9-uAP" firstAttribute="top" secondItem="rQg-WV-W2b" secondAttribute="bottom" id="euV-Cx-6Aq"/>
-                                    <constraint firstItem="rQg-WV-W2b" firstAttribute="top" secondItem="eaV-FH-bCC" secondAttribute="bottom" id="iNj-ZG-iSf"/>
-                                    <constraint firstItem="rQg-WV-W2b" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" id="j0e-Ud-Dxy"/>
-                                    <constraint firstItem="eaV-FH-bCC" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" id="kj6-8M-QTS"/>
+                                    <constraint firstItem="PEI-h9-uAP" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" constant="5" id="4N6-Up-f5J"/>
+                                    <constraint firstAttribute="trailing" secondItem="eaV-FH-bCC" secondAttribute="trailing" constant="5" id="4PV-fE-Sbj"/>
+                                    <constraint firstItem="iGm-aC-isK" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" constant="5" id="91z-3Z-Mr2"/>
+                                    <constraint firstAttribute="trailing" secondItem="PEI-h9-uAP" secondAttribute="trailing" constant="5" id="dUb-fJ-CLQ"/>
+                                    <constraint firstItem="PEI-h9-uAP" firstAttribute="top" secondItem="iGm-aC-isK" secondAttribute="bottom" constant="5" id="e7p-K6-UcF"/>
+                                    <constraint firstItem="eaV-FH-bCC" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" constant="5" id="kj6-8M-QTS"/>
                                     <constraint firstAttribute="bottom" secondItem="PEI-h9-uAP" secondAttribute="bottom" id="q9g-c2-F7K"/>
+                                    <constraint firstItem="iGm-aC-isK" firstAttribute="top" secondItem="eaV-FH-bCC" secondAttribute="bottom" id="vre-N2-31j"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -389,7 +388,7 @@
                     <connections>
                         <outlet property="bodyTextView" destination="PEI-h9-uAP" id="1zv-zw-jas"/>
                         <outlet property="bottomConstraint" destination="c8Y-od-iko" id="sey-PV-Ges"/>
-                        <outlet property="tagsTextField" destination="rQg-WV-W2b" id="Ql0-ia-Z34"/>
+                        <outlet property="tagLabel" destination="iGm-aC-isK" id="I7I-br-EZS"/>
                         <outlet property="titleTextField" destination="eaV-FH-bCC" id="Jfs-LL-bVt"/>
                     </connections>
                 </viewController>
