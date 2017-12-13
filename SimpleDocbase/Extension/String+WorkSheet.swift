@@ -9,6 +9,10 @@
 import Foundation
 
 extension String {
+    var isInt: Bool {
+        return Int(self) != nil
+    }
+    
     func stringDate() -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"

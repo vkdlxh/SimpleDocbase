@@ -33,9 +33,6 @@ final class SheetViewController : UIViewController {
         initControls()
         
         // Do any additional setup after loading the view.
-        //REMARK: テストデータ
-//        loadTestData()
-
      }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +44,6 @@ final class SheetViewController : UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     // MARK: Actinos
     @objc func addSheetButtonTouched(_ sender: UIBarButtonItem) {
@@ -73,7 +69,7 @@ final class SheetViewController : UIViewController {
             if textFields != nil {
                 for textField:UITextField in textFields! {
                     //TODO: 6桁数字なのかをチェック
-                    if textField.text?.count != 6 {
+                    if textField.text?.count != 6 || (textField.text?.isInt) == false {
                         let alert = UIAlertController(title:"勤務表追加失敗",
                                                       message: "YYYYMMの形式で入力してください。",
                                                       preferredStyle: .alert)
@@ -104,9 +100,7 @@ final class SheetViewController : UIViewController {
                 }
             }
         })
-        
         self.present(alert, animated: true, completion: nil)
-        
     }
     
     // MARK: - Navigation
@@ -128,9 +122,7 @@ final class SheetViewController : UIViewController {
         }
     }
  
-
     // MARK: Internal Methods
-    
     
     // MARK: Private Methods
     private func initControls() {
@@ -198,7 +190,6 @@ final class SheetViewController : UIViewController {
     
 }
 
-
 // MARK: Extensions
 extension SheetViewController : UITableViewDelegate {
     
@@ -261,5 +252,3 @@ extension SheetViewController : UITableViewDataSource {
     }
 
 }
-
-
