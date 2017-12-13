@@ -77,6 +77,7 @@ class RegisterTokenKeyViewController: FormViewController {
                 self.userDefaults.removeObject(forKey: "paramTokenKey")
                 self.userDefaults.removeObject(forKey: "selectedTeam")
                 self.userDefaults.removeObject(forKey: "selectedGroup")
+                self.navigationController?.popViewController(animated: true)
             }
             let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel)
             
