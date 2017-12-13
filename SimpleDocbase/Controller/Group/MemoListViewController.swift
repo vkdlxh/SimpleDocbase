@@ -52,18 +52,20 @@ class MemoListViewController: UIViewController {
     }
     
     // MARK: Internal Methods
-    @objc func addTapped(sender: UIBarButtonItem) {
+    
+    // MARK: Private Methods
+    @objc private func addTapped(sender: UIBarButtonItem) {
         performSegue(withIdentifier: "GoWriteMemoSegue", sender: self)
     }
     
-    func refreshControlAction() {
+    private func refreshControlAction() {
         self.refreshControl = UIRefreshControl()
         self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
     }
     
-    func deleteMemoAlert(completion: @escaping (Bool) -> ()) {
+    private func deleteMemoAlert(completion: @escaping (Bool) -> ()) {
         let deleteMemoAC = UIAlertController(title: "Memo削除", message: "Memoを削除しますか？", preferredStyle: .alert)
         let deleteButton = UIAlertAction(title: "削除", style: .default) { action in
             completion(true)
@@ -79,7 +81,16 @@ class MemoListViewController: UIViewController {
         present(deleteMemoAC, animated: true, completion: nil)
     }
     
-    @objc func refresh() {
+    private func deleteFailAlert() {
+        let deleteFailAC = UIAlertController(title: "削除失敗", message: "削除する権限がありません。", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "削除", style: .default) { action in
+            print("tapped Delete Fail OK Button")
+        }
+        deleteFailAC.addAction(okButton)
+        present(deleteFailAC, animated: true, completion: nil)
+    }
+    
+    @objc private func refresh() {
         pageNum = 1
         if let domain = domain {
             if let groupName = group?.name {
@@ -161,6 +172,9 @@ extension MemoListViewController: UITableViewDataSource {
                                         self.tableView.deleteRows(at: [indexPath], with: .automatic)
                                         self.tableView.endUpdates()
                                     }
+                                } else {
+                                    // TODO: 失敗
+                                    self.deleteFailAlert()
                                 }
                             }
                         }
