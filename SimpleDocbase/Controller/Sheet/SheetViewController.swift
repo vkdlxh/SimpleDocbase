@@ -90,10 +90,16 @@ final class SheetViewController : UIViewController {
                         
                         //TODO: 生成されたmodelをjson形式で保存
                         if let testWorkSheet = test_worksheet {
-                            self.worksheetManager.saveLocalWorkSheet(yyyymm, workSheet: testWorkSheet)
+                            self.worksheetManager.checkKeyHadValue(yyyymm) { check in
+                                if check == true {
+                                    self.alreadyWorkSheetHadValueAlert(yyyymm, workSheet: testWorkSheet)
+                                } else {
+                                    self.worksheetManager.saveLocalWorkSheet(yyyymm, workSheet: testWorkSheet)
+                                }
+                            }
+                            
                         }
                         self.insertWorkSheetAferloadLoaclWorkSheet()
-                        
                     }
                 }
             }
@@ -158,6 +164,20 @@ final class SheetViewController : UIViewController {
             return firstWorkSheet < secondWorkSheet
         }
         sheetTableView?.reloadData()
+    }
+    
+    private func alreadyWorkSheetHadValueAlert(_ jsonKeyMonth: String, workSheet: WorkSheet) {
+        let addWorkSheetAC = UIAlertController(title: "すでにある勤務表です。", message: "本当に上書きしますか。", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "登録", style: .default) { action in
+            self.worksheetManager.saveLocalWorkSheet(jsonKeyMonth, workSheet: workSheet)
+            self.insertWorkSheetAferloadLoaclWorkSheet()
+        }
+        let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel) { action in
+        }
+        
+        addWorkSheetAC.addAction(okButton)
+        addWorkSheetAC.addAction(cancelButton)
+        present(addWorkSheetAC, animated: true, completion: nil)
     }
     
     private func deleteWorkSheetAlert(completion: @escaping (Bool) -> ()) {

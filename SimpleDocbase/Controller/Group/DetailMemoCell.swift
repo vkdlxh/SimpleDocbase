@@ -23,7 +23,12 @@ class DetailMemoCell: UITableViewCell {
             }
             
             titleLabel.text = memo.title
-            bodyTextView.attributedText = SwiftyMarkdown(string: memo.body).attributedString()
+            if memo.title.hasPrefix("SimpleDocbase_") {
+                bodyTextView.text = "勤務表はWebから確認してください。"
+                bodyTextView.font = UIFont.boldSystemFont(ofSize: 20)
+            } else {
+                bodyTextView.attributedText = SwiftyMarkdown(string: memo.body).attributedString()
+            }
             
             var groups: [String] = []
             for i in 0..<memo.groups.count{
