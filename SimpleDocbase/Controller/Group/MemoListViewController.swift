@@ -188,11 +188,7 @@ extension MemoListViewController: WriteMemoViewControllerDelegate {
 
         dismiss(animated: true, completion: nil)
             
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.refreshControl.endRefreshing()
-        }
-
+        refresh()
     }
 }
 

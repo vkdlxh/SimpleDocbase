@@ -18,9 +18,7 @@ class WriteMemoViewController: UIViewController {
     var delegate: WriteMemoViewControllerDelegate?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var group: Group?
-    
     var checkWriteSuccess = false
-    
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
@@ -96,8 +94,6 @@ class WriteMemoViewController: UIViewController {
         bottomConstraint.constant = 0
     }
     
-    
-    
     func checkWriteSuccessAlert(result: Bool) {
         
         var ac = UIAlertController()
@@ -107,8 +103,9 @@ class WriteMemoViewController: UIViewController {
             let successAction = UIAlertAction(title: "確認", style: .default) { action in
                 print("Write Memo Success")
                 self.view.endEditing(true)
-                self.delegate?.writeMemoViewSubmit()
-                
+                DispatchQueue.main.async {
+                    self.delegate?.writeMemoViewSubmit()
+                }
             }
             ac.addAction(successAction)
             
