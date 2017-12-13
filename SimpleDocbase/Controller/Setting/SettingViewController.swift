@@ -36,6 +36,10 @@ class SettingViewController: FormViewController {
     override func viewWillAppear(_ animated: Bool) {
         updateForm()
         updateGroupPicker(groupListPiker)
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     lazy var tokenKeyViewControllerForm: ViewControllerFormItem = {
