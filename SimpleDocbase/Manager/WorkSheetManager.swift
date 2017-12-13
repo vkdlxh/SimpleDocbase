@@ -120,6 +120,15 @@ class WorkSheetManager: NSObject {
         
     }
     
+    func checkKeyHadValue(_ jsonKeyMonth: String, completion: @escaping (Bool) -> ()) {
+        
+        if worksheetDict[jsonKeyMonth] != nil {
+            completion(true)
+        } else {
+            completion(false)
+        }
+    }
+    
     func findWorkSheetFromWorkSheetDict(yearMonth: String) -> WorkSheet? {
         guard let workSheetValue = worksheetDict[yearMonth] as? [String: Any] else {
             return nil

@@ -19,10 +19,14 @@ class SettingViewController: FormViewController {
         builder.navigationTitle = "設定"
         builder += SectionHeaderTitleFormItem().title("Token登録")
         builder += tokenKeyViewControllerForm
-        builder += SectionHeaderTitleFormItem().title("OPTION")
+        
+        builder += SectionHeaderTitleFormItem().title("勤怠管理設定")
         builder += groupListPiker
         builder += minuteIntervalSetting
+        
+        builder += SectionHeaderTitleFormItem().title("チーム情報")
         builder += teamNameTextForm
+        
         builder += SectionHeaderTitleFormItem().title("APP INFO")
         builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
         updateForm()
@@ -70,7 +74,7 @@ class SettingViewController: FormViewController {
     
     lazy var minuteIntervalSetting: SegmentedControlFormItem = {
         let instance = SegmentedControlFormItem()
-        instance.title = "minuteInterval"
+        instance.title = "勤務時間設定"
         instance.items = ["15","30"]
         
         if let minuteInterval = userDefaults.object(forKey: "minuteInterval") as? String {
