@@ -77,7 +77,7 @@ final class DaySheetViewController : UIViewController {
         var ac = UIAlertController()
         
         if result == true {
-            ac = UIAlertController(title: "Upload成功", message: nil, preferredStyle: .alert)
+            ac = UIAlertController(title: "アップロード成功", message: "勤務表をアップロードしました。\nDocBaseからご確認ください。", preferredStyle: .alert)
             let successAction = UIAlertAction(title: "OK", style: .default) { action in
                 print("WorkSheet Upload Success.")
             }
@@ -109,10 +109,10 @@ final class DaySheetViewController : UIViewController {
     }
     
     private func receiveValue() {
+        group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
         if let groupId = getSelectedGoupdId() {
             self.groupId = groupId
         }
-        group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
         print("receive Group")
         workSheet = workSheetManager.findWorkSheetFromWorkSheetDict(yearMonth: yearMonth)
         sheetItems = workSheet?.items
