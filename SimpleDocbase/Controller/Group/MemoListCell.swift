@@ -21,9 +21,13 @@ class MemoListCell: UITableViewCell {
             guard let memo = memo else {
                 return
             }
-            
             titleLabel.text = memo.title
-            bodyLabel.text = memo.body
+            
+            if memo.title.hasPrefix("SimpleDocbase_") {
+                bodyLabel.text = "勤務表はDocbaseから確認してください。"
+            } else {
+                bodyLabel.text = memo.body
+            }
             
             var tags: [String] = []
             for i in 0..<memo.tags.count{
