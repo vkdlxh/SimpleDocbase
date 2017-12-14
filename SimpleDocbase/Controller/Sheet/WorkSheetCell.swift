@@ -16,7 +16,6 @@ class WorkSheetCell: UITableViewCell {
     @IBOutlet var yearMonthLabel: UILabel!
     @IBOutlet var workDaySumLabel: UILabel!
     @IBOutlet var workTimeSumLabel: UILabel!
-    @IBOutlet var remainTimeLabel: UILabel! //総営業時間（契約時間）-勤務時間
     
     //MARK: Life cycle
     override func awakeFromNib() {
@@ -43,8 +42,6 @@ class WorkSheetCell: UITableViewCell {
         
         if let workTimeSum = workSheet.workTimeSum {
             workTimeSumLabel.text = "\(workTimeSum) Hours"
-            //TODO: 設定から指定した時間もしくは営業時間を計算したものにする。かりで１６０にした。
-            remainTimeLabel.text = "\(160-workTimeSum) Remains"
         }
     }
 
