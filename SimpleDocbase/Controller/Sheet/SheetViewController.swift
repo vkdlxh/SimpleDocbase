@@ -126,13 +126,14 @@ final class SheetViewController : UIViewController {
     
     // MARK: Private Methods
     private func initControls() {
+        sheetTableView?.backgroundView = messageLabel;
+        
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(SheetViewController.addSheetButtonTouched(_ :)))
         self.navigationItem.rightBarButtonItems = [addButton]
     }
     
     private func emptyMessage(_ on: Bool) {
         messageLabel?.isHidden = !on
-        sheetTableView?.backgroundView = on ? messageLabel : nil;
         sheetTableView?.separatorStyle = on ? .none : .singleLine;
     }
     
