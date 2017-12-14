@@ -49,11 +49,11 @@ final class DaySheetViewController : UIViewController {
         var uploadAlertVC = UIAlertController()
         if groupId == nil {
             uploadAlertVC = UIAlertController(title: "アップロード失敗", message: "勤怠管理のグループを確認してください。", preferredStyle: .alert)
-            uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler:nil))
+            uploadAlertVC.addAction(UIAlertAction(title: "確認", style: .cancel, handler:nil))
             
         } else {
             uploadAlertVC = UIAlertController(title: group!, message: "勤務表を上記のグループへ登録しますか。", preferredStyle: .alert)
-            uploadAlertVC.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            uploadAlertVC.addAction(UIAlertAction(title: "確認", style: .default) { action in
                 // Test
                 SVProgressHUD.show(withStatus: "アップロード中")
                 if let groupid = self.groupId {
@@ -78,14 +78,14 @@ final class DaySheetViewController : UIViewController {
         
         if result == true {
             ac = UIAlertController(title: "アップロード成功", message: "勤務表をアップロードしました。\nDocBaseからご確認ください。", preferredStyle: .alert)
-            let successAction = UIAlertAction(title: "OK", style: .default) { action in
+            let successAction = UIAlertAction(title: "確認", style: .default) { action in
                 print("WorkSheet Upload Success.")
             }
             ac.addAction(successAction)
             
         } else {
-            ac = UIAlertController(title: "Upload失敗", message: nil, preferredStyle: .alert)
-            let failAction: UIAlertAction = UIAlertAction(title: "OK", style: .cancel) {
+            ac = UIAlertController(title: "アップロード失敗", message: nil, preferredStyle: .alert)
+            let failAction: UIAlertAction = UIAlertAction(title: "確認", style: .cancel) {
                 (action: UIAlertAction!) -> Void in
                 print("WorkSheet Upload Success.")
             }

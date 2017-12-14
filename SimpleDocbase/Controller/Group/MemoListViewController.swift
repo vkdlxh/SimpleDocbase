@@ -66,7 +66,7 @@ class MemoListViewController: UIViewController {
     }
     
     private func deleteMemoAlert(completion: @escaping (Bool) -> ()) {
-        let deleteMemoAC = UIAlertController(title: "Memo削除", message: "Memoを削除しますか？", preferredStyle: .alert)
+        let deleteMemoAC = UIAlertController(title: "Memo削除", message: "メモを削除しますか？", preferredStyle: .alert)
         let deleteButton = UIAlertAction(title: "削除", style: .default) { action in
             completion(true)
             print("tapped Memo delete Button")
@@ -153,12 +153,11 @@ extension MemoListViewController: UITableViewDataSource {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            
-            let memoNum = memos[indexPath.row].id
-            
-            deleteMemoAlert(completion: { checkBtn in
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
+            let memoNum = self.memos[indexPath.row].id
+            self.deleteMemoAlert(completion: { checkBtn in
                 if checkBtn == true {
                     self.tableView.beginUpdates()
                     DispatchQueue.global().async {
@@ -185,8 +184,11 @@ extension MemoListViewController: UITableViewDataSource {
                 }
             })
         }
+        
+        deleteButton.backgroundColor = UIColor.red
+        
+        return [deleteButton]
     }
-    
 }
 
 extension MemoListViewController: UITableViewDelegate {

@@ -329,7 +329,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4J-ZY-RmB">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title or URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
                                         <rect key="frame" x="5" y="0.0" width="365" height="30"/>
                                         <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
@@ -374,12 +374,12 @@
                         <viewLayoutGuide key="safeArea" id="3pq-9R-wFh"/>
                     </view>
                     <navigationItem key="navigationItem" id="aMh-Nf-S1G">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="FQn-1e-ifq">
+                        <barButtonItem key="leftBarButtonItem" title="キャンセル" id="FQn-1e-ifq">
                             <connections>
                                 <action selector="backButton:" destination="3Zy-4W-bCv" id="kSx-2T-Kpe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Share to group" id="NcS-pF-fIR">
+                        <barButtonItem key="rightBarButtonItem" title="投稿" id="NcS-pF-fIR">
                             <connections>
                                 <action selector="submitMemoButton:" destination="3Zy-4W-bCv" id="Wfk-XL-xSC"/>
                             </connections>

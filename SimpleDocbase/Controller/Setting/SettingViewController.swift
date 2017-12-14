@@ -27,7 +27,7 @@ class SettingViewController: FormViewController {
         builder += SectionHeaderTitleFormItem().title("チーム情報")
         builder += teamNameTextForm
         
-        builder += SectionHeaderTitleFormItem().title("APP INFO")
+        builder += SectionHeaderTitleFormItem().title("アプリ情報")
         builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
         updateForm()
        
@@ -64,6 +64,8 @@ class SettingViewController: FormViewController {
             if let selectedOption = selectedOption {
                 instance.setSelectedOptionRow(selectedOption)
             }
+        } else {
+            instance.placeholder = "未登録"
         }
         
         instance.valueDidChange = { (selected: OptionRowModel?) in
@@ -105,7 +107,7 @@ class SettingViewController: FormViewController {
         if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {
             teamNameTextForm.value = "\(selectedTeam)"
         } else {
-            teamNameTextForm.value = "None"
+            teamNameTextForm.value.removeAll()
         }
     }
     

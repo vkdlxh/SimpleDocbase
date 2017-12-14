@@ -26,6 +26,8 @@ class WriteMemoViewController: UIViewController {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLabel: UILabel!
+    var placeholderLabel : UILabel!
+    
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
         if let textField = titleTextField.text, textField.isEmpty {
@@ -65,6 +67,9 @@ class WriteMemoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bodyTextView.delegate = self
+        initTextViewPlaceHolder()
+        
         if let groupName = group?.name {
             navigationItem.title = groupName
         }
@@ -97,7 +102,7 @@ class WriteMemoViewController: UIViewController {
         var ac = UIAlertController()
         
         if result == true {
-            ac = UIAlertController(title: "メモ登録成功", message: nil, preferredStyle: .alert)
+            ac = UIAlertController(title: "メモを登録しました。", message: nil, preferredStyle: .alert)
             let successAction = UIAlertAction(title: "確認", style: .default) { action in
                 print("Write Memo Success")
                 self.view.endEditing(true)
@@ -130,4 +135,23 @@ class WriteMemoViewController: UIViewController {
         ac.addAction(okAction)
         self.present(ac, animated: true, completion: nil)
     }
+    
+    private func initTextViewPlaceHolder() {
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "本文を入力してください。"
+        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (bodyTextView.font?.pointSize)!)
+        placeholderLabel.sizeToFit()
+        bodyTextView.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (bodyTextView.font?.pointSize)! / 2)
+        placeholderLabel.textColor = UIColor.lightGray
+        placeholderLabel.isHidden = !bodyTextView.text.isEmpty
+    }
+}
+
+extension WriteMemoViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
+    }
+    
 }

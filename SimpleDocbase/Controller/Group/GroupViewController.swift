@@ -15,9 +15,7 @@ class GroupViewController: UIViewController {
     // MARK: Properties
     var groups: [Group] = []
     var refreshControl: UIRefreshControl!
-    
     let sectionTitle = ["チーム変更", "グループリスト"]
-    
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -62,7 +60,7 @@ class GroupViewController: UIViewController {
     }
     
     private func checkTokenKeyAlert() {
-        let ac = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle: .alert)
+        let ac = UIAlertController(title: "トークン設定", message: "トークンを設定してください。", preferredStyle: .alert)
         
         //test code.
         //ac.addTextField()
@@ -73,7 +71,7 @@ class GroupViewController: UIViewController {
         if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
             print("No TokenKey")
             
-            let submitAction = UIAlertAction(title: "TokenKey登録", style: .default) { [unowned ac] _ in
+            let submitAction = UIAlertAction(title: "トークン登録", style: .default) { [unowned ac] _ in
                 if let tokenKey = ac.textFields?[0].text {
                     UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
                 }
@@ -103,7 +101,7 @@ class GroupViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     if groups == nil {
-                        SVProgressHUD.showError(withStatus: "ERROR")
+                        SVProgressHUD.showError(withStatus: "エラー")
                         SVProgressHUD.dismiss(withDelay: 1)
                         self.groups.removeAll()
                     } else {
