@@ -20,13 +20,14 @@ class WriteMemoViewController: UIViewController {
     var group: Group?
     var checkWriteSuccess = false
     let tagValue = "iPhoneから投稿"
-    let bodyPlaceHolder = "本文を入力してください。"
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLabel: UILabel!
+    var placeholderLabel : UILabel!
+    
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
         if let textField = titleTextField.text, textField.isEmpty {
@@ -67,9 +68,7 @@ class WriteMemoViewController: UIViewController {
         super.viewDidLoad()
         
         bodyTextView.delegate = self
-        bodyTextView.text = bodyPlaceHolder
-        bodyTextView.textColor = UIColor.lightGray
-        bodyTextView.selectedTextRange = bodyTextView.textRange(from: bodyTextView.beginningOfDocument, to: bodyTextView.beginningOfDocument)
+        initTextViewPlaceHolder()
         
         if let groupName = group?.name {
             navigationItem.title = groupName
@@ -136,36 +135,23 @@ class WriteMemoViewController: UIViewController {
         ac.addAction(okAction)
         self.present(ac, animated: true, completion: nil)
     }
+    
+    private func initTextViewPlaceHolder() {
+        placeholderLabel = UILabel()
+        placeholderLabel.text = "本文を入力してください。"
+        placeholderLabel.font = UIFont.italicSystemFont(ofSize: (bodyTextView.font?.pointSize)!)
+        placeholderLabel.sizeToFit()
+        bodyTextView.addSubview(placeholderLabel)
+        placeholderLabel.frame.origin = CGPoint(x: 5, y: (bodyTextView.font?.pointSize)! / 2)
+        placeholderLabel.textColor = UIColor.lightGray
+        placeholderLabel.isHidden = !bodyTextView.text.isEmpty
+    }
 }
 
 extension WriteMemoViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let currentText = textView.text as NSString?
-        let updatedText = currentText?.replacingCharacters(in: range, with: text)
-
-        if (updatedText?.isEmpty)!  {
-            
-            textView.text = "Placeholder"
-            textView.textColor = UIColor.lightGray
-            
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-            
-            return false
-        }
-
-        else if textView.textColor == UIColor.lightGray && !text.isEmpty {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-        
-        return true
+    
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !textView.text.isEmpty
     }
     
-    func textViewDidChangeSelection(_ textView: UITextView) {
-        if self.view.window != nil {
-            if textView.textColor == UIColor.lightGray {
-                textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-            }
-        }
-    }
 }
