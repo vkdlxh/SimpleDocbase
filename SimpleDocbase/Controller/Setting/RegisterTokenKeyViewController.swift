@@ -12,51 +12,84 @@ import SwiftyFORM
 
 class RegisterTokenKeyViewController: FormViewController {
 
+    enum AlertAction {
+        case success
+        case delete
+    }
+    
     let userDefaults = UserDefaults.standard
     //8ZwKUqC7QkJJKZN2hP2i
-    
+    let footerView = SectionFooterViewFormItem()
+    let footerMessage = "\nDocBaseから\n「個人設定」→「基本設定」→「APIトークン」を\n作成して表示されたトークンを登録してください。"
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tokenKeySubmitButton()
     }
 
     override func populate(_ builder: FormBuilder) {
-        builder.navigationTitle = "Token登録"
+        configureFooterView()
+        builder.navigationTitle = "トークン登録"
         builder.toolbarMode = .simple
-        builder += SectionHeaderTitleFormItem().title("登録")
+        builder += SectionHeaderTitleFormItem().title("APIトークン登録")
         builder += tokenKey
+        builder += footerView
     }
     
     lazy var tokenKey: TextFieldFormItem = {
         let instance = TextFieldFormItem()
-        instance.title("TokenKey").placeholder("ここにTokenKeyの入力")
-        instance.submitValidate(CountSpecification.min(1), message: "正しい値を入力してください。")
+        instance.placeholder("APIトークンを入力してください。")
+        if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String{
+            instance.value = tokenKey
+        }
         return instance
     }()
     
-    func tokenKeySubmitButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登録", style: .plain, target: self, action: #selector(tokenKeySubmitAction(_:)))
+    private func tokenKeySubmitButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登録", style: .plain, target: self, action: #selector(tokenKeySubmitAction))
     }
     
-    @objc public func tokenKeySubmitAction(_ sender: AnyObject?) {
-        formBuilder.validateAndUpdateUI()
-        let result = formBuilder.validate()
-        print("result \(result)")
-        tokenKey_showSubmitResult(result)
-    }
-    
-    func tokenKey_showSubmitResult(_ result: FormBuilder.FormValidateResult) {
-        switch result {
-        case .valid:
-            let userDefaults = UserDefaults.standard
+   @objc private func tokenKeySubmitAction() {
+        if tokenKey.value.isEmpty {
+            // TODO: Check TokenKey Delete Alert PopUp
+            tokenKeyAlert(type: .delete)
+        } else {
+            // TODO: normally Regist TokenKey
             userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
-            userDefaults.set(nil, forKey: "selectedTeam")
-            userDefaults.set(nil, forKey: "selectedGroup")
-            self.view.endEditing(true)
-            success_simpleAlert("登録", "Tokenを登録しました。")
-        case let .invalid(item, message):
-            let title = item.elementIdentifier ?? "失敗"
-            fail_simpleAlert(title, message)
+            userDefaults.removeObject(forKey: "selectedTeam")
+            userDefaults.removeObject(forKey: "selectedGroup")
+            tokenKeyAlert(type: .success)
+        }
+    }
+    
+    private func tokenKeyAlert(type: AlertAction) {
+        var alert = UIAlertController()
+        switch type {
+        case .success:
+            alert = UIAlertController(title:"トークン登録", message: "トークンを登録しました。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                self.navigationController?.popViewController(animated: true)
+            }
+            alert.addAction(okButton)
+        case .delete:
+            alert = UIAlertController(title:"トークン削除", message: "トークンを削除しますか。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                self.userDefaults.removeObject(forKey: "paramTokenKey")
+                self.userDefaults.removeObject(forKey: "selectedTeam")
+                self.userDefaults.removeObject(forKey: "selectedGroup")
+                self.navigationController?.popViewController(animated: true)
+            }
+            let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel)
+            
+            alert.addAction(okButton)
+            alert.addAction(cancelButton)
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func configureFooterView() {
+        footerView.viewBlock = {
+            return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 80), text: self.footerMessage)
         }
     }
 
