@@ -108,7 +108,7 @@ class DaySheetEditViewController: FormViewController {
                 instance.setValue(time, animated: false)
             }
         }else {
-            if let time = Date.createTime(hour: 1, minute: 0) {
+            if let time = Date.createTime(hour: 0, minute: 0) {
                 instance.setValue(time, animated: false)
             }
         }
