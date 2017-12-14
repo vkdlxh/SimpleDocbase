@@ -30,6 +30,11 @@ class WorkSheetItemCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        breakTimeLabel.text = ""
+        workTimeLabel.text = ""
+    }
     
     internal func settingCell(_ sheetItem: WorkSheetItem) {
         
@@ -50,9 +55,6 @@ class WorkSheetItemCell: UITableViewCell {
             breakTimeLabel.text =  String(format: "%.1f", breakTime)
         }
         
-//        if let bt = sheetItem.beginTime, let et = sheetItem.endTime {
-//            workTimeLabel.text = Date.hourString(begin: bt, end: et)
-//        }
         if let duration = sheetItem.duration {
             workTimeLabel.text = String(format: "%.1f", duration)
         }
