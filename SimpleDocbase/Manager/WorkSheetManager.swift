@@ -243,7 +243,8 @@ class WorkSheetManager: NSObject {
             markdownStr += "| "
             
             if let workFlag = item.workFlag {
-                markdownStr += String(workFlag)
+                let workFlagString = workFlag ? "◯" : ""
+                markdownStr += workFlagString
             }
             markdownStr += "| "
             
