@@ -103,7 +103,7 @@ class WriteMemoViewController: UIViewController {
         var ac = UIAlertController()
         
         if result == true {
-            ac = UIAlertController(title: "メモ登録成功", message: nil, preferredStyle: .alert)
+            ac = UIAlertController(title: "メモを登録しました。", message: nil, preferredStyle: .alert)
             let successAction = UIAlertAction(title: "確認", style: .default) { action in
                 print("Write Memo Success")
                 self.view.endEditing(true)
