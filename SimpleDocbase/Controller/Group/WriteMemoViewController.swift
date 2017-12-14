@@ -37,24 +37,29 @@ class WriteMemoViewController: UIViewController {
             let trimTag = tag.trimmingCharacters(in: .whitespacesAndNewlines)
             tags.append(trimTag)
         }
-        
-        let memo: [String : Any] = [
-            "title": titleTextField.text ?? "" ,
-            "body": bodyTextView.text ?? "" ,
-            "draft": false,
-            "tags": tags,
-            "scope": "group",
-            "groups": [group?.id],
-            "notice": true
-        ]
-
-        if let domain = domain {
-            DispatchQueue.global().async {
-                ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
-                    if check == true {
-                        self.checkWriteSuccess = true
+        if let textField = titleTextField.text, textField.isEmpty {
+            emptyTextValue(errorPlace: "タイトル")
+        } else if let textField = bodyTextView.text, textField.isEmpty {
+            emptyTextValue(errorPlace: "メモの内容")
+        } else {
+            let memo: [String : Any] = [
+                "title": titleTextField.text!,
+                "body": bodyTextView.text,
+                "draft": false,
+                "tags": tags,
+                "scope": "group",
+                "groups": [group?.id],
+                "notice": true
+            ]
+            
+            if let domain = domain {
+                DispatchQueue.global().async {
+                    ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
+                        if check == true {
+                            self.checkWriteSuccess = true
+                        }
+                        self.checkWriteSuccessAlert(result: self.checkWriteSuccess)
                     }
-                    self.checkWriteSuccessAlert(result: self.checkWriteSuccess)
                 }
             }
         }
@@ -94,7 +99,7 @@ class WriteMemoViewController: UIViewController {
         bottomConstraint.constant = 0
     }
     
-    func checkWriteSuccessAlert(result: Bool) {
+    private func checkWriteSuccessAlert(result: Bool) {
         
         var ac = UIAlertController()
         
@@ -121,6 +126,15 @@ class WriteMemoViewController: UIViewController {
         DispatchQueue.main.async {
             self.present(ac, animated: true, completion: nil)
         }
-        
+    }
+    
+    private func emptyTextValue(errorPlace: String) {
+        let ac = UIAlertController(title: errorPlace + "を確認してください。", message: nil, preferredStyle: .alert)
+        let okAction: UIAlertAction = UIAlertAction(title: "確認", style: .cancel) {
+            (action: UIAlertAction!) -> Void in
+            print(errorPlace + " is Empty.")
+        }
+        ac.addAction(okAction)
+        self.present(ac, animated: true, completion: nil)
     }
 }
