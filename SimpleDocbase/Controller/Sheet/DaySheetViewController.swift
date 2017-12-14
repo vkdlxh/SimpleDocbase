@@ -13,7 +13,7 @@ final class DaySheetViewController : UIViewController {
     
     var groups: [Group] = []
     var groupId: Int?
-    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as! String
+    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
 
     //TODO: WorkSheetDictのKey(yearMonth)を使ってWorkSheetを呼び出す
@@ -57,10 +57,12 @@ final class DaySheetViewController : UIViewController {
                 // Test
                 SVProgressHUD.show(withStatus: "アップロード中")
                 if let groupid = self.groupId {
-                    self.workSheetManager.uploadWorkSheet(domain: self.domain, month: self.yearMonth, groupId: groupid, dict: worksheetDict) { result in
-                        self.checkUploadSuccessAlert(result: result)
-                        DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
+                    if let domain = self.domain {
+                        self.workSheetManager.uploadWorkSheet(domain: domain, month: self.yearMonth, groupId: groupid, dict: worksheetDict) { result in
+                            self.checkUploadSuccessAlert(result: result)
+                            DispatchQueue.main.async {
+                                SVProgressHUD.dismiss()
+                            }
                         }
                     }
                 }
