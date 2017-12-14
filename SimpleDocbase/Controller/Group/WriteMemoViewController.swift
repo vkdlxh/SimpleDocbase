@@ -19,37 +19,28 @@ class WriteMemoViewController: UIViewController {
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var group: Group?
     var checkWriteSuccess = false
+    let tagValue = "iPhoneから投稿"
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var tagsTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet weak var tagLabel: UILabel!
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
-        
-        var tags = [String]()
-        guard let tagsText:String = tagsTextField.text else { return }
-        let tagArr = tagsText.components(separatedBy: ",")
-        
-        for tag in tagArr{
-            let trimTag = tag.trimmingCharacters(in: .whitespacesAndNewlines)
-            tags.append(trimTag)
-        }
         if let textField = titleTextField.text, textField.isEmpty {
             emptyTextValue(errorPlace: "タイトル")
         } else if let textField = bodyTextView.text, textField.isEmpty {
             emptyTextValue(errorPlace: "メモの内容")
         } else {
             let memo: [String : Any] = [
-                "title": titleTextField.text!,
-                "body": bodyTextView.text,
-                "draft": false,
-                "tags": tags,
-                "scope": "group",
-                "groups": [group?.id],
-                "notice": true
+            "title": titleTextField.text ?? "" ,
+            "body": bodyTextView.text ?? "" ,
+            "draft": false,
+            "tags": [tagValue],
+            "scope": "group",
+            "groups": [group?.id],
+            "notice": true
             ]
             
             if let domain = domain {
@@ -59,6 +50,7 @@ class WriteMemoViewController: UIViewController {
                             self.checkWriteSuccess = true
                         }
                         self.checkWriteSuccessAlert(result: self.checkWriteSuccess)
+
                     }
                 }
             }
@@ -76,6 +68,7 @@ class WriteMemoViewController: UIViewController {
         if let groupName = group?.name {
             navigationItem.title = groupName
         }
+        tagLabel.text = "タグ：" + tagValue
     
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
