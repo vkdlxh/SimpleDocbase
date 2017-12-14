@@ -60,12 +60,12 @@ class WorkSheetManager: NSObject {
             var work_sheet_item = WorkSheetItem(year: year, month:month, day:day)
             work_sheet_item.beginTime = nil//Date()
             work_sheet_item.endTime = nil//Date()
-            work_sheet_item.breakTime = 1.0
-//            work_sheet_item.duration = 8.0
             work_sheet_item.remark = ""
             items.append(work_sheet_item)
         }
         work_sheet.items = items
+        let workDaySum = items.filter { $0.workFlag == true }.count
+        work_sheet.workDaySum = workDaySum
         
         return work_sheet
     }

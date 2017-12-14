@@ -108,7 +108,7 @@ class DaySheetEditViewController: FormViewController {
                 instance.setValue(time, animated: false)
             }
         }else {
-            if let time = Date.createTime(hour: 1, minute: 0) {
+            if let time = Date.createTime(hour: 0, minute: 0) {
                 instance.setValue(time, animated: false)
             }
         }
@@ -236,7 +236,9 @@ class DaySheetEditViewController: FormViewController {
             return
         }
         
-        let duration = (Double(hour) + Double(minute/60)) - (worksheetItem?.breakTime ?? 0)
+        let breakTime = getBreakTimeFormDate(date: breakTimePicker.value)
+        
+        let duration = (Double(hour) + Double(minute/60)) - breakTime
         durationText.value = String(format:"%.2f",duration)
     }
     
@@ -244,6 +246,20 @@ class DaySheetEditViewController: FormViewController {
         if let intervalTime = UserDefaults.standard.object(forKey: "minuteInterval") as? String {
             self.intervalTime = Int(intervalTime)!
         }
+    }
+    
+    private func getBreakTimeFormDate(date: Date) -> Double {
+        let zeroDate = Date.createTime(hour: 0, minute: 0)
+        let calendar = NSCalendar.current
+        let comps = calendar.dateComponents([.hour, .minute], from: zeroDate!, to: date)
+        
+        guard let hour = comps.hour else {
+            return 0
+        }
+        guard let minute = comps.minute else {
+            return 0
+        }
+        return Double(hour) + Double(minute/60)
     }
     
 }

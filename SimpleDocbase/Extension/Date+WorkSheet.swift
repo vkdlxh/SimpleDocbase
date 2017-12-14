@@ -72,7 +72,8 @@ extension Date  {
     }
     
     static func weekDayString(week: Int) -> String {
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.locale = Locale(identifier: "ja_JP")
         return calendar.shortStandaloneWeekdaySymbols[week-1]
     }
     

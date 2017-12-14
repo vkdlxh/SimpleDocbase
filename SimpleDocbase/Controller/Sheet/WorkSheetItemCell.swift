@@ -46,7 +46,9 @@ class WorkSheetItemCell: UITableViewCell {
         
         beginTimeLabel.text = sheetItem.beginTime?.hourMinuteString()
         endTimeLabel.text = sheetItem.endTime?.hourMinuteString()
-        breakTimeLabel.text =  String(format: "%.1f", sheetItem.breakTime ?? 0)
+        if let breakTime = sheetItem.breakTime {
+            breakTimeLabel.text =  String(format: "%.1f", breakTime)
+        }
         
 //        if let bt = sheetItem.beginTime, let et = sheetItem.endTime {
 //            workTimeLabel.text = Date.hourString(begin: bt, end: et)
