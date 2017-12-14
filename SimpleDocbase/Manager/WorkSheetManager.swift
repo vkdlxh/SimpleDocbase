@@ -66,6 +66,8 @@ class WorkSheetManager: NSObject {
             items.append(work_sheet_item)
         }
         work_sheet.items = items
+        let workDaySum = items.filter { $0.workFlag == true }.count
+        work_sheet.workDaySum = workDaySum
         
         return work_sheet
     }
