@@ -213,8 +213,6 @@ extension Date  {
         guard let date = dateFormater.date(from: dateStr) else {
             return nil
         }
-//        let addOneDay = Calendar.current.date(byAdding: .day, value: 1, to: date)
-//        return addOneDay
         return date
         
     }
