@@ -58,11 +58,11 @@ final class SheetViewController : UIViewController {
             textfield.placeholder = "YYYYMM"
         }
 
-        alert.addAction(UIAlertAction(title: "Cancel",
+        alert.addAction(UIAlertAction(title: "キャンセル",
                                       style: .cancel,
                                       handler:nil))
         
-        alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+        alert.addAction(UIAlertAction(title: "確認", style: .default) { action in
             print("OK")
 
             let textFields:Array<UITextField>? =  alert.textFields as Array<UITextField>?
@@ -73,7 +73,7 @@ final class SheetViewController : UIViewController {
                         let alert = UIAlertController(title:"勤務表追加失敗",
                                                       message: "YYYYMMの形式で入力してください。",
                                                       preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK",
+                        alert.addAction(UIAlertAction(title: "確認",
                                                       style: .cancel) { action in
                             })
                         self.present(alert, animated: true, completion: nil)

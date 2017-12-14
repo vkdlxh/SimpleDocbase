@@ -27,7 +27,7 @@ class SettingViewController: FormViewController {
         builder += SectionHeaderTitleFormItem().title("チーム情報")
         builder += teamNameTextForm
         
-        builder += SectionHeaderTitleFormItem().title("APP INFO")
+        builder += SectionHeaderTitleFormItem().title("アプリ情報")
         builder += StaticTextFormItem().title("Version").value(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)
         updateForm()
        

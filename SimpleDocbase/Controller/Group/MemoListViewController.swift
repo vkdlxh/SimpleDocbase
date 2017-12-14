@@ -66,7 +66,7 @@ class MemoListViewController: UIViewController {
     }
     
     private func deleteMemoAlert(completion: @escaping (Bool) -> ()) {
-        let deleteMemoAC = UIAlertController(title: "Memo削除", message: "Memoを削除しますか？", preferredStyle: .alert)
+        let deleteMemoAC = UIAlertController(title: "Memo削除", message: "メモを削除しますか？", preferredStyle: .alert)
         let deleteButton = UIAlertAction(title: "削除", style: .default) { action in
             completion(true)
             print("tapped Memo delete Button")
