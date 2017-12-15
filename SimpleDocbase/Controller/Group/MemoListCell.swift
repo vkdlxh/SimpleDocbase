@@ -15,6 +15,8 @@ class MemoListCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
+    @IBOutlet weak var tagImageView: UIImageView!
+    
     
     var memo: Memo? {
         didSet {
@@ -27,6 +29,11 @@ class MemoListCell: UITableViewCell {
                 bodyLabel.text = "勤務表はDocbaseから確認してください。"
             } else {
                 bodyLabel.text = memo.body
+            }
+            
+            if memo.tags.isEmpty {
+                tagImageView.isHidden = true
+//                tagImageView.frame.width = 0
             }
             
             var tags: [String] = []

@@ -98,11 +98,11 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemoCell" rowHeight="172" id="ZBc-Dd-KCc" customClass="MemoListCell" customModule="SimpleDocbase" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="172"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemoCell" rowHeight="173" id="ZBc-Dd-KCc" customClass="MemoListCell" customModule="SimpleDocbase" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="173"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZBc-Dd-KCc" id="rQ2-vK-BB1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="172"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fG6-fB-qWI">
@@ -133,8 +133,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tag" translatesAutoresizingMaskIntoConstraints="NO" id="8Jd-4m-unC">
+                                                    <rect key="frame" x="57" y="146" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="ue2-yl-tec"/>
+                                                        <constraint firstAttribute="width" constant="20" id="v8x-tA-0mv"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCw-8A-NDI">
-                                                    <rect key="frame" x="57" y="146" width="22.5" height="21"/>
+                                                    <rect key="frame" x="80" y="146" width="22.5" height="18"/>
                                                     <color key="backgroundColor" red="0.84465640779999995" green="0.51457053419999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
@@ -142,15 +149,18 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="8Jd-4m-unC" secondAttribute="bottom" constant="5" id="2Kx-wq-xzD"/>
                                                 <constraint firstItem="fG6-fB-qWI" firstAttribute="top" secondItem="rQ2-vK-BB1" secondAttribute="top" constant="2" id="3et-F6-rpC"/>
-                                                <constraint firstItem="cCw-8A-NDI" firstAttribute="top" secondItem="4K9-7U-E26" secondAttribute="bottom" id="LVl-FQ-6uv"/>
+                                                <constraint firstItem="8Jd-4m-unC" firstAttribute="top" secondItem="4K9-7U-E26" secondAttribute="bottom" id="E9a-dt-K0h"/>
+                                                <constraint firstItem="cCw-8A-NDI" firstAttribute="leading" secondItem="8Jd-4m-unC" secondAttribute="trailing" constant="3" id="Pec-a2-G95"/>
+                                                <constraint firstItem="8Jd-4m-unC" firstAttribute="leading" secondItem="fG6-fB-qWI" secondAttribute="trailing" constant="5" id="XUR-On-61W"/>
+                                                <constraint firstItem="cCw-8A-NDI" firstAttribute="top" secondItem="4K9-7U-E26" secondAttribute="bottom" id="ZhU-X9-hRf"/>
+                                                <constraint firstAttribute="bottom" secondItem="cCw-8A-NDI" secondAttribute="bottom" constant="5" id="bW3-76-aRa"/>
                                                 <constraint firstItem="23j-tp-AsO" firstAttribute="top" secondItem="rQ2-vK-BB1" secondAttribute="top" constant="2" id="dv6-Hh-Vy6"/>
                                                 <constraint firstItem="23j-tp-AsO" firstAttribute="leading" secondItem="fG6-fB-qWI" secondAttribute="trailing" constant="5" id="eOW-CX-nlI"/>
                                                 <constraint firstItem="fG6-fB-qWI" firstAttribute="leading" secondItem="rQ2-vK-BB1" secondAttribute="leading" constant="2" id="gPQ-jW-NTA"/>
-                                                <constraint firstAttribute="bottom" secondItem="cCw-8A-NDI" secondAttribute="bottom" constant="4.5" id="gpV-kt-Vqd"/>
                                                 <constraint firstAttribute="trailing" secondItem="4K9-7U-E26" secondAttribute="trailing" constant="2" id="oP7-zu-cVe"/>
                                                 <constraint firstItem="4K9-7U-E26" firstAttribute="leading" secondItem="fG6-fB-qWI" secondAttribute="trailing" constant="5" id="qRh-n0-NgV"/>
-                                                <constraint firstItem="cCw-8A-NDI" firstAttribute="leading" secondItem="fG6-fB-qWI" secondAttribute="trailing" constant="5" id="rur-gr-bLI"/>
                                                 <constraint firstAttribute="trailing" secondItem="23j-tp-AsO" secondAttribute="trailing" constant="2" id="tGd-If-ytD"/>
                                                 <constraint firstItem="4K9-7U-E26" firstAttribute="top" secondItem="23j-tp-AsO" secondAttribute="bottom" id="tK3-Ti-Tbp"/>
                                             </constraints>
@@ -158,6 +168,7 @@
                                         <connections>
                                             <outlet property="bodyLabel" destination="4K9-7U-E26" id="5M2-3M-6Ip"/>
                                             <outlet property="profileImageView" destination="fG6-fB-qWI" id="5Xw-63-zDr"/>
+                                            <outlet property="tagImageView" destination="8Jd-4m-unC" id="NhW-hs-I6V"/>
                                             <outlet property="tagLabel" destination="cCw-8A-NDI" id="qmg-2R-hfn"/>
                                             <outlet property="titleLabel" destination="23j-tp-AsO" id="FFd-og-LRg"/>
                                             <segue destination="GVC-Sf-pHd" kind="show" identifier="GoDetailMemoSegue" id="ofe-QX-7dM"/>
@@ -461,5 +472,6 @@
     </scenes>
     <resources>
         <image name="Order" width="30" height="30"/>
+        <image name="Tag" width="30" height="30"/>
     </resources>
 </document>
