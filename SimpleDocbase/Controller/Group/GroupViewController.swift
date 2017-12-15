@@ -60,7 +60,7 @@ class GroupViewController: UIViewController {
     }
     
     private func checkTokenKeyAlert() {
-        let ac = UIAlertController(title: "トークン設定", message: "トークンを設定してください。", preferredStyle: .alert)
+        let ac = UIAlertController(title: "APIトークン設定", message: "APIトークンを設定してください。", preferredStyle: .alert)
         
         //test code.
         //ac.addTextField()
@@ -71,7 +71,7 @@ class GroupViewController: UIViewController {
         if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
             print("No TokenKey")
             
-            let submitAction = UIAlertAction(title: "トークン登録", style: .default) { [unowned ac] _ in
+            let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { [unowned ac] _ in
                 if let tokenKey = ac.textFields?[0].text {
                     UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
                 }
