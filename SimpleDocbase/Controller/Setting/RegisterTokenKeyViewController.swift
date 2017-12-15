@@ -29,7 +29,7 @@ class RegisterTokenKeyViewController: FormViewController {
 
     override func populate(_ builder: FormBuilder) {
         configureFooterView()
-        builder.navigationTitle = "トークン登録"
+        builder.navigationTitle = "APIトークン登録"
         builder.toolbarMode = .simple
         builder += SectionHeaderTitleFormItem().title("APIトークン登録")
         builder += tokenKey
@@ -66,13 +66,13 @@ class RegisterTokenKeyViewController: FormViewController {
         var alert = UIAlertController()
         switch type {
         case .success:
-            alert = UIAlertController(title:"トークン登録", message: "トークンを登録しました。", preferredStyle: .alert)
+            alert = UIAlertController(title:"APIトークン登録", message: "APIトークンを登録しました。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okButton)
         case .delete:
-            alert = UIAlertController(title:"トークン削除", message: "トークンを削除しますか。", preferredStyle: .alert)
+            alert = UIAlertController(title:"APIトークン削除", message: "APIトークンを削除しますか。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
                 self.userDefaults.removeObject(forKey: "paramTokenKey")
                 self.userDefaults.removeObject(forKey: "selectedTeam")
