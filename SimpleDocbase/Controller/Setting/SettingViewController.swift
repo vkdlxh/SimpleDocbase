@@ -124,6 +124,14 @@ class SettingViewController: FormViewController {
             for group in groups {
                 picker.append(group.name)
             }
+            if let selectedGroup = userDefaults.object(forKey: "selectedGroup") as? String {
+                let selectedOption = picker.options.filter{ $0.title == selectedGroup }.first
+                if let selectedOption = selectedOption {
+                    picker.setSelectedOptionRow(selectedOption)
+                }
+            } else {
+                picker.placeholder = "未登録"
+            }
         } else {
             picker.options.removeAll()
         }

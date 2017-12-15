@@ -209,11 +209,11 @@ extension GroupViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
-        if let navController = tabBarController.viewControllers?[1] as? UINavigationController {
-            if let sheetVC = navController.childViewControllers.first as? SheetViewController{
-                sheetVC.groups = groups
-            }
-        }
+//        if let navController = tabBarController.viewControllers?[1] as? UINavigationController {
+//            if let sheetVC = navController.childViewControllers.first as? SheetViewController{
+//                sheetVC.groups = groups
+//            }
+//        }
         
         if let navController = self.tabBarController?.viewControllers?[2] as? UINavigationController {
             if let settingVC = navController.childViewControllers.first as? SettingViewController {
