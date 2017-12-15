@@ -13,7 +13,7 @@ final class SheetViewController : UIViewController {
     // MARK: Properties
     var workSheets = [WorkSheet]()
     var selectedWorkSheet : WorkSheet?
-    var groups: [Group] = []
+//    var groups: [Group] = []
     let worksheetManager = WorkSheetManager.sharedManager
     
     // MARK: IBOutlets
@@ -116,7 +116,7 @@ final class SheetViewController : UIViewController {
                     if let yearMonth = selectedWorkSheet.workdate?.yearMonthKey() {
                         destination.yearMonth = yearMonth
                     }
-                    destination.groups = groups
+//                    destination.groups = groups
                 }
             }
         }

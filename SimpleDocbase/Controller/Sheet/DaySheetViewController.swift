@@ -11,9 +11,8 @@ import SVProgressHUD
 
 final class DaySheetViewController : UIViewController {
     
-    var groups: [Group] = []
     var groupId: Int?
-    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
+    var domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
 
     //TODO: WorkSheetDictのKey(yearMonth)を使ってWorkSheetを呼び出す
@@ -99,25 +98,30 @@ final class DaySheetViewController : UIViewController {
     }
     
     // MARK: Private
-    private func getSelectedGoupdId() -> Int? {
-        
-        let groupId = groups.filter { $0.name == self.group }.first?.id
-        
-        guard let selectedGroupId = groupId else { return nil }
-        
-        return selectedGroupId
-    }
-    
-    private func receiveValue() {
+    private func receiveValue(){
         group = UserDefaults.standard.object(forKey: "selectedGroup") as? String
-        if let groupId = getSelectedGoupdId() {
-            self.groupId = groupId
-        }
-        print("receive Group")
-        workSheet = workSheetManager.findWorkSheetFromWorkSheetDict(yearMonth: yearMonth)
-        sheetItems = workSheet?.items
+        domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
         
-        daySheetTableView.reloadData()
+        DispatchQueue.global().async {
+            ACAGroupRequest.init().getGroupList { groups in
+                if let groups = groups {
+                    let selectedGroupId = groups.filter { $0.name == self.group }.first?.id
+                    
+                    if let selectedGroupId = selectedGroupId {
+                        self.groupId = selectedGroupId
+                    } else {
+                        self.groupId = nil
+                    }
+                    
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.workSheet = self.workSheetManager.findWorkSheetFromWorkSheetDict(yearMonth: self.yearMonth)
+                self.sheetItems = self.workSheet?.items
+                self.daySheetTableView.reloadData()
+            }
+        }
     }
     
     private func initControls() {

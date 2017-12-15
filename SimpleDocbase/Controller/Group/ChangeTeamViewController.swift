@@ -13,7 +13,8 @@ class ChangeTeamViewController: UIViewController {
     
     // MARK: Properties
     var teams: [String] = []
-    
+    var beforeTeam = UserDefaults.standard.object(forKey: "selectedTeam") as? String
+    var afertTeam: String?
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,6 +35,12 @@ class ChangeTeamViewController: UIViewController {
                 self.tableView.reloadData()
                 SVProgressHUD.dismiss()
             }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if beforeTeam != afertTeam {
+            UserDefaults.standard.removeObject(forKey: "selectedGroup")
         }
     }
 
@@ -74,6 +81,7 @@ extension ChangeTeamViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
             UserDefaults.standard.set(teams[selectedIndex], forKey: "selectedTeam")
+            afertTeam = UserDefaults.standard.object(forKey: "selectedTeam") as? String
             print("Team Changed \(teams[selectedIndex])")
             self.tableView.reloadData()
         }
