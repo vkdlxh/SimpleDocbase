@@ -170,6 +170,7 @@
                                             <outlet property="profileImageView" destination="fG6-fB-qWI" id="5Xw-63-zDr"/>
                                             <outlet property="tagImageView" destination="8Jd-4m-unC" id="NhW-hs-I6V"/>
                                             <outlet property="tagLabel" destination="cCw-8A-NDI" id="qmg-2R-hfn"/>
+                                            <outlet property="tagLabelHeight" destination="ue2-yl-tec" id="Sr5-Pm-uXs"/>
                                             <outlet property="titleLabel" destination="23j-tp-AsO" id="FFd-og-LRg"/>
                                             <segue destination="GVC-Sf-pHd" kind="show" identifier="GoDetailMemoSegue" id="ofe-QX-7dM"/>
                                         </connections>

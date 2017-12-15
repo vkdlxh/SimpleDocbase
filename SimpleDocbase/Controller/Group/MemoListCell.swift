@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol MemoListCellDelegate {
+    func emptyTag(image: UIImageView)
+}
+
 class MemoListCell: UITableViewCell {
+    
+    var delegate: MemoListCellDelegate?
     
     // MARK: IBOutlets
     @IBOutlet weak var profileImageView: UIImageView!
@@ -17,7 +23,9 @@ class MemoListCell: UITableViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var tagImageView: UIImageView!
     
+    @IBOutlet weak var tagLabelHeight: NSLayoutConstraint!
     
+
     var memo: Memo? {
         didSet {
             guard let memo = memo else {
@@ -32,8 +40,15 @@ class MemoListCell: UITableViewCell {
             }
             
             if memo.tags.isEmpty {
-                tagImageView.isHidden = true
-//                tagImageView.frame.width = 0
+//                tagImageView.isHidden = true
+//                let rect:CGRect = CGRect(x:0, y:0, width:0, height:0)
+//                tagImageView.frame = rect
+//                setNeedsUpdateConstraints()
+                tagLabelHeight.constant = 0
+                
+                delegate?.emptyTag(image: tagImageView)
+                
+                
             }
             
             var tags: [String] = []
@@ -47,5 +62,6 @@ class MemoListCell: UITableViewCell {
             profileImageView.image = UIImage(data: imageURLData!)
         }
     }
+    
 }
 

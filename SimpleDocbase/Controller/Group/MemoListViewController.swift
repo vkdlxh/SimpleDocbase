@@ -142,6 +142,7 @@ extension MemoListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as? MemoListCell {
+            cell.delegate = self
             let memo = memos[indexPath.row]
             cell.memo = memo
             return cell
@@ -240,6 +241,15 @@ extension MemoListViewController: UIScrollViewDelegate {
             }
         }
     }
+    
+}
+
+extension MemoListViewController: MemoListCellDelegate {
+    func emptyTag(image: UIImageView) {
+//        tableView.addSubview(image)
+        tableView.layoutIfNeeded()
+    }
+    
     
 }
 
