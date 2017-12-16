@@ -39,15 +39,16 @@ class MemoListCell: UITableViewCell {
                 bodyLabel.text = memo.body
             }
             
+            // FIXME: タグイメージが完全に消えるように
 //            if memo.tags.isEmpty {
 //                tagImageView.isHidden = true
 //                let rect:CGRect = CGRect(x:0, y:0, width:0, height:0)
 //                tagImageView.frame = rect
 //                setNeedsUpdateConstraints()
-                
+//
 //                tagLabelHeight.constant = 0
 //                delegate?.emptyTag(image: tagImageView)
-            
+//
 //            }
             
 //            var tags: [String] = []
@@ -71,6 +72,14 @@ class MemoListCell: UITableViewCell {
             let imageURL = URL(string: memo.user.profile_image_url)
             let imageURLData = try? Data(contentsOf: imageURL!)
             profileImageView.image = UIImage(data: imageURLData!)
+        }
+    }
+    
+    override func awakeFromNib() {
+        if let tagImage = UIImage(named: "Tag") {
+            let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
+            tagImageView.image = tintableImage
+            tagImageView.tintColor = ACAColor().ACAApricot
         }
     }
     
