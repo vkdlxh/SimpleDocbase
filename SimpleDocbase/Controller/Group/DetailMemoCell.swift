@@ -15,6 +15,8 @@ class DetailMemoCell: UITableViewCell {
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var bodyTextView: UITextView!
+    @IBOutlet weak var groupImageView: UIImageView!
+    @IBOutlet weak var tagImageView: UIImageView!
     
     var memo: Memo? {
         didSet {
@@ -36,11 +38,30 @@ class DetailMemoCell: UITableViewCell {
             }
             groupLabel.text = groups.joined(separator: ", ")
             
-            var tags: [String] = []
-            for i in 0..<memo.tags.count{
-                tags.append(memo.tags[i].name)
+            
+            if memo.tags.isEmpty {
+                tagImageView.isHidden = true
+                tagLabel.text?.removeAll()
+            } else {
+                var tags: [String] = []
+                for i in 0..<memo.tags.count{
+                    tags.append(memo.tags[i].name)
+                }
+                tagLabel.text = tags.joined(separator: ", ")
             }
-            tagLabel.text = tags.joined(separator: ", ")
+        }
+    }
+    
+    override func awakeFromNib() {
+        if let tagImage = UIImage(named: "Tag") {
+            let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
+            tagImageView.image = tintableImage
+            tagImageView.tintColor = ACAColor().ACAApricot
+        }
+        if let groupImage = UIImage(named: "People") {
+            let tintableImage = groupImage.withRenderingMode(.alwaysTemplate)
+            groupImageView.image = tintableImage
+            groupImageView.tintColor = ACAColor().ACAApricot
         }
     }
     
