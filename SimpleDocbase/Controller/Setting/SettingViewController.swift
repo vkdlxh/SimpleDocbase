@@ -142,13 +142,5 @@ class SettingViewController: FormViewController {
         userDefaults.set(minuteIntervalSetting.selectedItem, forKey: "minuteInterval")
         print("Changed IntervalTime \(String(describing: minuteIntervalSetting.selectedItem))")
     }
-    
-//    private func getGroupListFromRequest() {
-//        ACAGroupRequest.init().getGroupList { groups in
-//            if let groups = groups {
-//                self.groups = groups
-//            }
-//        }
-//    }
 
 }
