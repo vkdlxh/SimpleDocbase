@@ -14,6 +14,7 @@ class MemoListViewController: UIViewController {
     // MARK: Properties
     var group: Group?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
+    let presentToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
     var memos = [Memo]()
     var refreshControl: UIRefreshControl!
     //Pagination
@@ -51,6 +52,10 @@ class MemoListViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        checkTokenKey()
+    }
+    
     // MARK: Internal Methods
     
     // MARK: Private Methods
@@ -66,7 +71,7 @@ class MemoListViewController: UIViewController {
     }
     
     private func deleteMemoAlert(completion: @escaping (Bool) -> ()) {
-        let deleteMemoAC = UIAlertController(title: "Memo削除", message: "メモを削除しますか？", preferredStyle: .alert)
+        let deleteMemoAC = UIAlertController(title: "メモ削除", message: "メモを削除しますか？", preferredStyle: .alert)
         let deleteButton = UIAlertAction(title: "削除", style: .default) { action in
             completion(true)
             print("tapped Memo delete Button")
@@ -104,6 +109,21 @@ class MemoListViewController: UIViewController {
                     self.tableView.reloadData()
                 }
             }
+        }
+    }
+    
+    private func checkTokenKey() {
+        let newToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+        
+        if presentToken != newToken {
+            // TODO: トークン変更アラート
+            let changedTokenAC = UIAlertController(title: "APIトークン変更", message: "APIトークンが変更されて\n最初の画面に戻ります。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                self.navigationController!.popToRootViewController(animated: true)
+            }
+            changedTokenAC.addAction(okButton)
+            present(changedTokenAC, animated: true, completion: nil)
+            
         }
     }
     

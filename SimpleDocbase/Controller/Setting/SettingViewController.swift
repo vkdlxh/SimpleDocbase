@@ -102,6 +102,7 @@ class SettingViewController: FormViewController {
             tokenKeyViewControllerForm.title("\(tokenKey)")
         } else {
             tokenKeyViewControllerForm.title = "APIトークンを登録してください。"
+            groups.removeAll()
         }
         
         if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {

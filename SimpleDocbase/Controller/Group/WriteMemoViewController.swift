@@ -17,6 +17,7 @@ class WriteMemoViewController: UIViewController {
     // MARK: Properties
     var delegate: WriteMemoViewControllerDelegate?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
+    let presentToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
     var group: Group?
     var checkWriteSuccess = false
     let tagValue = "iPhoneから投稿"
@@ -79,6 +80,10 @@ class WriteMemoViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkTokenKey()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -145,6 +150,21 @@ class WriteMemoViewController: UIViewController {
         placeholderLabel.frame.origin = CGPoint(x: 5, y: (bodyTextView.font?.pointSize)! / 2)
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.isHidden = !bodyTextView.text.isEmpty
+    }
+    
+    private func checkTokenKey() {
+        let newToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+        
+        if presentToken != newToken {
+            // TODO: トークン変更アラート
+            let changedTokenAC = UIAlertController(title: "APIトークン変更", message: "APIトークンが変更されて\n最初の画面に戻ります。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                self.navigationController!.popToRootViewController(animated: true)
+            }
+            changedTokenAC.addAction(okButton)
+            present(changedTokenAC, animated: true, completion: nil)
+            
+        }
     }
 }
 

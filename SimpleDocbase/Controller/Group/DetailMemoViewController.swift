@@ -13,6 +13,7 @@ class DetailMemoViewController: UIViewController {
     // MARK: Properties
     var memo: Memo?
     var sectionList = ["Memo", "Comment"]
+    let presentToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -23,6 +24,25 @@ class DetailMemoViewController: UIViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkTokenKey()
+    }
+    
+    private func checkTokenKey() {
+        let newToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+        
+        if presentToken != newToken {
+            // TODO: トークン変更アラート
+            let changedTokenAC = UIAlertController(title: "APIトークン変更", message: "APIトークンが変更されて\n最初の画面に戻ります。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                self.navigationController!.popToRootViewController(animated: true)
+            }
+            changedTokenAC.addAction(okButton)
+            present(changedTokenAC, animated: true, completion: nil)
+            
+        }
     }
 
 }
