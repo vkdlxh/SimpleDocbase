@@ -55,6 +55,7 @@ class SettingViewController: FormViewController {
         let instance = OptionPickerFormItem()
         instance.title("勤怠管理グループ設定")
         
+        instance.append("未登録")
         for group in groups {
             instance.append(group.name)
         }
@@ -65,7 +66,7 @@ class SettingViewController: FormViewController {
                 instance.setSelectedOptionRow(selectedOption)
             }
         } else {
-            instance.placeholder = "未登録"
+            instance.selectOptionWithTitle("未登録")
         }
         
         instance.valueDidChange = { (selected: OptionRowModel?) in
@@ -122,6 +123,7 @@ class SettingViewController: FormViewController {
                 preTeam = currentTeam
             }
             picker.options.removeAll()
+            picker.append("未登録")
             for group in groups {
                 picker.append(group.name)
             }
@@ -131,10 +133,12 @@ class SettingViewController: FormViewController {
                     picker.setSelectedOptionRow(selectedOption)
                 }
             } else {
-                picker.placeholder = "未登録"
+                picker.selectOptionWithTitle("未登録")
             }
         } else {
             picker.options.removeAll()
+            picker.append("未登録")
+            picker.selectOptionWithTitle("未登録")
         }
     }
     

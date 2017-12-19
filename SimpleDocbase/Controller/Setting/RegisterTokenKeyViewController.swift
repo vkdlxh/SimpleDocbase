@@ -16,7 +16,7 @@ class RegisterTokenKeyViewController: FormViewController {
         case success
         case delete
     }
-    
+
     let userDefaults = UserDefaults.standard
     //8ZwKUqC7QkJJKZN2hP2i
     let footerView = SectionFooterViewFormItem()
@@ -68,7 +68,7 @@ class RegisterTokenKeyViewController: FormViewController {
         case .success:
             alert = UIAlertController(title:"APIトークン登録", message: "APIトークンを登録しました。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.navigationController?.popViewController(animated: true)
+                self.getGroupFromRequest()
             }
             alert.addAction(okButton)
         case .delete:
@@ -92,5 +92,20 @@ class RegisterTokenKeyViewController: FormViewController {
             return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 80), text: self.footerMessage)
         }
     }
+    
+    private func getGroupFromRequest() {
+        DispatchQueue.global().async {
+            ACAGroupRequest.init().getGroupList { groups in
+                if let groups = groups {
+                    let settingVC = SettingViewController()
+                    settingVC.groups = groups
+                    DispatchQueue.main.async {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+        }
+    }
+   
 
 }
