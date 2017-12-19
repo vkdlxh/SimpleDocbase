@@ -40,6 +40,7 @@
 		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
+		DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB994401FE8EC69006289BE /* Lato-Bold.ttf */; };
 		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
 		DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */; };
 		DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */; };
@@ -98,6 +99,7 @@
 		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
+		DAB994401FE8EC69006289BE /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SimpleDocbaselogo.png; sourceTree = "<group>"; };
 		DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarColor.swift; sourceTree = "<group>"; };
@@ -200,6 +202,14 @@
 				DA5099231FBED26B005052F2 /* Setting.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		DAB9943F1FE8EC56006289BE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DAB994401FE8EC69006289BE /* Lato-Bold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		DAC4E5571FA32B8800301844 /* Model */ = {
@@ -328,6 +338,7 @@
 		DAFF5C6D1FA836370087C871 /* Supportting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DAB9943F1FE8EC56006289BE /* Fonts */,
 				DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */,
 				DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */,
 				DAF6B9561FA06F090042BEC0 /* Assets.xcassets */,
@@ -398,6 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */,
 				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
 				DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */,
 				DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */,

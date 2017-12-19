@@ -94,7 +94,7 @@ extension Date  {
         let dateFormater = DateFormatter()
         dateFormater.locale = Locale(identifier: "ja_JP")
         //dateFormater.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        dateFormater.dateFormat = "yyyy/MM"
+        dateFormater.dateFormat = "yyyy / MM"
         let dateString = dateFormater.string(from: self)
         print(dateString)
         
