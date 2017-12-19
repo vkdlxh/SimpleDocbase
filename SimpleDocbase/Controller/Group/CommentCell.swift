@@ -26,6 +26,8 @@ class CommentCell: UITableViewCell {
             let imageURL = URL(string: user.profile_image_url)
             let imageURLData = try? Data(contentsOf: imageURL!)
             profileImageView.image = UIImage(data: imageURLData!)
+            profileImageView.layer.cornerRadius = 10
+            profileImageView.layer.masksToBounds = true
             
             bodyTextView.attributedText = SwiftyMarkdown(string: comment.body).attributedString()
             
