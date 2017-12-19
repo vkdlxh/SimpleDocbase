@@ -9,6 +9,7 @@
 
 import UIKit
 import SwiftyFORM
+import SVProgressHUD
 
 class RegisterTokenKeyViewController: FormViewController {
 
@@ -55,10 +56,12 @@ class RegisterTokenKeyViewController: FormViewController {
             tokenKeyAlert(type: .delete)
         } else {
             // TODO: normally Regist TokenKey
+            SVProgressHUD.show()
             userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
             userDefaults.removeObject(forKey: "selectedTeam")
             userDefaults.removeObject(forKey: "selectedGroup")
-            tokenKeyAlert(type: .success)
+            getGroupFromRequest()
+//            tokenKeyAlert(type: .success)
         }
     }
     
@@ -68,7 +71,8 @@ class RegisterTokenKeyViewController: FormViewController {
         case .success:
             alert = UIAlertController(title:"APIトークン登録", message: "APIトークンを登録しました。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.getGroupFromRequest()
+//                self.getGroupFromRequest()
+                self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okButton)
         case .delete:
@@ -100,7 +104,9 @@ class RegisterTokenKeyViewController: FormViewController {
                     let settingVC = SettingViewController()
                     settingVC.groups = groups
                     DispatchQueue.main.async {
-                        self.navigationController?.popViewController(animated: true)
+//                        self.navigationController?.popViewController(animated: true)
+                        SVProgressHUD.dismiss()
+                        self.tokenKeyAlert(type: .success)
                     }
                 }
             }
