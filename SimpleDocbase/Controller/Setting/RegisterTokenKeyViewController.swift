@@ -9,6 +9,7 @@
 
 import UIKit
 import SwiftyFORM
+import SVProgressHUD
 
 class RegisterTokenKeyViewController: FormViewController {
 
@@ -16,7 +17,7 @@ class RegisterTokenKeyViewController: FormViewController {
         case success
         case delete
     }
-    
+
     let userDefaults = UserDefaults.standard
     //8ZwKUqC7QkJJKZN2hP2i
     let footerView = SectionFooterViewFormItem()
@@ -55,10 +56,12 @@ class RegisterTokenKeyViewController: FormViewController {
             tokenKeyAlert(type: .delete)
         } else {
             // TODO: normally Regist TokenKey
+            SVProgressHUD.show()
             userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
             userDefaults.removeObject(forKey: "selectedTeam")
             userDefaults.removeObject(forKey: "selectedGroup")
-            tokenKeyAlert(type: .success)
+            getGroupFromRequest()
+//            tokenKeyAlert(type: .success)
         }
     }
     
@@ -68,6 +71,7 @@ class RegisterTokenKeyViewController: FormViewController {
         case .success:
             alert = UIAlertController(title:"APIトークン登録", message: "APIトークンを登録しました。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
+//                self.getGroupFromRequest()
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okButton)
@@ -92,5 +96,22 @@ class RegisterTokenKeyViewController: FormViewController {
             return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 80), text: self.footerMessage)
         }
     }
+    
+    private func getGroupFromRequest() {
+        DispatchQueue.global().async {
+            ACAGroupRequest.init().getGroupList { groups in
+                if let groups = groups {
+                    let settingVC = SettingViewController()
+                    settingVC.groups = groups
+                    DispatchQueue.main.async {
+//                        self.navigationController?.popViewController(animated: true)
+                        SVProgressHUD.dismiss()
+                        self.tokenKeyAlert(type: .success)
+                    }
+                }
+            }
+        }
+    }
+   
 
 }
