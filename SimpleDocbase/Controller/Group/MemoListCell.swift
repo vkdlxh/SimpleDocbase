@@ -72,6 +72,8 @@ class MemoListCell: UITableViewCell {
             let imageURL = URL(string: memo.user.profile_image_url)
             let imageURLData = try? Data(contentsOf: imageURL!)
             profileImageView.image = UIImage(data: imageURLData!)
+            profileImageView.layer.cornerRadius = 25
+            profileImageView.layer.masksToBounds = true
         }
     }
     

@@ -197,13 +197,23 @@ class DaySheetEditViewController: FormViewController {
         print("\n\(workFlagSwitch.value),\n\(beginTimePicker.value.hourMinuteString()),\n\(endTimePicker.value.hourMinuteString()),\n\(breakTimePicker.value.hourMinuteString()),\n\(durationText.value),\n\(remarkTextView.value)")
         
         //update worksheet item
-        worksheetItem?.workFlag = workFlagSwitch.value
-        worksheetItem?.beginTime = beginTimePicker.value
-        worksheetItem?.endTime = endTimePicker.value
-        worksheetItem?.breakTime = breakTimePicker.value.duration()
-        worksheetItem?.remark = remarkTextView.value
-        worksheetItem?.duration = Double(durationText.value)
+        // TODO: workFlagがFalse場合、flag以外の値はnilに登録する。
         
+        if workFlagSwitch.value == false {
+            worksheetItem?.workFlag = workFlagSwitch.value
+            worksheetItem?.beginTime = nil
+            worksheetItem?.endTime = nil
+            worksheetItem?.breakTime = nil
+            worksheetItem?.duration = nil
+            worksheetItem?.remark = remarkTextView.value
+        } else {
+            worksheetItem?.workFlag = workFlagSwitch.value
+            worksheetItem?.beginTime = beginTimePicker.value
+            worksheetItem?.endTime = endTimePicker.value
+            worksheetItem?.breakTime = breakTimePicker.value.duration()
+            worksheetItem?.remark = remarkTextView.value
+            worksheetItem?.duration = Double(durationText.value)
+        }
         print(worksheetItem)
         
         //TODO: 保存処理をする
