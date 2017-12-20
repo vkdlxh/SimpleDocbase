@@ -56,12 +56,13 @@ class RegisterTokenKeyViewController: FormViewController {
             tokenKeyAlert(type: .delete)
         } else {
             // TODO: normally Regist TokenKey
-            SVProgressHUD.show()
+//            SVProgressHUD.show()
             userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
-            userDefaults.removeObject(forKey: "selectedTeam")
             userDefaults.removeObject(forKey: "selectedGroup")
-            getGroupFromRequest()
-//            tokenKeyAlert(type: .success)
+            ACATeamRequest().getTeamList(completion: { teams in
+                self.userDefaults.set(teams?.first, forKey: "selectedTeam")
+            })
+            tokenKeyAlert(type: .success)
         }
     }
     
@@ -71,7 +72,6 @@ class RegisterTokenKeyViewController: FormViewController {
         case .success:
             alert = UIAlertController(title:"APIトークン登録", message: "APIトークンを登録しました。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
-//                self.getGroupFromRequest()
                 self.navigationController?.popViewController(animated: true)
             }
             alert.addAction(okButton)
@@ -97,21 +97,4 @@ class RegisterTokenKeyViewController: FormViewController {
         }
     }
     
-    private func getGroupFromRequest() {
-        DispatchQueue.global().async {
-            ACAGroupRequest.init().getGroupList { groups in
-                if let groups = groups {
-                    let settingVC = SettingViewController()
-                    settingVC.groups = groups
-                    DispatchQueue.main.async {
-//                        self.navigationController?.popViewController(animated: true)
-                        SVProgressHUD.dismiss()
-                        self.tokenKeyAlert(type: .success)
-                    }
-                }
-            }
-        }
-    }
-   
-
 }

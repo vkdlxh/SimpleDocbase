@@ -214,7 +214,7 @@ class DaySheetEditViewController: FormViewController {
             worksheetItem?.remark = remarkTextView.value
             worksheetItem?.duration = Double(durationText.value)
         }
-        print(worksheetItem)
+//        print(worksheetItem)
         
         //TODO: 保存処理をする
         //保存処理を実装してください。

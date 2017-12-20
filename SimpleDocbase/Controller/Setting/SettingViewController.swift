@@ -124,8 +124,14 @@ class SettingViewController: FormViewController {
             }
             picker.options.removeAll()
             picker.append("未登録")
-            for group in groups {
-                picker.append(group.name)
+            ACAGroupRequest.init().getGroupList { groups in
+                DispatchQueue.main.async {
+                    if let groups = groups {
+                        for group in groups {
+                            picker.append(group.name)
+                        }
+                    }
+                }
             }
             if let selectedGroup = userDefaults.object(forKey: "selectedGroup") as? String {
                 let selectedOption = picker.options.filter{ $0.title == selectedGroup }.first

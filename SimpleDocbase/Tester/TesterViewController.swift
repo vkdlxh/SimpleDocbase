@@ -56,15 +56,15 @@ class TesterViewController: UIViewController {
     
     @IBAction func submitBtn(_ sender: Any) {
         
-        let memo: [String : Any] = [
-            "title": titleTextField.text ?? "" ,
-            "body": bodyTextView.text ?? "" ,
-            "draft": false,
-            "tags": ["test"],
-            "scope": "group",
-            "groups": 4712,
-            "notice": true
-        ]
+//        let memo: [String : Any] = [
+//            "title": titleTextField.text ?? "" ,
+//            "body": bodyTextView.text ?? "" ,
+//            "draft": false,
+//            "tags": ["test"],
+//            "scope": "group",
+//            "groups": 4712,
+//            "notice": true
+//        ]
         
 //        ACAMemoRequest.init().writeMemo(domain: domain, dict: memo)
         
