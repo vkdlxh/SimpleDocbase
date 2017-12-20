@@ -46,7 +46,7 @@ final class DaySheetViewController : UIViewController {
         
         //入力された勤務表をDocbaseへアップロード
         var uploadAlertVC = UIAlertController()
-        if groupId == nil {
+        if groupId == nil || group == nil {
             uploadAlertVC = UIAlertController(title: "アップロード失敗", message: "勤怠管理のグループを確認してください。", preferredStyle: .alert)
             uploadAlertVC.addAction(UIAlertAction(title: "確認", style: .cancel, handler:nil))
             

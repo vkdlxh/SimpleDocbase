@@ -10,7 +10,6 @@
 		207A2E2402EBA709A1863CB2 /* Pods_SimpleDocbase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E82A45EBF124ED586B28613A /* Pods_SimpleDocbase.framework */; };
 		400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458741FB682AD00D5FF8E /* DaySheetViewController.swift */; };
 		400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400458771FB6855C00D5FF8E /* Date+WorkSheet.swift */; };
-		4029E8BA1FD7A90500B89E73 /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = 4029E8B91FD7A90500B89E73 /* test.json */; };
 		40D9E4751FC91A99003B353F /* DaySheetEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D9E4741FC91A99003B353F /* DaySheetEditViewController.swift */; };
 		40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */; };
 		40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F30E371FB88CE000014511 /* WorkSheetCell.swift */; };
@@ -22,14 +21,10 @@
 		DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490021FC4019D001E0159 /* ACAColor.swift */; };
 		DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490041FC403D1001E0159 /* ColorRGB.swift */; };
 		DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DC1FB57940005A5C1D /* ACARequest.swift */; };
-		DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */; };
-		DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */; };
-		DA1FFD421FD642FA000B7C60 /* TestWorkSheetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1FFD411FD642FA000B7C60 /* TestWorkSheetManager.swift */; };
 		DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A7E1FA6D3B500668EC9 /* Group.swift */; };
 		DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A801FA6D3DE00668EC9 /* Team.swift */; };
 		DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */; };
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
-		DA4EE3F51FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4EE3F41FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift */; };
 		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
 		DA6043DB1FDA80000073AFE2 /* String+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */; };
 		DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */; };
@@ -41,7 +36,6 @@
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
 		DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB994401FE8EC69006289BE /* Lato-Bold.ttf */; };
-		DAC4E5521FA2F24D00301844 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAC4E5511FA2F24D00301844 /* Request.swift */; };
 		DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */; };
 		DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
@@ -58,10 +52,6 @@
 		DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CF1FA99C6100A368BC /* Comment.swift */; };
 		DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95D11FA99C7C00A368BC /* Tag.swift */; };
 		DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFB18281FB1DF2F00AA4DC7 /* SheetViewController.swift */; };
-		DAFD71041FB477F3004F3140 /* Tester.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFD71031FB477F3004F3140 /* Tester.storyboard */; };
-		DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71051FB47A8C004F3140 /* GroupRequest.swift */; };
-		DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71071FB53455004F3140 /* TeamRequest.swift */; };
-		DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFD71091FB5386B004F3140 /* MemoRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -416,8 +406,6 @@
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
 				DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */,
 				DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */,
-				DAFD71041FB477F3004F3140 /* Tester.storyboard in Resources */,
-				4029E8BA1FD7A90500B89E73 /* test.json in Resources */,
 				DAF6B9571FA06F090042BEC0 /* Assets.xcassets in Resources */,
 				DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */,
 			);
@@ -498,28 +486,20 @@
 				40D9E4751FC91A99003B353F /* DaySheetEditViewController.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
 				DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */,
-				DAFD71081FB53455004F3140 /* TeamRequest.swift in Sources */,
-				DAC4E5521FA2F24D00301844 /* Request.swift in Sources */,
-				DAFD710A1FB5386B004F3140 /* MemoRequest.swift in Sources */,
-				DAFD71061FB47A8C004F3140 /* GroupRequest.swift in Sources */,
 				DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */,
 				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
 				DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */,
-				DA1D97DF1FB57963005A5C1D /* TesterViewController.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
 				DA6608BB1FC6FA95007ADFBE /* DetailMemoViewController.swift in Sources */,
 				40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */,
 				DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */,
 				DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */,
 				DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */,
-				DA4EE3F51FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift in Sources */,
 				DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */,
 				BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */,
 				DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */,
-				DA1D97E11FB944E3005A5C1D /* TesterTokenKeyViewController.swift in Sources */,
 				400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */,
-				DA1FFD421FD642FA000B7C60 /* TestWorkSheetManager.swift in Sources */,
 				BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */,
 				40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
