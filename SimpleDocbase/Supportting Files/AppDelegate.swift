@@ -16,12 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        UIApplication.shared.statusBarView?.backgroundColor = .white
+        UIApplication.shared.statusBarView?.backgroundColor = ACAColor().ACAOrange
         
         let navigataionBarAppearance = UINavigationBar.appearance()
-            
+        
+        navigataionBarAppearance.barStyle = .black
         navigataionBarAppearance.barTintColor = ACAColor().ACAApricot
-        navigataionBarAppearance.tintColor = ACAColor().ACADarkRed
+        navigataionBarAppearance.tintColor = .white
         navigataionBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
         return true

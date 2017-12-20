@@ -37,11 +37,11 @@ class WorkSheetCell: UITableViewCell {
         }
         
         if let workDaySum = workSheet.workDaySum {
-            workDaySumLabel.text = "\(workDaySum) Days"
+            workDaySumLabel.text = "\(workDaySum)"
         }
         
         if let workTimeSum = workSheet.workTimeSum {
-            workTimeSumLabel.text = "\(workTimeSum) Hours"
+            workTimeSumLabel.text = "\(workTimeSum)"
         }
     }
 
