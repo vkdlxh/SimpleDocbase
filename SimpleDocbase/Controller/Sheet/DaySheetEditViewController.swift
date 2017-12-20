@@ -246,9 +246,9 @@ class DaySheetEditViewController: FormViewController {
             return
         }
         
-        let breakTime = getBreakTimeFormDate(date: breakTimePicker.value)
+        let breakTime = getBreakTimeFromDate(date: breakTimePicker.value)
         
-        let duration = (Double(hour) + Double(minute/60)) - breakTime
+        let duration = (Double(hour) + (Double(minute)/60)) - breakTime
         durationText.value = String(format:"%.2f",duration)
     }
     
@@ -258,7 +258,7 @@ class DaySheetEditViewController: FormViewController {
         }
     }
     
-    private func getBreakTimeFormDate(date: Date) -> Double {
+    private func getBreakTimeFromDate(date: Date) -> Double {
         let zeroDate = Date.createTime(hour: 0, minute: 0)
         let calendar = NSCalendar.current
         let comps = calendar.dateComponents([.hour, .minute], from: zeroDate!, to: date)

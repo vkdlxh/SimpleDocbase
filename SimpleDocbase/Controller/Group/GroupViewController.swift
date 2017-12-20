@@ -26,6 +26,7 @@ class GroupViewController: UIViewController {
         super.viewDidLoad()
         refreshControlAction()
         checkTokenKeyAlert()
+        tableView?.backgroundView = messageLabel
         
         self.tabBarController?.delegate = self
 
@@ -115,8 +116,6 @@ class GroupViewController: UIViewController {
     
     private func emptyMessage(_ on: Bool) {
         messageLabel?.isHidden = !on
-        tableView?.backgroundView = on ? messageLabel : nil;
-//        tableView?.separatorStyle = on ? .none : .singleLine;
     }
     
     // MARK: - Navigation
@@ -139,6 +138,7 @@ extension GroupViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if groups.count == 0 {
+              emptyMessage(true)
             return 0
         } else {
             return sectionTitle.count
@@ -208,12 +208,6 @@ extension GroupViewController: UITableViewDelegate {
 extension GroupViewController: UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        
-//        if let navController = tabBarController.viewControllers?[1] as? UINavigationController {
-//            if let sheetVC = navController.childViewControllers.first as? SheetViewController{
-//                sheetVC.groups = groups
-//            }
-//        }
         
         if let navController = self.tabBarController?.viewControllers?[2] as? UINavigationController {
             if let settingVC = navController.childViewControllers.first as? SettingViewController {
