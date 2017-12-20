@@ -13,7 +13,6 @@ final class SheetViewController : UIViewController {
     // MARK: Properties
     var workSheets = [WorkSheet]()
     var selectedWorkSheet : WorkSheet?
-//    var groups: [Group] = []
     let worksheetManager = WorkSheetManager.sharedManager
     
     // MARK: IBOutlets

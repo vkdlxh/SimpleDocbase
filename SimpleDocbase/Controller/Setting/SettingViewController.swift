@@ -42,8 +42,7 @@ class SettingViewController: FormViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         updateForm()
-        changedTokenKey()
-        updateGroupPicker(groupListPiker)
+//        updateGroupPicker(groupListPiker)
         reloadForm()
     }
     
@@ -109,9 +108,32 @@ class SettingViewController: FormViewController {
         
         if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
             tokenKeyViewControllerForm.title("\(tokenKey)")
+            
+            if preTokenKey != tokenKey {
+                DispatchQueue.global().async {
+                    
+                    ACAGroupRequest.init().getGroupList { groups in
+                        DispatchQueue.main.async {
+                            if let groups = groups {
+                                self.groupListPiker.options.removeAll()
+                                self.groupListPiker.append("未登録")
+                                for group in groups {
+                                    self.groupListPiker.append(group.name)
+                                }
+                            }
+                        }
+                    }
+                }
+                self.preTokenKey = tokenKey
+            } else {
+                updateGroupPicker(groupListPiker)
+            }
+            
         } else {
             tokenKeyViewControllerForm.title = "APIトークンを登録してください。"
+            preTokenKey = ""
             groups.removeAll()
+            updateGroupPicker(groupListPiker)
         }
         
         if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {
@@ -154,31 +176,5 @@ class SettingViewController: FormViewController {
         userDefaults.set(minuteIntervalSetting.selectedItem, forKey: "minuteInterval")
         print("Changed IntervalTime \(String(describing: minuteIntervalSetting.selectedItem))")
     }
-    
-    func changedTokenKey() {
-        guard let currentTokenKey = userDefaults.object(forKey: "paramTokenKey") as? String else {
-            return
-        }
-        
-        if preTokenKey != currentTokenKey {
-            DispatchQueue.global().async {
-                
-                ACAGroupRequest.init().getGroupList { groups in
-                    DispatchQueue.main.async {
-                        if let groups = groups {
-                            self.groupListPiker.options.removeAll()
-                            self.groupListPiker.append("未登録")
-                            for group in groups {
-                                self.groupListPiker.append(group.name)
-                            }
-                            self.preTokenKey = currentTokenKey
-                        }
-                    }
-                }
-            }
-            
-        }
-        
-    }
-
+ 
 }
