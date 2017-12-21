@@ -16,6 +16,7 @@
 		BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3ED2631FBA934900C371E6 /* WorkSheetItemCell.swift */; };
 		BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */; };
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
+		DA0605701FEB71760033C984 /* splash(iphone8).png in Resources */ = {isa = PBXBuildFile; fileRef = DA06056F1FEB71760033C984 /* splash(iphone8).png */; };
 		DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9831FC29F4B00B4850D /* Meta.swift */; };
 		DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListCell.swift */; };
 		DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490021FC4019D001E0159 /* ACAColor.swift */; };
@@ -36,7 +37,6 @@
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
 		DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB994401FE8EC69006289BE /* Lato-Bold.ttf */; };
-		DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */; };
 		DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
@@ -66,6 +66,7 @@
 		BB66A7E21FBE80D900C971DD /* DaySheetHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySheetHeaderView.swift; sourceTree = "<group>"; };
 		BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSheet.swift; sourceTree = "<group>"; };
 		BB8642ABBE4D41B96C1B5FCA /* Pods-SimpleDocbase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.debug.xcconfig"; sourceTree = "<group>"; };
+		DA06056F1FEB71760033C984 /* splash(iphone8).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash(iphone8).png"; sourceTree = "<group>"; };
 		DA0CE9831FC29F4B00B4850D /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
 		DA0CE9861FC2C87300B4850D /* MemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListCell.swift; sourceTree = "<group>"; };
 		DA1490021FC4019D001E0159 /* ACAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAColor.swift; sourceTree = "<group>"; };
@@ -91,7 +92,6 @@
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
 		DAB994401FE8EC69006289BE /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SimpleDocbaselogo.png; sourceTree = "<group>"; };
 		DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarColor.swift; sourceTree = "<group>"; };
 		DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMemoViewController.swift; sourceTree = "<group>"; };
 		DAF6B94C1FA06F090042BEC0 /* SimpleDocbase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleDocbase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -169,6 +169,14 @@
 			children = (
 			);
 			path = ScreenShots;
+			sourceTree = "<group>";
+		};
+		DA06056C1FEB6DD50033C984 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				DA06056F1FEB71760033C984 /* splash(iphone8).png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		DA0CE9811FC2793400B4850D /* DelegateRequest */ = {
@@ -335,9 +343,9 @@
 		DAFF5C6D1FA836370087C871 /* Supportting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DA06056C1FEB6DD50033C984 /* Images */,
 				DA06056B1FEB58AD0033C984 /* ScreenShots */,
 				DAB9943F1FE8EC56006289BE /* Fonts */,
-				DAE0AD031FC813A6004FFB48 /* SimpleDocbaselogo.png */,
 				DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */,
 				DAF6B9561FA06F090042BEC0 /* Assets.xcassets */,
 				DAF6B9581FA06F090042BEC0 /* LaunchScreen.storyboard */,
@@ -409,7 +417,7 @@
 			files = (
 				DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */,
 				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
-				DAE0AD041FC813A6004FFB48 /* SimpleDocbaselogo.png in Resources */,
+				DA0605701FEB71760033C984 /* splash(iphone8).png in Resources */,
 				DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */,
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
 				DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */,

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,30 +18,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5u5-PT-GrU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ziv-hH-JmD">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SimpleDocbaselogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uks-o9-clL">
-                                        <rect key="frame" x="-13" y="123.5" width="400" height="400"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="400" id="17U-Nb-vzZ"/>
-                                            <constraint firstAttribute="height" constant="400" id="faA-rG-9xx"/>
-                                        </constraints>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash(iphone8).png" translatesAutoresizingMaskIntoConstraints="NO" id="81a-bw-Nuz">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.91494601959999999" green="0.74390935899999999" blue="0.54113513229999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="uks-o9-clL" firstAttribute="centerX" secondItem="5u5-PT-GrU" secondAttribute="centerX" id="H1S-Ok-e9O"/>
-                                    <constraint firstItem="uks-o9-clL" firstAttribute="centerY" secondItem="5u5-PT-GrU" secondAttribute="centerY" id="jG8-Le-j6E"/>
+                                    <constraint firstAttribute="trailing" secondItem="81a-bw-Nuz" secondAttribute="trailing" id="4DP-Po-Es8"/>
+                                    <constraint firstAttribute="bottom" secondItem="81a-bw-Nuz" secondAttribute="bottom" id="IG3-j9-1c6"/>
+                                    <constraint firstItem="81a-bw-Nuz" firstAttribute="top" secondItem="Ziv-hH-JmD" secondAttribute="top" id="QrR-Oq-MIF"/>
+                                    <constraint firstItem="81a-bw-Nuz" firstAttribute="leading" secondItem="Ziv-hH-JmD" secondAttribute="leading" id="xiN-d3-d1i"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5u5-PT-GrU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="33v-R3-jvN"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5u5-PT-GrU" secondAttribute="bottom" id="Btz-pV-dYA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5u5-PT-GrU" secondAttribute="trailing" id="YUY-RN-oD4"/>
-                            <constraint firstItem="5u5-PT-GrU" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="i9d-Re-IR5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ziv-hH-JmD" secondAttribute="trailing" id="6Ft-AQ-rPf"/>
+                            <constraint firstItem="Ziv-hH-JmD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="DgI-6K-5kL"/>
+                            <constraint firstItem="Ziv-hH-JmD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="f7b-6a-Sih"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ziv-hH-JmD" secondAttribute="bottom" id="mkV-Xh-adF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -51,6 +50,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SimpleDocbaselogo.png" width="1026" height="1026"/>
+        <image name="splash(iphone8).png" width="750" height="1334"/>
     </resources>
 </document>
