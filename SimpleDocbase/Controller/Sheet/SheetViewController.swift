@@ -133,7 +133,6 @@ final class SheetViewController : UIViewController {
     
     private func emptyMessage(_ on: Bool) {
         messageLabel?.isHidden = !on
-        sheetTableView?.separatorStyle = on ? .none : .singleLine;
     }
     
     private func insertWorkSheetAferloadLoaclWorkSheet() {

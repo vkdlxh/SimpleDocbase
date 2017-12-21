@@ -35,4 +35,9 @@ class CommentCell: UITableViewCell {
         }
     }
     
+    //MARK: Life cycle
+    override func awakeFromNib() {
+        self.selectionStyle = .none
+    }
+    
 }

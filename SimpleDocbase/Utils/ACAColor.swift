@@ -15,4 +15,6 @@ struct ACAColor {
     let ACAApricot = UIColor.rgb(r: 242, g: 177, b: 110, alpha: 1)
     let ACALightBeige = UIColor.rgb(r: 250, g: 224, b: 150, alpha: 1)
     let ACAYelloWhite = UIColor.rgb(r: 255, g: 254, b: 198, alpha: 1)
+    
+    let ACAMainColor = UIColor.rgb(r: 252, g: 174, b: 97, alpha: 1)
 }

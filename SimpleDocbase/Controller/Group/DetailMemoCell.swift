@@ -55,6 +55,8 @@ class DetailMemoCell: UITableViewCell {
     
     //MARK: Life cycle
     override func awakeFromNib() {
+        self.selectionStyle = .none
+        
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
             tagImageView.image = tintableImage
