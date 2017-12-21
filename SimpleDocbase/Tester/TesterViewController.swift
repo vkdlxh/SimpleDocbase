@@ -84,7 +84,7 @@ class TesterViewController: UIViewController {
         // Alert
         let alert: UIAlertController = UIAlertController(title: "TokenKey設定", message: "TokenKeyを設定してください。", preferredStyle:  UIAlertControllerStyle.alert)
 
-        if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
+        if (UserDefaults.standard.object(forKey: "tokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "tokenKey") as? String) == "" {
             print("No TokenKey")
             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in

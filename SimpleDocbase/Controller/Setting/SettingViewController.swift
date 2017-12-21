@@ -35,7 +35,7 @@ class SettingViewController: FormViewController {
     }
     
     override func viewDidLoad() {
-        if let preTokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
+        if let preTokenKey = userDefaults.object(forKey: "tokenKey") as? String {
             self.preTokenKey = preTokenKey
         }
     }
@@ -106,7 +106,7 @@ class SettingViewController: FormViewController {
     
     private func updateForm() {
         
-        if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
+        if let tokenKey = userDefaults.object(forKey: "tokenKey") as? String {
             tokenKeyViewControllerForm.title("\(tokenKey)")
             
             if preTokenKey != tokenKey {

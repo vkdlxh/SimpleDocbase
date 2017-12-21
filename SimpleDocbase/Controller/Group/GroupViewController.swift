@@ -69,12 +69,13 @@ class GroupViewController: UIViewController {
             textfield.text = "8ZwKUqC7QkJJKZN2hP2i"
         }
         
-        if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
+        let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
+        if tokenKey == nil {
             print("No TokenKey")
             
             let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { [unowned ac] _ in
                 if let tokenKey = ac.textFields?[0].text {
-                    UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
+                    UserDefaults.standard.set(tokenKey, forKey: "tokenKey")
                 }
                 self.getGroupListFromRequest()
             }

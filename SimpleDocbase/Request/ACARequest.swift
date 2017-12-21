@@ -13,7 +13,7 @@ class ACARequest {
     // MARK: Properties    
     var url: URL?
     let session: URLSession = URLSession.shared
-    let tokenKey = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+    let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
     
     enum MethodType: String {
         case get    = "GET"

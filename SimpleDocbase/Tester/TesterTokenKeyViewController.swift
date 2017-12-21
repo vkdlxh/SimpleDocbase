@@ -15,7 +15,7 @@ class TesterTokenKeyViewController: UIViewController {
     @IBAction func saveBtn(_ sender: Any) {
 
         let userDefaults = UserDefaults.standard
-        userDefaults.set(tokenKeyTextField.text, forKey: "paramTokenKey")
+        userDefaults.set(tokenKeyTextField.text, forKey: "tokenKey")
         
         self.presentingViewController?.dismiss(animated: true, completion: nil)
         print("Setting Token Key : \(tokenKeyTextField.text!)")

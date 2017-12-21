@@ -14,7 +14,7 @@ class MemoListViewController: UIViewController {
     // MARK: Properties
     var group: Group?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
-    let presentToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+    let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
     var memos = [Memo]()
     var refreshControl: UIRefreshControl!
     //Pagination
@@ -113,7 +113,7 @@ class MemoListViewController: UIViewController {
     }
     
     private func checkTokenKey() {
-        let newToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+        let newToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
         
         if presentToken != newToken {
             // TODO: トークン変更アラート

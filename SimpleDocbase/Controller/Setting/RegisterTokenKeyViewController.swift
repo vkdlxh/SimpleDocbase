@@ -40,7 +40,7 @@ class RegisterTokenKeyViewController: FormViewController {
     lazy var tokenKey: TextFieldFormItem = {
         let instance = TextFieldFormItem()
         instance.placeholder("APIトークンを入力してください。")
-        if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String{
+        if let tokenKey = userDefaults.object(forKey: "tokenKey") as? String{
             instance.value = tokenKey
         }
         return instance
@@ -56,8 +56,7 @@ class RegisterTokenKeyViewController: FormViewController {
             tokenKeyAlert(type: .delete)
         } else {
             // TODO: normally Regist TokenKey
-//            SVProgressHUD.show()
-            userDefaults.set(tokenKey.value, forKey: "paramTokenKey")
+            userDefaults.set(tokenKey.value, forKey: "tokenKey")
             userDefaults.removeObject(forKey: "selectedGroup")
             ACATeamRequest().getTeamList(completion: { teams in
                 self.userDefaults.set(teams?.first, forKey: "selectedTeam")
@@ -78,7 +77,7 @@ class RegisterTokenKeyViewController: FormViewController {
         case .delete:
             alert = UIAlertController(title:"APIトークン削除", message: "APIトークンを削除しますか。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.userDefaults.removeObject(forKey: "paramTokenKey")
+                self.userDefaults.removeObject(forKey: "tokenKey")
                 self.userDefaults.removeObject(forKey: "selectedTeam")
                 self.userDefaults.removeObject(forKey: "selectedGroup")
                 self.navigationController?.popViewController(animated: true)

@@ -13,7 +13,7 @@ class DetailMemoViewController: UIViewController {
     // MARK: Properties
     var memo: Memo?
     var sectionList = ["Memo", "Comment"]
-    let presentToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+    let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +31,7 @@ class DetailMemoViewController: UIViewController {
     }
     
     private func checkTokenKey() {
-        let newToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+        let newToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
         
         if presentToken != newToken {
             // TODO: トークン変更アラート
