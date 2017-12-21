@@ -196,28 +196,16 @@ class DaySheetEditViewController: FormViewController {
         
         print("\n\(workFlagSwitch.value),\n\(beginTimePicker.value.hourMinuteString()),\n\(endTimePicker.value.hourMinuteString()),\n\(breakTimePicker.value.hourMinuteString()),\n\(durationText.value),\n\(remarkTextView.value)")
         
-        //update worksheet item
         // TODO: workFlagがFalse場合、flag以外の値はnilに登録する。
-        
-        if workFlagSwitch.value == false {
-            worksheetItem?.workFlag = workFlagSwitch.value
-            worksheetItem?.beginTime = nil
-            worksheetItem?.endTime = nil
-            worksheetItem?.breakTime = nil
-            worksheetItem?.duration = nil
-            worksheetItem?.remark = remarkTextView.value
-        } else {
-            worksheetItem?.workFlag = workFlagSwitch.value
-            worksheetItem?.beginTime = beginTimePicker.value
-            worksheetItem?.endTime = endTimePicker.value
-            worksheetItem?.breakTime = breakTimePicker.value.duration()
-            worksheetItem?.remark = remarkTextView.value
-            worksheetItem?.duration = Double(durationText.value)
-        }
-//        print(worksheetItem)
+        let workFlag = workFlagSwitch.value
+        worksheetItem?.workFlag = workFlag
+        worksheetItem?.beginTime = workFlag ? beginTimePicker.value : nil
+        worksheetItem?.endTime = workFlag ? endTimePicker.value : nil
+        worksheetItem?.breakTime = workFlag ? breakTimePicker.value.duration() : nil
+        worksheetItem?.duration = workFlag ? Double(durationText.value) : nil
+        worksheetItem?.remark = remarkTextView.value
         
         //TODO: 保存処理をする
-        //保存処理を実装してください。
         if let worksheetItem = worksheetItem {
             if var sheetItems = sheetItems {
                 sheetItems.append(worksheetItem)

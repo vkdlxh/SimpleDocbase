@@ -41,6 +41,8 @@ class GroupViewController: UIViewController {
     }
     
     // MARK: Internal Methods
+    
+    // MARK: Private Methods
     @objc private func refresh() {
         ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
@@ -69,12 +71,13 @@ class GroupViewController: UIViewController {
             textfield.text = "8ZwKUqC7QkJJKZN2hP2i"
         }
         
-        if (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == nil || (UserDefaults.standard.object(forKey: "paramTokenKey") as? String) == "" {
+        let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
+        if tokenKey == nil {
             print("No TokenKey")
             
             let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { [unowned ac] _ in
                 if let tokenKey = ac.textFields?[0].text {
-                    UserDefaults.standard.set(tokenKey, forKey: "paramTokenKey")
+                    UserDefaults.standard.set(tokenKey, forKey: "tokenKey")
                 }
                 self.getGroupListFromRequest()
             }
@@ -114,10 +117,6 @@ class GroupViewController: UIViewController {
         }
     }
     
-    private func emptyMessage(_ on: Bool) {
-        messageLabel?.isHidden = !on
-    }
-    
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -138,7 +137,7 @@ extension GroupViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if groups.count == 0 {
-              emptyMessage(true)
+            messageLabel?.isHidden = true
             return 0
         } else {
             return sectionTitle.count
@@ -153,7 +152,6 @@ extension GroupViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        emptyMessage(groups.count == 0)
         switch section {
         case 0:
             return 1
@@ -214,7 +212,6 @@ extension GroupViewController: UITabBarControllerDelegate {
                 settingVC.groups = groups
             }
         }
-        
         return true
     }
 

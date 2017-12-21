@@ -11,6 +11,7 @@ import SwiftyMarkdown
 
 class DetailMemoCell: UITableViewCell {
     
+    //MARK: IBOutlet
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var groupLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
@@ -52,6 +53,7 @@ class DetailMemoCell: UITableViewCell {
         }
     }
     
+    //MARK: Life cycle
     override func awakeFromNib() {
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)

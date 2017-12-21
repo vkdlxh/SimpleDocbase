@@ -11,11 +11,13 @@ import SwiftyFORM
 
 class SettingViewController: FormViewController {
     
+    // MARK: Properties
     let userDefaults = UserDefaults.standard
     var groups = [Group]()
     var preTeam = ""
     var preTokenKey = ""
 
+    // MARK: Lifecycle
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
         builder += SectionHeaderTitleFormItem().title("APIトークン登録")
@@ -35,7 +37,7 @@ class SettingViewController: FormViewController {
     }
     
     override func viewDidLoad() {
-        if let preTokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
+        if let preTokenKey = userDefaults.object(forKey: "tokenKey") as? String {
             self.preTokenKey = preTokenKey
         }
     }
@@ -104,9 +106,12 @@ class SettingViewController: FormViewController {
         return instance
     }()
     
-    func updateForm() {
+    // MARK: Internal Methods
+    
+    // MARK: Private Methods
+    private func updateForm() {
         
-        if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
+        if let tokenKey = userDefaults.object(forKey: "tokenKey") as? String {
             tokenKeyViewControllerForm.title("\(tokenKey)")
             
             if preTokenKey != tokenKey {
@@ -143,7 +148,7 @@ class SettingViewController: FormViewController {
         }
     }
     
-    func updateGroupPicker(_ picker: OptionPickerFormItem) {
+    private func updateGroupPicker(_ picker: OptionPickerFormItem) {
         let currentTeam = userDefaults.object(forKey: "selectedTeam") as? String
         
         if let currentTeam = currentTeam {
@@ -172,7 +177,7 @@ class SettingViewController: FormViewController {
         }
     }
     
-    func updateIntervalTime() {
+    private func updateIntervalTime() {
         userDefaults.set(minuteIntervalSetting.selectedItem, forKey: "minuteInterval")
         print("Changed IntervalTime \(String(describing: minuteIntervalSetting.selectedItem))")
     }

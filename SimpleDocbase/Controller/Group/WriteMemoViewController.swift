@@ -17,7 +17,7 @@ class WriteMemoViewController: UIViewController {
     // MARK: Properties
     var delegate: WriteMemoViewControllerDelegate?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
-    let presentToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+    let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
     var group: Group?
     var checkWriteSuccess = false
     let tagValue = "iPhoneから投稿"
@@ -92,13 +92,15 @@ class WriteMemoViewController: UIViewController {
     
     
     // MARK: Internal Methods
-    @objc func keyboardWillShow(_ notification: Notification) {
+    
+    // MARK: Private Methods
+    @objc private func keyboardWillShow(_ notification: Notification) {
         let userInfo = (notification as NSNotification).userInfo!
         let keyboardHeight =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         bottomConstraint.constant = keyboardHeight.height
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func keyboardWillHide(_ notification: Notification) {
         bottomConstraint.constant = 0
     }
     
@@ -153,7 +155,7 @@ class WriteMemoViewController: UIViewController {
     }
     
     private func checkTokenKey() {
-        let newToken = UserDefaults.standard.object(forKey: "paramTokenKey") as? String
+        let newToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
         
         if presentToken != newToken {
             // TODO: トークン変更アラート
@@ -168,6 +170,7 @@ class WriteMemoViewController: UIViewController {
     }
 }
 
+// MARK: Extensions
 extension WriteMemoViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
