@@ -45,34 +45,27 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkSheetCell" rowHeight="80" id="Rie-MA-mK4" customClass="WorkSheetCell" customModule="SimpleDocbase" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkSheetCell" rowHeight="95" id="Rie-MA-mK4" customClass="WorkSheetCell" customModule="SimpleDocbase" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rie-MA-mK4" id="ys1-i9-aco">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qd8-24-i3n" userLabel="WorkSheetView">
-                                                    <rect key="frame" x="15" y="10" width="345" height="60"/>
+                                                    <rect key="frame" x="15" y="5" width="345" height="85"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017/12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2J-Nn-nAu">
-                                                            <rect key="frame" x="35" y="13" width="109" height="34"/>
-                                                            <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="28"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPp-NF-bwI" userLabel="DayHourView">
-                                                            <rect key="frame" x="164" y="10" width="158" height="48"/>
+                                                            <rect key="frame" x="7.5" y="5" width="330" height="75"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0AN-70-aLk" userLabel="DaysView">
-                                                                    <rect key="frame" x="15" y="4" width="31" height="40"/>
+                                                                    <rect key="frame" x="183" y="17.5" width="31" height="40"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mT6-Bv-15G">
                                                                             <rect key="frame" x="3" y="0.0" width="25" height="13"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="11"/>
-                                                                            <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="textColor" red="0.94939202070236206" green="0.66238188743591309" blue="0.36854845285415649" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="17" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eG5-cg-wj4">
@@ -82,6 +75,11 @@
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="23"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="0.092920978479999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -89,9 +87,14 @@
                                                                         <constraint firstAttribute="height" constant="40" id="0lV-gG-pdn"/>
                                                                         <constraint firstAttribute="width" constant="31" id="ULG-f2-xuV"/>
                                                                     </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uF-nB-Odl" userLabel="HoursView">
-                                                                    <rect key="frame" x="77" y="4" width="66" height="40"/>
+                                                                    <rect key="frame" x="254" y="17.5" width="66" height="40"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="120.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2i-Pw-O28">
                                                                             <rect key="frame" x="4" y="14" width="59" height="24"/>
@@ -100,12 +103,17 @@
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="23"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpW-EP-kLb">
                                                                             <rect key="frame" x="18" y="2" width="31" height="10"/>
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="11"/>
-                                                                            <color key="textColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="textColor" red="0.94939202069999995" green="0.66238188740000004" blue="0.36854845289999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
@@ -114,35 +122,61 @@
                                                                         <constraint firstAttribute="width" constant="66" id="1PV-ZG-msD"/>
                                                                         <constraint firstAttribute="height" constant="40" id="LR3-f4-2Lh"/>
                                                                     </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017/12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2J-Nn-nAu">
+                                                                    <rect key="frame" x="14" y="20.5" width="109" height="34"/>
+                                                                    <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="28"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
                                                             </subviews>
                                                             <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstItem="0AN-70-aLk" firstAttribute="centerY" secondItem="uPp-NF-bwI" secondAttribute="centerY" id="0Dn-Iw-EiH"/>
+                                                                <constraint firstItem="f2J-Nn-nAu" firstAttribute="leading" secondItem="uPp-NF-bwI" secondAttribute="leading" constant="14" id="339-tY-bF9"/>
+                                                                <constraint firstItem="8uF-nB-Odl" firstAttribute="leading" secondItem="0AN-70-aLk" secondAttribute="trailing" constant="40" id="QRn-55-ORt"/>
+                                                                <constraint firstAttribute="width" constant="330" id="SnF-8T-Hji"/>
                                                                 <constraint firstItem="8uF-nB-Odl" firstAttribute="centerY" secondItem="uPp-NF-bwI" secondAttribute="centerY" id="Zje-jR-3Zk"/>
-                                                                <constraint firstAttribute="width" constant="158" id="a2U-oB-n2E"/>
-                                                                <constraint firstAttribute="height" constant="48" id="dOs-Jq-kP2"/>
-                                                                <constraint firstItem="0AN-70-aLk" firstAttribute="leading" secondItem="uPp-NF-bwI" secondAttribute="leading" constant="15" id="iAK-mT-ryV"/>
-                                                                <constraint firstAttribute="trailing" secondItem="8uF-nB-Odl" secondAttribute="trailing" constant="15" id="xMO-BL-tn7"/>
+                                                                <constraint firstItem="f2J-Nn-nAu" firstAttribute="centerY" secondItem="uPp-NF-bwI" secondAttribute="centerY" id="srK-yt-y5l"/>
+                                                                <constraint firstAttribute="trailing" secondItem="8uF-nB-Odl" secondAttribute="trailing" constant="10" id="xMO-BL-tn7"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" red="0.94328745579999995" green="1" blue="0.3527270066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
-                                                        <constraint firstItem="uPp-NF-bwI" firstAttribute="top" secondItem="qd8-24-i3n" secondAttribute="top" constant="10" id="735-BU-gN0"/>
-                                                        <constraint firstItem="f2J-Nn-nAu" firstAttribute="leading" secondItem="qd8-24-i3n" secondAttribute="leading" constant="35" id="Cqk-N8-was"/>
-                                                        <constraint firstAttribute="bottom" secondItem="f2J-Nn-nAu" secondAttribute="bottom" constant="13" id="IaK-v0-fz3"/>
-                                                        <constraint firstItem="f2J-Nn-nAu" firstAttribute="top" secondItem="qd8-24-i3n" secondAttribute="top" constant="13" id="J8E-OG-moL"/>
-                                                        <constraint firstAttribute="bottom" secondItem="uPp-NF-bwI" secondAttribute="bottom" constant="10" id="Que-BS-Qcf"/>
-                                                        <constraint firstAttribute="trailing" secondItem="uPp-NF-bwI" secondAttribute="trailing" constant="23" id="l1C-n4-mwX"/>
+                                                        <constraint firstAttribute="bottom" secondItem="uPp-NF-bwI" secondAttribute="bottom" constant="5" id="NWR-5t-5ac"/>
+                                                        <constraint firstAttribute="height" constant="85" id="luP-Dm-Md5"/>
+                                                        <constraint firstItem="uPp-NF-bwI" firstAttribute="top" secondItem="qd8-24-i3n" secondAttribute="top" constant="5" id="nGI-Na-Bk1"/>
+                                                        <constraint firstItem="uPp-NF-bwI" firstAttribute="centerX" secondItem="qd8-24-i3n" secondAttribute="centerX" id="xNE-DB-aHm"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="qd8-24-i3n" secondAttribute="bottom" constant="10" id="ExY-lJ-KlC"/>
+                                                <constraint firstItem="qd8-24-i3n" firstAttribute="top" secondItem="ys1-i9-aco" secondAttribute="top" constant="5" id="Q3D-fi-SC4"/>
                                                 <constraint firstItem="qd8-24-i3n" firstAttribute="leading" secondItem="ys1-i9-aco" secondAttribute="leading" constant="15" id="eLO-Tr-Qfl"/>
+                                                <constraint firstAttribute="bottom" secondItem="qd8-24-i3n" secondAttribute="bottom" constant="5" id="hIs-OV-WJE"/>
                                                 <constraint firstAttribute="trailing" secondItem="qd8-24-i3n" secondAttribute="trailing" constant="15" id="igD-V6-gy0"/>
-                                                <constraint firstItem="qd8-24-i3n" firstAttribute="top" secondItem="ys1-i9-aco" secondAttribute="top" constant="10" id="oki-Mx-xot"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

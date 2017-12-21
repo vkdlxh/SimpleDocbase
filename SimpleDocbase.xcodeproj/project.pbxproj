@@ -18,6 +18,7 @@
 		BB757EA01FB54CCA00B0A569 /* WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB757E9F1FB54CCA00B0A569 /* WorkSheet.swift */; };
 		DA0605701FEB71760033C984 /* splash(iphone8).png in Resources */ = {isa = PBXBuildFile; fileRef = DA06056F1FEB71760033C984 /* splash(iphone8).png */; };
 		DA0605721FEB7A0A0033C984 /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0605711FEB7A0A0033C984 /* GroupListCell.swift */; };
+		DA0605741FEBB65D0033C984 /* SplashLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0605731FEBB65C0033C984 /* SplashLogo.png */; };
 		DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9831FC29F4B00B4850D /* Meta.swift */; };
 		DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListCell.swift */; };
 		DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490021FC4019D001E0159 /* ACAColor.swift */; };
@@ -69,6 +70,7 @@
 		BB8642ABBE4D41B96C1B5FCA /* Pods-SimpleDocbase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleDocbase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase.debug.xcconfig"; sourceTree = "<group>"; };
 		DA06056F1FEB71760033C984 /* splash(iphone8).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash(iphone8).png"; sourceTree = "<group>"; };
 		DA0605711FEB7A0A0033C984 /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
+		DA0605731FEBB65C0033C984 /* SplashLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashLogo.png; sourceTree = "<group>"; };
 		DA0CE9831FC29F4B00B4850D /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
 		DA0CE9861FC2C87300B4850D /* MemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListCell.swift; sourceTree = "<group>"; };
 		DA1490021FC4019D001E0159 /* ACAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAColor.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		DA06056C1FEB6DD50033C984 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				DA0605731FEBB65C0033C984 /* SplashLogo.png */,
 				DA06056F1FEB71760033C984 /* splash(iphone8).png */,
 			);
 			path = Images;
@@ -419,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */,
+				DA0605741FEBB65D0033C984 /* SplashLogo.png in Resources */,
 				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
 				DA0605701FEB71760033C984 /* splash(iphone8).png in Resources */,
 				DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */,

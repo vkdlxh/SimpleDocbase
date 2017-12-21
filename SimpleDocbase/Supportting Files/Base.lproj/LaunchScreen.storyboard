@@ -18,28 +18,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ziv-hH-JmD">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash(iphone8).png" translatesAutoresizingMaskIntoConstraints="NO" id="81a-bw-Nuz">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="oFH-Ew-OYW">
+                                <rect key="frame" x="104.5" y="271.5" width="166" height="124"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="81a-bw-Nuz" secondAttribute="trailing" id="4DP-Po-Es8"/>
-                                    <constraint firstAttribute="bottom" secondItem="81a-bw-Nuz" secondAttribute="bottom" id="IG3-j9-1c6"/>
-                                    <constraint firstItem="81a-bw-Nuz" firstAttribute="top" secondItem="Ziv-hH-JmD" secondAttribute="top" id="QrR-Oq-MIF"/>
-                                    <constraint firstItem="81a-bw-Nuz" firstAttribute="leading" secondItem="Ziv-hH-JmD" secondAttribute="leading" id="xiN-d3-d1i"/>
+                                    <constraint firstAttribute="width" constant="166" id="Y0Z-65-3Ji"/>
+                                    <constraint firstAttribute="height" constant="124" id="hvs-b8-3oH"/>
                                 </constraints>
-                            </view>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ziv-hH-JmD" secondAttribute="trailing" id="6Ft-AQ-rPf"/>
-                            <constraint firstItem="Ziv-hH-JmD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="DgI-6K-5kL"/>
-                            <constraint firstItem="Ziv-hH-JmD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="f7b-6a-Sih"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ziv-hH-JmD" secondAttribute="bottom" id="mkV-Xh-adF"/>
+                            <constraint firstItem="oFH-Ew-OYW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pFi-aH-3KG"/>
+                            <constraint firstItem="oFH-Ew-OYW" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="q4E-bL-SKh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -50,6 +40,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="splash(iphone8).png" width="750" height="1334"/>
+        <image name="SplashLogo.png" width="502" height="376"/>
     </resources>
 </document>

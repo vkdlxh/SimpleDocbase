@@ -23,8 +23,8 @@ class MemoListCell: UITableViewCell {
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var tagLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var memoView: UIView!
     
-
     var memo: Memo? {
         didSet {
             guard let memo = memo else {
@@ -83,6 +83,10 @@ class MemoListCell: UITableViewCell {
             tagImageView.image = tintableImage
             tagImageView.tintColor = ACAColor().ACAApricot
         }
+        
+        memoView.layer.borderWidth = 1
+        memoView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+        memoView.layer.cornerRadius = 5
     }
     
     override func prepareForReuse() {
