@@ -70,6 +70,7 @@ class WriteMemoViewController: UIViewController {
         
         bodyTextView.delegate = self
         initTextViewPlaceHolder()
+        initOutletsSetting()
         
         if let groupName = group?.name {
             navigationItem.title = groupName
@@ -167,6 +168,12 @@ class WriteMemoViewController: UIViewController {
             present(changedTokenAC, animated: true, completion: nil)
             
         }
+    }
+    
+    private func initOutletsSetting() {
+        bodyTextView.layer.borderWidth = 1
+        bodyTextView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+        bodyTextView.layer.cornerRadius = 5
     }
 }
 

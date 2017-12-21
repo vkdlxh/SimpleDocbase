@@ -133,7 +133,6 @@ final class SheetViewController : UIViewController {
     
     private func emptyMessage(_ on: Bool) {
         messageLabel?.isHidden = !on
-        sheetTableView?.separatorStyle = on ? .none : .singleLine;
     }
     
     private func insertWorkSheetAferloadLoaclWorkSheet() {
@@ -192,10 +191,6 @@ final class SheetViewController : UIViewController {
 
 // MARK: Extensions
 extension SheetViewController : UITableViewDelegate {
-    
-    internal func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0;
-    }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

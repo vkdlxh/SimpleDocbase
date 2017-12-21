@@ -35,4 +35,13 @@ class CommentCell: UITableViewCell {
         }
     }
     
+    //MARK: Life cycle
+    override func awakeFromNib() {
+        self.selectionStyle = .none
+        
+        bodyTextView.layer.borderWidth = 1
+        bodyTextView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+        bodyTextView.layer.cornerRadius = 5
+    }
+    
 }

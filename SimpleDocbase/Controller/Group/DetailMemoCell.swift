@@ -18,6 +18,7 @@ class DetailMemoCell: UITableViewCell {
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var groupImageView: UIImageView!
     @IBOutlet weak var tagImageView: UIImageView!
+    @IBOutlet weak var memoView: UIView!
     
     var memo: Memo? {
         didSet {
@@ -55,6 +56,8 @@ class DetailMemoCell: UITableViewCell {
     
     //MARK: Life cycle
     override func awakeFromNib() {
+        self.selectionStyle = .none
+        
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
             tagImageView.image = tintableImage
@@ -65,6 +68,10 @@ class DetailMemoCell: UITableViewCell {
             groupImageView.image = tintableImage
             groupImageView.tintColor = ACAColor().ACAApricot
         }
+        
+        memoView.layer.borderWidth = 1
+        memoView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+        memoView.layer.cornerRadius = 5
     }
     
 }

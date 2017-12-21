@@ -75,6 +75,19 @@ extension ChangeTeamViewController: UITableViewDataSource {
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        let headerLabel = UILabel(frame: CGRect(x: 20, y: 10, width:
+            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        headerLabel.textColor = .lightGray
+        headerLabel.font = UIFont(name: "Apple SD Gothic Neo", size: 14)
+        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
+        headerLabel.sizeToFit()
+        headerView.addSubview(headerLabel)
+        
+        return headerView
+    }
 }
 
 extension ChangeTeamViewController: UITableViewDelegate {
