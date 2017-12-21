@@ -16,11 +16,15 @@ class WorkSheetCell: UITableViewCell {
     @IBOutlet var yearMonthLabel: UILabel!
     @IBOutlet var workDaySumLabel: UILabel!
     @IBOutlet var workTimeSumLabel: UILabel!
+    @IBOutlet weak var workSheetView: UIView!
     
     //MARK: Life cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        workSheetView.layer.borderWidth = 1
+        workSheetView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+        workSheetView.layer.cornerRadius = 5
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
