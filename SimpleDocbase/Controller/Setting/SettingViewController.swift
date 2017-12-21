@@ -104,7 +104,7 @@ class SettingViewController: FormViewController {
         return instance
     }()
     
-    func updateForm() {
+    private func updateForm() {
         
         if let tokenKey = userDefaults.object(forKey: "paramTokenKey") as? String {
             tokenKeyViewControllerForm.title("\(tokenKey)")
@@ -143,7 +143,7 @@ class SettingViewController: FormViewController {
         }
     }
     
-    func updateGroupPicker(_ picker: OptionPickerFormItem) {
+    private func updateGroupPicker(_ picker: OptionPickerFormItem) {
         let currentTeam = userDefaults.object(forKey: "selectedTeam") as? String
         
         if let currentTeam = currentTeam {
@@ -172,7 +172,7 @@ class SettingViewController: FormViewController {
         }
     }
     
-    func updateIntervalTime() {
+    private func updateIntervalTime() {
         userDefaults.set(minuteIntervalSetting.selectedItem, forKey: "minuteInterval")
         print("Changed IntervalTime \(String(describing: minuteIntervalSetting.selectedItem))")
     }
