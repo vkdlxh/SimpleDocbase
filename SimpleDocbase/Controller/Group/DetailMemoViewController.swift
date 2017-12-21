@@ -30,6 +30,9 @@ class DetailMemoViewController: UIViewController {
         checkTokenKey()
     }
     
+    // MARK: Internal Methods
+    
+    // MARK: Private Methods
     private func checkTokenKey() {
         let newToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
         

@@ -222,9 +222,7 @@ extension MemoListViewController: UITableViewDelegate {
 extension MemoListViewController: WriteMemoViewControllerDelegate {
     
     func writeMemoViewSubmit() {
-
         dismiss(animated: true, completion: nil)
-            
         refresh()
     }
 }

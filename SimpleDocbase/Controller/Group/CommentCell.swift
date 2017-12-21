@@ -11,6 +11,7 @@ import SwiftyMarkdown
 
 class CommentCell: UITableViewCell {
     
+    //MARK: IBOutlet
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var bodyTextView: UITextView!
     

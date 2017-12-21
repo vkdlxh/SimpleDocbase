@@ -92,13 +92,15 @@ class WriteMemoViewController: UIViewController {
     
     
     // MARK: Internal Methods
-    @objc func keyboardWillShow(_ notification: Notification) {
+    
+    // MARK: Private Methods
+    @objc private func keyboardWillShow(_ notification: Notification) {
         let userInfo = (notification as NSNotification).userInfo!
         let keyboardHeight =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         bottomConstraint.constant = keyboardHeight.height
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func keyboardWillHide(_ notification: Notification) {
         bottomConstraint.constant = 0
     }
     
@@ -168,6 +170,7 @@ class WriteMemoViewController: UIViewController {
     }
 }
 
+// MARK: Extensions
 extension WriteMemoViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {

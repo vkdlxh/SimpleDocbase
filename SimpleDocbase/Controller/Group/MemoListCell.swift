@@ -22,7 +22,6 @@ class MemoListCell: UITableViewCell {
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var tagImageView: UIImageView!
-    
     @IBOutlet weak var tagLabelHeight: NSLayoutConstraint!
     
 
@@ -77,6 +76,7 @@ class MemoListCell: UITableViewCell {
         }
     }
     
+    //MARK: Life cycle
     override func awakeFromNib() {
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)

@@ -11,11 +11,13 @@ import SwiftyFORM
 
 class SettingViewController: FormViewController {
     
+    // MARK: Properties
     let userDefaults = UserDefaults.standard
     var groups = [Group]()
     var preTeam = ""
     var preTokenKey = ""
 
+    // MARK: Lifecycle
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
         builder += SectionHeaderTitleFormItem().title("APIトークン登録")
@@ -104,6 +106,9 @@ class SettingViewController: FormViewController {
         return instance
     }()
     
+    // MARK: Internal Methods
+    
+    // MARK: Private Methods
     private func updateForm() {
         
         if let tokenKey = userDefaults.object(forKey: "tokenKey") as? String {

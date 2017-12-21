@@ -41,6 +41,8 @@ class GroupViewController: UIViewController {
     }
     
     // MARK: Internal Methods
+    
+    // MARK: Private Methods
     @objc private func refresh() {
         ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
@@ -115,10 +117,6 @@ class GroupViewController: UIViewController {
         }
     }
     
-    private func emptyMessage(_ on: Bool) {
-        messageLabel?.isHidden = !on
-    }
-    
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -139,7 +137,7 @@ extension GroupViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if groups.count == 0 {
-              emptyMessage(true)
+            messageLabel?.isHidden = true
             return 0
         } else {
             return sectionTitle.count
@@ -154,7 +152,6 @@ extension GroupViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        emptyMessage(groups.count == 0)
         switch section {
         case 0:
             return 1
@@ -215,7 +212,6 @@ extension GroupViewController: UITabBarControllerDelegate {
                 settingVC.groups = groups
             }
         }
-        
         return true
     }
 
