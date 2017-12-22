@@ -41,6 +41,7 @@ class DaySheetHeaderView: UIView {
     
     //Private
     private func setup() {
+        
 //        dayLabel.text       = "日"
 //        weekLabel.text      = "曜日"
 //        workDayLabel.text   = "作業日"
@@ -49,14 +50,17 @@ class DaySheetHeaderView: UIView {
 //        breakTimeLabel.text = "休憩"
 //        workTimeLabel.text  = "勤務時間"
 //        remarkLabel.text    = "備考"
-        dayLabel.textColor = .lightGray
-        weekLabel.textColor = .lightGray
-        workDayLabel.textColor = .lightGray
-        beginTimeLabel.textColor = .lightGray
-        endTimeLabel.textColor = .lightGray
-        breakTimeLabel.textColor = .lightGray
-        workTimeLabel.textColor = .lightGray
-        remarkLabel.textColor = .lightGray
+        
+        let bgColor = ACAColor().ACALightGrayColor
+        
+        dayLabel.backgroundColor = bgColor
+        weekLabel.backgroundColor   = bgColor
+        workDayLabel.backgroundColor = bgColor
+        beginTimeLabel.backgroundColor = bgColor
+        endTimeLabel.backgroundColor = bgColor
+        breakTimeLabel.backgroundColor = bgColor
+        workTimeLabel.backgroundColor = bgColor
+        remarkLabel.backgroundColor = bgColor
     }
     
     

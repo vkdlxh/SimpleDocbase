@@ -17,4 +17,6 @@ struct ACAColor {
     let ACAYelloWhite = UIColor.rgb(r: 255, g: 254, b: 198, alpha: 1)
     
     let ACAMainColor = UIColor.rgb(r: 255, g: 157, b: 53, alpha: 1)
+    
+    let ACALightGrayColor = UIColor.rgb(r: 240, g: 240, b: 240, alpha: 1)
 }
