@@ -54,7 +54,7 @@ extension ChangeTeamViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "TeamList"
+        return "チーム一覧"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,11 +67,9 @@ extension ChangeTeamViewController: UITableViewDataSource {
         
         let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
         if cell.textLabel?.text == domain {
-            cell.textLabel?.textColor = ACAColor().ACADarkRed
-            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+            cell.accessoryType = .checkmark
         } else {
-            cell.textLabel?.textColor = ACAColor().ACAOrange
-            cell.textLabel?.font = UIFont.systemFont(ofSize: 17)
+            cell.accessoryType = .none
         }
         return cell
     }
@@ -81,7 +79,7 @@ extension ChangeTeamViewController: UITableViewDataSource {
         let headerLabel = UILabel(frame: CGRect(x: 20, y: 10, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.textColor = .lightGray
-        headerLabel.font = UIFont(name: "Apple SD Gothic Neo", size: 14)
+        headerLabel.font = UIFont.systemFont(ofSize: 14)
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
         headerLabel.sizeToFit()
         headerView.addSubview(headerLabel)
@@ -96,7 +94,8 @@ extension ChangeTeamViewController: UITableViewDelegate {
             UserDefaults.standard.set(teams[selectedIndex], forKey: "selectedTeam")
             afertTeam = UserDefaults.standard.object(forKey: "selectedTeam") as? String
             print("Team Changed \(teams[selectedIndex])")
-            self.tableView.reloadData()
+            self.navigationController?.popViewController(animated: true)
         }
+        
     }
 }

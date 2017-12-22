@@ -15,7 +15,7 @@ class GroupViewController: UIViewController {
     // MARK: Properties
     var groups: [Group] = []
     var refreshControl: UIRefreshControl!
-    let sectionTitle = ["チーム変更", "グループリスト"]
+    let sectionTitle = ["チーム", "グループ一覧"]
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -164,22 +164,21 @@ extension GroupViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupListCell {
+//        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         
-            switch indexPath.section {
-            case 0:
-                if let team = UserDefaults.standard.object(forKey: "selectedTeam") as? String {
-                    cell.groupLabel.text = team
-                }
-            case 1:
-                cell.groupLabel.text = groups[indexPath.row].name
-            default:
-                break
+        switch indexPath.section {
+        case 0:
+            if let team = UserDefaults.standard.object(forKey: "selectedTeam") as? String {
+                cell.textLabel?.text = team
             }
-            return cell
+        case 1:
+            cell.textLabel?.text = groups[indexPath.row].name
+        default:
+            break
         }
-        return UITableViewCell()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -187,7 +186,7 @@ extension GroupViewController: UITableViewDataSource {
         let headerLabel = UILabel(frame: CGRect(x: 20, y: 10, width:
             tableView.bounds.size.width, height: tableView.bounds.size.height))
         headerLabel.textColor = .lightGray
-        headerLabel.font = UIFont(name: "Apple SD Gothic Neo", size: 14)
+        headerLabel.font = UIFont.systemFont(ofSize: 14)
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
         headerLabel.sizeToFit()
         headerView.addSubview(headerLabel)

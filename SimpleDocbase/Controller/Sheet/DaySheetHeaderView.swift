@@ -49,6 +49,14 @@ class DaySheetHeaderView: UIView {
 //        breakTimeLabel.text = "休憩"
 //        workTimeLabel.text  = "勤務時間"
 //        remarkLabel.text    = "備考"
+        dayLabel.textColor = .lightGray
+        weekLabel.textColor = .lightGray
+        workDayLabel.textColor = .lightGray
+        beginTimeLabel.textColor = .lightGray
+        endTimeLabel.textColor = .lightGray
+        breakTimeLabel.textColor = .lightGray
+        workTimeLabel.textColor = .lightGray
+        remarkLabel.textColor = .lightGray
     }
     
     
