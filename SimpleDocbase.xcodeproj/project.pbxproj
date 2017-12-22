@@ -20,7 +20,9 @@
 		DA0605701FEB71760033C984 /* splash(iphone8).png in Resources */ = {isa = PBXBuildFile; fileRef = DA06056F1FEB71760033C984 /* splash(iphone8).png */; };
 		DA0605741FEBB65D0033C984 /* SplashLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0605731FEBB65C0033C984 /* SplashLogo.png */; };
 		DA0605781FECCD0A0033C984 /* ACACommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0605771FECCD0A0033C984 /* ACACommentRequest.swift */; };
-		DA06057A1FECCE670033C984 /* WriteCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0605791FECCE670033C984 /* WriteCommentCell.swift */; };
+		DA0AD9741FED4A77008344DE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AD9731FED4A77008344DE /* UIViewExtension.swift */; };
+		DA0AD9761FED5444008344DE /* TesterKeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */; };
+		DA0AD9771FED5493008344DE /* Tester.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFD71031FB477F3004F3140 /* Tester.storyboard */; };
 		DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9831FC29F4B00B4850D /* Meta.swift */; };
 		DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0CE9861FC2C87300B4850D /* MemoListCell.swift */; };
 		DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA1490021FC4019D001E0159 /* ACAColor.swift */; };
@@ -75,7 +77,8 @@
 		DA06056F1FEB71760033C984 /* splash(iphone8).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash(iphone8).png"; sourceTree = "<group>"; };
 		DA0605731FEBB65C0033C984 /* SplashLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashLogo.png; sourceTree = "<group>"; };
 		DA0605771FECCD0A0033C984 /* ACACommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACACommentRequest.swift; sourceTree = "<group>"; };
-		DA0605791FECCE670033C984 /* WriteCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteCommentCell.swift; sourceTree = "<group>"; };
+		DA0AD9731FED4A77008344DE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterKeyBoardViewController.swift; sourceTree = "<group>"; };
 		DA0CE9831FC29F4B00B4850D /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
 		DA0CE9861FC2C87300B4850D /* MemoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListCell.swift; sourceTree = "<group>"; };
 		DA1490021FC4019D001E0159 /* ACAColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAColor.swift; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 				DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */,
 				DA1490041FC403D1001E0159 /* ColorRGB.swift */,
 				DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */,
+				DA0AD9731FED4A77008344DE /* UIViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -313,7 +317,6 @@
 				DA0CE9861FC2C87300B4850D /* MemoListCell.swift */,
 				DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */,
 				DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */,
-				DA0605791FECCE670033C984 /* WriteCommentCell.swift */,
 				DAB445D11FED04F6001CC74E /* GroupListCell.swift */,
 			);
 			path = Group;
@@ -351,6 +354,7 @@
 				DA1D97DE1FB57963005A5C1D /* TesterViewController.swift */,
 				DA1D97E01FB944E3005A5C1D /* TesterTokenKeyViewController.swift */,
 				DA4EE3F41FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift */,
+				DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */,
 			);
 			path = Tester;
 			sourceTree = "<group>";
@@ -435,6 +439,7 @@
 				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
 				DA0605701FEB71760033C984 /* splash(iphone8).png in Resources */,
 				DA8C80F11FA729D400AC3E3D /* Group.storyboard in Resources */,
+				DA0AD9771FED5493008344DE /* Tester.storyboard in Resources */,
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
 				DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */,
 				DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */,
@@ -527,6 +532,7 @@
 				DA6608BB1FC6FA95007ADFBE /* DetailMemoViewController.swift in Sources */,
 				40DB928D1FC67F5C00B21440 /* WorkSheetManager.swift in Sources */,
 				DA1490031FC4019D001E0159 /* ACAColor.swift in Sources */,
+				DA0AD9761FED5444008344DE /* TesterKeyBoardViewController.swift in Sources */,
 				DA6608B91FC6F8EF007ADFBE /* CommentCell.swift in Sources */,
 				DA1490051FC403D1001E0159 /* ColorRGB.swift in Sources */,
 				BB3777B11FED00C1000250B6 /* ACAFont.swift in Sources */,
@@ -538,12 +544,12 @@
 				40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */,
 				DAB445D21FED04F6001CC74E /* GroupListCell.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
+				DA0AD9741FED4A77008344DE /* UIViewExtension.swift in Sources */,
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,
 				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,
 				DA6608B71FC6F8E4007ADFBE /* DetailMemoCell.swift in Sources */,
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
-				DA06057A1FECCE670033C984 /* WriteCommentCell.swift in Sources */,
 				DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */,
 				DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */,
 				DAF6B96A1FA090BC0042BEC0 /* GroupViewController.swift in Sources */,

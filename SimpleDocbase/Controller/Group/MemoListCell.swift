@@ -84,9 +84,9 @@ class MemoListCell: UITableViewCell {
             tagImageView.tintColor = ACAColor().ACAOrange
         }
         
-        memoView.layer.borderWidth = 1
-        memoView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
-        memoView.layer.cornerRadius = 5
+//        memoView.layer.borderWidth = 1
+//        memoView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+//        memoView.layer.cornerRadius = 5
     }
     
     override func prepareForReuse() {

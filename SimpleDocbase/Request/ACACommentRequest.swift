@@ -10,7 +10,7 @@ import Foundation
 
 class ACACommentRequest: ACARequest {
     
-    func writeComment(memoId: Int, domain: String, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
+    func writeComment(memoId: Int, domain: String, dict: Dictionary<String, String>, completion: @escaping (Bool) -> ()) {
         print("writeComment(memoId, domain: , dict: )")
         guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts/\(memoId)/comments") else { return }
         

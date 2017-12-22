@@ -51,6 +51,7 @@ class MemoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         checkTokenKey()
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Internal Methods
