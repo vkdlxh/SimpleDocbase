@@ -169,21 +169,24 @@ extension GroupViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
-        
-//        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
-        
-        switch indexPath.section {
-        case 0:
-            if let team = UserDefaults.standard.object(forKey: "selectedTeam") as? String {
-                cell.textLabel?.text = team
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupListCell {
+            switch indexPath.section {
+            case 0:
+                if let team = UserDefaults.standard.object(forKey: "selectedTeam") as? String {
+                    cell.groupName = team
+                    cell.iconName = "Team"
+                    return cell
+                }
+            case 1:
+//                cell.groupLabel.text = groups[indexPath.row].name
+                cell.groupName = groups[indexPath.row].name
+                cell.iconName = "People"
+                return cell
+            default:
+                break
             }
-        case 1:
-            cell.textLabel?.text = groups[indexPath.row].name
-        default:
-            break
         }
-        return cell
+        return UITableViewCell()
     }
     
 }

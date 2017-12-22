@@ -40,6 +40,7 @@
 		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
+		DAB445D21FED04F6001CC74E /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB445D11FED04F6001CC74E /* GroupListCell.swift */; };
 		DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB994401FE8EC69006289BE /* Lato-Bold.ttf */; };
 		DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
@@ -98,6 +99,7 @@
 		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
+		DAB445D11FED04F6001CC74E /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
 		DAB994401FE8EC69006289BE /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarColor.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				DA6608B61FC6F8E4007ADFBE /* DetailMemoCell.swift */,
 				DA6608B81FC6F8EF007ADFBE /* CommentCell.swift */,
 				DA0605791FECCE670033C984 /* WriteCommentCell.swift */,
+				DAB445D11FED04F6001CC74E /* GroupListCell.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -533,6 +536,7 @@
 				400458751FB682AD00D5FF8E /* DaySheetViewController.swift in Sources */,
 				BB66A7E31FBE80D900C971DD /* DaySheetHeaderView.swift in Sources */,
 				40F30E381FB88CE000014511 /* WorkSheetCell.swift in Sources */,
+				DAB445D21FED04F6001CC74E /* GroupListCell.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,
 				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,

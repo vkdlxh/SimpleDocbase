@@ -81,7 +81,7 @@ class MemoListCell: UITableViewCell {
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
             tagImageView.image = tintableImage
-            tagImageView.tintColor = ACAColor().ACAApricot
+            tagImageView.tintColor = ACAColor().ACAOrange
         }
         
         memoView.layer.borderWidth = 1

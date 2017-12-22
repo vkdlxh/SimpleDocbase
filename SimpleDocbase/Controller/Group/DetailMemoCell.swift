@@ -61,12 +61,12 @@ class DetailMemoCell: UITableViewCell {
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
             tagImageView.image = tintableImage
-            tagImageView.tintColor = ACAColor().ACAApricot
+            tagImageView.tintColor = ACAColor().ACAOrange
         }
         if let groupImage = UIImage(named: "People") {
             let tintableImage = groupImage.withRenderingMode(.alwaysTemplate)
             groupImageView.image = tintableImage
-            groupImageView.tintColor = ACAColor().ACAApricot
+            groupImageView.tintColor = ACAColor().ACAOrange
         }
         
         memoView.layer.borderWidth = 1

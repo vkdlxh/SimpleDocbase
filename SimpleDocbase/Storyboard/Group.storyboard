@@ -47,13 +47,41 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="44" id="Qd2-mQ-i9f">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="44" id="Qd2-mQ-i9f" customClass="GroupListCell" customModule="SimpleDocbase" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qd2-mQ-i9f" id="BrL-nG-5CC">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hUs-Qi-VYh">
+                                                    <rect key="frame" x="40" y="5" width="297" height="33.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R8l-aL-I7b">
+                                                    <rect key="frame" x="5" y="7" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="9Oy-Yr-eWO"/>
+                                                        <constraint firstAttribute="width" constant="30" id="xL2-Dn-rWf"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="hUs-Qi-VYh" secondAttribute="trailing" constant="5" id="2D2-jo-af0"/>
+                                                <constraint firstAttribute="bottom" secondItem="hUs-Qi-VYh" secondAttribute="bottom" constant="5" id="DsI-1E-tRz"/>
+                                                <constraint firstItem="hUs-Qi-VYh" firstAttribute="top" secondItem="BrL-nG-5CC" secondAttribute="top" constant="5" id="RvE-OV-Ij5"/>
+                                                <constraint firstItem="hUs-Qi-VYh" firstAttribute="leading" secondItem="R8l-aL-I7b" secondAttribute="trailing" constant="5" id="d7v-ii-Pbk"/>
+                                                <constraint firstItem="R8l-aL-I7b" firstAttribute="leading" secondItem="BrL-nG-5CC" secondAttribute="leading" constant="5" id="dVH-T3-nZu"/>
+                                                <constraint firstAttribute="bottom" secondItem="R8l-aL-I7b" secondAttribute="bottom" constant="7" id="rfV-9s-sQ9"/>
+                                                <constraint firstItem="R8l-aL-I7b" firstAttribute="top" secondItem="BrL-nG-5CC" secondAttribute="top" constant="7" id="ufI-yI-e1s"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="groupLabel" destination="hUs-Qi-VYh" id="1hS-Lf-bdm"/>
+                                            <outlet property="iconImageView" destination="R8l-aL-I7b" id="NRt-LY-BhI"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
