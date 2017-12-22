@@ -95,8 +95,20 @@ class DetailMemoViewController: UIViewController {
             self.view.layoutIfNeeded()
             
         }) { (completed) in
-            let indexPath = IndexPath(item: (self.memo?.comments.count)! - 1, section: 1)
-            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+//            guard let comments = self.memo?.comments else {
+//                return
+//            }
+//            let commentCount = comments.isEmpty ? 1 : comments.count
+//            let indexPath = IndexPath(item: commentCount - 1, section: 1)
+//            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            
+            if let comments = self.memo?.comments, !comments.isEmpty {
+                let indexPath = IndexPath(item: comments.count - 1, section: 1)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            } else {
+                let indexPath = IndexPath(item: 0, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
         }
  
     }
