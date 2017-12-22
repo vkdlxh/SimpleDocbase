@@ -145,10 +145,15 @@ extension GroupViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let dummyViewHeight = CGFloat(40)
-        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: dummyViewHeight))
-        self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
-        return sectionTitle[section]
+        switch section {
+        case 0:
+            return sectionTitle[0]
+        case 1:
+            return sectionTitle[1]
+        default:
+            return ""
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -181,19 +186,6 @@ extension GroupViewController: UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        let headerLabel = UILabel(frame: CGRect(x: 20, y: 10, width:
-            tableView.bounds.size.width, height: tableView.bounds.size.height))
-        headerLabel.textColor = .lightGray
-        headerLabel.font = UIFont.systemFont(ofSize: 14)
-        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        headerLabel.sizeToFit()
-        headerView.addSubview(headerLabel)
-        
-        return headerView
-    }
-    
 }
 
 extension GroupViewController: UITableViewDelegate {
@@ -203,18 +195,7 @@ extension GroupViewController: UITableViewDelegate {
         } else if indexPath.section == 1 {
             self.performSegue(withIdentifier: "GoMemoListSegue", sender: nil)
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.backgroundColor = UIColor.lightGray.withAlphaComponent(0.50)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.backgroundColor = .clear
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

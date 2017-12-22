@@ -43,15 +43,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hZl-RH-6l6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="hZl-RH-6l6">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="44" id="Qd2-mQ-i9f">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GroupCell" rowHeight="44" id="Qd2-mQ-i9f">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qd2-mQ-i9f" id="BrL-nG-5CC">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -402,6 +402,60 @@
                                         <connections>
                                             <outlet property="bodyTextView" destination="DJu-Gt-dmf" id="1R8-LS-76x"/>
                                             <outlet property="profileImageView" destination="2HB-B8-dbq" id="Mh7-B3-pNp"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WriteCommentCell" rowHeight="68" id="ukN-Wv-MOn" customClass="WriteCommentCell" customModule="SimpleDocbase" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="341" width="375" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ukN-Wv-MOn" id="Cb4-kC-cJk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="F4A-a4-B80">
+                                                    <rect key="frame" x="10" y="5" width="285" height="60"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="mhG-IG-3wV"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </textView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFa-5l-Sgp">
+                                                    <rect key="frame" x="300" y="5" width="60" height="45"/>
+                                                    <color key="backgroundColor" red="1" green="0.61568627450980395" blue="0.20784313725490194" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="45" id="9kb-8i-rqp"/>
+                                                        <constraint firstAttribute="width" constant="60" id="hIq-IZ-CRL"/>
+                                                    </constraints>
+                                                    <state key="normal" title="投稿">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <action selector="writeCommentButton:" destination="ukN-Wv-MOn" eventType="touchUpInside" id="mY6-mc-E8r"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="F4A-a4-B80" secondAttribute="bottom" constant="3" id="8cH-qz-Eam"/>
+                                                <constraint firstAttribute="trailing" secondItem="xFa-5l-Sgp" secondAttribute="trailing" constant="15" id="AZ4-fO-ZKZ"/>
+                                                <constraint firstItem="xFa-5l-Sgp" firstAttribute="leading" secondItem="F4A-a4-B80" secondAttribute="trailing" constant="5" id="Bee-74-fOk"/>
+                                                <constraint firstItem="xFa-5l-Sgp" firstAttribute="top" secondItem="Cb4-kC-cJk" secondAttribute="top" constant="5" id="bks-fd-Jsj"/>
+                                                <constraint firstItem="F4A-a4-B80" firstAttribute="top" secondItem="Cb4-kC-cJk" secondAttribute="top" constant="5" id="feU-oR-vGt"/>
+                                                <constraint firstItem="F4A-a4-B80" firstAttribute="leading" secondItem="Cb4-kC-cJk" secondAttribute="leading" constant="10" id="lUz-p7-cHh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentBodyTextView" destination="F4A-a4-B80" id="xrw-aT-r3a"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

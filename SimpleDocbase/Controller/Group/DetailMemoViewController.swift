@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class DetailMemoViewController: UIViewController {
     
     // MARK: Properties
+//    var memo: Memo? {
+//        didSet {
+//            guard let memo = memo else {
+//                return
+//            }
+//            memoId = memo.id
+//        }
+//    }
+    var memoId = 0
     var memo: Memo?
-    var sectionList = ["Memo", "Comment"]
+    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
+    var sectionList = ["Memo", "Comment", "WriteComment"]
     let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
     
     // MARK: IBOutlets
@@ -21,6 +32,7 @@ class DetailMemoViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        getMemoFromRequest()
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
@@ -47,6 +59,30 @@ class DetailMemoViewController: UIViewController {
             
         }
     }
+    
+    private func failWriteCommentAlert() {
+            let failAC = UIAlertController(title: "コメント投稿失敗", message: "コメントは空欄無く入力してください。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default)
+            failAC.addAction(okButton)
+            present(failAC, animated: true, completion: nil)
+            
+    }
+    
+    private func getMemoFromRequest() {
+        if let domian = domain {
+            SVProgressHUD.show()
+            DispatchQueue.global().async {
+                ACAMemoRequest().getMemo(memoId: self.memoId, domain: domian) { memo in
+                    self.memo = memo
+                    DispatchQueue.main.async {
+                        self.view.endEditing(true)
+                        self.tableView.reloadData()
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            }
+        }
+    }
 
 }
 
@@ -67,6 +103,8 @@ extension DetailMemoViewController: UITableViewDataSource {
                 return 0
             }
             return commentCount
+        case "WriteComment":
+            return 1
         default:
             return 0
         }
@@ -89,11 +127,26 @@ extension DetailMemoViewController: UITableViewDataSource {
                 cell.comment = comment
                 return cell
             }
+        case "WriteComment":
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "WriteCommentCell", for: indexPath) as? WriteCommentCell {
+                cell.memoId = memoId
+                cell.delegate = self
+                return cell
+            }
         default:
             break
         }
         return UITableViewCell()
     }
     
+}
 
+extension DetailMemoViewController: WriteCommentCellDelegate {
+    func successWriteComment() {
+        getMemoFromRequest()
+    }
+    
+    func failWriteComment() {
+        failWriteCommentAlert()
+    }
 }
