@@ -14,7 +14,7 @@
         <scene sceneID="nwd-XI-F2P">
             <objects>
                 <navigationController id="QEp-6e-Xbz" userLabel="NavigationViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="勤怠管理" image="Note" selectedImage="Note" id="mZT-ze-Lr3"/>
+                    <tabBarItem key="tabBarItem" title="勤怠管理" image="Clock" selectedImage="Clock" id="mZT-ze-Lr3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="34N-x9-411">
                         <rect key="frame" x="0.0" y="20" width="375" height="48"/>
@@ -602,6 +602,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Note" width="30" height="30"/>
+        <image name="Clock" width="30" height="30"/>
     </resources>
 </document>
