@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QEp-6e-Xbz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QEp-6e-Xbz">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
                     <tabBarItem key="tabBarItem" title="勤怠管理" image="Note" selectedImage="Note" id="mZT-ze-Lr3"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="34N-x9-411">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="48"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -37,7 +37,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5hA-Xv-Hka">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkSheetCell" rowHeight="95" id="Rie-MA-mK4" customClass="WorkSheetCell" customModule="SimpleDocbase" customModuleProvider="target">
@@ -227,7 +227,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="24" estimatedRowHeight="24" sectionHeaderHeight="40" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pBm-JQ-1C3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkSheetItemCell" rowHeight="24" id="oz5-mO-azu" customClass="WorkSheetItemCell" customModule="SimpleDocbase" customModuleProvider="target">
@@ -463,7 +463,7 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="曜日" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGn-dB-Agz" userLabel="曜日">
-                            <rect key="frame" x="75.5" y="1" width="30" height="40"/>
+                            <rect key="frame" x="75.5" y="1" width="30" height="38"/>
                             <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="30" id="LFQ-YI-oFo"/>
@@ -559,12 +559,12 @@
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Kmg-WK-f0g" firstAttribute="bottom" secondItem="gfX-e7-aes" secondAttribute="bottom" constant="1" id="0Ps-NG-rtW"/>
-                        <constraint firstItem="hGn-dB-Agz" firstAttribute="bottom" secondItem="Kmg-WK-f0g" secondAttribute="bottom" constant="1" id="3qG-Ph-2Uj"/>
                         <constraint firstItem="DNy-X4-3Qg" firstAttribute="leading" secondItem="AlS-Pz-IKc" secondAttribute="trailing" constant="1" id="4Q2-UT-lRa"/>
                         <constraint firstItem="Kmg-WK-f0g" firstAttribute="bottom" secondItem="1f6-t8-FY7" secondAttribute="bottom" constant="1" id="4XN-NG-11j"/>
                         <constraint firstItem="KCY-9M-h3j" firstAttribute="leading" secondItem="hGn-dB-Agz" secondAttribute="trailing" constant="1" id="9Y7-P2-0o3"/>
                         <constraint firstItem="8hF-QU-EvO" firstAttribute="leading" secondItem="gfX-e7-aes" secondAttribute="trailing" constant="1" id="AdP-p9-C9I"/>
                         <constraint firstItem="Kmg-WK-f0g" firstAttribute="bottom" secondItem="8hF-QU-EvO" secondAttribute="bottom" constant="1" id="Adr-za-IHf"/>
+                        <constraint firstItem="Kmg-WK-f0g" firstAttribute="bottom" secondItem="hGn-dB-Agz" secondAttribute="bottom" constant="1" id="DQm-oR-MYP"/>
                         <constraint firstItem="Kmg-WK-f0g" firstAttribute="bottom" secondItem="Mzl-rb-9X9" secondAttribute="bottom" constant="1" id="Fcg-WH-3SZ"/>
                         <constraint firstItem="8hF-QU-EvO" firstAttribute="leading" secondItem="gfX-e7-aes" secondAttribute="trailing" constant="1" id="IWq-oP-b61"/>
                         <constraint firstItem="Mzl-rb-9X9" firstAttribute="top" secondItem="Kmg-WK-f0g" secondAttribute="top" constant="1" id="MAh-bg-fL5"/>
