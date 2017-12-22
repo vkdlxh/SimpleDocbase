@@ -40,21 +40,21 @@
                                 <rect key="frame" x="0.0" y="68" width="375" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkSheetCell" rowHeight="95" id="Rie-MA-mK4" customClass="WorkSheetCell" customModule="SimpleDocbase" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="95"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkSheetCell" rowHeight="80" id="Rie-MA-mK4" customClass="WorkSheetCell" customModule="SimpleDocbase" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rie-MA-mK4" id="ys1-i9-aco">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="95"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qd8-24-i3n" userLabel="WorkSheetView">
-                                                    <rect key="frame" x="15" y="5" width="345" height="85"/>
+                                                    <rect key="frame" x="15" y="5" width="345" height="70"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uPp-NF-bwI" userLabel="DayHourView">
-                                                            <rect key="frame" x="7.5" y="5" width="330" height="75"/>
+                                                            <rect key="frame" x="7.5" y="5" width="330" height="60"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0AN-70-aLk" userLabel="DaysView">
-                                                                    <rect key="frame" x="175" y="17.5" width="35" height="40"/>
+                                                                    <rect key="frame" x="175" y="10" width="35" height="40"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mT6-Bv-15G">
                                                                             <rect key="frame" x="4" y="1" width="28" height="13"/>
@@ -89,7 +89,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8uF-nB-Odl" userLabel="HoursView">
-                                                                    <rect key="frame" x="250" y="17.5" width="70" height="40"/>
+                                                                    <rect key="frame" x="250" y="10" width="70" height="40"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hours" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpW-EP-kLb">
                                                                             <rect key="frame" x="16" y="3" width="36" height="10"/>
@@ -124,7 +124,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017/12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2J-Nn-nAu">
-                                                                    <rect key="frame" x="14" y="20.5" width="108.5" height="34"/>
+                                                                    <rect key="frame" x="14" y="13" width="108.5" height="34"/>
                                                                     <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                                                     <nil key="textColor"/>
@@ -156,7 +156,7 @@
                                                     <color key="backgroundColor" red="0.94328745579999995" green="1" blue="0.3527270066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="uPp-NF-bwI" secondAttribute="bottom" constant="5" id="NWR-5t-5ac"/>
-                                                        <constraint firstAttribute="height" constant="85" id="luP-Dm-Md5"/>
+                                                        <constraint firstAttribute="height" constant="70" id="luP-Dm-Md5"/>
                                                         <constraint firstItem="uPp-NF-bwI" firstAttribute="top" secondItem="qd8-24-i3n" secondAttribute="top" constant="5" id="nGI-Na-Bk1"/>
                                                         <constraint firstItem="uPp-NF-bwI" firstAttribute="centerX" secondItem="qd8-24-i3n" secondAttribute="centerX" id="xNE-DB-aHm"/>
                                                     </constraints>
@@ -168,9 +168,9 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="qd8-24-i3n" secondAttribute="bottom" constant="5" id="3G4-sq-Ynx"/>
                                                 <constraint firstItem="qd8-24-i3n" firstAttribute="top" secondItem="ys1-i9-aco" secondAttribute="top" constant="5" id="Q3D-fi-SC4"/>
                                                 <constraint firstItem="qd8-24-i3n" firstAttribute="leading" secondItem="ys1-i9-aco" secondAttribute="leading" constant="15" id="eLO-Tr-Qfl"/>
-                                                <constraint firstAttribute="bottom" secondItem="qd8-24-i3n" secondAttribute="bottom" constant="5" id="hIs-OV-WJE"/>
                                                 <constraint firstAttribute="trailing" secondItem="qd8-24-i3n" secondAttribute="trailing" constant="15" id="igD-V6-gy0"/>
                                             </constraints>
                                         </tableViewCellContentView>
