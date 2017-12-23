@@ -18,10 +18,17 @@ SimpleDocbaseは[Docbasse](https://docbase.io/)リダー及び勤怠を入力で
 
 ## Screenshots
 
-![Group View](Resources/screenshot1.png)
-![Worksheet View](Resources/screenshot2.png)
-![DayWorksheet View](Resources/screenshot3.png)
-![Setting View](Resources/screenshot4.png)
+![Group View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/GroupList.png)
+
+![Memo View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/MemoList.png)
+
+![Worksheet View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/WorkSheet.png)
+
+![MonthWorksheet View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/MonthWorkSheet.png)
+
+![DayWorksheet View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/DayWorkSheet.png)
+
+![Setting View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/Setting.png)
 
 ## License
 
