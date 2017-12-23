@@ -33,8 +33,6 @@ class GroupViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        SVProgressHUD.show(withStatus: "更新中")
         getGroupListFromRequest()
         
         print("GroupViewController WillAppear")
@@ -65,15 +63,25 @@ class GroupViewController: UIViewController {
     private func checkTokenKeyAlert() {
         let ac = UIAlertController(title: "APIトークン設定", message: "APIトークンを設定してください。", preferredStyle: .alert)
         
+        ac.addTextField { (textfield) in
+            textfield.placeholder = "APIトークン入力。。。"
+        }
+        
         let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
         if tokenKey == nil {
             print("No TokenKey")
             
-            let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { [unowned ac] _ in
-                if let tokenKey = ac.textFields?[0].text {
-                    UserDefaults.standard.set(tokenKey, forKey: "tokenKey")
+            let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { _ in
+                guard let tokenKey = ac.textFields?[0].text else {
+                    return
                 }
-                self.getGroupListFromRequest()
+                if tokenKey.isEmpty {
+                    self.checkTokenKeyAlert()
+                    print("トークン登録失敗")
+                } else {
+                    UserDefaults.standard.set(tokenKey, forKey: "tokenKey")
+                    self.getGroupListFromRequest()
+                }
             }
             
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
@@ -92,6 +100,7 @@ class GroupViewController: UIViewController {
     }
     
     private func getGroupListFromRequest() {
+        SVProgressHUD.show(withStatus: "更新中")
         DispatchQueue.global().async {
             ACAGroupRequest.init().getGroupList { groups in
                 if let groups = groups {
