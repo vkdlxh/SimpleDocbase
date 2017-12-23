@@ -61,17 +61,19 @@ class DetailMemoCell: UITableViewCell {
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
             tagImageView.image = tintableImage
-            tagImageView.tintColor = ACAColor().ACAApricot
+            tagImageView.tintColor = ACAColor().ACAOrange
         }
         if let groupImage = UIImage(named: "People") {
             let tintableImage = groupImage.withRenderingMode(.alwaysTemplate)
             groupImageView.image = tintableImage
-            groupImageView.tintColor = ACAColor().ACAApricot
+            groupImageView.tintColor = ACAColor().ACAOrange
         }
         
-        memoView.layer.borderWidth = 1
-        memoView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
-        memoView.layer.cornerRadius = 5
+        titleLabel.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        
+//        memoView.layer.borderWidth = 1
+//        memoView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+//        memoView.layer.cornerRadius = 5
     }
     
 }

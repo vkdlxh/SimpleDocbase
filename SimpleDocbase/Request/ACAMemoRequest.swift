@@ -39,6 +39,32 @@ class ACAMemoRequest: ACARequest {
         }.resume()
     }
     
+    func getMemo(memoId: Int, domain: String, completion: @escaping (Memo?) -> ()) {
+        print("getMemo(memoId, domain: , dict: )")
+    
+        let urlStr = "https://api.docbase.io/teams/\(domain)/posts/\(memoId)"
+        let encodedURL = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        guard let url = URL(string: encodedURL) else { return }
+        
+        let request = settingRequest(url: url, httpMethod: .get)
+    
+        session.dataTask(with: request) { (data, response, error) in
+            if let data = data {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                    let memo = Memo(dict: json)
+                    completion(memo)
+                }catch {
+                    print(error)
+                }
+            } else {
+                print("Write Comment Fail")
+            }
+            }.resume()
+        
+    }
+    
     func writeMemo(domain: String, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         print("writeMemo(domain: , dict: )")
         guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts") else { return }

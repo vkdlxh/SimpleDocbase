@@ -7,23 +7,70 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class DetailMemoViewController: UIViewController {
     
     // MARK: Properties
+    var memoId = 0
     var memo: Memo?
+    let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var sectionList = ["Memo", "Comment"]
     let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint?
+    @IBOutlet weak var keyboardView: UIView!
+    @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var writeCommentButton: UIButton!
+    
+    @IBAction func writeCommentAction(_ sender: Any) {
+        
+        if let comment = commentTextField.text, comment.isEmpty {
+            failWriteCommentAlert()
+        } else {
+            let comment: [String: String] = ["body" : commentTextField.text!]
+            commentTextField.text = ""
+            if let domain = domain {
+            ACACommentRequest().writeComment(memoId: memoId, domain: domain, dict: comment) { bool in
+                if bool == true {
+                    DispatchQueue.main.async {
+                        print("success write comment")
+                        self.getMemoFromRequest()
+                    }
+                }
+                }
+            }
+        }
+    }
+    
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tabBarController?.tabBar.isHidden = true
+        getMemoFromRequest()
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(handelKeyboardNotification), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(handelKeyboardNotification), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    
+        keyboardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint(item: keyboardView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+        NSLayoutConstraint(item: keyboardView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+        NSLayoutConstraint(item: keyboardView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+        bottomConstraint = NSLayoutConstraint(item: keyboardView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        view.addConstraint(bottomConstraint!)
+        
+        let origImage = UIImage(named: "Comments")
+        let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
+        writeCommentButton.setImage(tintedImage, for: .normal)
+        writeCommentButton.tintColor = ACAColor().ACAOrange
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,6 +80,40 @@ class DetailMemoViewController: UIViewController {
     // MARK: Internal Methods
     
     // MARK: Private Methods
+    
+    @objc private func handelKeyboardNotification(_ notification: Notification) {
+        let userInfo = (notification as NSNotification).userInfo!
+        let keyboardHeight =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        
+        let isKeyboardShowing = notification.name == .UIKeyboardWillShow
+        
+        bottomConstraint?.constant = isKeyboardShowing ? -keyboardHeight.height : 0
+        viewBottomConstraint.constant = isKeyboardShowing ? keyboardHeight.height : 0
+        
+        UIView.animate(withDuration: 0, delay: 0, options: .curveEaseOut, animations: {
+            
+            self.view.layoutIfNeeded()
+            
+        }) { (completed) in
+//            guard let comments = self.memo?.comments else {
+//                return
+//            }
+//            let commentCount = comments.isEmpty ? 1 : comments.count
+//            let indexPath = IndexPath(item: commentCount - 1, section: 1)
+//            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            
+            if let comments = self.memo?.comments, !comments.isEmpty {
+                let indexPath = IndexPath(item: comments.count - 1, section: 1)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            } else {
+                let indexPath = IndexPath(item: 0, section: 0)
+                self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+            }
+        }
+ 
+    }
+    
+    
     private func checkTokenKey() {
         let newToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
         
@@ -45,6 +126,30 @@ class DetailMemoViewController: UIViewController {
             changedTokenAC.addAction(okButton)
             present(changedTokenAC, animated: true, completion: nil)
             
+        }
+    }
+    
+    private func failWriteCommentAlert() {
+            let failAC = UIAlertController(title: "コメント投稿失敗", message: "コメントは空欄無く入力してください。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default)
+            failAC.addAction(okButton)
+            present(failAC, animated: true, completion: nil)
+            
+    }
+    
+    private func getMemoFromRequest() {
+        if let domian = domain {
+            SVProgressHUD.show()
+            DispatchQueue.global().async {
+                ACAMemoRequest().getMemo(memoId: self.memoId, domain: domian) { memo in
+                    self.memo = memo
+                    DispatchQueue.main.async {
+                        self.view.endEditing(true)
+                        self.tableView.reloadData()
+                        SVProgressHUD.dismiss()
+                    }
+                }
+            }
         }
     }
 
@@ -95,5 +200,6 @@ extension DetailMemoViewController: UITableViewDataSource {
         return UITableViewCell()
     }
     
-
 }
+
+

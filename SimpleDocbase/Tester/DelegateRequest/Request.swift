@@ -20,7 +20,6 @@ class Request {
     let session: URLSession = URLSession.shared
     var delegate: RequestDelegate?
     let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
-    // TokenKey : 8ZwKUqC7QkJJKZN2hP2i
     
     enum MethodType: String {
         case get = "GET"

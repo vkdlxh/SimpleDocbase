@@ -33,19 +33,16 @@ class MemoListViewController: UIViewController {
                                                             target: self,
                                                             action: #selector(addTapped(sender:)))
         refreshControlAction()
-        
         SVProgressHUD.show(withStatus: "更新中")
-       
         if let domain = domain {
             if let groupName = group?.name {
                 ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
                     if let memos = memos {
                         self.memos = memos
-                    }
-                    self.pageNum += 1
-                    DispatchQueue.main.async {
-                        SVProgressHUD.dismiss()
-                        self.tableView.reloadData()
+                        DispatchQueue.main.async {
+                            SVProgressHUD.dismiss()
+                            self.tableView.reloadData()
+                        }
                     }
                 }
             }
@@ -54,6 +51,7 @@ class MemoListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         checkTokenKey()
+        tabBarController?.tabBar.isHidden = false
     }
     
     // MARK: Internal Methods
@@ -134,6 +132,7 @@ class MemoListViewController: UIViewController {
         if segue.identifier == "GoDetailMemoSegue" {
             if let destination = segue.destination as? DetailMemoViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
+                    destination.memoId = memos[selectedIndex].id
                     destination.memo = memos[selectedIndex]
                 }
             }
@@ -255,11 +254,12 @@ extension MemoListViewController: UIScrollViewDelegate {
                     isDataLoading = true
                     if let domain = domain {
                         if let groupName = group?.name {
+                            self.pageNum += 1
                             ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
                                 if let memos = memos {
                                     self.memos += memos
                                 }
-                                self.pageNum += 1
+                                
                                 DispatchQueue.main.async {
                                     SVProgressHUD.dismiss()
                                     self.tableView.reloadData()

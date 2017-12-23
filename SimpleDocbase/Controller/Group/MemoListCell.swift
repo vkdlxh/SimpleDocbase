@@ -81,12 +81,13 @@ class MemoListCell: UITableViewCell {
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
             tagImageView.image = tintableImage
-            tagImageView.tintColor = ACAColor().ACAApricot
+            tagImageView.tintColor = ACAColor().ACAOrange
         }
+        titleLabel.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
         
-        memoView.layer.borderWidth = 1
-        memoView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
-        memoView.layer.cornerRadius = 5
+//        memoView.layer.borderWidth = 1
+//        memoView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+//        memoView.layer.cornerRadius = 5
     }
     
     override func prepareForReuse() {

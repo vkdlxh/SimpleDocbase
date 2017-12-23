@@ -65,12 +65,6 @@ class GroupViewController: UIViewController {
     private func checkTokenKeyAlert() {
         let ac = UIAlertController(title: "APIトークン設定", message: "APIトークンを設定してください。", preferredStyle: .alert)
         
-        //test code.
-        //ac.addTextField()
-        ac.addTextField { (textfield) in
-            textfield.text = "8ZwKUqC7QkJJKZN2hP2i"
-        }
-        
         let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
         if tokenKey == nil {
             print("No TokenKey")
@@ -145,10 +139,15 @@ extension GroupViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let dummyViewHeight = CGFloat(40)
-        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: dummyViewHeight))
-        self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
-        return sectionTitle[section]
+        switch section {
+        case 0:
+            return sectionTitle[0]
+        case 1:
+            return sectionTitle[1]
+        default:
+            return ""
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -164,34 +163,24 @@ extension GroupViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath)
-        
-//        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
-        
-        switch indexPath.section {
-        case 0:
-            if let team = UserDefaults.standard.object(forKey: "selectedTeam") as? String {
-                cell.textLabel?.text = team
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as? GroupListCell {
+            switch indexPath.section {
+            case 0:
+                if let team = UserDefaults.standard.object(forKey: "selectedTeam") as? String {
+                    cell.groupName = team
+                    cell.iconName = "Team"
+                    return cell
+                }
+            case 1:
+//                cell.groupLabel.text = groups[indexPath.row].name
+                cell.groupName = groups[indexPath.row].name
+                cell.iconName = "People"
+                return cell
+            default:
+                break
             }
-        case 1:
-            cell.textLabel?.text = groups[indexPath.row].name
-        default:
-            break
         }
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        let headerLabel = UILabel(frame: CGRect(x: 20, y: 10, width:
-            tableView.bounds.size.width, height: tableView.bounds.size.height))
-        headerLabel.textColor = .lightGray
-        headerLabel.font = UIFont.systemFont(ofSize: 14)
-        headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
-        headerLabel.sizeToFit()
-        headerView.addSubview(headerLabel)
-        
-        return headerView
+        return UITableViewCell()
     }
     
 }
@@ -203,18 +192,7 @@ extension GroupViewController: UITableViewDelegate {
         } else if indexPath.section == 1 {
             self.performSegue(withIdentifier: "GoMemoListSegue", sender: nil)
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.backgroundColor = UIColor.lightGray.withAlphaComponent(0.50)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.backgroundColor = .clear
-        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }
