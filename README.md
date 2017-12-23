@@ -1,13 +1,13 @@
 # SimpleDocbase
 
-SimpleDocbaseは[Docbasse](https://docbase.io/)リダー及び勤怠を入力できるようにSwiftで作られたアプリです。
+SimpleDocbaseは[Docbasse](https://docbase.io/)Reader及び勤怠を簡単に入力できるようにSwiftで作られたアプリです。
 
 ## Features
 
 * グループ、勤務表、設定の３つの画面に構成されています。
 * グループ投稿、コメントを閲覧できます。
 * 勤務表を作成し、Docbaseへアップロード（Markdown形式）できます。
-* 使われた[Docbasse API](https://help.docbase.io/posts/45703).
+* [Docbasse API](https://help.docbase.io/posts/45703)を利用しています。
 
 ## Getting Started
 
