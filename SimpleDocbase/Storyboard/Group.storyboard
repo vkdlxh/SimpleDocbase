@@ -157,7 +157,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23j-tp-AsO">
-                                                            <rect key="frame" x="3" y="3" width="307" height="27.5"/>
+                                                            <rect key="frame" x="3" y="10" width="307" height="42.5"/>
                                                             <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" priority="750" constant="27.5" id="48o-oe-THM"/>
@@ -184,10 +184,10 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Body" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4K9-7U-E26">
-                                                            <rect key="frame" x="3" y="40.5" width="307" height="132"/>
+                                                            <rect key="frame" x="3" y="62.5" width="307" height="110"/>
                                                             <color key="backgroundColor" red="0.092920978478392424" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="132" id="jqA-fI-AWJ"/>
+                                                                <constraint firstAttribute="height" constant="110" id="jqA-fI-AWJ"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -203,7 +203,7 @@
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="cCw-8A-NDI" secondAttribute="trailing" constant="3" id="3Ii-o0-LE3"/>
                                                         <constraint firstItem="4K9-7U-E26" firstAttribute="top" secondItem="23j-tp-AsO" secondAttribute="bottom" constant="10" id="Ave-NN-nHn"/>
-                                                        <constraint firstItem="23j-tp-AsO" firstAttribute="top" secondItem="4Y2-x7-pW5" secondAttribute="top" constant="3" id="B5D-yR-ftc"/>
+                                                        <constraint firstItem="23j-tp-AsO" firstAttribute="top" secondItem="4Y2-x7-pW5" secondAttribute="top" constant="10" id="B5D-yR-ftc"/>
                                                         <constraint firstItem="23j-tp-AsO" firstAttribute="leading" secondItem="4Y2-x7-pW5" secondAttribute="leading" constant="3" id="FSJ-5v-J9Q"/>
                                                         <constraint firstAttribute="trailing" secondItem="4K9-7U-E26" secondAttribute="trailing" constant="3" id="Is0-wV-Um4"/>
                                                         <constraint firstAttribute="trailing" secondItem="23j-tp-AsO" secondAttribute="trailing" constant="3" id="R6h-QY-SdO"/>
