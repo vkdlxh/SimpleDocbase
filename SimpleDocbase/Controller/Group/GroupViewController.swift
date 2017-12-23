@@ -65,12 +65,6 @@ class GroupViewController: UIViewController {
     private func checkTokenKeyAlert() {
         let ac = UIAlertController(title: "APIトークン設定", message: "APIトークンを設定してください。", preferredStyle: .alert)
         
-        //test code.
-        //ac.addTextField()
-        ac.addTextField { (textfield) in
-            textfield.text = "8ZwKUqC7QkJJKZN2hP2i"
-        }
-        
         let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
         if tokenKey == nil {
             print("No TokenKey")

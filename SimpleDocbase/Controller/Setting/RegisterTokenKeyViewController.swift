@@ -20,7 +20,6 @@ class RegisterTokenKeyViewController: FormViewController {
 
     // MARK: Properties
     let userDefaults = UserDefaults.standard
-    //8ZwKUqC7QkJJKZN2hP2i
     let footerView = SectionFooterViewFormItem()
     let footerMessage = "\nDocBaseから\n「個人設定」→「基本設定」→「APIトークン」を\n作成して表示されたトークンを登録してください。"
 
