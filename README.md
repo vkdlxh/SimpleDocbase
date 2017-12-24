@@ -18,17 +18,15 @@ SimpleDocbaseは[Docbasse](https://docbase.io/)Reader及び勤怠を簡単に入
 
 ## Screenshots
 
-![Group View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/GroupList.png)
+  <img src="https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/GroupList.png" width="250"> <span>     </span>
+  <img src="https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/MemoList.png" width="250"> <span>     </span>
+  <img src="https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/WorkSheet.png" width="250">
+<BR>
+  
+  <img src="https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/MonthWorkSheet.png" width="250"> <span>     </span>
+  <img src="https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/DayWorkSheet.png" width="250"> <span>     </span>
+  <img src="https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/Setting.png" width="250">
 
-![Memo View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/MemoList.png)
-
-![Worksheet View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/WorkSheet.png)
-
-![MonthWorksheet View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/MonthWorkSheet.png)
-
-![DayWorksheet View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/DayWorkSheet.png)
-
-![Setting View](https://github.com/vkdlxh/SimpleDocbase/raw/master/SimpleDocbase/Supportting%20Files/ScreenShots/Setting.png)
 
 ## License
 
