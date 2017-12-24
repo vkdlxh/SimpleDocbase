@@ -34,6 +34,7 @@ class WorkSheetItemCell: UITableViewCell {
         super.prepareForReuse()
         breakTimeLabel.text = ""
         workTimeLabel.text = ""
+        weekLabel.textColor = .black
     }
     
     internal func settingCell(_ sheetItem: WorkSheetItem) {
@@ -43,7 +44,14 @@ class WorkSheetItemCell: UITableViewCell {
         }
         
         if let week = sheetItem.week {
-            weekLabel.text = Date.weekDayString(week:week)
+//            weekLabel.text = Date.weekDayString(week:week)
+            let weekString = Date.weekDayString(week:week)
+            if weekString == "土" {
+                weekLabel.textColor = .blue
+            } else if weekString == "日" {
+                weekLabel.textColor = .red
+            }
+            weekLabel.text = weekString
         }
         if let flag = sheetItem.workFlag {
             workDayButton?.setTitle(flag ? "◯" : "", for: .normal)
@@ -61,4 +69,5 @@ class WorkSheetItemCell: UITableViewCell {
         
         remarkLabel.text = sheetItem.remark
     }
+    
 }
