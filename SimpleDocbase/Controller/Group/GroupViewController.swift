@@ -105,16 +105,14 @@ class GroupViewController: UIViewController {
             ACAGroupRequest.init().getGroupList { groups in
                 if let groups = groups {
                     self.groups = groups
+                } else {
+                    SVProgressHUD.showError(withStatus: "エラー")
+                    SVProgressHUD.dismiss(withDelay: 1)
+                    self.groups.removeAll()
                 }
                 DispatchQueue.main.async {
-                    if groups == nil {
-                        SVProgressHUD.showError(withStatus: "エラー")
-                        SVProgressHUD.dismiss(withDelay: 1)
-                        self.groups.removeAll()
-                    } else {
-                        SVProgressHUD.dismiss()
-                    }
                     self.tableView.reloadData()
+                    SVProgressHUD.dismiss()
                 }
             }
         }
@@ -140,9 +138,10 @@ extension GroupViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if groups.count == 0 {
-            messageLabel?.isHidden = true
+            messageLabel?.isHidden = false
             return 0
         } else {
+            messageLabel?.isHidden = true
             return sectionTitle.count
         }
     }
