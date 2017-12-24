@@ -36,6 +36,8 @@ class WriteMemoViewController: UIViewController {
         } else if let textField = bodyTextView.text, textField.isEmpty {
             emptyTextValue(errorPlace: "メモの内容")
         } else {
+            self.view.endEditing(true)
+            
             let memo: [String : Any] = [
             "title": titleTextField.text ?? "" ,
             "body": bodyTextView.text ?? "" ,
@@ -47,20 +49,19 @@ class WriteMemoViewController: UIViewController {
             ]
             
             if let domain = domain {
-                DispatchQueue.global().async {
-                    ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
-                        if check == true {
-                            self.checkWriteSuccess = true
-                        }
-                        self.checkWriteSuccessAlert(result: self.checkWriteSuccess)
-
+                ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
+                    if check == true {
+                        self.checkWriteSuccess = true
                     }
+                    self.checkWriteSuccessAlert(result: self.checkWriteSuccess)
+
                 }
             }
         }
     }
     
     @IBAction func backButton(_ sender: Any) {
+        self.view.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
     
@@ -87,11 +88,6 @@ class WriteMemoViewController: UIViewController {
         checkTokenKey()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        self.view.endEditing(true)
-    }
-    
-    
     // MARK: Internal Methods
     
     // MARK: Private Methods
@@ -113,7 +109,6 @@ class WriteMemoViewController: UIViewController {
             ac = UIAlertController(title: "メモを登録しました。", message: nil, preferredStyle: .alert)
             let successAction = UIAlertAction(title: "確認", style: .default) { action in
                 print("Write Memo Success")
-                self.view.endEditing(true)
                 DispatchQueue.main.async {
                     self.delegate?.writeMemoViewSubmit()
                 }

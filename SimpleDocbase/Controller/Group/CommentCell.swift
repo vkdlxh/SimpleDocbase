@@ -39,10 +39,6 @@ class CommentCell: UITableViewCell {
     override func awakeFromNib() {
         self.selectionStyle = .none
         self.backgroundColor = ACAColor().ACALightGrayColor
-        
-//        bodyTextView.layer.borderWidth = 1
-//        bodyTextView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
-//        bodyTextView.layer.cornerRadius = 5
     }
     
 }

@@ -44,7 +44,6 @@ class SettingViewController: FormViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         updateForm()
-//        updateGroupPicker(groupListPiker)
         reloadForm()
     }
     

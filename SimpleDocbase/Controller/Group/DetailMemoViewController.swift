@@ -34,13 +34,13 @@ class DetailMemoViewController: UIViewController {
             let comment: [String: String] = ["body" : commentTextField.text!]
             commentTextField.text = ""
             if let domain = domain {
-            ACACommentRequest().writeComment(memoId: memoId, domain: domain, dict: comment) { bool in
-                if bool == true {
-                    DispatchQueue.main.async {
-                        print("success write comment")
-                        self.getMemoFromRequest()
+                ACACommentRequest().writeComment(memoId: memoId, domain: domain, dict: comment) { bool in
+                    if bool == true {
+                        DispatchQueue.main.async {
+                            print("success write comment")
+                            self.getMemoFromRequest()
+                        }
                     }
-                }
                 }
             }
         }
@@ -83,14 +83,7 @@ class DetailMemoViewController: UIViewController {
             
             self.view.layoutIfNeeded()
             
-        }) { (completed) in
-//            guard let comments = self.memo?.comments else {
-//                return
-//            }
-//            let commentCount = comments.isEmpty ? 1 : comments.count
-//            let indexPath = IndexPath(item: commentCount - 1, section: 1)
-//            self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
-            
+        }) { (completed) in          
             if let comments = self.memo?.comments, !comments.isEmpty {
                 let indexPath = IndexPath(item: comments.count - 1, section: 1)
                 self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)

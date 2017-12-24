@@ -44,7 +44,6 @@ class WorkSheetItemCell: UITableViewCell {
         }
         
         if let week = sheetItem.week {
-//            weekLabel.text = Date.weekDayString(week:week)
             let weekString = Date.weekDayString(week:week)
             if weekString == "土" {
                 weekLabel.textColor = .blue

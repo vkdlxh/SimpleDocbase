@@ -180,7 +180,6 @@ extension GroupViewController: UITableViewDataSource {
                     return cell
                 }
             case 1:
-//                cell.groupLabel.text = groups[indexPath.row].name
                 cell.groupName = groups[indexPath.row].name
                 cell.iconName = "People"
                 return cell

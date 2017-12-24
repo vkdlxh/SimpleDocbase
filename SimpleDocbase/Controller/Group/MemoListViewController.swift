@@ -100,11 +100,11 @@ class MemoListViewController: UIViewController {
                 ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
                     if let memos = memos {
                         self.memos = memos
+                        DispatchQueue.main.async {
+                            self.refreshControl.endRefreshing()
+                            self.tableView.reloadData()
+                        }
                     }
-                }
-                DispatchQueue.main.async {
-                    self.refreshControl.endRefreshing()
-                    self.tableView.reloadData()
                 }
             }
         }
@@ -212,11 +212,6 @@ extension MemoListViewController: UITableViewDataSource {
 }
 
 extension MemoListViewController: UITableViewDelegate {
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-    
     func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.backgroundColor = UIColor.lightGray.withAlphaComponent(0.50)
