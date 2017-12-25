@@ -97,13 +97,20 @@ class DetailMemoViewController: UIViewController {
     
     private func initInputKeyboardView() {
         keyboardView.translatesAutoresizingMaskIntoConstraints = false
-    
-        NSLayoutConstraint(item: keyboardView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
-        NSLayoutConstraint(item: keyboardView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
-        NSLayoutConstraint(item: keyboardView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
-        bottomConstraint = NSLayoutConstraint(item: keyboardView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        if #available(iOS 11, *) {
+            let guide = view.safeAreaLayoutGuide
+            keyboardView.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
+            keyboardView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+            keyboardView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+            bottomConstraint = keyboardView.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
+        } else {
+            NSLayoutConstraint(item: keyboardView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: 50).isActive = true
+            NSLayoutConstraint(item: keyboardView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1.0, constant: 0).isActive = true
+            NSLayoutConstraint(item: keyboardView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
+            bottomConstraint = NSLayoutConstraint(item: keyboardView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        }
         view.addConstraint(bottomConstraint!)
-    
+
         let origImage = UIImage(named: "Comments")
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         writeCommentButton.setImage(tintedImage, for: .normal)
