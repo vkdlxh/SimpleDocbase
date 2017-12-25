@@ -14,6 +14,7 @@ final class SheetViewController : UIViewController {
     var workSheets = [WorkSheet]()
     var selectedWorkSheet : WorkSheet?
     let worksheetManager = WorkSheetManager.sharedManager
+    let limitLength = 6
     
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
@@ -55,6 +56,7 @@ final class SheetViewController : UIViewController {
         
         alert.addTextField { (textfield : UITextField) in
             textfield.placeholder = "YYYYMM"
+            textfield.delegate = self
         }
 
         alert.addAction(UIAlertAction(title: "キャンセル",
@@ -246,4 +248,12 @@ extension SheetViewController : UITableViewDataSource {
         return cell
     }
 
+}
+
+extension SheetViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= limitLength
+    }
 }
