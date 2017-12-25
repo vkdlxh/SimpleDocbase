@@ -110,6 +110,15 @@ class DetailMemoViewController: UIViewController {
             bottomConstraint = NSLayoutConstraint(item: keyboardView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
         }
         view.addConstraint(bottomConstraint!)
+        
+        let viewTopBorder = UIView(frame: CGRect(x: 0,
+                                                 y: 0,
+                                                 width: keyboardView.frame.width,
+                                                 height: 1
+            )
+        )
+        viewTopBorder.backgroundColor = UIColor.lightGray
+        keyboardView.addSubview(viewTopBorder)
 
         let origImage = UIImage(named: "Comments")
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
