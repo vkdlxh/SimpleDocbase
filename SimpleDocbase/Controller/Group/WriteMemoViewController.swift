@@ -21,13 +21,18 @@ class WriteMemoViewController: UIViewController {
     var group: Group?
     var checkWriteSuccess = false
     let tagValue = "iPhoneから投稿"
+    var placeholderLabel : UILabel!
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLabel: UILabel!
-    var placeholderLabel : UILabel!
+    @IBOutlet weak var tagImageView: UIImageView!
+    
+    @IBOutlet weak var tagView: UIView!
+    
+    
     
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
@@ -139,7 +144,7 @@ class WriteMemoViewController: UIViewController {
     
     private func initTextViewPlaceHolder() {
         placeholderLabel = UILabel()
-        placeholderLabel.text = "本文を入力してください。"
+        placeholderLabel.text = "メモ"
         placeholderLabel.font = UIFont.italicSystemFont(ofSize: (bodyTextView.font?.pointSize)!)
         placeholderLabel.sizeToFit()
         bodyTextView.addSubview(placeholderLabel)
@@ -166,8 +171,13 @@ class WriteMemoViewController: UIViewController {
     private func initOutletsSetting() {
         titleTextField.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
         bodyTextView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
-        tagLabel.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
-        tagLabel.text = "タグ：" + tagValue
+        tagView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        tagLabel.text = tagValue
+        if let tagImage = UIImage(named: "Tag") {
+            let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
+            tagImageView.image = tintableImage
+            tagImageView.tintColor = ACAColor().ACAOrange
+        }
     }
 }
 

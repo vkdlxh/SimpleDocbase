@@ -19,6 +19,7 @@ class DetailMemoCell: UITableViewCell {
     @IBOutlet weak var groupImageView: UIImageView!
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var memoView: UIView!
+    @IBOutlet weak var groupTagView: UIView!
     
     var memo: Memo? {
         didSet {
@@ -70,6 +71,7 @@ class DetailMemoCell: UITableViewCell {
         }
         
         titleLabel.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        groupTagView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
     }
     
 }
