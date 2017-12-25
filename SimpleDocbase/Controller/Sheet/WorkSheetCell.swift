@@ -23,7 +23,7 @@ class WorkSheetCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         workSheetView.layer.borderWidth = 1
-        workSheetView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
+        workSheetView.layer.borderColor = ACAColor().ACALightGrayColor.cgColor
         workSheetView.layer.cornerRadius = 5
     }
 

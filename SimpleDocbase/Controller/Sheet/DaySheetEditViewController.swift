@@ -217,7 +217,7 @@ class DaySheetEditViewController: FormViewController {
     
     // MARK: Private
     private func initControls() {
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(DaySheetEditViewController.saveButtonTouched(_ :)))
+        let saveButton = UIBarButtonItem(title: "登録", style: .plain, target: self, action: #selector(DaySheetEditViewController.saveButtonTouched(_ :)))
         self.navigationItem.rightBarButtonItems = [saveButton]
     }
     
