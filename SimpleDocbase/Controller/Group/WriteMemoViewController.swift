@@ -21,13 +21,18 @@ class WriteMemoViewController: UIViewController {
     var group: Group?
     var checkWriteSuccess = false
     let tagValue = "iPhoneから投稿"
+    var placeholderLabel : UILabel!
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLabel: UILabel!
-    var placeholderLabel : UILabel!
+    @IBOutlet weak var tagImageView: UIImageView!
+    
+    @IBOutlet weak var tagView: UIView!
+    
+    
     
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
@@ -68,7 +73,6 @@ class WriteMemoViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         bodyTextView.delegate = self
         initTextViewPlaceHolder()
         initOutletsSetting()
@@ -76,7 +80,6 @@ class WriteMemoViewController: UIViewController {
         if let groupName = group?.name {
             navigationItem.title = groupName
         }
-        tagLabel.text = "タグ：" + tagValue
     
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -141,7 +144,7 @@ class WriteMemoViewController: UIViewController {
     
     private func initTextViewPlaceHolder() {
         placeholderLabel = UILabel()
-        placeholderLabel.text = "本文を入力してください。"
+        placeholderLabel.text = "メモ"
         placeholderLabel.font = UIFont.italicSystemFont(ofSize: (bodyTextView.font?.pointSize)!)
         placeholderLabel.sizeToFit()
         bodyTextView.addSubview(placeholderLabel)
@@ -166,9 +169,15 @@ class WriteMemoViewController: UIViewController {
     }
     
     private func initOutletsSetting() {
-        bodyTextView.layer.borderWidth = 1
-        bodyTextView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
-        bodyTextView.layer.cornerRadius = 5
+        titleTextField.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        bodyTextView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        tagView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        tagLabel.text = tagValue
+        if let tagImage = UIImage(named: "Tag") {
+            let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)
+            tagImageView.image = tintableImage
+            tagImageView.tintColor = ACAColor().ACAOrange
+        }
     }
 }
 
