@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="AppleSDGothicNeo.ttc">
-            <string>AppleSDGothicNeo-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--グループ-->
         <scene sceneID="nmS-uY-BOI">
@@ -515,11 +510,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4J-ZY-RmB">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトル入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
-                                        <rect key="frame" x="5" y="10" width="365" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="タイトル入力" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eaV-FH-bCC">
+                                        <rect key="frame" x="5" y="10" width="365" height="21"/>
                                         <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -528,9 +523,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PEI-h9-uAP">
-                                        <rect key="frame" x="5" y="67" width="365" height="531"/>
+                                        <rect key="frame" x="5" y="66" width="365" height="532"/>
                                         <color key="backgroundColor" red="0.94328745579999995" green="1" blue="0.3527270066" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -539,9 +534,12 @@
                                         </userDefinedRuntimeAttributes>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGm-aC-isK">
-                                        <rect key="frame" x="5" y="45" width="31.5" height="17"/>
+                                        <rect key="frame" x="5" y="36" width="365" height="25"/>
                                         <color key="backgroundColor" red="1" green="0.49757936296544936" blue="0.57719256148303877" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="14"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="fzQ-06-GAY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
@@ -558,6 +556,7 @@
                                     <constraint firstAttribute="trailing" secondItem="eaV-FH-bCC" secondAttribute="trailing" constant="5" id="4PV-fE-Sbj"/>
                                     <constraint firstItem="iGm-aC-isK" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" constant="5" id="91z-3Z-Mr2"/>
                                     <constraint firstAttribute="trailing" secondItem="PEI-h9-uAP" secondAttribute="trailing" constant="5" id="dUb-fJ-CLQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="iGm-aC-isK" secondAttribute="trailing" constant="5" id="dVL-fm-69E"/>
                                     <constraint firstItem="PEI-h9-uAP" firstAttribute="top" secondItem="iGm-aC-isK" secondAttribute="bottom" constant="5" id="e7p-K6-UcF"/>
                                     <constraint firstItem="eaV-FH-bCC" firstAttribute="leading" secondItem="z4J-ZY-RmB" secondAttribute="leading" constant="5" id="kj6-8M-QTS"/>
                                     <constraint firstAttribute="bottom" secondItem="PEI-h9-uAP" secondAttribute="bottom" constant="5" id="q9g-c2-F7K"/>

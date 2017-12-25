@@ -68,7 +68,6 @@ class WriteMemoViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         bodyTextView.delegate = self
         initTextViewPlaceHolder()
         initOutletsSetting()
@@ -76,7 +75,6 @@ class WriteMemoViewController: UIViewController {
         if let groupName = group?.name {
             navigationItem.title = groupName
         }
-        tagLabel.text = "タグ：" + tagValue
     
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -166,9 +164,10 @@ class WriteMemoViewController: UIViewController {
     }
     
     private func initOutletsSetting() {
-        bodyTextView.layer.borderWidth = 1
-        bodyTextView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.50).cgColor
-        bodyTextView.layer.cornerRadius = 5
+        titleTextField.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        bodyTextView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        tagLabel.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        tagLabel.text = "タグ：" + tagValue
     }
 }
 
