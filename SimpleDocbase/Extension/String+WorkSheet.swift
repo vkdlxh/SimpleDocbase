@@ -18,7 +18,7 @@ extension String {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
         let date = dateFormatter.date(from:self)!
         let calendar = Calendar.current
-        let components = calendar.dateComponents([.year, .month, .day, .hour], from: date)
+        let components = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: date)
         let finalDate = calendar.date(from:components)
         return finalDate
     }
