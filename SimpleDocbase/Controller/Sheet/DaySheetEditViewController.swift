@@ -122,28 +122,6 @@ class DaySheetEditViewController: FormViewController {
     lazy var durationText: StaticTextFormItem = {
         let instance = StaticTextFormItem()
         instance.title = "勤務時間"
-        
-//        let calendar = NSCalendar.current
-//
-//        guard let begin_time = worksheetItem?.beginTime else {
-//            return instance
-//        }
-//
-//        guard let end_tiem = worksheetItem?.endTime else {
-//            return instance
-//        }
-//
-//        let comps = calendar.dateComponents([.hour, .minute], from: begin_time, to: end_tiem)
-//
-//        guard let hour = comps.hour else {
-//            return instance
-//        }
-//        guard let minute = comps.minute else {
-//            return instance
-//        }
-//
-//        let duration = (Double(hour) + Double(minute/60)) - (worksheetItem?.breakTime ?? 0)
-//        instance.value = String(format:"%.2f",duration)
         guard let duration = worksheetItem?.duration else {
             return instance
         }
@@ -257,7 +235,7 @@ class DaySheetEditViewController: FormViewController {
         guard let minute = comps.minute else {
             return 0
         }
-        return Double(hour) + Double(minute/60)
+        return Double(hour) + (Double(minute)/60)
     }
     
 }

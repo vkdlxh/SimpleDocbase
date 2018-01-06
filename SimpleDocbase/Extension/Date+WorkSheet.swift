@@ -161,7 +161,7 @@ extension Date  {
             return 0
         }
         
-        let duration = (Double(hour) + Double(minute/60))
+        let duration = (Double(hour) + (Double(minute)/60))
         return duration
     }
     
