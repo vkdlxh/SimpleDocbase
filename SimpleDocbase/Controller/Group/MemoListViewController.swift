@@ -158,6 +158,7 @@ extension MemoListViewController: UITableViewDataSource {
             tableView.separatorStyle = .none
         } else {
             messageLabel.isHidden = true
+            tableView.separatorStyle = .singleLine
         }
         return 1
     }

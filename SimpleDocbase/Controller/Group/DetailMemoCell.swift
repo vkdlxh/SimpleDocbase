@@ -20,6 +20,8 @@ class DetailMemoCell: UITableViewCell {
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var memoView: UIView!
     @IBOutlet weak var groupTagView: UIView!
+    @IBOutlet weak var separatorLineView1: UIView!
+    @IBOutlet weak var separatorLineView2: UIView!
     
     var memo: Memo? {
         didSet {
@@ -69,9 +71,8 @@ class DetailMemoCell: UITableViewCell {
             groupImageView.image = tintableImage
             groupImageView.tintColor = ACAColor().ACAOrange
         }
-        
-        titleLabel.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
-        groupTagView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        separatorLineView1.backgroundColor = ACAColor().ACALightGrayColor
+        separatorLineView2.backgroundColor = ACAColor().ACALightGrayColor
     }
     
 }

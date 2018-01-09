@@ -24,6 +24,7 @@ class MemoListCell: UITableViewCell {
     @IBOutlet weak var tagImageView: UIImageView!
     @IBOutlet weak var tagLabelHeight: NSLayoutConstraint!
     @IBOutlet weak var memoView: UIView!
+    @IBOutlet weak var separatorLineView: UIView!
     
     var memo: Memo? {
         didSet {
@@ -83,7 +84,7 @@ class MemoListCell: UITableViewCell {
             tagImageView.image = tintableImage
             tagImageView.tintColor = ACAColor().ACAOrange
         }
-        titleLabel.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        separatorLineView.backgroundColor = ACAColor().ACALightGrayColor
     }
     
     override func prepareForReuse() {
