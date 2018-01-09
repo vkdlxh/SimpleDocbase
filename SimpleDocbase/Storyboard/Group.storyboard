@@ -241,17 +241,26 @@
                                     <outlet property="delegate" destination="D05-NG-W8N" id="1WO-EJ-rdM"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモがありません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypf-Qq-fcc">
+                                <rect key="frame" x="110" y="323" width="156" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wkt-Lw-5c9" firstAttribute="bottom" secondItem="Gcq-qa-1OV" secondAttribute="bottom" id="4KW-sH-EhH"/>
+                            <constraint firstItem="Ypf-Qq-fcc" firstAttribute="centerX" secondItem="WZG-7O-3gm" secondAttribute="centerX" id="FkB-mE-rif"/>
                             <constraint firstItem="wkt-Lw-5c9" firstAttribute="trailing" secondItem="Gcq-qa-1OV" secondAttribute="trailing" id="btm-yn-R9u"/>
                             <constraint firstItem="Gcq-qa-1OV" firstAttribute="leading" secondItem="wkt-Lw-5c9" secondAttribute="leading" id="ePZ-u8-9jf"/>
+                            <constraint firstItem="Ypf-Qq-fcc" firstAttribute="centerY" secondItem="WZG-7O-3gm" secondAttribute="centerY" id="rhs-xm-Tbh"/>
                             <constraint firstItem="Gcq-qa-1OV" firstAttribute="top" secondItem="wkt-Lw-5c9" secondAttribute="top" id="sHd-qM-j8P"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wkt-Lw-5c9"/>
                     </view>
                     <connections>
+                        <outlet property="messageLabel" destination="Ypf-Qq-fcc" id="DeP-6Z-QB8"/>
                         <outlet property="tableView" destination="Gcq-qa-1OV" id="cBX-sb-Vzn"/>
                         <segue destination="kGx-WW-xod" kind="modal" identifier="GoWriteMemoSegue" id="LZ6-x1-Wxl"/>
                     </connections>
