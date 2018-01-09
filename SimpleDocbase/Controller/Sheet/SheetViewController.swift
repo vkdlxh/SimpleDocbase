@@ -148,10 +148,10 @@ final class SheetViewController : UIViewController {
             }
         }
         workSheets.sort { firstWorkSheet, secondWorkSheet -> Bool in
-            guard let firstWorkSheet = firstWorkSheet.workdate?.MonthInt() else {
+            guard let firstWorkSheet = firstWorkSheet.workdate?.yearMonthInt() else {
                 return false
             }
-            guard let secondWorkSheet = secondWorkSheet.workdate?.MonthInt() else {
+            guard let secondWorkSheet = secondWorkSheet.workdate?.yearMonthInt() else {
                 return false
             }
             return firstWorkSheet < secondWorkSheet
