@@ -238,8 +238,8 @@
 			isa = PBXGroup;
 			children = (
 				DA2D5AA31FA7296100668EC9 /* Main.storyboard */,
-				DA8C80F01FA729D400AC3E3D /* Group.storyboard */,
 				DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */,
+				DA8C80F01FA729D400AC3E3D /* Group.storyboard */,
 				DA5099231FBED26B005052F2 /* Setting.storyboard */,
 			);
 			path = Storyboard;
@@ -283,8 +283,8 @@
 		DAC4E5591FA32B9800301844 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DAFA95CA1FA98E0800A368BC /* Group */,
 				DAFB18271FB1DF2F00AA4DC7 /* Sheet */,
+				DAFA95CA1FA98E0800A368BC /* Group */,
 				DAFA95CC1FA98E2000A368BC /* Setting */,
 			);
 			path = Controller;

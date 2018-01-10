@@ -25,11 +25,10 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControlAction()
-        checkTokenKeyAlert()
+//        checkTokenKeyAlert()
         tableView?.backgroundView = messageLabel
         
         self.tabBarController?.delegate = self
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -60,44 +59,44 @@ class GroupViewController: UIViewController {
         self.tableView.addSubview(refreshControl)
     }
     
-    private func checkTokenKeyAlert() {
-        let ac = UIAlertController(title: "APIトークン設定", message: "APIトークンを設定してください。", preferredStyle: .alert)
-        
-        ac.addTextField { (textfield) in
-            textfield.placeholder = "APIトークン入力。。。"
-        }
-        
-        let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
-        if tokenKey == nil {
-            print("No TokenKey")
-            
-            let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { _ in
-                guard let tokenKey = ac.textFields?[0].text else {
-                    return
-                }
-                if tokenKey.isEmpty {
-                    self.checkTokenKeyAlert()
-                    print("トークン登録失敗")
-                } else {
-                    UserDefaults.standard.set(tokenKey, forKey: "tokenKey")
-                    self.getGroupListFromRequest()
-                }
-            }
-            
-            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
-                (action: UIAlertAction!) -> Void in
-                print("Cancel")
-            }
-            
-            ac.addAction(submitAction)
-            ac.addAction(cancelAction)
-            
-            DispatchQueue.main.async {
-                SVProgressHUD.dismiss()
-                self.present(ac, animated: true, completion: nil)
-            }
-        }
-    }
+//    private func checkTokenKeyAlert() {
+//        let ac = UIAlertController(title: "APIトークン設定", message: "APIトークンを設定してください。", preferredStyle: .alert)
+//
+//        ac.addTextField { (textfield) in
+//            textfield.placeholder = "APIトークン入力。。。"
+//        }
+//
+//        let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
+//        if tokenKey == nil {
+//            print("No TokenKey")
+//
+//            let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { _ in
+//                guard let tokenKey = ac.textFields?[0].text else {
+//                    return
+//                }
+//                if tokenKey.isEmpty {
+//                    self.checkTokenKeyAlert()
+//                    print("トークン登録失敗")
+//                } else {
+//                    UserDefaults.standard.set(tokenKey, forKey: "tokenKey")
+//                    self.getGroupListFromRequest()
+//                }
+//            }
+//
+//            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
+//                (action: UIAlertAction!) -> Void in
+//                print("Cancel")
+//            }
+//
+//            ac.addAction(submitAction)
+//            ac.addAction(cancelAction)
+//
+//            DispatchQueue.main.async {
+//                SVProgressHUD.dismiss()
+//                self.present(ac, animated: true, completion: nil)
+//            }
+//        }
+//    }
     
     private func getGroupListFromRequest() {
         SVProgressHUD.show(withStatus: "更新中")
