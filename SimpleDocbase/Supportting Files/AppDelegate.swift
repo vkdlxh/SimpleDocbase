@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigataionBarAppearance.tintColor = .white
         navigataionBarAppearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         tabBarAppearance.tintColor = ACAColor().ACAOrange
+        
+        FirebaseApp.configure()
         
         return true
     }
