@@ -19,14 +19,11 @@ class GroupViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControlAction()
-//        checkTokenKeyAlert()
-        tableView?.backgroundView = messageLabel
         
         self.tabBarController?.delegate = self
     }
@@ -35,6 +32,10 @@ class GroupViewController: UIViewController {
         getGroupListFromRequest()
         
         print("GroupViewController WillAppear")
+    }
+    
+    override func didMove(toParentViewController parent: UIViewController?) {
+        //TODO: バックボタンをタップするとサインアウトされるように
     }
     
     // MARK: Internal Methods
@@ -58,46 +59,7 @@ class GroupViewController: UIViewController {
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
     }
-    
-//    private func checkTokenKeyAlert() {
-//        let ac = UIAlertController(title: "APIトークン設定", message: "APIトークンを設定してください。", preferredStyle: .alert)
-//
-//        ac.addTextField { (textfield) in
-//            textfield.placeholder = "APIトークン入力。。。"
-//        }
-//
-//        let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
-//        if tokenKey == nil {
-//            print("No TokenKey")
-//
-//            let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { _ in
-//                guard let tokenKey = ac.textFields?[0].text else {
-//                    return
-//                }
-//                if tokenKey.isEmpty {
-//                    self.checkTokenKeyAlert()
-//                    print("トークン登録失敗")
-//                } else {
-//                    UserDefaults.standard.set(tokenKey, forKey: "tokenKey")
-//                    self.getGroupListFromRequest()
-//                }
-//            }
-//
-//            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
-//                (action: UIAlertAction!) -> Void in
-//                print("Cancel")
-//            }
-//
-//            ac.addAction(submitAction)
-//            ac.addAction(cancelAction)
-//
-//            DispatchQueue.main.async {
-//                SVProgressHUD.dismiss()
-//                self.present(ac, animated: true, completion: nil)
-//            }
-//        }
-//    }
-    
+
     private func getGroupListFromRequest() {
         SVProgressHUD.show(withStatus: "更新中")
         DispatchQueue.global().async {
@@ -137,10 +99,8 @@ extension GroupViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if groups.count == 0 {
-            messageLabel?.isHidden = false
             return 0
         } else {
-            messageLabel?.isHidden = true
             return sectionTitle.count
         }
     }

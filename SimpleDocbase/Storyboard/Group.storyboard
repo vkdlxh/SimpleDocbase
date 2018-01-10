@@ -23,12 +23,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Vp1-qw-AuF" kind="relationship" relationship="rootViewController" id="9KB-my-n2o"/>
+                        <segue destination="bpH-OJ-Mvp" kind="relationship" relationship="rootViewController" id="dPM-ze-6dp"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1b-qU-fXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="-204"/>
+            <point key="canvasLocation" x="-834" y="-206"/>
         </scene>
         <!--グループ-->
         <scene sceneID="smy-zX-9XB">
@@ -84,17 +84,9 @@
                                     <outlet property="delegate" destination="Vp1-qw-AuF" id="Zhs-Eb-iH7"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データがありません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-t5-hxn">
-                                <rect key="frame" x="100" y="323" width="173.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QX2-t5-hxn" firstAttribute="centerY" secondItem="fBk-CM-ufW" secondAttribute="centerY" id="BMM-ng-RLJ"/>
-                            <constraint firstItem="QX2-t5-hxn" firstAttribute="centerX" secondItem="fBk-CM-ufW" secondAttribute="centerX" id="S46-5N-IO2"/>
                             <constraint firstItem="hZl-RH-6l6" firstAttribute="top" secondItem="fGB-ye-2I0" secondAttribute="top" id="UOA-o3-g3W"/>
                             <constraint firstItem="hZl-RH-6l6" firstAttribute="leading" secondItem="fGB-ye-2I0" secondAttribute="leading" id="W1Q-wi-xj3"/>
                             <constraint firstItem="fGB-ye-2I0" firstAttribute="trailing" secondItem="hZl-RH-6l6" secondAttribute="trailing" id="WNL-0E-B2b"/>
@@ -104,7 +96,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="グループ" id="IiZ-jL-kSl"/>
                     <connections>
-                        <outlet property="messageLabel" destination="QX2-t5-hxn" id="X28-Bi-hVB"/>
                         <outlet property="tableView" destination="hZl-RH-6l6" id="vLh-iS-kY4"/>
                         <segue destination="D05-NG-W8N" kind="show" identifier="GoMemoListSegue" id="eTs-91-vtY"/>
                         <segue destination="RNf-6k-whU" kind="show" identifier="GoChangeTeam" id="Sr1-vy-Vx1"/>
@@ -113,6 +104,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="olr-Oa-j3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944.79999999999995" y="-205.54722638680661"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="C4j-S6-BMc">
+            <objects>
+                <viewController id="EB9-ig-fMA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rM8-dT-3SZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9Tk-8c-jCl"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4W2-H0-Bp2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="944" y="527"/>
+        </scene>
+        <!--Sign In View Controller-->
+        <scene sceneID="spy-v6-hoh">
+            <objects>
+                <viewController id="bpH-OJ-Mvp" customClass="SignInViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uQL-gI-gkS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メール" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDq-ey-hgb">
+                                <rect key="frame" x="81" y="124" width="213" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KIA-Gz-77K">
+                                <rect key="frame" x="81" y="188" width="213" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm6-sj-Aix">
+                                <rect key="frame" x="149" y="256" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.68235294120000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="サインイン">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInAction:" destination="bpH-OJ-Mvp" eventType="touchUpInside" id="ODQ-AU-Fl1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VHR-Xs-2BI"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="f4o-J9-z6U">
+                        <barButtonItem key="rightBarButtonItem" title="IDを作成" id="FDT-Lr-bNA"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="Vp1-qw-AuF" kind="show" identifier="SignInSegue" id="8qb-5R-ByQ"/>
+                        <segue destination="EB9-ig-fMA" kind="show" identifier="CreateSegue" id="2cj-ND-Zw7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7kl-9G-1vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="55" y="-206"/>
         </scene>
         <!--Memo List View Controller-->
         <scene sceneID="Nc5-Ne-N8r">
@@ -240,7 +295,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモがありません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypf-Qq-fcc">
-                                <rect key="frame" x="110" y="323" width="156" height="21"/>
+                                <rect key="frame" x="109.5" y="323" width="156" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>

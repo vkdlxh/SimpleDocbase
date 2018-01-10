@@ -39,6 +39,7 @@
 		DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */; };
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
 		DA3817E22005D42C00476AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA3817E12005D42C00476AD8 /* GoogleService-Info.plist */; };
+		DA3817E72005E40F00476AD8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3817E62005E40F00476AD8 /* SignInViewController.swift */; };
 		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
 		DA6043DB1FDA80000073AFE2 /* String+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */; };
 		DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */; };
@@ -105,6 +106,7 @@
 		DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sheet.storyboard; sourceTree = "<group>"; };
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA3817E12005D42C00476AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DA3817E62005E40F00476AD8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DA4EE3F41FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterWorkSheetViewController.swift; sourceTree = "<group>"; };
 		DA5099231FBED26B005052F2 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WorkSheet.swift"; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 		DAFA95CA1FA98E0800A368BC /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				DA3817E62005E40F00476AD8 /* SignInViewController.swift */,
 				DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */,
 				DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */,
 				DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */,
@@ -547,6 +550,7 @@
 			files = (
 				DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */,
 				DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */,
+				DA3817E72005E40F00476AD8 /* SignInViewController.swift in Sources */,
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
 				DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */,
