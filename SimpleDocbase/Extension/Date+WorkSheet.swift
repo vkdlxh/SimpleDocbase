@@ -113,11 +113,11 @@ extension Date  {
     }
     
     //TODO: TEST
-    func MonthInt() -> Int? {
+    func yearMonthInt() -> Int? {
         
         let dateFormater = DateFormatter()
         dateFormater.locale = Locale(identifier: "ja_JP")
-        dateFormater.dateFormat = "MM"
+        dateFormater.dateFormat = "yyyyMM"
         let dateString = dateFormater.string(from: self)
         guard let dateInt = Int(dateString) else {
             return nil
@@ -125,7 +125,7 @@ extension Date  {
         
         return dateInt
     }
-    
+
     func yearMonthKey() -> String? {
         
         let dateFormater = DateFormatter()

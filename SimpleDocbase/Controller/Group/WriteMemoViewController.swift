@@ -29,10 +29,9 @@ class WriteMemoViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var tagLabel: UILabel!
     @IBOutlet weak var tagImageView: UIImageView!
-    
     @IBOutlet weak var tagView: UIView!
-    
-    
+    @IBOutlet weak var separatorLineView1: UIView!
+    @IBOutlet weak var separatorLineView2: UIView!
     
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
@@ -169,9 +168,8 @@ class WriteMemoViewController: UIViewController {
     }
     
     private func initOutletsSetting() {
-        titleTextField.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
-        bodyTextView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
-        tagView.addBottomBorderWithColor(color: ACAColor().ACALightGrayColor, width: 1)
+        separatorLineView1.backgroundColor = ACAColor().ACALightGrayColor
+        separatorLineView2.backgroundColor = ACAColor().ACALightGrayColor
         tagLabel.text = tagValue
         if let tagImage = UIImage(named: "Tag") {
             let tintableImage = tagImage.withRenderingMode(.alwaysTemplate)

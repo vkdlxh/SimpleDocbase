@@ -24,6 +24,7 @@ class MemoListViewController: UIViewController {
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -152,6 +153,13 @@ class MemoListViewController: UIViewController {
 extension MemoListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        if memos.isEmpty {
+            messageLabel.isHidden = false
+            tableView.separatorStyle = .none
+        } else {
+            messageLabel.isHidden = true
+            tableView.separatorStyle = .singleLine
+        }
         return 1
     }
     
