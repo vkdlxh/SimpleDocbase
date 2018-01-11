@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import SVProgressHUD
 import SwiftyFORM
 
@@ -30,17 +31,27 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         getGroupListFromRequest()
+
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "サインアウト", style: .done, target: self, action: #selector(back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
         
         print("GroupViewController WillAppear")
-    }
-    
-    override func didMove(toParentViewController parent: UIViewController?) {
-        //TODO: バックボタンをタップするとサインアウトされるように
     }
     
     // MARK: Internal Methods
     
     // MARK: Private Methods
+    @objc func back(sender: UIBarButtonItem) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     @objc private func refresh() {
         ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
@@ -62,21 +73,21 @@ class GroupViewController: UIViewController {
 
     private func getGroupListFromRequest() {
         SVProgressHUD.show(withStatus: "更新中")
-        DispatchQueue.global().async {
-            ACAGroupRequest.init().getGroupList { groups in
-                if let groups = groups {
-                    self.groups = groups
-                } else {
-                    SVProgressHUD.showError(withStatus: "エラー")
-                    SVProgressHUD.dismiss(withDelay: 1)
-                    self.groups.removeAll()
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    SVProgressHUD.dismiss()
-                }
+        
+        ACAGroupRequest().getGroupList { groups in
+            if let groups = groups {
+                self.groups = groups
+            } else {
+                SVProgressHUD.showError(withStatus: "エラー")
+                SVProgressHUD.dismiss(withDelay: 1)
+                self.groups.removeAll()
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                SVProgressHUD.dismiss()
             }
         }
+        
     }
     
     // MARK: - Navigation

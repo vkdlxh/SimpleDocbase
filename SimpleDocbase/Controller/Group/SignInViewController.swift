@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SVProgressHUD
 
 class SignInViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func signInAction(_ sender: Any) {
+        SVProgressHUD.show()
         if let email = self.emailField.text, let password = self.passwordField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if let error = error {
@@ -26,7 +28,20 @@ class SignInViewController: UIViewController {
                     self.signInFailAlert()
                     return
                 }
-                self.performSegue(withIdentifier: "SignInSegue", sender: self)
+                let userID = Auth.auth().currentUser?.uid
+                self.ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    // Get user value
+                    let value = snapshot.value as? NSDictionary
+                    let apiToken = value?["apiToken"] as? String ?? ""
+                    UserDefaults.standard.set(apiToken, forKey: "tokenKey")
+//                    ACARequest().tokenKey = apiToken
+                    DispatchQueue.main.async {
+                        SVProgressHUD.dismiss()
+                        self.performSegue(withIdentifier: "SignInSegue", sender: self)
+                    }
+                }) { (error) in
+                    print(error.localizedDescription)
+                }
             }
         } else {
             //FIXME: メールとパスワードをチェックしてグループ画面に遷移するように
@@ -44,29 +59,21 @@ class SignInViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if Auth.auth().currentUser != nil {
+            self.performSegue(withIdentifier: "SignInSegue", sender: nil)
+        }
+        ref = Database.database().reference()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-
-    
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SignInSegue" {
-            let backItem = UIBarButtonItem()
-            backItem.title = "サインアウト"
-            navigationItem.backBarButtonItem = backItem
-        }
-    }
-    
     // MARK: Private Methods
     private func signInFailAlert() {
+        SVProgressHUD.dismiss()
         let failAC = UIAlertController(title: "メール/パスワードを\n確認してください。", message: nil, preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "確認", style: .cancel)
         failAC.addAction(cancelButton)
