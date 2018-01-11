@@ -85,7 +85,14 @@ class SignUpViewController: UIViewController {
                 getAPIToken { apiToken in
                     Auth.auth().createUser(withEmail: email, password: password, completion: { user, error in
                         guard let user = user, error == nil else {
-                            self.signUpFailAlert(error!.localizedDescription)
+                            let errorCode = (error! as NSError).code
+                            print(errorCode)
+                            switch errorCode {
+                            case 17007:
+                                self.signUpFailAlert("もう登録されたメールです。")
+                            default:
+                                self.signUpFailAlert(error!.localizedDescription)
+                            }
                             return
                         }
                         self.saveAPIToken(user, withUsername: apiToken)

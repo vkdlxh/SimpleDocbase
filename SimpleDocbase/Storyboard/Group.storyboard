@@ -131,7 +131,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="APIToken" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IVf-WX-c0y">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="APIトークン" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IVf-WX-c0y">
                                 <rect key="frame" x="20" y="274" width="335" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -204,7 +204,7 @@
                         <viewLayoutGuide key="safeArea" id="VHR-Xs-2BI"/>
                     </view>
                     <navigationItem key="navigationItem" title="サインイン" id="f4o-J9-z6U">
-                        <barButtonItem key="rightBarButtonItem" title="IDを作成" id="FDT-Lr-bNA">
+                        <barButtonItem key="rightBarButtonItem" title="アカウントを作成" id="FDT-Lr-bNA">
                             <connections>
                                 <action selector="SignUpAction:" destination="bpH-OJ-Mvp" id="czL-2C-zdg"/>
                             </connections>
