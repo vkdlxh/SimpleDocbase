@@ -161,6 +161,8 @@
                         <barButtonItem key="rightBarButtonItem" title="IDを作成" id="FDT-Lr-bNA"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="emailField" destination="EDq-ey-hgb" id="TvS-py-9qR"/>
+                        <outlet property="passwordField" destination="KIA-Gz-77K" id="tjw-ep-WNW"/>
                         <segue destination="Vp1-qw-AuF" kind="show" identifier="SignInSegue" id="8qb-5R-ByQ"/>
                         <segue destination="EB9-ig-fMA" kind="show" identifier="CreateSegue" id="2cj-ND-Zw7"/>
                     </connections>

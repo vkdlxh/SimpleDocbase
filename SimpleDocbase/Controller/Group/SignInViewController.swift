@@ -10,13 +10,31 @@ import UIKit
 import Firebase
 
 class SignInViewController: UIViewController {
+    
+//    var ref = Database.database().reference()
 
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func signInAction(_ sender: Any) {
-        
-        //FIXME: メールとパスワードをチェックしてグループ画面に遷移するように
-        performSegue(withIdentifier: "SignInSegue", sender: self)
-        
+        if let email = self.emailField.text, let password = self.passwordField.text {
+            // [START headless_email_auth]
+            Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                // [START_EXCLUDE]
+                if let error = error {
+                    print(error)
+                    self.signInFailAlert()
+                    return
+                }
+                
+                self.performSegue(withIdentifier: "SignInSegue", sender: self)
+                // [END_EXCLUDE]
+            }
+            // [END headless_email_auth]
+        } else {
+            //FIXME: メールとパスワードをチェックしてグループ画面に遷移するように
+            signInFailAlert()
+        }
     }
     
     override func viewDidLoad() {
@@ -39,14 +57,13 @@ class SignInViewController: UIViewController {
             backItem.title = "サインアウト"
             navigationItem.backBarButtonItem = backItem
         }
-//        else if segue.identifier == "GoWriteMemoSegue" {
-//            if let destination = segue.destination as? UINavigationController {
-//                if let tagetController = destination.topViewController as? WriteMemoViewController {
-//                    tagetController.delegate = self
-//                    tagetController.group = self.group
-//                }
-//            }
-//        }
+    }
+    
+    private func signInFailAlert() {
+        let failAC = UIAlertController(title: "メール/パスワードを\n確認してください。", message: nil, preferredStyle: .alert)
+        let cancelButton = UIAlertAction(title: "確認", style: .cancel)
+        failAC.addAction(cancelButton)
+        present(failAC, animated: true, completion: nil)
     }
     
 
