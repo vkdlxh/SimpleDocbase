@@ -10,27 +10,24 @@ import UIKit
 import Firebase
 
 class SignInViewController: UIViewController {
+    
+    // MARK: Properties
     var ref: DatabaseReference!
-//    var ref = Database.database().reference()
 
+    // MARK: IBOutlets
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     
     @IBAction func signInAction(_ sender: Any) {
         if let email = self.emailField.text, let password = self.passwordField.text {
-            // [START headless_email_auth]
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
-                // [START_EXCLUDE]
                 if let error = error {
                     print(error)
                     self.signInFailAlert()
                     return
                 }
-                
                 self.performSegue(withIdentifier: "SignInSegue", sender: self)
-                // [END_EXCLUDE]
             }
-            // [END headless_email_auth]
         } else {
             //FIXME: メールとパスワードをチェックしてグループ画面に遷移するように
             signInFailAlert()
@@ -41,7 +38,7 @@ class SignInViewController: UIViewController {
         self.performSegue(withIdentifier: "SignUpSegue", sender: self)
     }
     
-    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -68,6 +65,7 @@ class SignInViewController: UIViewController {
         }
     }
     
+    // MARK: Private Methods
     private func signInFailAlert() {
         let failAC = UIAlertController(title: "メール/パスワードを\n確認してください。", message: nil, preferredStyle: .alert)
         let cancelButton = UIAlertAction(title: "確認", style: .cancel)
