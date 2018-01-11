@@ -40,7 +40,7 @@
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
 		DA3817E22005D42C00476AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA3817E12005D42C00476AD8 /* GoogleService-Info.plist */; };
 		DA3817E72005E40F00476AD8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3817E62005E40F00476AD8 /* SignInViewController.swift */; };
-		DA3817EB20070BA900476AD8 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3817EA20070BA900476AD8 /* SignUpViewController.swift */; };
+		DA4219DD20075EF9001304A0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4219DC20075EF9001304A0 /* SignUpViewController.swift */; };
 		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
 		DA6043DB1FDA80000073AFE2 /* String+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */; };
 		DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */; };
@@ -108,7 +108,7 @@
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DA3817E12005D42C00476AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DA3817E62005E40F00476AD8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
-		DA3817EA20070BA900476AD8 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		DA4219DC20075EF9001304A0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DA4EE3F41FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterWorkSheetViewController.swift; sourceTree = "<group>"; };
 		DA5099231FBED26B005052F2 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WorkSheet.swift"; sourceTree = "<group>"; };
@@ -335,7 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				DA3817E62005E40F00476AD8 /* SignInViewController.swift */,
-				DA3817EA20070BA900476AD8 /* SignUpViewController.swift */,
+				DA4219DC20075EF9001304A0 /* SignUpViewController.swift */,
 				DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */,
 				DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */,
 				DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */,
@@ -568,6 +568,7 @@
 				DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */,
 				DA0605781FECCD0A0033C984 /* ACACommentRequest.swift in Sources */,
 				40D9E4751FC91A99003B353F /* DaySheetEditViewController.swift in Sources */,
+				DA4219DD20075EF9001304A0 /* SignUpViewController.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
 				DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */,
 				DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */,
@@ -594,7 +595,6 @@
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,
 				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,
 				DA6608B71FC6F8E4007ADFBE /* DetailMemoCell.swift in Sources */,
-				DA3817EB20070BA900476AD8 /* SignUpViewController.swift in Sources */,
 				400458781FB6855C00D5FF8E /* Date+WorkSheet.swift in Sources */,
 				DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */,
 				DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */,

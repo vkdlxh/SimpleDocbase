@@ -20,8 +20,8 @@ class RegisterTokenKeyViewController: FormViewController {
 
     // MARK: Properties
     let userDefaults = UserDefaults.standard
-    let footerView = SectionFooterViewFormItem()
-    let footerMessage = "\nDocBaseから\n「個人設定」→「基本設定」→「APIトークン」を\n作成して表示されたトークンを登録してください。"
+//    let footerView = SectionFooterViewFormItem()
+//    let footerMessage = "\nDocBaseから\n「個人設定」→「基本設定」→「APIトークン」を\n作成して表示されたトークンを登録してください。"
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -30,12 +30,12 @@ class RegisterTokenKeyViewController: FormViewController {
     }
 
     override func populate(_ builder: FormBuilder) {
-        configureFooterView()
+//        configureFooterView()
         builder.navigationTitle = "APIトークン登録"
         builder.toolbarMode = .simple
         builder += SectionHeaderTitleFormItem().title("APIトークン登録")
         builder += tokenKey
-        builder += footerView
+//        builder += footerView
     }
     
     lazy var tokenKey: TextFieldFormItem = {
@@ -94,10 +94,10 @@ class RegisterTokenKeyViewController: FormViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func configureFooterView() {
-        footerView.viewBlock = {
-            return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 80), text: self.footerMessage)
-        }
-    }
+//    private func configureFooterView() {
+//        footerView.viewBlock = {
+//            return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 80), text: self.footerMessage)
+//        }
+//    }
     
 }

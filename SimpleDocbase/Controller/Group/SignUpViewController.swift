@@ -7,86 +7,131 @@
 //
 
 import UIKit
+import SwiftyFORM
 import Firebase
 import SVProgressHUD
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: FormViewController {
     
     // MARK: Properties
     var ref: DatabaseReference!
-    
-    // MARK: IBOutlets
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var passwordCheckField: UITextField!
-    @IBOutlet weak var apiToeknField: UITextField!
+    let footerView = SectionFooterViewFormItem()
+    let footerMessage = "\nDocBaseから\n「個人設定」→「基本設定」→「APIトークン」を\n作成して表示されたトークンを登録してください。"
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "アカウントを作成"
+//        self.navigationItem.title = "アカウントを作成"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登録", style: .done, target: self,
-            action: #selector(addTapped(sender:)))
+                                                            action: #selector(addTapped(sender:)))
         // Do any additional setup after loading the view.
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         ref = Database.database().reference()
     }
+
+    override func populate(_ builder: FormBuilder) {
+        configureFooterView()
+        builder.navigationTitle = "アカウントを作成"
+        builder.toolbarMode = .simple
+        builder += SectionHeaderTitleFormItem().title("アカウント")
+        builder += email
+        builder += password
+        builder += passwordCheck
+        builder += SectionHeaderTitleFormItem().title("APIトークン")
+        builder += apiToken
+        builder.alignLeft([email, password, passwordCheck])
+        builder += footerView
+    }
+
+    lazy var email: TextFieldFormItem = {
+        let instance = TextFieldFormItem()
+        instance.title("メール").placeholder("abc@example.com")
+        instance.keyboardType = .emailAddress
+        instance.softValidate(EmailSpecification(), message: "必ずメールの形式で入力してください。")
+        return instance
+        }()
+    
+    lazy var password: TextFieldFormItem = {
+        let instance = TextFieldFormItem()
+        instance.title("パスワード").password().placeholder("6文字以上で入力してください。")
+        instance.keyboardType = .default
+        instance.autocorrectionType = .no
+        instance.submitValidate(CountSpecification.min(6), message: "パスワードは6文字以上で入力してください。")
+        return instance
+    }()
+    
+    lazy var passwordCheck: TextFieldFormItem = {
+        let instance = TextFieldFormItem()
+        instance.title("パスワード確認").password().placeholder("もう一回入力してください。")
+        instance.keyboardType = .default
+        instance.autocorrectionType = .no
+        instance.submitValidate(CountSpecification.min(6), message: "パスワードは6文字以上で入力してください。")
+        return instance
+    }()
+
+    
+    lazy var apiToken: TextFieldFormItem = {
+        let instance = TextFieldFormItem()
+        instance.placeholder("有効なAPIトークンを入力してください。")
+        return instance
+    }()
     
     // MARK: Private Methods
     @objc private func addTapped(sender: UIBarButtonItem) {
+        formBuilder.validateAndUpdateUI()
         self.view.endEditing(true)
         SVProgressHUD.show()
         //FIXME: フォムをチェックした後サインイン画面に遷移
         func getEmail(completion: @escaping (String) -> ()) {
-            guard let email = emailField.text, !email.isEmpty else {
+            let emailValue = email.value
+            if emailValue.isEmpty {
                 self.signUpFailAlert("メールを記入してください。")
-                return
-            }
-            if isValid(email) == false {
-                self.signUpFailAlert("メールの形式で入力してください。")
             } else {
-                completion(email)
-            }
-            
-        }
-        
-        func getPassword(completion: @escaping (String) -> ()) {
-            guard let password = passwordField.text, !password.isEmpty else {
-                self.signUpFailAlert("パスワードを入力してください。")
-                return
-            }
-            guard let passwordCheck = passwordCheckField.text, !passwordCheck.isEmpty else {
-                self.signUpFailAlert("パスワードの確認を入力してください。")
-                return
-            }
-            if password.count > 5 {
-                if password == passwordCheck {
-                    completion(password)
+                if isValid(emailValue) == false {
+                    self.signUpFailAlert("メールの形式で入力してください。")
                 } else {
+                    completion(emailValue)
+                }
+            }
+        }
+
+        func getPassword(completion: @escaping (String) -> ()) {
+            let passwordValue = password.value
+            let passwordCheckValue = passwordCheck.value
+            if passwordValue.isEmpty {
+                self.signUpFailAlert("パスワードを入力してください。")
+
+            } else if passwordCheckValue.isEmpty {
+                self.signUpFailAlert("パスワードの確認を入力してください。")
+
+            } else if passwordValue.count > 5 {
+                if !(passwordValue == passwordCheckValue) {
                     self.signUpFailAlert("入力したパスワードが一致しません。")
+                } else {
+                   completion(passwordValue)
                 }
             } else {
                 self.signUpFailAlert("パスワードは6文字以上で入力してください。")
             }
         }
-        
+
         func getAPIToken(completion: @escaping (String) -> ()) {
-            guard let apiToken = apiToeknField.text, !apiToken.isEmpty else {
+            let apiTokenValue = apiToken.value
+            if apiTokenValue.isEmpty {
                 self.signUpFailAlert("APIトークンを記入してください。")
-                return
             }
-            completion(apiToken)
+            completion(apiTokenValue)
         }
-        
+//
         getEmail { email in
             getPassword { password in
                 getAPIToken { apiToken in
                     Auth.auth().createUser(withEmail: email, password: password, completion: { user, error in
                         guard let user = user, error == nil else {
                             let errorCode = (error! as NSError).code
-                            print(errorCode)
+                            print(error)
                             switch errorCode {
                             case 17007:
                                 self.signUpFailAlert("もう登録されたメールです。")
@@ -110,7 +155,6 @@ class SignUpViewController: UIViewController {
         present(failAC, animated: true, completion: nil)
     }
     
-    // Saves user profile information to user database
     private func saveAPIToken(_ user: Firebase.User, withUsername apiToken: String) {
         
         // Create a change request
@@ -127,6 +171,12 @@ class SignUpViewController: UIViewController {
             SVProgressHUD.dismiss()
             let failAC = UIAlertController(title: "アカウントを作成しました。", message: nil, preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .cancel){ action in
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                } catch let signOutError as NSError {
+                    print ("Error signing out: %@", signOutError)
+                }
                 self.navigationController?.popViewController(animated: true)
             }
             failAC.addAction(okButton)
@@ -135,22 +185,16 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    //
     private func isValid(_ email: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES[c] %@", emailRegEx)
         return emailTest.evaluate(with: email)
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    private func configureFooterView() {
+        footerView.viewBlock = {
+            return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 80), text: self.footerMessage)
+        }
     }
-    */
 
 }
