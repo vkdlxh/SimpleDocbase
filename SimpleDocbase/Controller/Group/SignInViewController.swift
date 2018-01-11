@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class SignInViewController: UIViewController {
-    
+    var ref: DatabaseReference!
 //    var ref = Database.database().reference()
 
     @IBOutlet weak var emailField: UITextField!
@@ -37,6 +37,11 @@ class SignInViewController: UIViewController {
         }
     }
     
+    @IBAction func SignUpAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "SignUpSegue", sender: self)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,6 +51,10 @@ class SignInViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 
