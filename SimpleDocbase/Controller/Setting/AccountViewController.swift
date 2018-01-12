@@ -48,7 +48,6 @@ class AccountViewController: FormViewController {
         builder += tokenKey
         builder += SectionHeaderTitleFormItem()
         builder += signInButton
-
     }
     
     lazy var email: StaticTextFormItem = {
@@ -74,21 +73,30 @@ class AccountViewController: FormViewController {
     
     lazy var signInButton: ButtonFormItem = {
         let instance = ButtonFormItem()
-        instance.title = "サインアウト"
-        instance.action = {
-            if (self.user?.uid) != nil {
-                let firebaseAuth = Auth.auth()
-                do {
-                    try firebaseAuth.signOut()
-                    UserDefaults.standard.removeObject(forKey: "tokenKey")
-                    UserDefaults.standard.removeObject(forKey: "selectedTeam")
-                    UserDefaults.standard.removeObject(forKey: "selectedGroup")
-                } catch let signOutError as NSError {
-                    print ("Error signing out: %@", signOutError)
+        
+        if let user = user {
+            instance.title = "サインアウト"
+            instance.action = {
+                if (self.user?.uid) != nil {
+                    let firebaseAuth = Auth.auth()
+                    do {
+                        try firebaseAuth.signOut()
+                        UserDefaults.standard.removeObject(forKey: "tokenKey")
+                        UserDefaults.standard.removeObject(forKey: "selectedTeam")
+                        UserDefaults.standard.removeObject(forKey: "selectedGroup")
+                    } catch let signOutError as NSError {
+                        print ("Error signing out: %@", signOutError)
+                    }
+                    _ = self.navigationController?.popViewController(animated: true)
                 }
-                _ = self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+            instance.title = "サインイン"
+            instance.action = {
+                self.tabBarController?.selectedIndex = 1
             }
         }
+        
         return instance
     }()
 
@@ -101,7 +109,6 @@ class AccountViewController: FormViewController {
     }
     
    @objc private func tokenKeySubmitAction() {
-    
         if let user = user {
             if tokenKey.value.isEmpty {
                 // TODO: Check TokenKey Delete Alert PopUp
