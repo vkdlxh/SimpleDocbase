@@ -62,7 +62,7 @@
 		DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */; };
 		DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAF917841FBE9B2700D18FAB /* Settings.bundle */; };
 		DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */; };
-		DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */; };
+		DAF9178C1FBEA64F00D18FAB /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* AccountViewController.swift */; };
 		DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */; };
 		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
 		DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CF1FA99C6100A368BC /* Comment.swift */; };
@@ -134,7 +134,7 @@
 		DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		DAF917841FBE9B2700D18FAB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
+		DAF9178B1FBEA64F00D18FAB /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DAFA95CF1FA99C6100A368BC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -353,7 +353,7 @@
 			isa = PBXGroup;
 			children = (
 				DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */,
-				DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */,
+				DAF9178B1FBEA64F00D18FAB /* AccountViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -571,7 +571,7 @@
 				DA4219DD20075EF9001304A0 /* SignUpViewController.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
 				DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */,
-				DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */,
+				DAF9178C1FBEA64F00D18FAB /* AccountViewController.swift in Sources */,
 				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
 				DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */,

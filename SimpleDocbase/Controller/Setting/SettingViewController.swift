@@ -16,7 +16,6 @@ class SettingViewController: FormViewController {
     let userDefaults = UserDefaults.standard
     var groups = [Group]()
     var preTeam = ""
-    var preTokenKey = ""
 
     // MARK: Lifecycle
     override func populate(_ builder: FormBuilder) {
@@ -36,13 +35,7 @@ class SettingViewController: FormViewController {
         updateForm()
        
     }
-    
-//    override func viewDidLoad() {
-//        if let preTokenKey = userDefaults.object(forKey: "tokenKey") as? String {
-//            self.preTokenKey = preTokenKey
-//        }
-//    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         updateForm()
         reloadForm()
@@ -51,7 +44,7 @@ class SettingViewController: FormViewController {
     lazy var accountViewControllerForm: ViewControllerFormItem = {
         let insatance = ViewControllerFormItem()
         insatance.title = "アカウント設定"
-        insatance.viewController(RegisterTokenKeyViewController.self)
+        insatance.viewController(AccountViewController.self)
         return insatance
     }()
     
@@ -119,6 +112,8 @@ class SettingViewController: FormViewController {
         } else {
             teamNameTextForm.value.removeAll()
         }
+        
+        updateGroupPicker(groupListPiker)
     }
     
     private func updateGroupPicker(_ picker: OptionPickerFormItem) {
@@ -142,36 +137,6 @@ class SettingViewController: FormViewController {
             }
         }
     }
-    
-//    private func updateGroupPicker(_ picker: OptionPickerFormItem) {
-//        let currentTeam = userDefaults.object(forKey: "selectedTeam") as? String
-//
-//        if let currentTeam = currentTeam {
-//            if preTeam != currentTeam {
-//                picker.selected = nil
-//                userDefaults.set(nil, forKey: "selectedGroup")
-//                preTeam = currentTeam
-//            }
-//            picker.options.removeAll()
-//            picker.append("未登録")
-//            for group in groups {
-//                picker.append(group.name)
-//            }
-//            if let selectedGroup = userDefaults.object(forKey: "selectedGroup") as? String {
-//                let selectedOption = picker.options.filter{ $0.title == selectedGroup }.first
-//                if let selectedOption = selectedOption {
-//                    picker.setSelectedOptionRow(selectedOption)
-//                }
-//            } else {
-//                picker.selectOptionWithTitle("未登録")
-//            }
-//        } else {
-//            picker.options.removeAll()
-//            picker.append("未登録")
-//            picker.selectOptionWithTitle("未登録")
-//        }
-//    }
-//
     
     private func updateIntervalTime() {
         userDefaults.set(minuteIntervalSetting.selectedItem, forKey: "minuteInterval")

@@ -1,6 +1,6 @@
 
 //
-//  RegisterTokenKeyViewController.swift
+//  AccountViewController.swift
 //  SimpleDocbase
 //
 //  Created by jeonsangjun on 2017/11/17.
@@ -12,7 +12,7 @@ import SwiftyFORM
 import SVProgressHUD
 import Firebase
 
-class RegisterTokenKeyViewController: FormViewController {
+class AccountViewController: FormViewController {
 
     enum AlertAction {
         case success
@@ -33,6 +33,10 @@ class RegisterTokenKeyViewController: FormViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         ref = Database.database().reference()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func populate(_ builder: FormBuilder) {
@@ -77,6 +81,8 @@ class RegisterTokenKeyViewController: FormViewController {
                 do {
                     try firebaseAuth.signOut()
                     UserDefaults.standard.removeObject(forKey: "tokenKey")
+                    UserDefaults.standard.removeObject(forKey: "selectedTeam")
+                    UserDefaults.standard.removeObject(forKey: "selectedGroup")
                 } catch let signOutError as NSError {
                     print ("Error signing out: %@", signOutError)
                 }
@@ -112,14 +118,11 @@ class RegisterTokenKeyViewController: FormViewController {
         } else {
             let tokenAC = UIAlertController(title: nil, message: "サインインしてください。", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "確認", style: .default, handler: { action in
-                //TODO : サインイン tabbar controller 遷移
                 self.tabBarController?.selectedIndex = 1
             })
             tokenAC.addAction(okAction)
             self.present(tokenAC, animated: true, completion: nil)
         }
-    
-    
     }
     
     private func saveAPIToken(_ user: Firebase.User, withUsername apiToken: String) {
