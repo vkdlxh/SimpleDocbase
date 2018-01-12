@@ -10,6 +10,7 @@
 import UIKit
 import SwiftyFORM
 import SVProgressHUD
+import Firebase
 
 class RegisterTokenKeyViewController: FormViewController {
 
@@ -20,23 +21,43 @@ class RegisterTokenKeyViewController: FormViewController {
 
     // MARK: Properties
     let userDefaults = UserDefaults.standard
-//    let footerView = SectionFooterViewFormItem()
-//    let footerMessage = "\nDocBaseから\n「個人設定」→「基本設定」→「APIトークン」を\n作成して表示されたトークンを登録してください。"
+    var user = Auth.auth().currentUser
+    var ref: DatabaseReference!
 
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tokenKeySubmitButton()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        ref = Database.database().reference()
+    }
 
     override func populate(_ builder: FormBuilder) {
-//        configureFooterView()
-        builder.navigationTitle = "APIトークン登録"
+        builder.navigationTitle = "アカウント情報"
         builder.toolbarMode = .simple
-        builder += SectionHeaderTitleFormItem().title("APIトークン登録")
+        builder += SectionHeaderTitleFormItem().title("情報")
+        builder += email
+        builder += SectionHeaderTitleFormItem().title("APIトークン修正")
         builder += tokenKey
-//        builder += footerView
+         builder += SectionHeaderTitleFormItem()
+         builder += signInButton
+
     }
+    
+    lazy var email: StaticTextFormItem = {
+        let instance = StaticTextFormItem()
+        instance.title = "メール"
+        if let uid = user?.email {
+            instance.value = uid
+        } else {
+            instance.value = "サインインしてください。"
+        }
+        return instance
+    }()
+
     
     lazy var tokenKey: TextFieldFormItem = {
         let instance = TextFieldFormItem()
@@ -47,25 +68,88 @@ class RegisterTokenKeyViewController: FormViewController {
         return instance
     }()
     
+    lazy var signInButton: ButtonFormItem = {
+        let instance = ButtonFormItem()
+        instance.title = "サインアウト"
+        instance.action = {
+            if (self.user?.uid) != nil {
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                    UserDefaults.standard.removeObject(forKey: "tokenKey")
+                } catch let signOutError as NSError {
+                    print ("Error signing out: %@", signOutError)
+                }
+                _ = self.navigationController?.popViewController(animated: true)
+            }
+        }
+        return instance
+    }()
+
+    
     // MARK: Internal Methods
     
     // MARK: Private Methods
     private func tokenKeySubmitButton() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登録", style: .plain, target: self, action: #selector(tokenKeySubmitAction))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "修正", style: .plain, target: self, action: #selector(tokenKeySubmitAction))
     }
     
    @objc private func tokenKeySubmitAction() {
-        if tokenKey.value.isEmpty {
-            // TODO: Check TokenKey Delete Alert PopUp
-            tokenKeyAlert(type: .delete)
+    
+        if let user = user {
+            if tokenKey.value.isEmpty {
+                // TODO: Check TokenKey Delete Alert PopUp
+                tokenKeyAlert(type: .delete)
+            } else {
+                // TODO: normally Regist TokenKey
+                saveAPIToken(user, withUsername: tokenKey.value)
+                userDefaults.removeObject(forKey: "selectedGroup")
+                ACATeamRequest().getTeamList(completion: { teams in
+                    self.userDefaults.set(teams?.first, forKey: "selectedTeam")
+                })
+                tokenKeyAlert(type: .success)
+            }
         } else {
-            // TODO: normally Regist TokenKey
-            userDefaults.set(tokenKey.value, forKey: "tokenKey")
-            userDefaults.removeObject(forKey: "selectedGroup")
-            ACATeamRequest().getTeamList(completion: { teams in
-                self.userDefaults.set(teams?.first, forKey: "selectedTeam")
+            let tokenAC = UIAlertController(title: nil, message: "サインインしてください。", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "確認", style: .default, handler: { action in
+                //TODO : サインイン tabbar controller 遷移
+                self.tabBarController?.selectedIndex = 1
             })
-            tokenKeyAlert(type: .success)
+            tokenAC.addAction(okAction)
+            self.present(tokenAC, animated: true, completion: nil)
+        }
+    
+    
+    }
+    
+    private func saveAPIToken(_ user: Firebase.User, withUsername apiToken: String) {
+        
+        // Create a change request
+        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+        
+        // Commit profile changes to server
+        changeRequest?.commitChanges() { (error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            self.ref.child("users").child(user.uid).setValue(["apiToken": apiToken])
+            self.userDefaults.set(apiToken, forKey: "tokenKey")
+            //TODO: SUCCESS Alert and move to previous view
+            SVProgressHUD.dismiss()
+            let failAC = UIAlertController(title: "アカウントを作成しました。", message: nil, preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .cancel){ action in
+                let firebaseAuth = Auth.auth()
+                do {
+                    try firebaseAuth.signOut()
+                } catch let signOutError as NSError {
+                    print ("Error signing out: %@", signOutError)
+                }
+                self.navigationController?.popViewController(animated: true)
+            }
+            failAC.addAction(okButton)
+            self.present(failAC, animated: true, completion: nil)
+            
         }
     }
     
@@ -93,11 +177,5 @@ class RegisterTokenKeyViewController: FormViewController {
         }
         self.present(alert, animated: true, completion: nil)
     }
-    
-//    private func configureFooterView() {
-//        footerView.viewBlock = {
-//            return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 80), text: self.footerMessage)
-//        }
-//    }
-    
+
 }

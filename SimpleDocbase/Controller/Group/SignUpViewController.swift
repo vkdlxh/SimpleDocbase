@@ -21,10 +21,8 @@ class SignUpViewController: FormViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.navigationItem.title = "アカウントを作成"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登録", style: .done, target: self,
                                                             action: #selector(addTapped(sender:)))
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {

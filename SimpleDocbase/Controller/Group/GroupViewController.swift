@@ -31,6 +31,7 @@ class GroupViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        checkAccount()
         getGroupListFromRequest()
 
         self.navigationItem.hidesBackButton = true
@@ -89,7 +90,17 @@ class GroupViewController: UIViewController {
                 SVProgressHUD.dismiss()
             }
         }
-        
+    }
+    
+    private func checkAccount() {
+        if Auth.auth().currentUser == nil {
+            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                self.navigationController!.popToRootViewController(animated: true)
+            }
+            changedAccountAC.addAction(okButton)
+            present(changedAccountAC, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Navigation

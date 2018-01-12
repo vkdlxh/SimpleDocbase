@@ -8,6 +8,7 @@
 
 import UIKit
 import SVProgressHUD
+import Firebase
 
 class ChangeTeamViewController: UIViewController {
     
@@ -38,9 +39,24 @@ class ChangeTeamViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        checkAccount()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         if beforeTeam != afertTeam {
             UserDefaults.standard.removeObject(forKey: "selectedGroup")
+        }
+    }
+    
+    private func checkAccount() {
+        if Auth.auth().currentUser == nil {
+            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                self.navigationController!.popToRootViewController(animated: true)
+            }
+            changedAccountAC.addAction(okButton)
+            present(changedAccountAC, animated: true, completion: nil)
         }
     }
 

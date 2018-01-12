@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyFORM
+import Firebase
 
 class SettingViewController: FormViewController {
     
@@ -20,8 +21,8 @@ class SettingViewController: FormViewController {
     // MARK: Lifecycle
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
-        builder += SectionHeaderTitleFormItem().title("APIトークン登録")
-        builder += tokenKeyViewControllerForm
+        builder += SectionHeaderTitleFormItem().title("アカウント")
+        builder += accountViewControllerForm
         
         builder += SectionHeaderTitleFormItem().title("勤怠管理設定")
         builder += groupListPiker
@@ -36,19 +37,22 @@ class SettingViewController: FormViewController {
        
     }
     
-    override func viewDidLoad() {
-        if let preTokenKey = userDefaults.object(forKey: "tokenKey") as? String {
-            self.preTokenKey = preTokenKey
-        }
-    }
+//    override func viewDidLoad() {
+//        if let preTokenKey = userDefaults.object(forKey: "tokenKey") as? String {
+//            self.preTokenKey = preTokenKey
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         updateForm()
         reloadForm()
     }
     
-    lazy var tokenKeyViewControllerForm: ViewControllerFormItem = {
-        return ViewControllerFormItem().viewController(RegisterTokenKeyViewController.self)
+    lazy var accountViewControllerForm: ViewControllerFormItem = {
+        let insatance = ViewControllerFormItem()
+        insatance.title = "アカウント設定"
+        insatance.viewController(RegisterTokenKeyViewController.self)
+        return insatance
     }()
     
     
@@ -110,36 +114,6 @@ class SettingViewController: FormViewController {
     // MARK: Private Methods
     private func updateForm() {
         
-        if let tokenKey = userDefaults.object(forKey: "tokenKey") as? String {
-            tokenKeyViewControllerForm.title("\(tokenKey)")
-            
-            if preTokenKey != tokenKey {
-                DispatchQueue.global().async {
-                    
-                    ACAGroupRequest.init().getGroupList { groups in
-                        DispatchQueue.main.async {
-                            if let groups = groups {
-                                self.groupListPiker.options.removeAll()
-                                self.groupListPiker.append("未登録")
-                                for group in groups {
-                                    self.groupListPiker.append(group.name)
-                                }
-                            }
-                        }
-                    }
-                }
-                self.preTokenKey = tokenKey
-            } else {
-                updateGroupPicker(groupListPiker)
-            }
-            
-        } else {
-            tokenKeyViewControllerForm.title = "APIトークンを登録してください。"
-            preTokenKey = ""
-            groups.removeAll()
-            updateGroupPicker(groupListPiker)
-        }
-        
         if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {
             teamNameTextForm.value = "\(selectedTeam)"
         } else {
@@ -148,16 +122,15 @@ class SettingViewController: FormViewController {
     }
     
     private func updateGroupPicker(_ picker: OptionPickerFormItem) {
-        let currentTeam = userDefaults.object(forKey: "selectedTeam") as? String
-        
-        if let currentTeam = currentTeam {
+        picker.options.removeAll()
+        picker.append("未登録")
+        picker.selectOptionWithTitle("未登録")
+        if let currentTeam = userDefaults.object(forKey: "selectedTeam") as? String {
             if preTeam != currentTeam {
                 picker.selected = nil
-                userDefaults.set(nil, forKey: "selectedGroup")
+                userDefaults.removeObject(forKey: "selectedGroup")
                 preTeam = currentTeam
             }
-            picker.options.removeAll()
-            picker.append("未登録")
             for group in groups {
                 picker.append(group.name)
             }
@@ -166,15 +139,39 @@ class SettingViewController: FormViewController {
                 if let selectedOption = selectedOption {
                     picker.setSelectedOptionRow(selectedOption)
                 }
-            } else {
-                picker.selectOptionWithTitle("未登録")
             }
-        } else {
-            picker.options.removeAll()
-            picker.append("未登録")
-            picker.selectOptionWithTitle("未登録")
         }
     }
+    
+//    private func updateGroupPicker(_ picker: OptionPickerFormItem) {
+//        let currentTeam = userDefaults.object(forKey: "selectedTeam") as? String
+//
+//        if let currentTeam = currentTeam {
+//            if preTeam != currentTeam {
+//                picker.selected = nil
+//                userDefaults.set(nil, forKey: "selectedGroup")
+//                preTeam = currentTeam
+//            }
+//            picker.options.removeAll()
+//            picker.append("未登録")
+//            for group in groups {
+//                picker.append(group.name)
+//            }
+//            if let selectedGroup = userDefaults.object(forKey: "selectedGroup") as? String {
+//                let selectedOption = picker.options.filter{ $0.title == selectedGroup }.first
+//                if let selectedOption = selectedOption {
+//                    picker.setSelectedOptionRow(selectedOption)
+//                }
+//            } else {
+//                picker.selectOptionWithTitle("未登録")
+//            }
+//        } else {
+//            picker.options.removeAll()
+//            picker.append("未登録")
+//            picker.selectOptionWithTitle("未登録")
+//        }
+//    }
+//
     
     private func updateIntervalTime() {
         userDefaults.set(minuteIntervalSetting.selectedItem, forKey: "minuteInterval")

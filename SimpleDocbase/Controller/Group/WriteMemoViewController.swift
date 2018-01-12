@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 protocol WriteMemoViewControllerDelegate {
     func writeMemoViewSubmit()
@@ -87,7 +88,7 @@ class WriteMemoViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkTokenKey()
+        checkAccount()
     }
     
     // MARK: Internal Methods
@@ -152,18 +153,14 @@ class WriteMemoViewController: UIViewController {
         placeholderLabel.isHidden = !bodyTextView.text.isEmpty
     }
     
-    private func checkTokenKey() {
-        let newToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
-        
-        if presentToken != newToken {
-            // TODO: トークン変更アラート
-            let changedTokenAC = UIAlertController(title: "APIトークン変更", message: "APIトークンが変更されて\n最初の画面に戻ります。", preferredStyle: .alert)
+    private func checkAccount() {
+        if Auth.auth().currentUser == nil {
+            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
                 self.navigationController!.popToRootViewController(animated: true)
             }
-            changedTokenAC.addAction(okButton)
-            present(changedTokenAC, animated: true, completion: nil)
-            
+            changedAccountAC.addAction(okButton)
+            present(changedAccountAC, animated: true, completion: nil)
         }
     }
     
