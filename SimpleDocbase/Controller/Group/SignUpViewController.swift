@@ -86,34 +86,24 @@ class SignUpViewController: FormViewController {
         //FIXME: フォムをチェックした後サインイン画面に遷移
         func getEmail(completion: @escaping (String) -> ()) {
             let emailValue = email.value
-            if emailValue.isEmpty {
-                self.signUpFailAlert("メールを記入してください。")
+            if isValid(emailValue) == true {
+                completion(emailValue)
             } else {
-                if isValid(emailValue) == false {
-                    self.signUpFailAlert("メールの形式で入力してください。")
-                } else {
-                    completion(emailValue)
-                }
+                SVProgressHUD.dismiss()
             }
         }
 
         func getPassword(completion: @escaping (String) -> ()) {
             let passwordValue = password.value
             let passwordCheckValue = passwordCheck.value
-            if passwordValue.isEmpty {
-                self.signUpFailAlert("パスワードを入力してください。")
-
-            } else if passwordCheckValue.isEmpty {
-                self.signUpFailAlert("パスワードの確認を入力してください。")
-
-            } else if passwordValue.count > 5 {
+            if !passwordValue.isEmpty, !passwordCheckValue.isEmpty, passwordValue.count > 5 {
                 if !(passwordValue == passwordCheckValue) {
                     self.signUpFailAlert("入力したパスワードが一致しません。")
                 } else {
-                   completion(passwordValue)
+                    completion(passwordValue)
                 }
             } else {
-                self.signUpFailAlert("パスワードは6文字以上で入力してください。")
+                SVProgressHUD.dismiss()
             }
         }
 
@@ -121,8 +111,9 @@ class SignUpViewController: FormViewController {
             let apiTokenValue = apiToken.value
             if apiTokenValue.isEmpty {
                 self.signUpFailAlert("APIトークンを記入してください。")
+            } else {
+                completion(apiTokenValue)
             }
-            completion(apiTokenValue)
         }
 //
         getEmail { email in
@@ -193,7 +184,7 @@ class SignUpViewController: FormViewController {
 
     private func configureFooterView() {
         footerView.viewBlock = {
-            return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 80), text: self.footerMessage)
+            return InfoView(frame: CGRect(x: 0, y: 0, width: 0, height: 100), text: self.footerMessage)
         }
     }
 

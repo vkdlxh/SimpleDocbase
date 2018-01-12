@@ -20,12 +20,13 @@ class GroupViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var messageLabel: UILabel!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControlAction()
-        
+        tableView?.backgroundView = messageLabel
         self.tabBarController?.delegate = self
     }
     
@@ -46,6 +47,7 @@ class GroupViewController: UIViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            UserDefaults.standard.removeObject(forKey: "tokenKey")
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
@@ -110,8 +112,10 @@ extension GroupViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if groups.count == 0 {
+            messageLabel?.isHidden = false
             return 0
         } else {
+            messageLabel?.isHidden = true
             return sectionTitle.count
         }
     }
