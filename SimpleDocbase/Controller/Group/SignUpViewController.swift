@@ -73,6 +73,7 @@ class SignUpViewController: FormViewController {
     lazy var apiToken: TextFieldFormItem = {
         let instance = TextFieldFormItem()
         instance.placeholder("有効なAPIトークンを入力してください。")
+        instance.submitValidate(CountSpecification.min(1), message: "空欄なく入力してください。")
         return instance
     }()
     
@@ -107,9 +108,7 @@ class SignUpViewController: FormViewController {
 
         func getAPIToken(completion: @escaping (String) -> ()) {
             let apiTokenValue = apiToken.value
-            if apiTokenValue.isEmpty {
-                self.signUpFailAlert("APIトークンを記入してください。")
-            } else {
+            if !apiTokenValue.isEmpty {
                 completion(apiTokenValue)
             }
         }

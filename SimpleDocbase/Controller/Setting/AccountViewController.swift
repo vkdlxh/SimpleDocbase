@@ -46,8 +46,8 @@ class AccountViewController: FormViewController {
         builder += email
         builder += SectionHeaderTitleFormItem().title("APIトークン修正")
         builder += tokenKey
-         builder += SectionHeaderTitleFormItem()
-         builder += signInButton
+        builder += SectionHeaderTitleFormItem()
+        builder += signInButton
 
     }
     

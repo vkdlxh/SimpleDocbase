@@ -42,10 +42,10 @@ class SettingViewController: FormViewController {
     }
     
     lazy var accountViewControllerForm: ViewControllerFormItem = {
-        let insatance = ViewControllerFormItem()
-        insatance.title = "アカウント設定"
-        insatance.viewController(AccountViewController.self)
-        return insatance
+        let instance = ViewControllerFormItem()
+        instance.title = "アカウント設定"
+        instance.viewController(AccountViewController.self)
+        return instance
     }()
     
     
