@@ -228,7 +228,9 @@ class AccountViewController: FormViewController {
     }
     
     func fetchConfig() {
-        remoteConfig.fetch { (status, error) -> Void in
+        let expirationDuration = remoteConfig.configSettings.isDeveloperModeEnabled ? 0 : 3600
+        
+        remoteConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)){ (status, error) -> Void in
             if status == .success {
                 print("Config fetched!")
                 self.remoteConfig.activateFetched()
