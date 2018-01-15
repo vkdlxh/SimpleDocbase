@@ -22,6 +22,9 @@ class MemoListViewController: UIViewController {
     var isDataLoading:Bool = false
     var pageNum: Int = 1
     let perPage: Int = 20
+    //TestMode
+    var testMode = false
+    
 
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -113,13 +116,15 @@ class MemoListViewController: UIViewController {
     }
     
     private func checkAccount() {
-        if Auth.auth().currentUser == nil {
-            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.navigationController!.popToRootViewController(animated: true)
+        if testMode == false {
+            if Auth.auth().currentUser == nil {
+                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                    self.navigationController!.popToRootViewController(animated: true)
+                }
+                changedAccountAC.addAction(okButton)
+                present(changedAccountAC, animated: true, completion: nil)
             }
-            changedAccountAC.addAction(okButton)
-            present(changedAccountAC, animated: true, completion: nil)
         }
     }
 
@@ -133,6 +138,7 @@ class MemoListViewController: UIViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.memoId = memos[selectedIndex].id
                     destination.memo = memos[selectedIndex]
+                    destination.testMode = testMode
                 }
             }
         } else if segue.identifier == "GoWriteMemoSegue" {
@@ -140,6 +146,7 @@ class MemoListViewController: UIViewController {
                 if let tagetController = destination.topViewController as? WriteMemoViewController {
                     tagetController.delegate = self
                     tagetController.group = self.group
+                    tagetController.testMode = testMode
                 }
             }
         }

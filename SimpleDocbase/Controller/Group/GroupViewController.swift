@@ -17,6 +17,7 @@ class GroupViewController: UIViewController {
     var groups: [Group] = []
     var refreshControl: UIRefreshControl!
     let sectionTitle = ["チーム", "グループ一覧"]
+    var testMode = false
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -48,6 +49,7 @@ class GroupViewController: UIViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            UserDefaults.standard.removeObject(forKey: "testMail")
             UserDefaults.standard.removeObject(forKey: "tokenKey")
             UserDefaults.standard.removeObject(forKey: "selectedTeam")
             UserDefaults.standard.removeObject(forKey: "selectedGroup")
@@ -95,13 +97,15 @@ class GroupViewController: UIViewController {
     }
     
     private func checkAccount() {
-        if Auth.auth().currentUser == nil {
-            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.navigationController!.popToRootViewController(animated: true)
+        if testMode == false {
+            if Auth.auth().currentUser == nil {
+                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                    self.navigationController!.popToRootViewController(animated: true)
+                }
+                changedAccountAC.addAction(okButton)
+                present(changedAccountAC, animated: true, completion: nil)
             }
-            changedAccountAC.addAction(okButton)
-            present(changedAccountAC, animated: true, completion: nil)
         }
     }
     
@@ -112,9 +116,15 @@ class GroupViewController: UIViewController {
             if let destination = segue.destination as? MemoListViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.group = groups[selectedIndex]
+                    destination.testMode = testMode
                 }
             }
+        } else if segue.identifier == "GoChangeTeam" {
+            if let destination = segue.destination as? ChangeTeamViewController {
+                destination.testMode = testMode
+            }
         }
+            
     }
     
 }

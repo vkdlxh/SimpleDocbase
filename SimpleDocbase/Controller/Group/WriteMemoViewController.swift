@@ -23,6 +23,8 @@ class WriteMemoViewController: UIViewController {
     var checkWriteSuccess = false
     let tagValue = "iPhoneから投稿"
     var placeholderLabel : UILabel!
+    //TestMode
+    var testMode = false
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
@@ -154,13 +156,15 @@ class WriteMemoViewController: UIViewController {
     }
     
     private func checkAccount() {
-        if Auth.auth().currentUser == nil {
-            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.navigationController!.popToRootViewController(animated: true)
+        if testMode == false {
+            if Auth.auth().currentUser == nil {
+                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                    self.navigationController!.popToRootViewController(animated: true)
+                }
+                changedAccountAC.addAction(okButton)
+                present(changedAccountAC, animated: true, completion: nil)
             }
-            changedAccountAC.addAction(okButton)
-            present(changedAccountAC, animated: true, completion: nil)
         }
     }
     

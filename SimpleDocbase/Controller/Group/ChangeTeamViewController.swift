@@ -16,9 +16,10 @@ class ChangeTeamViewController: UIViewController {
     var teams: [String] = []
     var beforeTeam = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var afertTeam: String?
+    var testMode = false
+    
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
-    
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -50,13 +51,15 @@ class ChangeTeamViewController: UIViewController {
     }
     
     private func checkAccount() {
-        if Auth.auth().currentUser == nil {
-            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.navigationController!.popToRootViewController(animated: true)
+        if testMode == false {
+            if Auth.auth().currentUser == nil {
+                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                    self.navigationController!.popToRootViewController(animated: true)
+                }
+                changedAccountAC.addAction(okButton)
+                present(changedAccountAC, animated: true, completion: nil)
             }
-            changedAccountAC.addAction(okButton)
-            present(changedAccountAC, animated: true, completion: nil)
         }
     }
 
