@@ -18,7 +18,7 @@ class DetailMemoViewController: UIViewController {
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var sectionList = ["Memo", "Comment"]
     //TestMode
-    var testMode = false
+    let testMode = FBManager.sharedManager.testMode
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!

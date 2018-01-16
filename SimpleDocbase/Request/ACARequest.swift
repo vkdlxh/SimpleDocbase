@@ -14,7 +14,7 @@ class ACARequest {
     // MARK: Properties    
     var url: URL?
     let session: URLSession = URLSession.shared
-    var ref: DatabaseReference!
+    let fbManager = FBManager.sharedManager
     
     enum MethodType: String {
         case get    = "GET"
@@ -23,25 +23,6 @@ class ACARequest {
         case put    = "PUT"
         case patch  = "PATCH"
     }
-    
-    func getAPITokenFromDatabase(completion: @escaping ((String?) -> ())) {
-        ref = Database.database().reference()
-        if let userID = Auth.auth().currentUser?.uid {
-            self.ref.child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
-                let value = snapshot.value as? NSDictionary
-                let apiToken = value?["apiToken"] as? String ?? ""
-                DispatchQueue.main.async {
-                    completion(apiToken)
-                }
-        
-            }) { (error) in
-                print(error.localizedDescription)
-            }
-        } else {
-            completion(nil)
-        }
-    }
 
     // MARK: Internal Methods
     func settingRequest(url: URL, httpMethod: MethodType, completion: @escaping ((URLRequest?) -> ())){
@@ -49,19 +30,16 @@ class ACARequest {
         request.httpMethod = httpMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        if let testToken = UserDefaults.standard.object(forKey: "testToken") as? String {
-            request.addValue(testToken, forHTTPHeaderField: "X-DocBaseToken")
+        if fbManager.testMode == true {
+            request.addValue(fbManager.testToken, forHTTPHeaderField: "X-DocBaseToken")
             completion(request)
         } else {
-            getAPITokenFromDatabase { token in
-                self.getAPITokenFromDatabase { token in
-                    if let token = token {
-                        request.addValue(token, forHTTPHeaderField: "X-DocBaseToken")
-                        completion(request)
-                    } else {
-                        completion(nil)
-                    }
-                }
+            if let apiToken = fbManager.apiToken {
+                request.addValue(apiToken, forHTTPHeaderField: "X-DocBaseToken")
+                completion(request)
+                
+            } else {
+                completion(nil)
             }
         }
     }

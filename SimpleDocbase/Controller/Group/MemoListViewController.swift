@@ -22,7 +22,7 @@ class MemoListViewController: UIViewController {
     var pageNum: Int = 1
     let perPage: Int = 20
     //TestMode
-    var testMode = false
+    let testMode = FBManager.sharedManager.testMode
     
 
     // MARK: IBOutlets
@@ -137,7 +137,6 @@ class MemoListViewController: UIViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.memoId = memos[selectedIndex].id
                     destination.memo = memos[selectedIndex]
-                    destination.testMode = testMode
                 }
             }
         } else if segue.identifier == "GoWriteMemoSegue" {
@@ -145,7 +144,6 @@ class MemoListViewController: UIViewController {
                 if let tagetController = destination.topViewController as? WriteMemoViewController {
                     tagetController.delegate = self
                     tagetController.group = self.group
-                    tagetController.testMode = testMode
                 }
             }
         }

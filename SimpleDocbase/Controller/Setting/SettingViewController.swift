@@ -16,11 +16,12 @@ class SettingViewController: FormViewController {
     let userDefaults = UserDefaults.standard
     var groups = [Group]()
     var preTeam = ""
+    let fbManaber = FBManager.sharedManager
 
     // MARK: Lifecycle
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
-        if let testMode = userDefaults.object(forKey: "testMode") as? Bool, testMode == false {
+        if fbManaber.testMode == false {
             builder += SectionHeaderTitleFormItem().title("アカウント")
             builder += accountViewControllerForm
         }

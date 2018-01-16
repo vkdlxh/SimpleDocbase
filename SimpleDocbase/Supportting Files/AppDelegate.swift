@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        let fbManager = FBManager.sharedManager
+        fbManager.getPropertyFromRemoteConfig()
+        
         return true
     }
 

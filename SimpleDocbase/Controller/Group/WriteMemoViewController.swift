@@ -23,7 +23,7 @@ class WriteMemoViewController: UIViewController {
     let tagValue = "iPhoneから投稿"
     var placeholderLabel : UILabel!
     //TestMode
-    var testMode = false
+    let testMode = FBManager.sharedManager.testMode
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!

@@ -16,7 +16,7 @@ class ChangeTeamViewController: UIViewController {
     var teams: [String] = []
     var beforeTeam = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var afertTeam: String?
-    var testMode = false
+    let testMode = FBManager.sharedManager.testMode
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!

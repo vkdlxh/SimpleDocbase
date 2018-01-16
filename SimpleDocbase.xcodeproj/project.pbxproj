@@ -21,6 +21,7 @@
 		DA0605741FEBB65D0033C984 /* SplashLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0605731FEBB65C0033C984 /* SplashLogo.png */; };
 		DA0605781FECCD0A0033C984 /* ACACommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0605771FECCD0A0033C984 /* ACACommentRequest.swift */; };
 		DA0947422008D0B2003B1CE8 /* UILabelDeviceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0947412008D0B2003B1CE8 /* UILabelDeviceClass.swift */; };
+		DA094744200E13D6003B1CE8 /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA094743200E13D6003B1CE8 /* FBManager.swift */; };
 		DA0AD9741FED4A77008344DE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AD9731FED4A77008344DE /* UIViewExtension.swift */; };
 		DA0AD9761FED5444008344DE /* TesterKeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */; };
 		DA0AD9771FED5493008344DE /* Tester.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFD71031FB477F3004F3140 /* Tester.storyboard */; };
@@ -87,6 +88,7 @@
 		DA0605731FEBB65C0033C984 /* SplashLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashLogo.png; sourceTree = "<group>"; };
 		DA0605771FECCD0A0033C984 /* ACACommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACACommentRequest.swift; sourceTree = "<group>"; };
 		DA0947412008D0B2003B1CE8 /* UILabelDeviceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelDeviceClass.swift; sourceTree = "<group>"; };
+		DA094743200E13D6003B1CE8 /* FBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		DA0AD9731FED4A77008344DE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterKeyBoardViewController.swift; sourceTree = "<group>"; };
 		DA0AD9781FEDE6B1008344DE /* DayWorkSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DayWorkSheet.png; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */,
+				DA094743200E13D6003B1CE8 /* FBManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -533,7 +536,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -552,6 +555,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */,
+				DA094744200E13D6003B1CE8 /* FBManager.swift in Sources */,
 				DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */,
 				DA3817E72005E40F00476AD8 /* SignInViewController.swift in Sources */,
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,

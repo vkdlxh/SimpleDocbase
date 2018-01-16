@@ -15,11 +15,7 @@ class SignInViewController: UIViewController {
     // MARK: Properties
     var ref: DatabaseReference!
     let userDefaults = UserDefaults.standard
-//    var remoteConfig: RemoteConfig!
-//    var testMode = false
-//    var testMail = ""
-//    var testPassword = ""
-//    var testToken = ""
+    let fbManager = FBManager.sharedManager
 
     // MARK: IBOutlets
     @IBOutlet weak var emailField: UITextField!
@@ -27,24 +23,17 @@ class SignInViewController: UIViewController {
     
     @IBAction func signInAction(_ sender: Any) {
         SVProgressHUD.show()
-        guard let testMode = userDefaults.object(forKey: "testMode") as? Bool else {
-            return
-        }
-
+        print(fbManager.testMode)
         if let email = self.emailField.text, let password = self.passwordField.text {
-            if testMode == true {
+            if fbManager.testMode == true {
                 // TEST Mode
-                if let testMail = userDefaults.object(forKey: "testMail") as? String {
-                    if let testPassword = userDefaults.object(forKey: "testPassword") as? String {
-                        if testMail == email, testPassword == password{
-                            SVProgressHUD.dismiss()
-                            emailField.text = ""
-                            passwordField.text = ""
-                            self.performSegue(withIdentifier: "SignInSegue", sender: self)
-                        } else {
-                            signInFailAlert()
-                        }
-                    }
+                if fbManager.testMail == email, fbManager.testPassword == password {
+                    SVProgressHUD.dismiss()
+                    emailField.text = ""
+                    passwordField.text = ""
+                    self.performSegue(withIdentifier: "SignInSegue", sender: self)
+                } else {
+                    signInFailAlert()
                 }
             } else {
                 // Nomal Mode
@@ -54,10 +43,7 @@ class SignInViewController: UIViewController {
                         self.signInFailAlert()
                         return
                     }
-                    SVProgressHUD.dismiss()
-                    self.emailField.text = ""
-                    self.passwordField.text = ""
-                    self.performSegue(withIdentifier: "SignInSegue", sender: self)
+                    self.setAPIToken()
                 }
             }
         } else {
@@ -78,10 +64,11 @@ class SignInViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if Auth.auth().currentUser != nil {
-            self.performSegue(withIdentifier: "SignInSegue", sender: nil)
-        }
         ref = Database.database().reference()
+        if Auth.auth().currentUser != nil {
+            SVProgressHUD.show(withStatus: "自動サインイン中")
+            setAPIToken()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -89,6 +76,24 @@ class SignInViewController: UIViewController {
     }
     
     // MARK: Private Methods
+    func setAPIToken() {
+        let userID = Auth.auth().currentUser?.uid
+        self.ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let apiToken = value?["apiToken"] as? String ?? ""
+            self.fbManager.apiToken = apiToken
+            DispatchQueue.main.async {
+                SVProgressHUD.dismiss()
+                self.emailField.text = ""
+                self.passwordField.text = ""
+                self.performSegue(withIdentifier: "SignInSegue", sender: self)
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
+    
     private func signInFailAlert() {
         SVProgressHUD.dismiss()
         let failAC = UIAlertController(title: "メール/パスワードを\n確認してください。", message: nil, preferredStyle: .alert)

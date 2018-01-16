@@ -21,6 +21,7 @@ class AccountViewController: FormViewController {
 
     // MARK: Properties
     let userDefaults = UserDefaults.standard
+    let fbManager = FBManager.sharedManager
     var user = Auth.auth().currentUser
     var ref: DatabaseReference!
 
@@ -28,7 +29,6 @@ class AccountViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tokenKeySubmitButton()
-        getTokenKeyFromDatabase()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +65,9 @@ class AccountViewController: FormViewController {
     lazy var tokenKey: TextFieldFormItem = {
         let instance = TextFieldFormItem()
         instance.placeholder("APIトークンを入力してください。")
+        if let apiToken = fbManager.apiToken {
+            instance.value = apiToken
+        }
         return instance
     }()
     
@@ -78,6 +81,7 @@ class AccountViewController: FormViewController {
                     let firebaseAuth = Auth.auth()
                     do {
                         try firebaseAuth.signOut()
+                        self.fbManager.apiToken = nil
                         UserDefaults.standard.removeObject(forKey: "selectedTeam")
                         UserDefaults.standard.removeObject(forKey: "selectedGroup")
                     } catch let signOutError as NSError {
@@ -140,9 +144,10 @@ class AccountViewController: FormViewController {
                 return
             }
             self.ref.child("users").child(user.uid).setValue(["apiToken": apiToken])
+            self.fbManager.apiToken = apiToken
             //TODO: SUCCESS Alert and move to previous view
             SVProgressHUD.dismiss()
-            let failAC = UIAlertController(title: "アカウントを作成しました。", message: nil, preferredStyle: .alert)
+            let okAC = UIAlertController(title: "アカウントを作成しました。", message: nil, preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .cancel){ action in
                 let firebaseAuth = Auth.auth()
                 do {
@@ -152,8 +157,8 @@ class AccountViewController: FormViewController {
                 }
                 self.navigationController?.popViewController(animated: true)
             }
-            failAC.addAction(okButton)
-            self.present(failAC, animated: true, completion: nil)
+            okAC.addAction(okButton)
+            self.present(okAC, animated: true, completion: nil)
             
         }
     }
@@ -180,21 +185,6 @@ class AccountViewController: FormViewController {
             alert.addAction(cancelButton)
         }
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    func getTokenKeyFromDatabase() {
-        ref = Database.database().reference()
-        if let userID = Auth.auth().currentUser?.uid {
-            self.ref.child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-                // Get user value
-                let value = snapshot.value as? NSDictionary
-                let apiToken = value?["apiToken"] as? String ?? ""
-                self.tokenKey.value = apiToken
-                self.reloadForm()
-            }) { (error) in
-            print(error.localizedDescription)
-            }
-        }
     }
 
 }

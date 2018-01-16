@@ -17,8 +17,7 @@ class GroupViewController: UIViewController {
     var groups: [Group] = []
     var refreshControl: UIRefreshControl!
     let sectionTitle = ["チーム", "グループ一覧"]
-//    var testMode = false
-    var testMode = UserDefaults.standard.object(forKey: "testMode") as! Bool
+    let fbManager = FBManager.sharedManager
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -50,6 +49,7 @@ class GroupViewController: UIViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
+            fbManager.apiToken = nil
             UserDefaults.standard.removeObject(forKey: "selectedTeam")
             UserDefaults.standard.removeObject(forKey: "selectedGroup")
         } catch let signOutError as NSError {
@@ -96,7 +96,7 @@ class GroupViewController: UIViewController {
     }
     
     private func checkAccount() {
-        if testMode == false {
+        if fbManager.testMode == false {
             if Auth.auth().currentUser == nil {
                 let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "確認", style: .default) { action in
@@ -115,15 +115,9 @@ class GroupViewController: UIViewController {
             if let destination = segue.destination as? MemoListViewController {
                 if let selectedIndex = self.tableView.indexPathForSelectedRow?.row {
                     destination.group = groups[selectedIndex]
-                    destination.testMode = testMode
                 }
             }
-        } else if segue.identifier == "GoChangeTeam" {
-            if let destination = segue.destination as? ChangeTeamViewController {
-                destination.testMode = testMode
-            }
         }
-            
     }
     
 }

@@ -17,9 +17,6 @@ final class SheetViewController : UIViewController {
     let worksheetManager = WorkSheetManager.sharedManager
     let limitLength = 6
     
-    let userDefaults = UserDefaults.standard
-    var remoteConfig: RemoteConfig!
-    
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
     @IBOutlet weak var messageLabel: UILabel?
@@ -32,13 +29,6 @@ final class SheetViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "勤怠管理"
-        
-        remoteConfig = RemoteConfig.remoteConfig()
-        let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)
-        remoteConfig.configSettings = remoteConfigSettings!
-        remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-        
-        fetchConfig()
         
         initControls()
         
@@ -135,41 +125,6 @@ final class SheetViewController : UIViewController {
     }
  
     // MARK: Internal Methods
-    func fetchConfig() {
-        let expirationDuration = remoteConfig.configSettings.isDeveloperModeEnabled ? 0 : 3600
-        
-        remoteConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)){ (status, error) -> Void in
-            if status == .success {
-                print("Config fetched!")
-                self.remoteConfig.activateFetched()
-            } else {
-                print("Config not fetched")
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
-            }
-            
-            self.getTestAccountFromRemoteConfig()
-        }
-    }
-    
-    func getTestAccountFromRemoteConfig() {
-        let testModeConfigKey = "test_mode"
-        let testMailConfigKey = "test_email"
-        let testPasswordConfigKey = "test_password"
-        let testTokenConfigKey = "test_token"
-        
-        userDefaults.set(remoteConfig[testModeConfigKey].boolValue, forKey: "testMode")
-        
-        if let testMode = userDefaults.object(forKey: "testMode") as? Bool, testMode == true {
-            userDefaults.set(remoteConfig[testMailConfigKey].stringValue, forKey: "testMail")
-            userDefaults.set(remoteConfig[testPasswordConfigKey].stringValue, forKey: "testPassword")
-            userDefaults.set(remoteConfig[testTokenConfigKey].stringValue, forKey: "testToken")
-        } else {
-            userDefaults.removeObject(forKey: "testMail")
-            userDefaults.removeObject(forKey: "testPassword")
-            userDefaults.removeObject(forKey: "testToken")
-        }
-        
-    }
     
     // MARK: Private Methods
     private func initControls() {
