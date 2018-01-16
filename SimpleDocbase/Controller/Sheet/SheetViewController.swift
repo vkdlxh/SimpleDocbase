@@ -158,9 +158,17 @@ final class SheetViewController : UIViewController {
         let testTokenConfigKey = "test_token"
         
         userDefaults.set(remoteConfig[testModeConfigKey].boolValue, forKey: "testMode")
-        userDefaults.set(remoteConfig[testMailConfigKey].stringValue, forKey: "testMail")
-        userDefaults.set(remoteConfig[testPasswordConfigKey].stringValue, forKey: "testPassword")
-        userDefaults.set(remoteConfig[testTokenConfigKey].stringValue, forKey: "testToken")
+        
+        if let testMode = userDefaults.object(forKey: "testMode") as? Bool, testMode == true {
+            userDefaults.set(remoteConfig[testMailConfigKey].stringValue, forKey: "testMail")
+            userDefaults.set(remoteConfig[testPasswordConfigKey].stringValue, forKey: "testPassword")
+            userDefaults.set(remoteConfig[testTokenConfigKey].stringValue, forKey: "testToken")
+        } else {
+            userDefaults.removeObject(forKey: "testMail")
+            userDefaults.removeObject(forKey: "testPassword")
+            userDefaults.removeObject(forKey: "testToken")
+        }
+        
     }
     
     // MARK: Private Methods

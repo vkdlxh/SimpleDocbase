@@ -30,24 +30,21 @@ class SignInViewController: UIViewController {
         guard let testMode = userDefaults.object(forKey: "testMode") as? Bool else {
             return
         }
-        guard let testMail = userDefaults.object(forKey: "testMail") as? String else {
-            return
-        }
-        guard let testPassword = userDefaults.object(forKey: "testPassword") as? String else {
-            return
-        }
 
         if let email = self.emailField.text, let password = self.passwordField.text {
             if testMode == true {
                 // TEST Mode
-                if testMail == email, testPassword == password{
-//                    UserDefaults.standard.set(testToken, forKey: "tokenKey")
-                    SVProgressHUD.dismiss()
-                    emailField.text = ""
-                    passwordField.text = ""
-                    self.performSegue(withIdentifier: "SignInSegue", sender: self)
-                } else {
-                    signInFailAlert()
+                if let testMail = userDefaults.object(forKey: "testMail") as? String {
+                    if let testPassword = userDefaults.object(forKey: "testPassword") as? String {
+                        if testMail == email, testPassword == password{
+                            SVProgressHUD.dismiss()
+                            emailField.text = ""
+                            passwordField.text = ""
+                            self.performSegue(withIdentifier: "SignInSegue", sender: self)
+                        } else {
+                            signInFailAlert()
+                        }
+                    }
                 }
             } else {
                 // Nomal Mode
@@ -57,7 +54,6 @@ class SignInViewController: UIViewController {
                         self.signInFailAlert()
                         return
                     }
-                    UserDefaults.standard.removeObject(forKey: "testMail")
                     SVProgressHUD.dismiss()
                     self.emailField.text = ""
                     self.passwordField.text = ""
@@ -100,14 +96,5 @@ class SignInViewController: UIViewController {
         failAC.addAction(cancelButton)
         present(failAC, animated: true, completion: nil)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "SignInSegue" {
-//            if let destination = segue.destination as? GroupViewController {
-//                destination.testMode = testMode
-//            }
-//        }
-//    }
-    
 
 }

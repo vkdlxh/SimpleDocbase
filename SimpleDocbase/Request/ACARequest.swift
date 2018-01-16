@@ -15,7 +15,6 @@ class ACARequest {
     var url: URL?
     let session: URLSession = URLSession.shared
     var ref: DatabaseReference!
-//    let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
     
     enum MethodType: String {
         case get    = "GET"
@@ -47,16 +46,21 @@ class ACARequest {
     // MARK: Internal Methods
     func settingRequest(url: URL, httpMethod: MethodType, completion: @escaping ((URLRequest?) -> ())){
         var request: URLRequest = URLRequest(url: url)
+        request.httpMethod = httpMethod.rawValue
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        getAPITokenFromDatabase { token in
-            request.httpMethod = httpMethod.rawValue
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            self.getAPITokenFromDatabase { token in
-                if let token = token {
-                    request.addValue(token, forHTTPHeaderField: "X-DocBaseToken")
-                    completion(request)
-                } else {
-                    completion(nil)
+        if let testToken = UserDefaults.standard.object(forKey: "testToken") as? String {
+            request.addValue(testToken, forHTTPHeaderField: "X-DocBaseToken")
+            completion(request)
+        } else {
+            getAPITokenFromDatabase { token in
+                self.getAPITokenFromDatabase { token in
+                    if let token = token {
+                        request.addValue(token, forHTTPHeaderField: "X-DocBaseToken")
+                        completion(request)
+                    } else {
+                        completion(nil)
+                    }
                 }
             }
         }

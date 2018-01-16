@@ -78,7 +78,6 @@ class AccountViewController: FormViewController {
                     let firebaseAuth = Auth.auth()
                     do {
                         try firebaseAuth.signOut()
-//                        UserDefaults.standard.removeObject(forKey: "tokenKey")
                         UserDefaults.standard.removeObject(forKey: "selectedTeam")
                         UserDefaults.standard.removeObject(forKey: "selectedGroup")
                     } catch let signOutError as NSError {
@@ -171,7 +170,6 @@ class AccountViewController: FormViewController {
         case .delete:
             alert = UIAlertController(title:"APIトークン削除", message: "APIトークンを削除しますか。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
-//                self.userDefaults.removeObject(forKey: "tokenKey")
                 self.userDefaults.removeObject(forKey: "selectedTeam")
                 self.userDefaults.removeObject(forKey: "selectedGroup")
                 self.navigationController?.popViewController(animated: true)
