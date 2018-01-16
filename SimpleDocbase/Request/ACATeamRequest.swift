@@ -14,28 +14,28 @@ class ACATeamRequest: ACARequest {
         print("getTeamList()")
         guard let url = URL(string: "https://api.docbase.io/teams") else { return }
         
-        let request = settingRequest(url: url, httpMethod: .get)
-        
-        session.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
-                        if let teamList = self.makeTeamDomainArray(dict: json){
-                            completion(teamList)
+        settingRequest(url: url, httpMethod: .get) { request in
+            self.session.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    do {
+                        if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
+                            if let teamList = self.makeTeamDomainArray(dict: json){
+                                completion(teamList)
+                            }
+                        } else {
+                            print("Can't TeamList JSON parse")
+                            completion(nil)
                         }
-                    } else {
-                        print("Can't TeamList JSON parse")
+                    } catch {
+                        print(error)
                         completion(nil)
                     }
-                } catch {
-                    print(error)
+                } else {
+                    print("TeamList No data. Check TokenKey")
+                    UserDefaults.standard.set(nil, forKey: "selectedTeam")
                     completion(nil)
                 }
-            } else {
-                print("TeamList No data. Check TokenKey")
-                UserDefaults.standard.set(nil, forKey: "selectedTeam")
-                completion(nil)
-            }
-        }.resume()
+                }.resume()
+        }
     }
 }

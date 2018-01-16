@@ -31,7 +31,7 @@ class SignInViewController: UIViewController {
             if testMode == true {
                 // TEST Mode
                 if testMail == email, testPassword == password{
-                    UserDefaults.standard.set(testToken, forKey: "tokenKey")
+//                    UserDefaults.standard.set(testToken, forKey: "tokenKey")
                     UserDefaults.standard.set(email, forKey: "testMail")
                     SVProgressHUD.dismiss()
                     emailField.text = ""
@@ -49,22 +49,10 @@ class SignInViewController: UIViewController {
                         return
                     }
                     UserDefaults.standard.removeObject(forKey: "testMail")
-                    let userID = Auth.auth().currentUser?.uid
-                    self.ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-                        // Get user value
-                        let value = snapshot.value as? NSDictionary
-                        let apiToken = value?["apiToken"] as? String ?? ""
-                        UserDefaults.standard.set(apiToken, forKey: "tokenKey")
-                        //                    ACARequest().tokenKey = apiToken
-                        DispatchQueue.main.async {
-                            SVProgressHUD.dismiss()
-                            self.emailField.text = ""
-                            self.passwordField.text = ""
-                            self.performSegue(withIdentifier: "SignInSegue", sender: self)
-                        }
-                    }) { (error) in
-                        print(error.localizedDescription)
-                    }
+                    SVProgressHUD.dismiss()
+                    self.emailField.text = ""
+                    self.passwordField.text = ""
+                    self.performSegue(withIdentifier: "SignInSegue", sender: self)
                 }
             }
         } else {

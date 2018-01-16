@@ -17,26 +17,26 @@ class ACAMemoRequest: ACARequest {
         
         guard let url = URL(string: encodedURL) else { return }
         
-        let request = settingRequest(url: url, httpMethod: .get)
-        
-        session.dataTask(with: request) { (data, response, error) in
-            
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    var memos: [Memo] = []
-                    for post in json["posts"] as! [Any] {
-                        guard let memo = Memo(dict: post as! [String:Any]) else { return }
-                        memos.append(memo)
+        settingRequest(url: url, httpMethod: .get) { request in
+            self.session.dataTask(with: request) { (data, response, error) in
+                
+                if let data = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                        var memos: [Memo] = []
+                        for post in json["posts"] as! [Any] {
+                            guard let memo = Memo(dict: post as! [String:Any]) else { return }
+                            memos.append(memo)
+                        }
+                        completion(memos)
+                        
+                    } catch {
+                        print(error)
+                        completion(nil)
                     }
-                    completion(memos)
-
-                } catch {
-                    print(error)
-                    completion(nil)
                 }
-            }
-        }.resume()
+                }.resume()
+        }
     }
     
     func getMemo(memoId: Int, domain: String, completion: @escaping (Memo?) -> ()) {
@@ -47,54 +47,56 @@ class ACAMemoRequest: ACARequest {
         
         guard let url = URL(string: encodedURL) else { return }
         
-        let request = settingRequest(url: url, httpMethod: .get)
-    
-        session.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                    let memo = Memo(dict: json)
-                    completion(memo)
-                }catch {
-                    print(error)
+        settingRequest(url: url, httpMethod: .get) { request in
+            self.session.dataTask(with: request) { (data, response, error) in
+                if let data = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                        let memo = Memo(dict: json)
+                        completion(memo)
+                    }catch {
+                        print(error)
+                    }
+                } else {
+                    print("Write Comment Fail")
                 }
-            } else {
-                print("Write Comment Fail")
-            }
-            }.resume()
-        
+                }.resume()
+        }
     }
     
     func writeMemo(domain: String, dict: Dictionary<String, Any>, completion: @escaping (Bool) -> ()) {
         print("writeMemo(domain: , dict: )")
         guard let url = URL(string: "https://api.docbase.io/teams/\(domain)/posts") else { return }
         
-        var request = settingRequest(url: url, httpMethod: .post)
-        guard let httpBody = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
-            return
-        }
-        request.httpBody = httpBody
-        
-        session.dataTask(with: request) { (data, response, error) in
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
-                print("statusCode should be 201, but is \(httpStatus.statusCode)")
-                print("response = \(String(describing: response))")
-                completion(false)
-            } else {
-                completion(true)
+        settingRequest(url: url, httpMethod: .post) { request in
+            guard let httpBody = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
+                return
             }
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                }catch {
-                    print(error)
+            var newRequest = request
+            newRequest.httpBody = httpBody
+            
+            self.session.dataTask(with: newRequest) { (data, response, error) in
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 201 {
+                    print("statusCode should be 201, but is \(httpStatus.statusCode)")
+                    print("response = \(String(describing: response))")
+                    completion(false)
+                } else {
+                    completion(true)
                 }
-            } else {
-                completion(false)
-                print("Write Memo Fail")
-            }
-        }.resume()
+                if let data = data {
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: [])
+                        print(json)
+                    }catch {
+                        print(error)
+                    }
+                } else {
+                    completion(false)
+                    print("Write Memo Fail")
+                }
+                }.resume()
+        }
+        
         
     }
     
@@ -105,29 +107,29 @@ class ACAMemoRequest: ACARequest {
             return
         }
         
-        let request = settingRequest(url: url, httpMethod: .delete)
-        
-        session.dataTask(with: request) { (data, response, error) in
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 204 {
-                print("statusCode should be 204, but is \(httpStatus.statusCode)")
-                print("response = \(String(describing: response))")
-                completion(false)
-            } else {
-                completion(true)
-            }
-            if let data = data {
-                print(data)
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
-                } catch {
-                    print(error)
+        settingRequest(url: url, httpMethod: .delete) { request in
+            self.session.dataTask(with: request) { (data, response, error) in
+                if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 204 {
+                    print("statusCode should be 204, but is \(httpStatus.statusCode)")
+                    print("response = \(String(describing: response))")
+                    completion(false)
+                } else {
+                    completion(true)
                 }
-            } else {
-                completion(false)
-                print("Delete Memo Fail")
-            }
-        }.resume()
+                if let data = data {
+                    print(data)
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: [])
+                        print(json)
+                    } catch {
+                        print(error)
+                    }
+                } else {
+                    completion(false)
+                    print("Delete Memo Fail")
+                }
+                }.resume()
+        }
     }
     
 }

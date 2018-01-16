@@ -15,7 +15,6 @@ class MemoListViewController: UIViewController {
     // MARK: Properties
     var group: Group?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
-    let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
     var memos = [Memo]()
     var refreshControl: UIRefreshControl!
     //Pagination

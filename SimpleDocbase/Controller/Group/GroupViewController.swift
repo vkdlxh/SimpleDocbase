@@ -50,7 +50,7 @@ class GroupViewController: UIViewController {
         do {
             try firebaseAuth.signOut()
             UserDefaults.standard.removeObject(forKey: "testMail")
-            UserDefaults.standard.removeObject(forKey: "tokenKey")
+//            UserDefaults.standard.removeObject(forKey: "tokenKey")
             UserDefaults.standard.removeObject(forKey: "selectedTeam")
             UserDefaults.standard.removeObject(forKey: "selectedGroup")
         } catch let signOutError as NSError {

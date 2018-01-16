@@ -7,13 +7,15 @@
 //
 
 import Foundation
+import Firebase
 
 class ACARequest {
     
     // MARK: Properties    
     var url: URL?
     let session: URLSession = URLSession.shared
-    let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
+    var ref: DatabaseReference!
+//    let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
     
     enum MethodType: String {
         case get    = "GET"
@@ -22,18 +24,35 @@ class ACARequest {
         case put    = "PUT"
         case patch  = "PATCH"
     }
+    
+    func getAPITokenFromDatabase(completion: @escaping ((String) -> ())) {
+        ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        self.ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let apiToken = value?["apiToken"] as? String ?? ""
+            DispatchQueue.main.async {
+                completion(apiToken)
+            }
+    
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
 
     // MARK: Internal Methods
-    func settingRequest(url: URL, httpMethod: MethodType) -> URLRequest {
-        
+    func settingRequest(url: URL, httpMethod: MethodType, completion: @escaping ((URLRequest) -> ())){
         var request: URLRequest = URLRequest(url: url)
         
-        request.httpMethod = httpMethod.rawValue
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        if let tokenKey = tokenKey {
-            request.addValue(tokenKey, forHTTPHeaderField: "X-DocBaseToken")
+        getAPITokenFromDatabase { token in
+            request.httpMethod = httpMethod.rawValue
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            self.getAPITokenFromDatabase { token in
+                request.addValue(token, forHTTPHeaderField: "X-DocBaseToken")
+                completion(request)
+            }
         }
-        return request
     }
     
     func makeTeamDomainArray(dict: [[String : String]]) -> [String]?{

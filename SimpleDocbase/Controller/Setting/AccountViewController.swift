@@ -37,6 +37,7 @@ class AccountViewController: FormViewController {
         super.viewDidLoad()
         tokenKeySubmitButton()
         getRemoteConfig()
+        getTokenKeyFromDatabase()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,9 +55,10 @@ class AccountViewController: FormViewController {
         builder += email
         builder += SectionHeaderTitleFormItem().title("APIトークン修正")
         builder += tokenKey
-        if testMode == false {
+        guard let signIn = userDefaults.object(forKey: "testMail") as? String else {
             builder += SectionHeaderTitleFormItem()
             builder += signInButton
+            return
         }
     }
     
@@ -79,9 +81,6 @@ class AccountViewController: FormViewController {
     lazy var tokenKey: TextFieldFormItem = {
         let instance = TextFieldFormItem()
         instance.placeholder("APIトークンを入力してください。")
-        if let tokenKey = userDefaults.object(forKey: "tokenKey") as? String{
-            instance.value = tokenKey
-        }
         return instance
     }()
     
@@ -95,7 +94,7 @@ class AccountViewController: FormViewController {
                     let firebaseAuth = Auth.auth()
                     do {
                         try firebaseAuth.signOut()
-                        UserDefaults.standard.removeObject(forKey: "tokenKey")
+//                        UserDefaults.standard.removeObject(forKey: "tokenKey")
                         UserDefaults.standard.removeObject(forKey: "selectedTeam")
                         UserDefaults.standard.removeObject(forKey: "selectedGroup")
                     } catch let signOutError as NSError {
@@ -131,7 +130,7 @@ class AccountViewController: FormViewController {
             } else {
                 // TODO: normally Regist TokenKey
                 userDefaults.removeObject(forKey: "selectedGroup")
-                userDefaults.set(tokenKey.value, forKey: "tokenKey")
+//                userDefaults.set(tokenKey.value, forKey: "tokenKey")
                 ACATeamRequest().getTeamList(completion: { teams in
                     self.userDefaults.set(teams?.first, forKey: "selectedTeam")
                 })
@@ -174,7 +173,6 @@ class AccountViewController: FormViewController {
                 return
             }
             self.ref.child("users").child(user.uid).setValue(["apiToken": apiToken])
-            self.userDefaults.set(apiToken, forKey: "tokenKey")
             //TODO: SUCCESS Alert and move to previous view
             SVProgressHUD.dismiss()
             let failAC = UIAlertController(title: "アカウントを作成しました。", message: nil, preferredStyle: .alert)
@@ -205,7 +203,7 @@ class AccountViewController: FormViewController {
         case .delete:
             alert = UIAlertController(title:"APIトークン削除", message: "APIトークンを削除しますか。", preferredStyle: .alert)
             let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.userDefaults.removeObject(forKey: "tokenKey")
+//                self.userDefaults.removeObject(forKey: "tokenKey")
                 self.userDefaults.removeObject(forKey: "selectedTeam")
                 self.userDefaults.removeObject(forKey: "selectedGroup")
                 self.navigationController?.popViewController(animated: true)
@@ -260,6 +258,21 @@ class AccountViewController: FormViewController {
         }
         if let testToken = remoteConfig[testTokenConfigKey].stringValue {
             self.testToken = testToken
+        }
+    }
+    
+    func getTokenKeyFromDatabase() {
+        ref = Database.database().reference()
+        if let userID = Auth.auth().currentUser?.uid {
+            self.ref.child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let apiToken = value?["apiToken"] as? String ?? ""
+                self.tokenKey.value = apiToken
+                self.reloadForm()
+            }) { (error) in
+            print(error.localizedDescription)
+            }
         }
     }
 

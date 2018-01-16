@@ -18,7 +18,6 @@ class WriteMemoViewController: UIViewController {
     // MARK: Properties
     var delegate: WriteMemoViewControllerDelegate?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
-    let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
     var group: Group?
     var checkWriteSuccess = false
     let tagValue = "iPhoneから投稿"

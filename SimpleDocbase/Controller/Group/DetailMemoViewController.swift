@@ -17,7 +17,6 @@ class DetailMemoViewController: UIViewController {
     var memo: Memo?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var sectionList = ["Memo", "Comment"]
-    let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
     //TestMode
     var testMode = false
     
