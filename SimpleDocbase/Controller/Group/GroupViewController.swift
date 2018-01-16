@@ -17,7 +17,8 @@ class GroupViewController: UIViewController {
     var groups: [Group] = []
     var refreshControl: UIRefreshControl!
     let sectionTitle = ["チーム", "グループ一覧"]
-    var testMode = false
+//    var testMode = false
+    var testMode = UserDefaults.standard.object(forKey: "testMode") as! Bool
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -49,7 +50,7 @@ class GroupViewController: UIViewController {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            UserDefaults.standard.removeObject(forKey: "testMail")
+//            UserDefaults.standard.removeObject(forKey: "testMail")
 //            UserDefaults.standard.removeObject(forKey: "tokenKey")
             UserDefaults.standard.removeObject(forKey: "selectedTeam")
             UserDefaults.standard.removeObject(forKey: "selectedGroup")

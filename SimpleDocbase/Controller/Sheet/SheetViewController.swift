@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 final class SheetViewController : UIViewController {
 
@@ -15,6 +16,9 @@ final class SheetViewController : UIViewController {
     var selectedWorkSheet : WorkSheet?
     let worksheetManager = WorkSheetManager.sharedManager
     let limitLength = 6
+    
+    let userDefaults = UserDefaults.standard
+    var remoteConfig: RemoteConfig!
     
     // MARK: IBOutlets
     @IBOutlet weak var sheetTableView: UITableView?
@@ -27,8 +31,14 @@ final class SheetViewController : UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.title = "勤怠管理"
+        
+        remoteConfig = RemoteConfig.remoteConfig()
+        let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)
+        remoteConfig.configSettings = remoteConfigSettings!
+        remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
+        
+        fetchConfig()
         
         initControls()
         
@@ -125,6 +135,33 @@ final class SheetViewController : UIViewController {
     }
  
     // MARK: Internal Methods
+    func fetchConfig() {
+        let expirationDuration = remoteConfig.configSettings.isDeveloperModeEnabled ? 0 : 3600
+        
+        remoteConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)){ (status, error) -> Void in
+            if status == .success {
+                print("Config fetched!")
+                self.remoteConfig.activateFetched()
+            } else {
+                print("Config not fetched")
+                print("Error: \(error?.localizedDescription ?? "No error available.")")
+            }
+            
+            self.getTestAccountFromRemoteConfig()
+        }
+    }
+    
+    func getTestAccountFromRemoteConfig() {
+        let testModeConfigKey = "test_mode"
+        let testMailConfigKey = "test_email"
+        let testPasswordConfigKey = "test_password"
+        let testTokenConfigKey = "test_token"
+        
+        userDefaults.set(remoteConfig[testModeConfigKey].boolValue, forKey: "testMode")
+        userDefaults.set(remoteConfig[testMailConfigKey].stringValue, forKey: "testMail")
+        userDefaults.set(remoteConfig[testPasswordConfigKey].stringValue, forKey: "testPassword")
+        userDefaults.set(remoteConfig[testTokenConfigKey].stringValue, forKey: "testToken")
+    }
     
     // MARK: Private Methods
     private func initControls() {

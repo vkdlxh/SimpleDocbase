@@ -23,20 +23,11 @@ class AccountViewController: FormViewController {
     let userDefaults = UserDefaults.standard
     var user = Auth.auth().currentUser
     var ref: DatabaseReference!
-    
-    //TEST
-    var remoteConfig: RemoteConfig!
-    var testMode = false
-    var testMail = ""
-    var testPassword = ""
-    var testToken = ""
 
-    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tokenKeySubmitButton()
-        getRemoteConfig()
         getTokenKeyFromDatabase()
     }
     
@@ -55,24 +46,17 @@ class AccountViewController: FormViewController {
         builder += email
         builder += SectionHeaderTitleFormItem().title("APIトークン修正")
         builder += tokenKey
-        guard let signIn = userDefaults.object(forKey: "testMail") as? String else {
-            builder += SectionHeaderTitleFormItem()
-            builder += signInButton
-            return
-        }
+        builder += SectionHeaderTitleFormItem()
+        builder += signInButton
     }
     
     lazy var email: StaticTextFormItem = {
         let instance = StaticTextFormItem()
         instance.title = "メール"
-        if let testMail = userDefaults.object(forKey: "testMail") as? String {
-            instance.value = testMail
+        if let uid = user?.email {
+            instance.value = uid
         } else {
-            if let uid = user?.email {
-                instance.value = uid
-            } else {
-                instance.value = "サインインしてください。"
-            }
+            instance.value = "サインインしてください。"
         }
         return instance
     }()
@@ -122,42 +106,26 @@ class AccountViewController: FormViewController {
     }
     
    @objc private func tokenKeySubmitAction() {
-    
-        if testMode == true {
+        if let user = user {
             if tokenKey.value.isEmpty {
                 // TODO: Check TokenKey Delete Alert PopUp
                 tokenKeyAlert(type: .delete)
             } else {
                 // TODO: normally Regist TokenKey
+                saveAPIToken(user, withUsername: tokenKey.value)
                 userDefaults.removeObject(forKey: "selectedGroup")
-//                userDefaults.set(tokenKey.value, forKey: "tokenKey")
                 ACATeamRequest().getTeamList(completion: { teams in
                     self.userDefaults.set(teams?.first, forKey: "selectedTeam")
                 })
                 tokenKeyAlert(type: .success)
             }
         } else {
-            if let user = user {
-                if tokenKey.value.isEmpty {
-                    // TODO: Check TokenKey Delete Alert PopUp
-                    tokenKeyAlert(type: .delete)
-                } else {
-                    // TODO: normally Regist TokenKey
-                    saveAPIToken(user, withUsername: tokenKey.value)
-                    userDefaults.removeObject(forKey: "selectedGroup")
-                    ACATeamRequest().getTeamList(completion: { teams in
-                        self.userDefaults.set(teams?.first, forKey: "selectedTeam")
-                    })
-                    tokenKeyAlert(type: .success)
-                }
-            } else {
-                let tokenAC = UIAlertController(title: nil, message: "サインインしてください。", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "確認", style: .default, handler: { action in
-                    self.tabBarController?.selectedIndex = 1
-                })
-                tokenAC.addAction(okAction)
-                self.present(tokenAC, animated: true, completion: nil)
-            }
+            let tokenAC = UIAlertController(title: nil, message: "サインインしてください。", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "確認", style: .default, handler: { action in
+                self.tabBarController?.selectedIndex = 1
+            })
+            tokenAC.addAction(okAction)
+            self.present(tokenAC, animated: true, completion: nil)
         }
     }
     
@@ -214,51 +182,6 @@ class AccountViewController: FormViewController {
             alert.addAction(cancelButton)
         }
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    func getRemoteConfig() {
-        remoteConfig = RemoteConfig.remoteConfig()
-        let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: true)
-        remoteConfig.configSettings = remoteConfigSettings!
-        remoteConfig.setDefaults(fromPlist: "GoogleService-Info")
-        
-        fetchConfig()
-    }
-    
-    func fetchConfig() {
-        let expirationDuration = remoteConfig.configSettings.isDeveloperModeEnabled ? 0 : 3600
-        
-        remoteConfig.fetch(withExpirationDuration: TimeInterval(expirationDuration)){ (status, error) -> Void in
-            if status == .success {
-                print("Config fetched!")
-                self.remoteConfig.activateFetched()
-            } else {
-                print("Config not fetched")
-                print("Error: \(error?.localizedDescription ?? "No error available.")")
-            }
-            DispatchQueue.main.async {
-                self.getTestAccountFromRemoteConfig()
-                self.reloadForm()
-            }
-        }
-    }
-    
-    func getTestAccountFromRemoteConfig() {
-        let testModeConfigKey = "test_mode"
-        let testMailConfigKey = "test_email"
-        let testPasswordConfigKey = "test_password"
-        let testTokenConfigKey = "test_token"
-        
-        testMode = remoteConfig[testModeConfigKey].boolValue
-        if let testMail = remoteConfig[testMailConfigKey].stringValue {
-            self.testMail = testMail
-        }
-        if let testPassword = remoteConfig[testPasswordConfigKey].stringValue {
-            self.testPassword = testPassword
-        }
-        if let testToken = remoteConfig[testTokenConfigKey].stringValue {
-            self.testToken = testToken
-        }
     }
     
     func getTokenKeyFromDatabase() {

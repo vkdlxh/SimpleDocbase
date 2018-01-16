@@ -20,9 +20,11 @@ class SettingViewController: FormViewController {
     // MARK: Lifecycle
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
-        builder += SectionHeaderTitleFormItem().title("アカウント")
-        builder += accountViewControllerForm
-        
+        if let testMode = userDefaults.object(forKey: "test") as? Bool, testMode == false {
+            builder += SectionHeaderTitleFormItem().title("アカウント")
+            builder += accountViewControllerForm
+        }
+
         builder += SectionHeaderTitleFormItem().title("勤怠管理設定")
         builder += groupListPiker
         builder += minuteIntervalSetting

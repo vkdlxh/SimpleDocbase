@@ -15,27 +15,31 @@ class ACATeamRequest: ACARequest {
         guard let url = URL(string: "https://api.docbase.io/teams") else { return }
         
         settingRequest(url: url, httpMethod: .get) { request in
-            self.session.dataTask(with: request) { (data, response, error) in
-                if let data = data {
-                    do {
-                        if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
-                            if let teamList = self.makeTeamDomainArray(dict: json){
-                                completion(teamList)
+            if let request = request {
+                self.session.dataTask(with: request) { (data, response, error) in
+                    if let data = data {
+                        do {
+                            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
+                                if let teamList = self.makeTeamDomainArray(dict: json){
+                                    completion(teamList)
+                                }
+                            } else {
+                                print("Can't TeamList JSON parse")
+                                completion(nil)
                             }
-                        } else {
-                            print("Can't TeamList JSON parse")
+                        } catch {
+                            print(error)
                             completion(nil)
                         }
-                    } catch {
-                        print(error)
+                    } else {
+                        print("TeamList No data. Check TokenKey")
+                        UserDefaults.standard.set(nil, forKey: "selectedTeam")
                         completion(nil)
                     }
-                } else {
-                    print("TeamList No data. Check TokenKey")
-                    UserDefaults.standard.set(nil, forKey: "selectedTeam")
-                    completion(nil)
-                }
-                }.resume()
+                    }.resume()
+            } else {
+                completion(nil)
+            }
         }
     }
 }

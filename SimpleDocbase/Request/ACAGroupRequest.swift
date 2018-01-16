@@ -28,24 +28,28 @@ class ACAGroupRequest: ACARequest {
             
             if let url = self.url {
                 self.settingRequest(url: url, httpMethod: .get) { request in
-                    self.session.dataTask(with: request) { (data, response, error) in
-                        if let data = data {
-                            do {
-                                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
-                                    
-                                    if let groupList = self.makeGroupArray(dict: json) {
-                                        completion(groupList)
+                    if let request = request {
+                        self.session.dataTask(with: request) { (data, response, error) in
+                            if let data = data {
+                                do {
+                                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+                                        
+                                        if let groupList = self.makeGroupArray(dict: json) {
+                                            completion(groupList)
+                                        }
+                                    } else {
+                                        print("Can't GroupList JSON parse")
+                                        completion(nil)
                                     }
-                                } else {
-                                    print("Can't GroupList JSON parse")
+                                } catch {
+                                    print(error)
                                     completion(nil)
                                 }
-                            } catch {
-                                print(error)
-                                completion(nil)
                             }
-                        }
-                        }.resume()
+                            }.resume()
+                    } else {
+                        completion(nil)
+                    }
                     }
                 } else {
                 print("No URL -> Check TeamRequest")

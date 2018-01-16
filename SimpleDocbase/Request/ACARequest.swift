@@ -25,32 +25,39 @@ class ACARequest {
         case patch  = "PATCH"
     }
     
-    func getAPITokenFromDatabase(completion: @escaping ((String) -> ())) {
+    func getAPITokenFromDatabase(completion: @escaping ((String?) -> ())) {
         ref = Database.database().reference()
-        let userID = Auth.auth().currentUser?.uid
-        self.ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let apiToken = value?["apiToken"] as? String ?? ""
-            DispatchQueue.main.async {
-                completion(apiToken)
+        if let userID = Auth.auth().currentUser?.uid {
+            self.ref.child("users").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+                // Get user value
+                let value = snapshot.value as? NSDictionary
+                let apiToken = value?["apiToken"] as? String ?? ""
+                DispatchQueue.main.async {
+                    completion(apiToken)
+                }
+        
+            }) { (error) in
+                print(error.localizedDescription)
             }
-    
-        }) { (error) in
-            print(error.localizedDescription)
+        } else {
+            completion(nil)
         }
     }
 
     // MARK: Internal Methods
-    func settingRequest(url: URL, httpMethod: MethodType, completion: @escaping ((URLRequest) -> ())){
+    func settingRequest(url: URL, httpMethod: MethodType, completion: @escaping ((URLRequest?) -> ())){
         var request: URLRequest = URLRequest(url: url)
         
         getAPITokenFromDatabase { token in
             request.httpMethod = httpMethod.rawValue
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             self.getAPITokenFromDatabase { token in
-                request.addValue(token, forHTTPHeaderField: "X-DocBaseToken")
-                completion(request)
+                if let token = token {
+                    request.addValue(token, forHTTPHeaderField: "X-DocBaseToken")
+                    completion(request)
+                } else {
+                    completion(nil)
+                }
             }
         }
     }
