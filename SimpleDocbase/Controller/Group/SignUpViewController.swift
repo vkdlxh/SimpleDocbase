@@ -25,6 +25,10 @@ class SignUpViewController: FormViewController {
                                                             action: #selector(addTapped(sender:)))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         ref = Database.database().reference()
     }

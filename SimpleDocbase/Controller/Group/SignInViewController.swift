@@ -64,6 +64,7 @@ class SignInViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         ref = Database.database().reference()
         if Auth.auth().currentUser != nil {
             SVProgressHUD.show(withStatus: "自動サインイン中")
