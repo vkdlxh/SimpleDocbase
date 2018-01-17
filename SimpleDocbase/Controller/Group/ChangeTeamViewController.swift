@@ -48,6 +48,7 @@ class ChangeTeamViewController: UIViewController {
         if beforeTeam != afertTeam {
             UserDefaults.standard.removeObject(forKey: "selectedGroup")
         }
+        SVProgressHUD.dismiss()
     }
     
     private func checkAccount() {

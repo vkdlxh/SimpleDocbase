@@ -68,6 +68,10 @@ class DetailMemoViewController: UIViewController {
         checkAccount()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
+    }
+    
     // MARK: Internal Methods
     
     // MARK: Private Methods

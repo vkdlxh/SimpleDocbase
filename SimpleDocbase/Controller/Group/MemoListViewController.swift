@@ -36,7 +36,23 @@ class MemoListViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped(sender:)))
+        getMemoListFromRequest()
         refreshControlAction()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        checkAccount()
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        SVProgressHUD.dismiss()
+    }
+    
+    // MARK: Internal Methods
+    
+    func getMemoListFromRequest() {
         SVProgressHUD.show(withStatus: "更新中")
         if let domain = domain {
             if let groupName = group?.name {
@@ -52,13 +68,6 @@ class MemoListViewController: UIViewController {
             }
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        checkAccount()
-        tabBarController?.tabBar.isHidden = false
-    }
-    
-    // MARK: Internal Methods
     
     // MARK: Private Methods
     @objc private func addTapped(sender: UIBarButtonItem) {
