@@ -19,6 +19,7 @@ class DetailMemoViewController: UIViewController {
     var sectionList = ["Memo", "Comment"]
     //TestMode
     let fbManager = FBManager.sharedManager
+    let alertManager = AlertManager()
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +32,8 @@ class DetailMemoViewController: UIViewController {
     @IBAction func writeCommentAction(_ sender: Any) {
         
         if let comment = commentTextField.text, comment.isEmpty {
-            failWriteCommentAlert()
+            alertManager.confirmAlert(self, title: "コメント投稿失敗", message: "コメントは空欄無く入力してください。") {
+            }
         } else {
             let comment: [String: String] = ["body" : commentTextField.text!]
             commentTextField.text = ""
@@ -127,15 +129,7 @@ class DetailMemoViewController: UIViewController {
         writeCommentButton.setImage(tintedImage, for: .normal)
         writeCommentButton.tintColor = ACAColor().ACAOrange
     }
-    
-    private func failWriteCommentAlert() {
-            let failAC = UIAlertController(title: "コメント投稿失敗", message: "コメントは空欄無く入力してください。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default)
-            failAC.addAction(okButton)
-            present(failAC, animated: true, completion: nil)
-            
-    }
-    
+
     private func getMemoFromRequest() {
         if let domian = domain {
             SVProgressHUD.show()

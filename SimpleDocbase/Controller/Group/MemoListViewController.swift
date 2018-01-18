@@ -23,6 +23,8 @@ class MemoListViewController: UIViewController {
     let perPage: Int = 20
     //TestMode
     let fbManager = FBManager.sharedManager
+    let alertManager = AlertManager()
+    
     
 
     // MARK: IBOutlets
@@ -75,22 +77,6 @@ class MemoListViewController: UIViewController {
         self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
-    }
-    
-    private func deleteMemoAlert(completion: @escaping (Bool) -> ()) {
-        let deleteMemoAC = UIAlertController(title: "メモ削除", message: "メモを削除しますか？", preferredStyle: .alert)
-        let deleteButton = UIAlertAction(title: "削除", style: .default) { action in
-            completion(true)
-            print("tapped Memo delete Button")
-        }
-        let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel) { action in
-            completion(false)
-            print("tapped Memo cancel Button")
-        }
-        
-        deleteMemoAC.addAction(deleteButton)
-        deleteMemoAC.addAction(cancelButton)
-        present(deleteMemoAC, animated: true, completion: nil)
     }
     
     private func deleteFailAlert() {
@@ -178,36 +164,34 @@ extension MemoListViewController: UITableViewDataSource {
         
         let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
             let memoNum = self.memos[indexPath.row].id
-            self.deleteMemoAlert(completion: { checkBtn in
-                if checkBtn == true {
-                    self.tableView.beginUpdates()
-                    DispatchQueue.global().async {
-                        if let domain = self.domain {
-                            ACAMemoRequest().delete(domain: domain, num: memoNum) { response in
-                                if response == true {
-                                    print("Memo Deleted")
-                                    
-                                    self.memos.remove(at: indexPath.row)
-                                    DispatchQueue.main.async {
-                                        self.tableView.deleteRows(at: [indexPath], with: .automatic)
-                                        self.tableView.endUpdates()
-                                    }
-                                } else {
-                                    // TODO: 失敗
-                                    self.deleteFailAlert()
+            self.alertManager.defaultAlert(self, title: "メモ削除", message: "メモを削除しますか？", btnName: "削除") {
+                SVProgressHUD.show()
+                self.tableView.beginUpdates()
+                if let domain = self.domain {
+                    ACAMemoRequest().delete(domain: domain, num: memoNum) { response in
+                        if response == true {
+                            print("Memo Deleted")
+                            self.memos.remove(at: indexPath.row)
+                            DispatchQueue.main.async {
+                                SVProgressHUD.dismiss()
+                                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                                self.tableView.endUpdates()
+                            }
+                        } else {
+                            // TODO: 失敗
+                            DispatchQueue.main.async {
+                                SVProgressHUD.dismiss()
+                                self.tableView.endUpdates()
+                                self.alertManager.confirmAlert(self, title: "削除失敗", message: "削除する権限がありません。") {
                                 }
                             }
                         }
                     }
-                    
-                } else {
-                    tableView.setEditing(false, animated: true)
                 }
-            })
+            }
+            tableView.setEditing(false, animated: true)
         }
-        
         deleteButton.backgroundColor = UIColor.red
-        
         return [deleteButton]
     }
 }

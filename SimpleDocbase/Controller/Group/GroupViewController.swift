@@ -48,16 +48,9 @@ class GroupViewController: UIViewController {
     
     // MARK: Private Methods
     @objc func back(sender: UIBarButtonItem) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            fbManager.apiToken = nil
-            UserDefaults.standard.removeObject(forKey: "selectedTeam")
-            UserDefaults.standard.removeObject(forKey: "selectedGroup")
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+        fbManager.signOut {
+            _ = self.navigationController?.popViewController(animated: true)
         }
-        _ = navigationController?.popViewController(animated: true)
     }
     
     @objc private func refresh() {

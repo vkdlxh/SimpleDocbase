@@ -46,6 +46,22 @@ class FBManager {
         }
     }
     
+    func signOut(completion: @escaping (() -> ())) {
+        let firebaseAuth = Auth.auth()
+        let user = firebaseAuth.currentUser
+        if (user?.uid) != nil {
+            do {
+                try firebaseAuth.signOut()
+                apiToken = nil
+                UserDefaults.standard.removeObject(forKey: "selectedTeam")
+                UserDefaults.standard.removeObject(forKey: "selectedGroup")
+            } catch let signOutError as NSError {
+                print ("Error signing out: %@", signOutError)
+            }
+            completion()
+        }
+    }
+    
     func checkAccount(_ VC:UIViewController) {
         if testMode == false {
             if Auth.auth().currentUser == nil {

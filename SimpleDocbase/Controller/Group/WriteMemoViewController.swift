@@ -19,11 +19,11 @@ class WriteMemoViewController: UIViewController {
     var delegate: WriteMemoViewControllerDelegate?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var group: Group?
-    var checkWriteSuccess = false
     let tagValue = "iPhoneから投稿"
     var placeholderLabel : UILabel!
     //TestMode
     let fbManager = FBManager.sharedManager
+    let alertManager = AlertManager()
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
@@ -38,9 +38,11 @@ class WriteMemoViewController: UIViewController {
     // MARK: IBActions
     @IBAction func submitMemoButton(_ sender: Any) {
         if let textField = titleTextField.text, textField.isEmpty {
-            emptyTextValue(errorPlace: "タイトル")
+            alertManager.confirmAlert(self, title: "「タイトル」を確認してください。", message: nil) {
+            }
         } else if let textField = bodyTextView.text, textField.isEmpty {
-            emptyTextValue(errorPlace: "メモの内容")
+            alertManager.confirmAlert(self, title: "「メモ」を確認してください。", message: nil) {
+            }
         } else {
             self.view.endEditing(true)
             
@@ -57,10 +59,15 @@ class WriteMemoViewController: UIViewController {
             if let domain = domain {
                 ACAMemoRequest().writeMemo(domain: domain, dict: memo) { check in
                     if check == true {
-                        self.checkWriteSuccess = true
+                        self.alertManager.confirmAlert(self, title: "メモ登録成功", message: nil) {
+                            DispatchQueue.main.async {
+                                self.delegate?.writeMemoViewSubmit()
+                            }
+                        }
+                    } else {
+                        self.alertManager.confirmAlert(self, title: "メモ登録失敗", message: nil) {
+                        }
                     }
-                    self.checkWriteSuccessAlert(result: self.checkWriteSuccess)
-
                 }
             }
         }
@@ -103,44 +110,6 @@ class WriteMemoViewController: UIViewController {
     
     @objc private func keyboardWillHide(_ notification: Notification) {
         bottomConstraint.constant = 0
-    }
-    
-    private func checkWriteSuccessAlert(result: Bool) {
-        
-        var ac = UIAlertController()
-        
-        if result == true {
-            ac = UIAlertController(title: "メモを登録しました。", message: nil, preferredStyle: .alert)
-            let successAction = UIAlertAction(title: "確認", style: .default) { action in
-                print("Write Memo Success")
-                DispatchQueue.main.async {
-                    self.delegate?.writeMemoViewSubmit()
-                }
-            }
-            ac.addAction(successAction)
-            
-        } else {
-            ac = UIAlertController(title: "メモ登録失敗", message: nil, preferredStyle: .alert)
-            let failAction: UIAlertAction = UIAlertAction(title: "確認", style: .cancel) {
-                (action: UIAlertAction!) -> Void in
-                print("Write Memo Faill")
-            }
-            ac.addAction(failAction)
-        }
-        
-        DispatchQueue.main.async {
-            self.present(ac, animated: true, completion: nil)
-        }
-    }
-    
-    private func emptyTextValue(errorPlace: String) {
-        let ac = UIAlertController(title: errorPlace + "を確認してください。", message: nil, preferredStyle: .alert)
-        let okAction: UIAlertAction = UIAlertAction(title: "確認", style: .cancel) {
-            (action: UIAlertAction!) -> Void in
-            print(errorPlace + " is Empty.")
-        }
-        ac.addAction(okAction)
-        self.present(ac, animated: true, completion: nil)
     }
     
     private func initTextViewPlaceHolder() {

@@ -17,6 +17,7 @@ final class DaySheetViewController : UIViewController {
 
     //TODO: WorkSheetDictのKey(yearMonth)を使ってWorkSheetを呼び出す
     let workSheetManager = WorkSheetManager.sharedManager
+    let alertManager = AlertManager()
     var workSheet: WorkSheet?
     var yearMonth: String = ""
     var sheetItems: [WorkSheetItem]?
@@ -41,60 +42,32 @@ final class DaySheetViewController : UIViewController {
     // MARK: Action
     
     @objc func uploadButtonTouched(_ sender: UIBarButtonItem) {
-        
         let worksheetDict = workSheetManager.worksheetDict
-        
         //入力された勤務表をDocbaseへアップロード
-        var uploadAlertVC = UIAlertController()
         if groupId == nil || group == nil {
-            uploadAlertVC = UIAlertController(title: "アップロード失敗", message: "勤怠管理のグループを確認してください。", preferredStyle: .alert)
-            uploadAlertVC.addAction(UIAlertAction(title: "確認", style: .cancel, handler:nil))
-            
+            alertManager.confirmAlert(self, title: "アップロード失敗", message: "勤怠管理のグループを確認してください。") {
+            }
         } else {
-            uploadAlertVC = UIAlertController(title: group!, message: "勤務表を上記のグループへ登録しますか。", preferredStyle: .alert)
-            uploadAlertVC.addAction(UIAlertAction(title: "確認", style: .default) { action in
-                // Test
+            alertManager.defaultAlert(self, title: group!, message: "勤務表を上記のグループへ登録しますか。", btnName: "確認") {
                 SVProgressHUD.show(withStatus: "アップロード中")
                 if let groupid = self.groupId {
                     if let domain = self.domain {
                         self.workSheetManager.uploadWorkSheet(domain: domain, month: self.yearMonth, groupId: groupid, dict: worksheetDict) { result in
-                            self.checkUploadSuccessAlert(result: result)
+                            if result == true {
+                                self.alertManager.confirmAlert(self, title: "アップロード成功", message: "勤務表をアップロードしました。\nDocBaseからご確認ください。") {
+                                }
+                            } else {
+                                self.alertManager.confirmAlert(self, title: "アップロード失敗", message: nil) {
+                                }
+                            }
                             DispatchQueue.main.async {
                                 SVProgressHUD.dismiss()
                             }
                         }
                     }
                 }
-            })
-            uploadAlertVC.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler:nil))
-        }
-        present(uploadAlertVC, animated: true, completion: nil)
-    }
-    
-    func checkUploadSuccessAlert(result: Bool) {
-        
-        var ac = UIAlertController()
-        
-        if result == true {
-            ac = UIAlertController(title: "アップロード成功", message: "勤務表をアップロードしました。\nDocBaseからご確認ください。", preferredStyle: .alert)
-            let successAction = UIAlertAction(title: "確認", style: .default) { action in
-                print("WorkSheet Upload Success.")
             }
-            ac.addAction(successAction)
-            
-        } else {
-            ac = UIAlertController(title: "アップロード失敗", message: nil, preferredStyle: .alert)
-            let failAction: UIAlertAction = UIAlertAction(title: "確認", style: .cancel) {
-                (action: UIAlertAction!) -> Void in
-                print("WorkSheet Upload Success.")
-            }
-            ac.addAction(failAction)
         }
-        
-        DispatchQueue.main.async {
-            self.present(ac, animated: true, completion: nil)
-        }
-        
     }
     
     // MARK: Private

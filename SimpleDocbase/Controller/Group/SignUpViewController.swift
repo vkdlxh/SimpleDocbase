@@ -15,6 +15,8 @@ class SignUpViewController: FormViewController {
     
     // MARK: Properties
     var ref: DatabaseReference!
+    let fbManager = FBManager.sharedManager
+    let alertManager = AlertManager()
     let footerView = SectionFooterViewFormItem()
     let footerMessage = "\nDocBaseから\n「個人設定」→「基本設定」→「APIトークン」を\n作成して表示されたトークンを登録してください。"
     
@@ -101,7 +103,8 @@ class SignUpViewController: FormViewController {
             let passwordCheckValue = passwordCheck.value
             if !passwordValue.isEmpty, !passwordCheckValue.isEmpty, passwordValue.count > 5 {
                 if !(passwordValue == passwordCheckValue) {
-                    self.signUpFailAlert("入力したパスワードが一致しません。")
+                    alertManager.confirmAlert(self, title: "入力したパスワードが一致しません。", message: nil) {
+                    }
                 } else {
                     completion(passwordValue)
                 }
@@ -126,9 +129,11 @@ class SignUpViewController: FormViewController {
                             print(error)
                             switch errorCode {
                             case 17007:
-                                self.signUpFailAlert("もう登録されたメールです。")
+                                self.alertManager.confirmAlert(self, title: "もう登録されたメールです。", message: nil) {
+                                }
                             default:
-                                self.signUpFailAlert(error!.localizedDescription)
+                                self.alertManager.confirmAlert(self, title: error!.localizedDescription, message: nil) {
+                                }
                             }
                             return
                         }
@@ -139,14 +144,6 @@ class SignUpViewController: FormViewController {
         }
     }
     
-    private func signUpFailAlert(_ messege: String) {
-        SVProgressHUD.dismiss()
-        let failAC = UIAlertController(title: messege, message: nil, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "確認", style: .cancel)
-        failAC.addAction(okButton)
-        present(failAC, animated: true, completion: nil)
-    }
-    
     private func saveAPIToken(_ user: Firebase.User, withUsername apiToken: String) {
         
         // Create a change request
@@ -155,25 +152,18 @@ class SignUpViewController: FormViewController {
         // Commit profile changes to server
         changeRequest?.commitChanges() { (error) in
             if let error = error {
-                self.signUpFailAlert(error.localizedDescription)
+                self.alertManager.confirmAlert(self, title: error.localizedDescription, message: nil) {
+                }
                 return
             }
             self.ref.child("users").child(user.uid).setValue(["apiToken": apiToken])
             //TODO: SUCCESS Alert and move to previous view
             SVProgressHUD.dismiss()
-            let failAC = UIAlertController(title: "アカウントを作成しました。", message: nil, preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .cancel){ action in
-                let firebaseAuth = Auth.auth()
-                do {
-                    try firebaseAuth.signOut()
-                } catch let signOutError as NSError {
-                    print ("Error signing out: %@", signOutError)
+            self.alertManager.confirmAlert(self, title: "アカウントを作成しました。", message: nil) {
+                self.fbManager.signOut {
+                    self.navigationController?.popViewController(animated: true)
                 }
-                self.navigationController?.popViewController(animated: true)
             }
-            failAC.addAction(okButton)
-            self.present(failAC, animated: true, completion: nil)
-            
         }
     }
     

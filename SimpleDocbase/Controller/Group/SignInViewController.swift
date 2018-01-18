@@ -16,6 +16,7 @@ class SignInViewController: UIViewController {
     var ref: DatabaseReference!
     let userDefaults = UserDefaults.standard
     let fbManager = FBManager.sharedManager
+    let alertManager = AlertManager()
 
     // MARK: IBOutlets
     @IBOutlet weak var emailField: UITextField!
@@ -36,22 +37,27 @@ class SignInViewController: UIViewController {
                     passwordField.text = ""
                     self.performSegue(withIdentifier: "SignInSegue", sender: self)
                 } else {
-                    signInFailAlert()
+                    SVProgressHUD.dismiss()
+                    alertManager.confirmAlert(self, title: "メール/パスワードを\n確認してください。", message: nil) {
+                    }
                 }
             } else {
                 // Nomal Mode
                 Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                     if let error = error {
                         print(error)
-                        self.signInFailAlert()
+                        SVProgressHUD.dismiss()
+                        self.alertManager.confirmAlert(self, title: "メール/パスワードを\n確認してください。", message: nil) {
+                        }
                         return
                     }
                     self.setAPIToken()
                 }
             }
         } else {
-            //FIXME: メールとパスワードをチェックしてグループ画面に遷移するように
-            signInFailAlert()
+            SVProgressHUD.dismiss()
+            alertManager.confirmAlert(self, title: "メール/パスワードを\n確認してください。", message: nil) {
+            }
         }
         
     }
@@ -117,14 +123,6 @@ class SignInViewController: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
-    }
-    
-    private func signInFailAlert() {
-        SVProgressHUD.dismiss()
-        let failAC = UIAlertController(title: "メール/パスワードを\n確認してください。", message: nil, preferredStyle: .alert)
-        let cancelButton = UIAlertAction(title: "確認", style: .cancel)
-        failAC.addAction(cancelButton)
-        present(failAC, animated: true, completion: nil)
     }
 
 }
