@@ -18,7 +18,7 @@ class DetailMemoViewController: UIViewController {
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var sectionList = ["Memo", "Comment"]
     //TestMode
-    let testMode = FBManager.sharedManager.testMode
+    let fbManager = FBManager.sharedManager
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -65,7 +65,7 @@ class DetailMemoViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkAccount()
+        fbManager.checkAccount(self)
     }
 
     // MARK: Internal Methods
@@ -126,20 +126,6 @@ class DetailMemoViewController: UIViewController {
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)
         writeCommentButton.setImage(tintedImage, for: .normal)
         writeCommentButton.tintColor = ACAColor().ACAOrange
-    }
-    
-    
-    private func checkAccount() {
-        if testMode == false {
-            if Auth.auth().currentUser == nil {
-                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-                let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                    self.navigationController!.popToRootViewController(animated: true)
-                }
-                changedAccountAC.addAction(okButton)
-                present(changedAccountAC, animated: true, completion: nil)
-            }
-        }
     }
     
     private func failWriteCommentAlert() {

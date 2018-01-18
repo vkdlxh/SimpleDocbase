@@ -34,7 +34,7 @@ class GroupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         
-        checkAccount()
+        fbManager.checkAccount(self)
         getGroupListFromRequest()
 
         self.navigationItem.hidesBackButton = true
@@ -93,19 +93,6 @@ class GroupViewController: UIViewController {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 SVProgressHUD.dismiss()
-            }
-        }
-    }
-    
-    private func checkAccount() {
-        if fbManager.testMode == false {
-            if Auth.auth().currentUser == nil {
-                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-                let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                    self.navigationController!.popToRootViewController(animated: true)
-                }
-                changedAccountAC.addAction(okButton)
-                present(changedAccountAC, animated: true, completion: nil)
             }
         }
     }

@@ -22,7 +22,7 @@ class MemoListViewController: UIViewController {
     var pageNum: Int = 1
     let perPage: Int = 20
     //TestMode
-    let testMode = FBManager.sharedManager.testMode
+    let fbManager = FBManager.sharedManager
     
 
     // MARK: IBOutlets
@@ -42,7 +42,7 @@ class MemoListViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkAccount()
+        fbManager.checkAccount(self)
         tabBarController?.tabBar.isHidden = false
     }
     
@@ -118,20 +118,6 @@ class MemoListViewController: UIViewController {
             }
         }
     }
-    
-    private func checkAccount() {
-        if testMode == false {
-            if Auth.auth().currentUser == nil {
-                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-                let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                    self.navigationController!.popToRootViewController(animated: true)
-                }
-                changedAccountAC.addAction(okButton)
-                present(changedAccountAC, animated: true, completion: nil)
-            }
-        }
-    }
-
     
     // MARK: - Navigation
 

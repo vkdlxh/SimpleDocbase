@@ -116,7 +116,7 @@ class SignUpViewController: FormViewController {
                 completion(apiTokenValue)
             }
         }
-//
+
         getEmail { email in
             getPassword { password in
                 getAPIToken { apiToken in

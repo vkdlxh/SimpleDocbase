@@ -12,7 +12,6 @@ import Firebase
 class FBManager {
     
     var remoteConfig: RemoteConfig!
-    
     var apiToken: String?
     
     // testMode
@@ -44,6 +43,19 @@ class FBManager {
                 print("Error: \(error?.localizedDescription ?? "No error available.")")
             }
             self.setProperty()
+        }
+    }
+    
+    func checkAccount(_ VC:UIViewController) {
+        if testMode == false {
+            if Auth.auth().currentUser == nil {
+                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                    VC.navigationController!.popToRootViewController(animated: true)
+                }
+                changedAccountAC.addAction(okButton)
+                VC.present(changedAccountAC, animated: true, completion: nil)
+            }
         }
     }
     

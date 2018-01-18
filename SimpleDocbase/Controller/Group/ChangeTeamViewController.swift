@@ -16,7 +16,7 @@ class ChangeTeamViewController: UIViewController {
     var teams: [String] = []
     var beforeTeam = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var afertTeam: String?
-    let testMode = FBManager.sharedManager.testMode
+    let fbManager = FBManager.sharedManager
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -26,9 +26,7 @@ class ChangeTeamViewController: UIViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = "チーム変更"
-        
         SVProgressHUD.show()
-
         ACATeamRequest().getTeamList { teams in
             if let teams = teams {
                 self.teams = teams
@@ -41,25 +39,12 @@ class ChangeTeamViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkAccount()
+        fbManager.checkAccount(self)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         if beforeTeam != afertTeam {
             UserDefaults.standard.removeObject(forKey: "selectedGroup")
-        }
-    }
-    
-    private func checkAccount() {
-        if testMode == false {
-            if Auth.auth().currentUser == nil {
-                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-                let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                    self.navigationController!.popToRootViewController(animated: true)
-                }
-                changedAccountAC.addAction(okButton)
-                present(changedAccountAC, animated: true, completion: nil)
-            }
         }
     }
 

@@ -23,7 +23,7 @@ class WriteMemoViewController: UIViewController {
     let tagValue = "iPhoneから投稿"
     var placeholderLabel : UILabel!
     //TestMode
-    let testMode = FBManager.sharedManager.testMode
+    let fbManager = FBManager.sharedManager
     
     // MARK: IBOutlets
     @IBOutlet weak var titleTextField: UITextField!
@@ -89,7 +89,7 @@ class WriteMemoViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkAccount()
+        fbManager.checkAccount(self)
     }
     
     // MARK: Internal Methods
@@ -153,20 +153,7 @@ class WriteMemoViewController: UIViewController {
         placeholderLabel.textColor = UIColor.lightGray
         placeholderLabel.isHidden = !bodyTextView.text.isEmpty
     }
-    
-    private func checkAccount() {
-        if testMode == false {
-            if Auth.auth().currentUser == nil {
-                let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-                let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                    self.navigationController!.popToRootViewController(animated: true)
-                }
-                changedAccountAC.addAction(okButton)
-                present(changedAccountAC, animated: true, completion: nil)
-            }
-        }
-    }
-    
+
     private func initOutletsSetting() {
         separatorLineView1.backgroundColor = ACAColor().ACALightGrayColor
         separatorLineView2.backgroundColor = ACAColor().ACALightGrayColor
