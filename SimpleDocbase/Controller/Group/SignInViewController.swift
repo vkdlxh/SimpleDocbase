@@ -20,6 +20,9 @@ class SignInViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var passwordImageView: UIImageView!
+    @IBOutlet weak var logoImageView: UIImageView!
     
     @IBAction func signInAction(_ sender: Any) {
         SVProgressHUD.show()
@@ -60,6 +63,16 @@ class SignInViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let userImage = UIImage(named: "User") {
+            let tintableImage = userImage.withRenderingMode(.alwaysTemplate)
+            userImageView.image = tintableImage
+            userImageView.tintColor = ACAColor().ACAOrange
+        }
+        if let passwordImage = UIImage(named: "Password") {
+            let tintableImage = passwordImage.withRenderingMode(.alwaysTemplate)
+            passwordImageView.image = tintableImage
+            passwordImageView.tintColor = ACAColor().ACAOrange
+        }
         // Do any additional setup after loading the view.
     }
     
@@ -78,6 +91,17 @@ class SignInViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            print("Landscape")
+            logoImageView.isHidden = true
+        } else {
+            print("Portrait")
+            logoImageView.isHidden = false
+            
+        }
     }
     
     // MARK: Private Methods

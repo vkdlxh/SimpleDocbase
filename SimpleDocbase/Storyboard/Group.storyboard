@@ -152,7 +152,7 @@
                                         <rect key="frame" x="80" y="354" width="215" height="170"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="メール" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDq-ey-hgb">
-                                                <rect key="frame" x="8" y="17" width="199" height="17"/>
+                                                <rect key="frame" x="23" y="17" width="184" height="17"/>
                                                 <color key="backgroundColor" red="0.98823529409999999" green="0.68235294120000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -185,7 +185,7 @@
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KIA-Gz-77K">
-                                                <rect key="frame" x="8" y="51" width="199" height="17"/>
+                                                <rect key="frame" x="23" y="51" width="184" height="17"/>
                                                 <color key="backgroundColor" red="0.98823529409999999" green="0.68235294120000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -216,6 +216,20 @@
                                                     <action selector="SignUpAction:" destination="bpH-OJ-Mvp" eventType="touchUpInside" id="env-iq-0kz"/>
                                                 </connections>
                                             </button>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User" translatesAutoresizingMaskIntoConstraints="NO" id="iXW-Ck-by4">
+                                                <rect key="frame" x="5" y="19" width="15" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="Xad-FX-9M7"/>
+                                                    <constraint firstAttribute="width" constant="15" id="cKE-tU-xv3"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Password" translatesAutoresizingMaskIntoConstraints="NO" id="oGR-oS-vza">
+                                                <rect key="frame" x="5" y="53" width="15" height="15"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="15" id="Ili-Xn-n0r"/>
+                                                    <constraint firstAttribute="width" constant="15" id="MpY-i4-oP0"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.092920978479999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -227,20 +241,24 @@
                                             <constraint firstAttribute="trailing" secondItem="noT-Lc-Y97" secondAttribute="trailing" id="8qm-Sy-ncm"/>
                                             <constraint firstAttribute="height" constant="170" id="9QG-a2-3O9"/>
                                             <constraint firstAttribute="trailing" secondItem="xV5-4d-kK6" secondAttribute="trailing" constant="10" id="9Sw-QK-5de"/>
-                                            <constraint firstItem="KIA-Gz-77K" firstAttribute="leading" secondItem="gci-pV-GFf" secondAttribute="leading" constant="8" id="CkB-MZ-WIw"/>
+                                            <constraint firstItem="EDq-ey-hgb" firstAttribute="leading" secondItem="iXW-Ck-by4" secondAttribute="trailing" constant="3" id="Dbu-wV-xQB"/>
                                             <constraint firstItem="noT-Lc-Y97" firstAttribute="top" secondItem="gci-pV-GFf" secondAttribute="top" constant="8" id="HwC-tO-U1t"/>
                                             <constraint firstItem="PAP-th-HkC" firstAttribute="top" secondItem="KIA-Gz-77K" secondAttribute="bottom" constant="8" id="KdG-Wb-3Np"/>
                                             <constraint firstAttribute="trailing" secondItem="PAP-th-HkC" secondAttribute="trailing" id="KiX-lH-5ha"/>
+                                            <constraint firstItem="oGR-oS-vza" firstAttribute="leading" secondItem="gci-pV-GFf" secondAttribute="leading" constant="5" id="Wru-p0-Y2l"/>
                                             <constraint firstItem="bm6-sj-Aix" firstAttribute="leading" secondItem="gci-pV-GFf" secondAttribute="leading" constant="30" id="Yhl-JD-6Xe"/>
                                             <constraint firstItem="PAP-th-HkC" firstAttribute="leading" secondItem="gci-pV-GFf" secondAttribute="leading" id="ZMp-VO-Hui"/>
-                                            <constraint firstItem="EDq-ey-hgb" firstAttribute="leading" secondItem="gci-pV-GFf" secondAttribute="leading" constant="8" id="aft-Fi-mCb"/>
                                             <constraint firstItem="xV5-4d-kK6" firstAttribute="leading" secondItem="gci-pV-GFf" secondAttribute="leading" constant="10" id="aqR-LM-9pj"/>
+                                            <constraint firstItem="oGR-oS-vza" firstAttribute="top" secondItem="ybQ-Fv-oWl" secondAttribute="bottom" constant="10" id="bTf-YP-N3s"/>
                                             <constraint firstAttribute="trailing" secondItem="EDq-ey-hgb" secondAttribute="trailing" constant="8" id="bY9-hv-S6B"/>
+                                            <constraint firstItem="iXW-Ck-by4" firstAttribute="top" secondItem="noT-Lc-Y97" secondAttribute="bottom" constant="10" id="cxU-DA-P08"/>
                                             <constraint firstItem="KIA-Gz-77K" firstAttribute="top" secondItem="ybQ-Fv-oWl" secondAttribute="bottom" constant="8" id="kMD-aR-Dda"/>
+                                            <constraint firstItem="iXW-Ck-by4" firstAttribute="leading" secondItem="gci-pV-GFf" secondAttribute="leading" constant="5" id="ojp-S8-ji3"/>
                                             <constraint firstAttribute="trailing" secondItem="bm6-sj-Aix" secondAttribute="trailing" constant="30" id="p50-xd-66a"/>
                                             <constraint firstAttribute="trailing" secondItem="ybQ-Fv-oWl" secondAttribute="trailing" id="q4b-Rk-JMo"/>
                                             <constraint firstItem="EDq-ey-hgb" firstAttribute="top" secondItem="noT-Lc-Y97" secondAttribute="bottom" constant="8" id="r8s-4J-gtG"/>
                                             <constraint firstItem="ybQ-Fv-oWl" firstAttribute="top" secondItem="EDq-ey-hgb" secondAttribute="bottom" constant="8" id="vlH-c8-Hki"/>
+                                            <constraint firstItem="KIA-Gz-77K" firstAttribute="leading" secondItem="oGR-oS-vza" secondAttribute="trailing" constant="3" id="wCu-OM-JLj"/>
                                             <constraint firstItem="ybQ-Fv-oWl" firstAttribute="leading" secondItem="gci-pV-GFf" secondAttribute="leading" id="ztj-gN-2If"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -272,7 +290,10 @@
                     <navigationItem key="navigationItem" title="サインイン" id="f4o-J9-z6U"/>
                     <connections>
                         <outlet property="emailField" destination="EDq-ey-hgb" id="TvS-py-9qR"/>
+                        <outlet property="logoImageView" destination="X2m-Qc-8nf" id="nWc-gm-Wen"/>
                         <outlet property="passwordField" destination="KIA-Gz-77K" id="tjw-ep-WNW"/>
+                        <outlet property="passwordImageView" destination="oGR-oS-vza" id="NT2-MX-jOv"/>
+                        <outlet property="userImageView" destination="iXW-Ck-by4" id="1FI-sc-6sM"/>
                         <segue destination="Vp1-qw-AuF" kind="show" identifier="SignInSegue" id="8qb-5R-ByQ"/>
                         <segue destination="7OB-Bs-giL" kind="show" identifier="SignUpSegue" id="met-N7-Kfb"/>
                     </connections>
@@ -921,6 +942,8 @@
     </scenes>
     <resources>
         <image name="Order" width="30" height="30"/>
+        <image name="Password" width="30" height="30"/>
         <image name="SplashLogo.png" width="502" height="376"/>
+        <image name="User" width="30" height="30"/>
     </resources>
 </document>
