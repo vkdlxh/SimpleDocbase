@@ -44,10 +44,6 @@ class GroupViewController: UIViewController {
         print("GroupViewController WillAppear")
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        SVProgressHUD.dismiss()
-    }
-    
     // MARK: Internal Methods
     
     // MARK: Private Methods

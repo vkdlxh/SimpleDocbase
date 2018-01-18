@@ -46,10 +46,6 @@ class MemoListViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        SVProgressHUD.dismiss()
-    }
-    
     // MARK: Internal Methods
     
     func getMemoListFromRequest() {
