@@ -25,10 +25,7 @@ class SignUpViewController: FormViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登録", style: .done, target: self,
                                                             action: #selector(addTapped(sender:)))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        AppUtility.lockOrientation(.portrait)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,9 +40,9 @@ class SignUpViewController: FormViewController {
         builder += email
         builder += password
         builder += passwordCheck
+        builder.alignLeft([email, password, passwordCheck])
         builder += SectionHeaderTitleFormItem().title("APIトークン")
         builder += apiToken
-        builder.alignLeft([email, password, passwordCheck])
         builder += footerView
     }
 

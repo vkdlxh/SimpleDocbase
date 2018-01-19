@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SVProgressHUD
+import SwiftyFORM
 
 class SignInViewController: UIViewController {
     
@@ -24,6 +25,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var passwordImageView: UIImageView!
     @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBAction func signInAction(_ sender: Any) {
         SVProgressHUD.show()
@@ -79,11 +81,15 @@ class SignInViewController: UIViewController {
             passwordImageView.image = tintableImage
             passwordImageView.tintColor = ACAColor().ACAOrange
         }
-        // Do any additional setup after loading the view.
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        AppUtility.lockOrientation(.portrait)
+        self.navigationController?.isNavigationBarHidden = true
         ref = Database.database().reference()
         if Auth.auth().currentUser != nil {
             SVProgressHUD.show(withStatus: "自動サインイン中")
@@ -91,22 +97,28 @@ class SignInViewController: UIViewController {
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        AppUtility.lockOrientation(.all)
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-            logoImageView.isHidden = true
-        } else {
-            print("Portrait")
-            logoImageView.isHidden = false
-            
-        }
+    // MARK: Private Methods
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        let userInfo = (notification as NSNotification).userInfo!
+        let keyboardHeight =  (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        logoImageView.isHidden = true
+        bottomConstraint.constant = keyboardHeight.height
     }
     
-    // MARK: Private Methods
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        logoImageView.isHidden = false
+        bottomConstraint.constant = 0
+    }
+    
     func setAPIToken() {
         let userID = Auth.auth().currentUser?.uid
         self.ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
