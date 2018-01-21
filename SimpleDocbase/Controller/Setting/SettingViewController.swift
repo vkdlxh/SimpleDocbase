@@ -16,13 +16,16 @@ class SettingViewController: FormViewController {
     let userDefaults = UserDefaults.standard
     var groups = [Group]()
     var preTeam = ""
+    let fbManaber = FBManager.sharedManager
 
     // MARK: Lifecycle
     override func populate(_ builder: FormBuilder) {
         builder.navigationTitle = "設定"
-        builder += SectionHeaderTitleFormItem().title("アカウント")
-        builder += accountViewControllerForm
-        
+        if fbManaber.testMode == false {
+            builder += SectionHeaderTitleFormItem().title("アカウント")
+            builder += accountViewControllerForm
+        }
+
         builder += SectionHeaderTitleFormItem().title("勤怠管理設定")
         builder += groupListPiker
         builder += minuteIntervalSetting

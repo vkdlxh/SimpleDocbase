@@ -17,6 +17,7 @@ class GroupViewController: UIViewController {
     var groups: [Group] = []
     var refreshControl: UIRefreshControl!
     let sectionTitle = ["チーム", "グループ一覧"]
+    let fbManager = FBManager.sharedManager
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +32,9 @@ class GroupViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkAccount()
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        
+        fbManager.checkAccount(self)
         getGroupListFromRequest()
 
         self.navigationItem.hidesBackButton = true
@@ -45,16 +48,9 @@ class GroupViewController: UIViewController {
     
     // MARK: Private Methods
     @objc func back(sender: UIBarButtonItem) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            UserDefaults.standard.removeObject(forKey: "tokenKey")
-            UserDefaults.standard.removeObject(forKey: "selectedTeam")
-            UserDefaults.standard.removeObject(forKey: "selectedGroup")
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+        fbManager.signOut {
+            _ = self.navigationController?.popViewController(animated: true)
         }
-        _ = navigationController?.popViewController(animated: true)
     }
     
     @objc private func refresh() {
@@ -91,17 +87,6 @@ class GroupViewController: UIViewController {
                 self.tableView.reloadData()
                 SVProgressHUD.dismiss()
             }
-        }
-    }
-    
-    private func checkAccount() {
-        if Auth.auth().currentUser == nil {
-            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.navigationController!.popToRootViewController(animated: true)
-            }
-            changedAccountAC.addAction(okButton)
-            present(changedAccountAC, animated: true, completion: nil)
         }
     }
     

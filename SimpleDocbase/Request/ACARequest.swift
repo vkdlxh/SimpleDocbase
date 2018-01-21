@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import Firebase
 
 class ACARequest {
     
     // MARK: Properties    
     var url: URL?
     let session: URLSession = URLSession.shared
-    let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
+    let fbManager = FBManager.sharedManager
     
     enum MethodType: String {
         case get    = "GET"
@@ -24,16 +25,23 @@ class ACARequest {
     }
 
     // MARK: Internal Methods
-    func settingRequest(url: URL, httpMethod: MethodType) -> URLRequest {
-        
+    func settingRequest(url: URL, httpMethod: MethodType, completion: @escaping ((URLRequest?) -> ())){
         var request: URLRequest = URLRequest(url: url)
-        
         request.httpMethod = httpMethod.rawValue
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        if let tokenKey = tokenKey {
-            request.addValue(tokenKey, forHTTPHeaderField: "X-DocBaseToken")
+        
+        if fbManager.testMode == true {
+            request.addValue(fbManager.testToken, forHTTPHeaderField: "X-DocBaseToken")
+            completion(request)
+        } else {
+            if let apiToken = fbManager.apiToken {
+                request.addValue(apiToken, forHTTPHeaderField: "X-DocBaseToken")
+                completion(request)
+                
+            } else {
+                completion(nil)
+            }
         }
-        return request
     }
     
     func makeTeamDomainArray(dict: [[String : String]]) -> [String]?{

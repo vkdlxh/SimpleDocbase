@@ -12,6 +12,7 @@ target 'SimpleDocbase' do
   pod 'Firebase/Core'
   pod 'FirebaseUI/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/RemoteConfig'
 
 end
 

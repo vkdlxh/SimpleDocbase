@@ -13,18 +13,14 @@ import SVProgressHUD
 import Firebase
 
 class AccountViewController: FormViewController {
-
-    enum AlertAction {
-        case success
-        case delete
-    }
-
+    
     // MARK: Properties
     let userDefaults = UserDefaults.standard
+    let fbManager = FBManager.sharedManager
+    let alertManager = AlertManager()
     var user = Auth.auth().currentUser
     var ref: DatabaseReference!
 
-    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +61,8 @@ class AccountViewController: FormViewController {
     lazy var tokenKey: TextFieldFormItem = {
         let instance = TextFieldFormItem()
         instance.placeholder("APIトークンを入力してください。")
-        if let tokenKey = userDefaults.object(forKey: "tokenKey") as? String{
-            instance.value = tokenKey
+        if let apiToken = fbManager.apiToken {
+            instance.value = apiToken
         }
         return instance
     }()
@@ -77,16 +73,7 @@ class AccountViewController: FormViewController {
         if let user = user {
             instance.title = "サインアウト"
             instance.action = {
-                if (self.user?.uid) != nil {
-                    let firebaseAuth = Auth.auth()
-                    do {
-                        try firebaseAuth.signOut()
-                        UserDefaults.standard.removeObject(forKey: "tokenKey")
-                        UserDefaults.standard.removeObject(forKey: "selectedTeam")
-                        UserDefaults.standard.removeObject(forKey: "selectedGroup")
-                    } catch let signOutError as NSError {
-                        print ("Error signing out: %@", signOutError)
-                    }
+                self.fbManager.signOut {
                     _ = self.navigationController?.popViewController(animated: true)
                 }
             }
@@ -96,11 +83,9 @@ class AccountViewController: FormViewController {
                 self.tabBarController?.selectedIndex = 1
             }
         }
-        
         return instance
     }()
 
-    
     // MARK: Internal Methods
     
     // MARK: Private Methods
@@ -112,7 +97,11 @@ class AccountViewController: FormViewController {
         if let user = user {
             if tokenKey.value.isEmpty {
                 // TODO: Check TokenKey Delete Alert PopUp
-                tokenKeyAlert(type: .delete)
+                alertManager.defaultAlert(self, title: "APIトークン削除", message: "APIトークンを削除しますか。", btnName: "削除") {
+                    self.userDefaults.removeObject(forKey: "selectedTeam")
+                    self.userDefaults.removeObject(forKey: "selectedGroup")
+                    self.navigationController?.popViewController(animated: true)
+                }
             } else {
                 // TODO: normally Regist TokenKey
                 saveAPIToken(user, withUsername: tokenKey.value)
@@ -120,20 +109,18 @@ class AccountViewController: FormViewController {
                 ACATeamRequest().getTeamList(completion: { teams in
                     self.userDefaults.set(teams?.first, forKey: "selectedTeam")
                 })
-                tokenKeyAlert(type: .success)
+                alertManager.confirmAlert(self, title: "APIトークン登録", message: "APIトークンを登録しました。") {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         } else {
-            let tokenAC = UIAlertController(title: nil, message: "サインインしてください。", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "確認", style: .default, handler: { action in
+            alertManager.confirmAlert(self, title: "サインインしてください。", message: nil) {
                 self.tabBarController?.selectedIndex = 1
-            })
-            tokenAC.addAction(okAction)
-            self.present(tokenAC, animated: true, completion: nil)
+            }
         }
     }
     
     private func saveAPIToken(_ user: Firebase.User, withUsername apiToken: String) {
-        
         // Create a change request
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         
@@ -144,48 +131,8 @@ class AccountViewController: FormViewController {
                 return
             }
             self.ref.child("users").child(user.uid).setValue(["apiToken": apiToken])
-            self.userDefaults.set(apiToken, forKey: "tokenKey")
-            //TODO: SUCCESS Alert and move to previous view
-            SVProgressHUD.dismiss()
-            let failAC = UIAlertController(title: "アカウントを作成しました。", message: nil, preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .cancel){ action in
-                let firebaseAuth = Auth.auth()
-                do {
-                    try firebaseAuth.signOut()
-                } catch let signOutError as NSError {
-                    print ("Error signing out: %@", signOutError)
-                }
-                self.navigationController?.popViewController(animated: true)
-            }
-            failAC.addAction(okButton)
-            self.present(failAC, animated: true, completion: nil)
-            
+            self.fbManager.apiToken = apiToken
         }
-    }
-    
-    private func tokenKeyAlert(type: AlertAction) {
-        var alert = UIAlertController()
-        switch type {
-        case .success:
-            alert = UIAlertController(title:"APIトークン登録", message: "APIトークンを登録しました。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.navigationController?.popViewController(animated: true)
-            }
-            alert.addAction(okButton)
-        case .delete:
-            alert = UIAlertController(title:"APIトークン削除", message: "APIトークンを削除しますか。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.userDefaults.removeObject(forKey: "tokenKey")
-                self.userDefaults.removeObject(forKey: "selectedTeam")
-                self.userDefaults.removeObject(forKey: "selectedGroup")
-                self.navigationController?.popViewController(animated: true)
-            }
-            let cancelButton = UIAlertAction(title: "キャンセル", style: .cancel)
-            
-            alert.addAction(okButton)
-            alert.addAction(cancelButton)
-        }
-        self.present(alert, animated: true, completion: nil)
     }
 
 }

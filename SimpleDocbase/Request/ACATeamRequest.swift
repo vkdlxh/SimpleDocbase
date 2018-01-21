@@ -14,28 +14,32 @@ class ACATeamRequest: ACARequest {
         print("getTeamList()")
         guard let url = URL(string: "https://api.docbase.io/teams") else { return }
         
-        let request = settingRequest(url: url, httpMethod: .get)
-        
-        session.dataTask(with: request) { (data, response, error) in
-            if let data = data {
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
-                        if let teamList = self.makeTeamDomainArray(dict: json){
-                            completion(teamList)
+        settingRequest(url: url, httpMethod: .get) { request in
+            if let request = request {
+                self.session.dataTask(with: request) { (data, response, error) in
+                    if let data = data {
+                        do {
+                            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
+                                if let teamList = self.makeTeamDomainArray(dict: json){
+                                    completion(teamList)
+                                }
+                            } else {
+                                print("Can't TeamList JSON parse")
+                                completion(nil)
+                            }
+                        } catch {
+                            print(error)
+                            completion(nil)
                         }
                     } else {
-                        print("Can't TeamList JSON parse")
+                        print("TeamList No data. Check TokenKey")
+                        UserDefaults.standard.set(nil, forKey: "selectedTeam")
                         completion(nil)
                     }
-                } catch {
-                    print(error)
-                    completion(nil)
-                }
+                    }.resume()
             } else {
-                print("TeamList No data. Check TokenKey")
-                UserDefaults.standard.set(nil, forKey: "selectedTeam")
                 completion(nil)
             }
-        }.resume()
+        }
     }
 }

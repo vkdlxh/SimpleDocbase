@@ -21,6 +21,7 @@
 		DA0605741FEBB65D0033C984 /* SplashLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0605731FEBB65C0033C984 /* SplashLogo.png */; };
 		DA0605781FECCD0A0033C984 /* ACACommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0605771FECCD0A0033C984 /* ACACommentRequest.swift */; };
 		DA0947422008D0B2003B1CE8 /* UILabelDeviceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0947412008D0B2003B1CE8 /* UILabelDeviceClass.swift */; };
+		DA094744200E13D6003B1CE8 /* FBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA094743200E13D6003B1CE8 /* FBManager.swift */; };
 		DA0AD9741FED4A77008344DE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AD9731FED4A77008344DE /* UIViewExtension.swift */; };
 		DA0AD9761FED5444008344DE /* TesterKeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */; };
 		DA0AD9771FED5493008344DE /* Tester.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFD71031FB477F3004F3140 /* Tester.storyboard */; };
@@ -52,6 +53,8 @@
 		DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */; };
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
+		DAAB3E70201096BC00BB18D3 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB3E6F201096BC00BB18D3 /* AlertManager.swift */; };
+		DAAB3E732011A62D00BB18D3 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAAB3E722011A62D00BB18D3 /* AppUtility.swift */; };
 		DAB445D21FED04F6001CC74E /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB445D11FED04F6001CC74E /* GroupListCell.swift */; };
 		DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
@@ -87,6 +90,7 @@
 		DA0605731FEBB65C0033C984 /* SplashLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashLogo.png; sourceTree = "<group>"; };
 		DA0605771FECCD0A0033C984 /* ACACommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACACommentRequest.swift; sourceTree = "<group>"; };
 		DA0947412008D0B2003B1CE8 /* UILabelDeviceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelDeviceClass.swift; sourceTree = "<group>"; };
+		DA094743200E13D6003B1CE8 /* FBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBManager.swift; sourceTree = "<group>"; };
 		DA0AD9731FED4A77008344DE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterKeyBoardViewController.swift; sourceTree = "<group>"; };
 		DA0AD9781FEDE6B1008344DE /* DayWorkSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DayWorkSheet.png; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 		DAA3400A1FBBDCDA009658EF /* ACAGroupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAGroupRequest.swift; sourceTree = "<group>"; };
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
+		DAAB3E6F201096BC00BB18D3 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		DAAB3E722011A62D00BB18D3 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		DAB445D11FED04F6001CC74E /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarColor.swift; sourceTree = "<group>"; };
@@ -175,6 +181,8 @@
 			isa = PBXGroup;
 			children = (
 				40DB928C1FC67F5C00B21440 /* WorkSheetManager.swift */,
+				DA094743200E13D6003B1CE8 /* FBManager.swift */,
+				DAAB3E6F201096BC00BB18D3 /* AlertManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 				DA1490021FC4019D001E0159 /* ACAColor.swift */,
 				BB3777B01FED00C1000250B6 /* ACAFont.swift */,
 				DA0947412008D0B2003B1CE8 /* UILabelDeviceClass.swift */,
+				DAAB3E722011A62D00BB18D3 /* AppUtility.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -485,6 +494,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyFORM/SwiftyFORM.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyMarkdown/SwiftyMarkdown.framework",
@@ -495,6 +505,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyFORM.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyMarkdown.framework",
@@ -550,10 +561,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */,
+				DA094744200E13D6003B1CE8 /* FBManager.swift in Sources */,
 				DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */,
 				DA3817E72005E40F00476AD8 /* SignInViewController.swift in Sources */,
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
+				DAAB3E732011A62D00BB18D3 /* AppUtility.swift in Sources */,
 				DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */,
 				DA6043DB1FDA80000073AFE2 /* String+WorkSheet.swift in Sources */,
 				DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */,
@@ -565,6 +578,7 @@
 				DAF9178C1FBEA64F00D18FAB /* AccountViewController.swift in Sources */,
 				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
+				DAAB3E70201096BC00BB18D3 /* AlertManager.swift in Sources */,
 				DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */,
 				DAFA95CE1FA99C4600A368BC /* User.swift in Sources */,
 				DA6608BB1FC6FA95007ADFBE /* DetailMemoViewController.swift in Sources */,

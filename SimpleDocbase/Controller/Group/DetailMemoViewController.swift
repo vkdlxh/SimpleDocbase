@@ -17,7 +17,9 @@ class DetailMemoViewController: UIViewController {
     var memo: Memo?
     let domain = UserDefaults.standard.object(forKey: "selectedTeam") as? String
     var sectionList = ["Memo", "Comment"]
-    let presentToken = UserDefaults.standard.object(forKey: "tokenKey") as? String
+    //TestMode
+    let fbManager = FBManager.sharedManager
+    let alertManager = AlertManager()
     
     // MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
@@ -30,7 +32,8 @@ class DetailMemoViewController: UIViewController {
     @IBAction func writeCommentAction(_ sender: Any) {
         
         if let comment = commentTextField.text, comment.isEmpty {
-            failWriteCommentAlert()
+            alertManager.confirmAlert(self, title: "コメント投稿失敗", message: "コメントは空欄無く入力してください。") {
+            }
         } else {
             let comment: [String: String] = ["body" : commentTextField.text!]
             commentTextField.text = ""
@@ -64,9 +67,9 @@ class DetailMemoViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        checkAccount()
+        fbManager.checkAccount(self)
     }
-    
+
     // MARK: Internal Methods
     
     // MARK: Private Methods
@@ -126,27 +129,7 @@ class DetailMemoViewController: UIViewController {
         writeCommentButton.setImage(tintedImage, for: .normal)
         writeCommentButton.tintColor = ACAColor().ACAOrange
     }
-    
-    
-    private func checkAccount() {
-        if Auth.auth().currentUser == nil {
-            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default) { action in
-                self.navigationController!.popToRootViewController(animated: true)
-            }
-            changedAccountAC.addAction(okButton)
-            present(changedAccountAC, animated: true, completion: nil)
-        }
-    }
-    
-    private func failWriteCommentAlert() {
-            let failAC = UIAlertController(title: "コメント投稿失敗", message: "コメントは空欄無く入力してください。", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "確認", style: .default)
-            failAC.addAction(okButton)
-            present(failAC, animated: true, completion: nil)
-            
-    }
-    
+
     private func getMemoFromRequest() {
         if let domian = domain {
             SVProgressHUD.show()

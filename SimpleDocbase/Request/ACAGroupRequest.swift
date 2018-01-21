@@ -27,27 +27,31 @@ class ACAGroupRequest: ACARequest {
             }
             
             if let url = self.url {
-                let request = self.settingRequest(url: url, httpMethod: .get)
-                
-                self.session.dataTask(with: request) { (data, response, error) in
-                    if let data = data {
-                        do {
-                            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
-
-                                if let groupList = self.makeGroupArray(dict: json) {
-                                    completion(groupList)
+                self.settingRequest(url: url, httpMethod: .get) { request in
+                    if let request = request {
+                        self.session.dataTask(with: request) { (data, response, error) in
+                            if let data = data {
+                                do {
+                                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+                                        
+                                        if let groupList = self.makeGroupArray(dict: json) {
+                                            completion(groupList)
+                                        }
+                                    } else {
+                                        print("Can't GroupList JSON parse")
+                                        completion(nil)
+                                    }
+                                } catch {
+                                    print(error)
+                                    completion(nil)
                                 }
-                            } else {
-                                print("Can't GroupList JSON parse")
-                                completion(nil)
                             }
-                        } catch {
-                            print(error)
-                            completion(nil)
-                        }
+                            }.resume()
+                    } else {
+                        completion(nil)
                     }
-                }.resume()
-            } else {
+                    }
+                } else {
                 print("No URL -> Check TeamRequest")
                 completion(nil)
             }
