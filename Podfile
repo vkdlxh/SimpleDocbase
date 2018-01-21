@@ -9,6 +9,9 @@ target 'SimpleDocbase' do
   pod 'SVProgressHUD'
   pod 'SwiftyFORM'
   pod 'SwiftyMarkdown'
+  pod 'Firebase/Core'
+  pod 'FirebaseUI/Auth'
+  pod 'Firebase/Database'
 
 end
 

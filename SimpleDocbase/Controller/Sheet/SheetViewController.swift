@@ -56,6 +56,7 @@ final class SheetViewController : UIViewController {
         
         alert.addTextField { (textfield : UITextField) in
             textfield.placeholder = "YYYYMM"
+            textfield.keyboardType = .numberPad
             textfield.delegate = self
         }
 

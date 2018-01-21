@@ -23,12 +23,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Vp1-qw-AuF" kind="relationship" relationship="rootViewController" id="9KB-my-n2o"/>
+                        <segue destination="bpH-OJ-Mvp" kind="relationship" relationship="rootViewController" id="dPM-ze-6dp"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1b-qU-fXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="-204"/>
+            <point key="canvasLocation" x="-834" y="-206"/>
         </scene>
         <!--グループ-->
         <scene sceneID="smy-zX-9XB">
@@ -84,27 +84,27 @@
                                     <outlet property="delegate" destination="Vp1-qw-AuF" id="Zhs-Eb-iH7"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データがありません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QX2-t5-hxn">
-                                <rect key="frame" x="100" y="323" width="173.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="データがありません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWW-eR-PT1">
+                                <rect key="frame" x="100.5" y="323" width="174" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="QX2-t5-hxn" firstAttribute="centerY" secondItem="fBk-CM-ufW" secondAttribute="centerY" id="BMM-ng-RLJ"/>
-                            <constraint firstItem="QX2-t5-hxn" firstAttribute="centerX" secondItem="fBk-CM-ufW" secondAttribute="centerX" id="S46-5N-IO2"/>
+                            <constraint firstItem="SWW-eR-PT1" firstAttribute="centerY" secondItem="fBk-CM-ufW" secondAttribute="centerY" id="KCl-2b-o4h"/>
                             <constraint firstItem="hZl-RH-6l6" firstAttribute="top" secondItem="fGB-ye-2I0" secondAttribute="top" id="UOA-o3-g3W"/>
                             <constraint firstItem="hZl-RH-6l6" firstAttribute="leading" secondItem="fGB-ye-2I0" secondAttribute="leading" id="W1Q-wi-xj3"/>
                             <constraint firstItem="fGB-ye-2I0" firstAttribute="trailing" secondItem="hZl-RH-6l6" secondAttribute="trailing" id="WNL-0E-B2b"/>
                             <constraint firstItem="fGB-ye-2I0" firstAttribute="bottom" secondItem="hZl-RH-6l6" secondAttribute="bottom" id="YU7-uk-673"/>
+                            <constraint firstItem="SWW-eR-PT1" firstAttribute="centerX" secondItem="fBk-CM-ufW" secondAttribute="centerX" id="rvK-cp-yf5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fGB-ye-2I0"/>
                     </view>
                     <navigationItem key="navigationItem" title="グループ" id="IiZ-jL-kSl"/>
                     <connections>
-                        <outlet property="messageLabel" destination="QX2-t5-hxn" id="X28-Bi-hVB"/>
+                        <outlet property="messageLabel" destination="SWW-eR-PT1" id="Zze-Lp-iIE"/>
                         <outlet property="tableView" destination="hZl-RH-6l6" id="vLh-iS-kY4"/>
                         <segue destination="D05-NG-W8N" kind="show" identifier="GoMemoListSegue" id="eTs-91-vtY"/>
                         <segue destination="RNf-6k-whU" kind="show" identifier="GoChangeTeam" id="Sr1-vy-Vx1"/>
@@ -113,6 +113,85 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="olr-Oa-j3c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="944.79999999999995" y="-205.54722638680661"/>
+        </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="HyQ-GM-0Q0">
+            <objects>
+                <viewController id="7OB-Bs-giL" customClass="SignUpViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PS4-i1-c1l">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="yHK-NX-CxO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3rI-U1-Cee" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="945" y="564"/>
+        </scene>
+        <!--サインイン-->
+        <scene sceneID="spy-v6-hoh">
+            <objects>
+                <viewController id="bpH-OJ-Mvp" customClass="SignInViewController" customModule="SimpleDocbase" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uQL-gI-gkS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メール" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDq-ey-hgb">
+                                <rect key="frame" x="77.5" y="124" width="220" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="pEU-QK-hO0"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KIA-Gz-77K">
+                                <rect key="frame" x="77.5" y="184" width="220" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm6-sj-Aix">
+                                <rect key="frame" x="149" y="239" width="77" height="30"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.68235294120000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="サインイン">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInAction:" destination="bpH-OJ-Mvp" eventType="touchUpInside" id="ODQ-AU-Fl1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KIA-Gz-77K" firstAttribute="centerX" secondItem="uQL-gI-gkS" secondAttribute="centerX" id="N9I-SJ-Wxh"/>
+                            <constraint firstItem="EDq-ey-hgb" firstAttribute="centerX" secondItem="uQL-gI-gkS" secondAttribute="centerX" id="XUP-VO-Jll"/>
+                            <constraint firstItem="KIA-Gz-77K" firstAttribute="width" secondItem="EDq-ey-hgb" secondAttribute="width" id="Zcl-e6-Qgj"/>
+                            <constraint firstItem="bm6-sj-Aix" firstAttribute="centerX" secondItem="uQL-gI-gkS" secondAttribute="centerX" id="Zvl-vJ-Ug5"/>
+                            <constraint firstItem="EDq-ey-hgb" firstAttribute="top" secondItem="VHR-Xs-2BI" secondAttribute="top" constant="60" id="aIb-hc-lKo"/>
+                            <constraint firstItem="bm6-sj-Aix" firstAttribute="top" secondItem="KIA-Gz-77K" secondAttribute="bottom" constant="25" id="fxx-uW-2Mp"/>
+                            <constraint firstItem="KIA-Gz-77K" firstAttribute="top" secondItem="EDq-ey-hgb" secondAttribute="bottom" constant="30" id="wyo-bp-RzM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VHR-Xs-2BI"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="サインイン" id="f4o-J9-z6U">
+                        <barButtonItem key="rightBarButtonItem" title="アカウントを作成" id="FDT-Lr-bNA">
+                            <connections>
+                                <action selector="SignUpAction:" destination="bpH-OJ-Mvp" id="czL-2C-zdg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailField" destination="EDq-ey-hgb" id="TvS-py-9qR"/>
+                        <outlet property="passwordField" destination="KIA-Gz-77K" id="tjw-ep-WNW"/>
+                        <segue destination="Vp1-qw-AuF" kind="show" identifier="SignInSegue" id="8qb-5R-ByQ"/>
+                        <segue destination="7OB-Bs-giL" kind="show" identifier="SignUpSegue" id="met-N7-Kfb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7kl-9G-1vq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="55" y="-206"/>
         </scene>
         <!--Memo List View Controller-->
         <scene sceneID="Nc5-Ne-N8r">
@@ -240,7 +319,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メモがありません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ypf-Qq-fcc">
-                                <rect key="frame" x="110" y="323" width="156" height="21"/>
+                                <rect key="frame" x="109.5" y="323" width="156" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>

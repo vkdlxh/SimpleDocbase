@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 import SVProgressHUD
 import SwiftyFORM
 
@@ -25,15 +26,17 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControlAction()
-        checkTokenKeyAlert()
         tableView?.backgroundView = messageLabel
-        
         self.tabBarController?.delegate = self
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        checkAccount()
         getGroupListFromRequest()
+
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "サインアウト", style: .done, target: self, action: #selector(back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
         
         print("GroupViewController WillAppear")
     }
@@ -41,6 +44,19 @@ class GroupViewController: UIViewController {
     // MARK: Internal Methods
     
     // MARK: Private Methods
+    @objc func back(sender: UIBarButtonItem) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            UserDefaults.standard.removeObject(forKey: "tokenKey")
+            UserDefaults.standard.removeObject(forKey: "selectedTeam")
+            UserDefaults.standard.removeObject(forKey: "selectedGroup")
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     @objc private func refresh() {
         ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
@@ -59,62 +75,33 @@ class GroupViewController: UIViewController {
         self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.tableView.addSubview(refreshControl)
     }
-    
-    private func checkTokenKeyAlert() {
-        let ac = UIAlertController(title: "APIトークン設定", message: "APIトークンを設定してください。", preferredStyle: .alert)
+
+    private func getGroupListFromRequest() {
+        SVProgressHUD.show(withStatus: "更新中")
         
-        ac.addTextField { (textfield) in
-            textfield.placeholder = "APIトークン入力。。。"
-        }
-        
-        let tokenKey = UserDefaults.standard.object(forKey: "tokenKey") as? String
-        if tokenKey == nil {
-            print("No TokenKey")
-            
-            let submitAction = UIAlertAction(title: "APIトークン登録", style: .default) { _ in
-                guard let tokenKey = ac.textFields?[0].text else {
-                    return
-                }
-                if tokenKey.isEmpty {
-                    self.checkTokenKeyAlert()
-                    print("トークン登録失敗")
-                } else {
-                    UserDefaults.standard.set(tokenKey, forKey: "tokenKey")
-                    self.getGroupListFromRequest()
-                }
+        ACAGroupRequest().getGroupList { groups in
+            if let groups = groups {
+                self.groups = groups
+            } else {
+                SVProgressHUD.showError(withStatus: "エラー")
+                SVProgressHUD.dismiss(withDelay: 1)
+                self.groups.removeAll()
             }
-            
-            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .cancel) {
-                (action: UIAlertAction!) -> Void in
-                print("Cancel")
-            }
-            
-            ac.addAction(submitAction)
-            ac.addAction(cancelAction)
-            
             DispatchQueue.main.async {
+                self.tableView.reloadData()
                 SVProgressHUD.dismiss()
-                self.present(ac, animated: true, completion: nil)
             }
         }
     }
     
-    private func getGroupListFromRequest() {
-        SVProgressHUD.show(withStatus: "更新中")
-        DispatchQueue.global().async {
-            ACAGroupRequest.init().getGroupList { groups in
-                if let groups = groups {
-                    self.groups = groups
-                } else {
-                    SVProgressHUD.showError(withStatus: "エラー")
-                    SVProgressHUD.dismiss(withDelay: 1)
-                    self.groups.removeAll()
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    SVProgressHUD.dismiss()
-                }
+    private func checkAccount() {
+        if Auth.auth().currentUser == nil {
+            let changedAccountAC = UIAlertController(title: "サインアウト", message: "サインアウトされました。", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "確認", style: .default) { action in
+                self.navigationController!.popToRootViewController(animated: true)
             }
+            changedAccountAC.addAction(okButton)
+            present(changedAccountAC, animated: true, completion: nil)
         }
     }
     

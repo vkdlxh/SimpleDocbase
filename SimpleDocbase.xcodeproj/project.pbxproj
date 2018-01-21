@@ -20,6 +20,7 @@
 		DA0605701FEB71760033C984 /* splash(iphone8).png in Resources */ = {isa = PBXBuildFile; fileRef = DA06056F1FEB71760033C984 /* splash(iphone8).png */; };
 		DA0605741FEBB65D0033C984 /* SplashLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DA0605731FEBB65C0033C984 /* SplashLogo.png */; };
 		DA0605781FECCD0A0033C984 /* ACACommentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0605771FECCD0A0033C984 /* ACACommentRequest.swift */; };
+		DA0947422008D0B2003B1CE8 /* UILabelDeviceClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0947412008D0B2003B1CE8 /* UILabelDeviceClass.swift */; };
 		DA0AD9741FED4A77008344DE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AD9731FED4A77008344DE /* UIViewExtension.swift */; };
 		DA0AD9761FED5444008344DE /* TesterKeyBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */; };
 		DA0AD9771FED5493008344DE /* Tester.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAFD71031FB477F3004F3140 /* Tester.storyboard */; };
@@ -38,6 +39,9 @@
 		DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA2D5A801FA6D3DE00668EC9 /* Team.swift */; };
 		DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */; };
 		DA2D5AA41FA7296100668EC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA2D5AA31FA7296100668EC9 /* Main.storyboard */; };
+		DA3817E22005D42C00476AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA3817E12005D42C00476AD8 /* GoogleService-Info.plist */; };
+		DA3817E72005E40F00476AD8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3817E62005E40F00476AD8 /* SignInViewController.swift */; };
+		DA4219DD20075EF9001304A0 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4219DC20075EF9001304A0 /* SignUpViewController.swift */; };
 		DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA5099231FBED26B005052F2 /* Setting.storyboard */; };
 		DA6043DB1FDA80000073AFE2 /* String+WorkSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */; };
 		DA6608B21FC4615C007ADFBE /* ChangeTeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA6608B11FC4615C007ADFBE /* ChangeTeamViewController.swift */; };
@@ -49,7 +53,6 @@
 		DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */; };
 		DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */; };
 		DAB445D21FED04F6001CC74E /* GroupListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB445D11FED04F6001CC74E /* GroupListCell.swift */; };
-		DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DAB994401FE8EC69006289BE /* Lato-Bold.ttf */; };
 		DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */; };
 		DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */; };
 		DAF6B9501FA06F090042BEC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */; };
@@ -59,7 +62,7 @@
 		DAF8C5D11FA9EFAE00B9B8C0 /* Memo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */; };
 		DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DAF917841FBE9B2700D18FAB /* Settings.bundle */; };
 		DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */; };
-		DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */; };
+		DAF9178C1FBEA64F00D18FAB /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAF9178B1FBEA64F00D18FAB /* AccountViewController.swift */; };
 		DAFA95C71FA96DF400A368BC /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */; };
 		DAFA95CE1FA99C4600A368BC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CD1FA99C4500A368BC /* User.swift */; };
 		DAFA95D01FA99C6100A368BC /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAFA95CF1FA99C6100A368BC /* Comment.swift */; };
@@ -83,6 +86,7 @@
 		DA06056F1FEB71760033C984 /* splash(iphone8).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash(iphone8).png"; sourceTree = "<group>"; };
 		DA0605731FEBB65C0033C984 /* SplashLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SplashLogo.png; sourceTree = "<group>"; };
 		DA0605771FECCD0A0033C984 /* ACACommentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACACommentRequest.swift; sourceTree = "<group>"; };
+		DA0947412008D0B2003B1CE8 /* UILabelDeviceClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelDeviceClass.swift; sourceTree = "<group>"; };
 		DA0AD9731FED4A77008344DE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		DA0AD9751FED5444008344DE /* TesterKeyBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterKeyBoardViewController.swift; sourceTree = "<group>"; };
 		DA0AD9781FEDE6B1008344DE /* DayWorkSheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DayWorkSheet.png; sourceTree = "<group>"; };
@@ -103,6 +107,9 @@
 		DA2D5A801FA6D3DE00668EC9 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Sheet.storyboard; sourceTree = "<group>"; };
 		DA2D5AA31FA7296100668EC9 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DA3817E12005D42C00476AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DA3817E62005E40F00476AD8 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		DA4219DC20075EF9001304A0 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DA4EE3F41FD65CFD00DBB0DD /* TesterWorkSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterWorkSheetViewController.swift; sourceTree = "<group>"; };
 		DA5099231FBED26B005052F2 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		DA6043DA1FDA80000073AFE2 /* String+WorkSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+WorkSheet.swift"; sourceTree = "<group>"; };
@@ -115,7 +122,6 @@
 		DAA3400C1FBBDF81009658EF /* ACATeamRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACATeamRequest.swift; sourceTree = "<group>"; };
 		DAA3400E1FBBE043009658EF /* ACAMemoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACAMemoRequest.swift; sourceTree = "<group>"; };
 		DAB445D11FED04F6001CC74E /* GroupListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListCell.swift; sourceTree = "<group>"; };
-		DAB994401FE8EC69006289BE /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		DAC4E5511FA2F24D00301844 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		DAE0AD051FCBB5BA004FFB48 /* StatusBarColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarColor.swift; sourceTree = "<group>"; };
 		DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteMemoViewController.swift; sourceTree = "<group>"; };
@@ -128,7 +134,7 @@
 		DAF8C5D01FA9EFAE00B9B8C0 /* Memo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Memo.swift; sourceTree = "<group>"; };
 		DAF917841FBE9B2700D18FAB /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterTokenKeyViewController.swift; sourceTree = "<group>"; };
+		DAF9178B1FBEA64F00D18FAB /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		DAFA95CD1FA99C4500A368BC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		DAFA95CF1FA99C6100A368BC /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 			children = (
 				DA1490021FC4019D001E0159 /* ACAColor.swift */,
 				BB3777B01FED00C1000250B6 /* ACAFont.swift */,
+				DA0947412008D0B2003B1CE8 /* UILabelDeviceClass.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -236,19 +243,11 @@
 			isa = PBXGroup;
 			children = (
 				DA2D5AA31FA7296100668EC9 /* Main.storyboard */,
-				DA8C80F01FA729D400AC3E3D /* Group.storyboard */,
 				DA2D5A9A1FA7149A00668EC9 /* Sheet.storyboard */,
+				DA8C80F01FA729D400AC3E3D /* Group.storyboard */,
 				DA5099231FBED26B005052F2 /* Setting.storyboard */,
 			);
 			path = Storyboard;
-			sourceTree = "<group>";
-		};
-		DAB9943F1FE8EC56006289BE /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				DAB994401FE8EC69006289BE /* Lato-Bold.ttf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		DAC4E5571FA32B8800301844 /* Model */ = {
@@ -281,8 +280,8 @@
 		DAC4E5591FA32B9800301844 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DAFA95CA1FA98E0800A368BC /* Group */,
 				DAFB18271FB1DF2F00AA4DC7 /* Sheet */,
+				DAFA95CA1FA98E0800A368BC /* Group */,
 				DAFA95CC1FA98E2000A368BC /* Setting */,
 			);
 			path = Controller;
@@ -319,6 +318,7 @@
 				DAC4E5571FA32B8800301844 /* Model */,
 				DAFF5C6D1FA836370087C871 /* Supportting Files */,
 				DAF6B95B1FA06F090042BEC0 /* Info.plist */,
+				DA3817E12005D42C00476AD8 /* GoogleService-Info.plist */,
 				DAF917841FBE9B2700D18FAB /* Settings.bundle */,
 			);
 			path = SimpleDocbase;
@@ -327,6 +327,8 @@
 		DAFA95CA1FA98E0800A368BC /* Group */ = {
 			isa = PBXGroup;
 			children = (
+				DA3817E62005E40F00476AD8 /* SignInViewController.swift */,
+				DA4219DC20075EF9001304A0 /* SignUpViewController.swift */,
 				DAF6B9691FA090BC0042BEC0 /* GroupViewController.swift */,
 				DAFA95C61FA96DF400A368BC /* MemoListViewController.swift */,
 				DAE26BE91FAB113800656BDE /* WriteMemoViewController.swift */,
@@ -344,7 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				DAF917881FBEA1AA00D18FAB /* SettingViewController.swift */,
-				DAF9178B1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift */,
+				DAF9178B1FBEA64F00D18FAB /* AccountViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -382,7 +384,6 @@
 			children = (
 				DA06056C1FEB6DD50033C984 /* Images */,
 				DA06056B1FEB58AD0033C984 /* ScreenShots */,
-				DAB9943F1FE8EC56006289BE /* Fonts */,
 				DAF6B94F1FA06F090042BEC0 /* AppDelegate.swift */,
 				DAF6B9561FA06F090042BEC0 /* Assets.xcassets */,
 				DAF6B9581FA06F090042BEC0 /* LaunchScreen.storyboard */,
@@ -452,7 +453,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAB994411FE8EC69006289BE /* Lato-Bold.ttf in Resources */,
 				DA0AD97E1FEDE6B2008344DE /* DayWorkSheet.png in Resources */,
 				DA0605741FEBB65D0033C984 /* SplashLogo.png in Resources */,
 				DAF917851FBE9B2700D18FAB /* Settings.bundle in Resources */,
@@ -463,6 +463,7 @@
 				DAF6B95A1FA06F090042BEC0 /* LaunchScreen.storyboard in Resources */,
 				DA0AD9821FEDE6B2008344DE /* MemoList.png in Resources */,
 				DA0AD9831FEDE6B2008344DE /* GroupList.png in Resources */,
+				DA3817E22005D42C00476AD8 /* GoogleService-Info.plist in Resources */,
 				DA0AD97F1FEDE6B2008344DE /* MonthWorkSheet.png in Resources */,
 				DA5099241FBED26B005052F2 /* Setting.storyboard in Resources */,
 				DA2D5A9B1FA7149A00668EC9 /* Sheet.storyboard in Resources */,
@@ -482,15 +483,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyFORM/SwiftyFORM.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyMarkdown/SwiftyMarkdown.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyFORM.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyMarkdown.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -512,7 +521,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F5B8AE2642F6A64AE383DEF6 /* [CP] Copy Pods Resources */ = {
@@ -521,9 +530,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SimpleDocbase/Pods-SimpleDocbase-resources.sh",
+				$PODS_CONFIGURATION_BUILD_DIR/FirebaseUI/FirebaseAuthUI.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -539,6 +551,7 @@
 			files = (
 				DAFA95D21FA99C7C00A368BC /* Tag.swift in Sources */,
 				DAA3400D1FBBDF81009658EF /* ACATeamRequest.swift in Sources */,
+				DA3817E72005E40F00476AD8 /* SignInViewController.swift in Sources */,
 				DA2D5A811FA6D3DE00668EC9 /* Team.swift in Sources */,
 				DA2D5A7F1FA6D3B500668EC9 /* Group.swift in Sources */,
 				DAF917891FBEA1AA00D18FAB /* SettingViewController.swift in Sources */,
@@ -546,9 +559,10 @@
 				DA0CE9841FC29F4C00B4850D /* Meta.swift in Sources */,
 				DA0605781FECCD0A0033C984 /* ACACommentRequest.swift in Sources */,
 				40D9E4751FC91A99003B353F /* DaySheetEditViewController.swift in Sources */,
+				DA4219DD20075EF9001304A0 /* SignUpViewController.swift in Sources */,
 				DAE26BEA1FAB113800656BDE /* WriteMemoViewController.swift in Sources */,
 				DA0CE9871FC2C87300B4850D /* MemoListCell.swift in Sources */,
-				DAF9178C1FBEA64F00D18FAB /* RegisterTokenKeyViewController.swift in Sources */,
+				DAF9178C1FBEA64F00D18FAB /* AccountViewController.swift in Sources */,
 				DA1D97DD1FB57940005A5C1D /* ACARequest.swift in Sources */,
 				DAA3400F1FBBE043009658EF /* ACAMemoRequest.swift in Sources */,
 				DAE0AD061FCBB5BA004FFB48 /* StatusBarColor.swift in Sources */,
@@ -569,6 +583,7 @@
 				DAB445D21FED04F6001CC74E /* GroupListCell.swift in Sources */,
 				DAFB18291FB1DF3000AA4DC7 /* SheetViewController.swift in Sources */,
 				DA0AD9741FED4A77008344DE /* UIViewExtension.swift in Sources */,
+				DA0947422008D0B2003B1CE8 /* UILabelDeviceClass.swift in Sources */,
 				BB3ED2641FBA934900C371E6 /* WorkSheetItemCell.swift in Sources */,
 				DAA3400B1FBBDCDA009658EF /* ACAGroupRequest.swift in Sources */,
 				DA6608B71FC6F8E4007ADFBE /* DetailMemoCell.swift in Sources */,
