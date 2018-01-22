@@ -48,8 +48,15 @@ class GroupViewController: UIViewController {
     
     // MARK: Private Methods
     @objc func back(sender: UIBarButtonItem) {
-        fbManager.signOut {
+        if fbManager.testMode == true {
+            fbManager.apiToken = nil
+            UserDefaults.standard.removeObject(forKey: "selectedTeam")
+            UserDefaults.standard.removeObject(forKey: "selectedGroup")
             _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            fbManager.signOut {
+                _ = self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     

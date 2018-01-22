@@ -100,6 +100,7 @@ class SignUpViewController: FormViewController {
             let passwordCheckValue = passwordCheck.value
             if !passwordValue.isEmpty, !passwordCheckValue.isEmpty, passwordValue.count > 5 {
                 if !(passwordValue == passwordCheckValue) {
+                    SVProgressHUD.dismiss()
                     alertManager.confirmAlert(self, title: "入力したパスワードが一致しません。", message: nil) {
                     }
                 } else {
@@ -126,9 +127,11 @@ class SignUpViewController: FormViewController {
                             print(error)
                             switch errorCode {
                             case 17007:
+                                SVProgressHUD.dismiss()
                                 self.alertManager.confirmAlert(self, title: "もう登録されたメールです。", message: nil) {
                                 }
                             default:
+                                SVProgressHUD.dismiss()
                                 self.alertManager.confirmAlert(self, title: error!.localizedDescription, message: nil) {
                                 }
                             }
@@ -149,6 +152,7 @@ class SignUpViewController: FormViewController {
         // Commit profile changes to server
         changeRequest?.commitChanges() { (error) in
             if let error = error {
+                SVProgressHUD.dismiss()
                 self.alertManager.confirmAlert(self, title: error.localizedDescription, message: nil) {
                 }
                 return
