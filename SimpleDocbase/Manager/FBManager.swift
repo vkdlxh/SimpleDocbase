@@ -13,6 +13,7 @@ class FBManager {
     
     var remoteConfig: RemoteConfig!
     var apiToken: String?
+    var statsOfSignIn: Bool = false
     
     // testMode
     var testMode = false
@@ -53,11 +54,16 @@ class FBManager {
             do {
                 try firebaseAuth.signOut()
                 apiToken = nil
+                statsOfSignIn = false
                 UserDefaults.standard.removeObject(forKey: "selectedTeam")
                 UserDefaults.standard.removeObject(forKey: "selectedGroup")
             } catch let signOutError as NSError {
                 print ("Error signing out: %@", signOutError)
             }
+            completion()
+        } else if testMode == true {
+            UserDefaults.standard.removeObject(forKey: "selectedTeam")
+            UserDefaults.standard.removeObject(forKey: "selectedGroup")
             completion()
         }
     }
@@ -73,7 +79,7 @@ class FBManager {
                 VC.present(changedAccountAC, animated: true, completion: nil)
             }
         }
-    }
+    } 
     
     private func setProperty() {
         let testModeConfigKey = "test_mode"

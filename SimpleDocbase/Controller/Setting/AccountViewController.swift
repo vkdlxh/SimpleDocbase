@@ -49,8 +49,10 @@ class AccountViewController: FormViewController {
     lazy var email: StaticTextFormItem = {
         let instance = StaticTextFormItem()
         instance.title = "メール"
-        if let uid = user?.email {
-            instance.value = uid
+        if fbManager.statsOfSignIn == true {
+            if let uid = user?.email {
+                instance.value = uid
+            }
         } else {
             instance.value = "サインインしてください。"
         }
@@ -69,12 +71,13 @@ class AccountViewController: FormViewController {
     
     lazy var signInButton: ButtonFormItem = {
         let instance = ButtonFormItem()
-        
-        if let user = user {
-            instance.title = "サインアウト"
-            instance.action = {
-                self.fbManager.signOut {
-                    _ = self.navigationController?.popViewController(animated: true)
+        if fbManager.statsOfSignIn == true {
+            if let user = user {
+                instance.title = "サインアウト"
+                instance.action = {
+                    self.fbManager.signOut {
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         } else {
@@ -93,24 +96,27 @@ class AccountViewController: FormViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "修正", style: .plain, target: self, action: #selector(tokenKeySubmitAction))
     }
     
-   @objc private func tokenKeySubmitAction() {
-        if let user = user {
-            if tokenKey.value.isEmpty {
-                // TODO: Check TokenKey Delete Alert PopUp
-                alertManager.defaultAlert(self, title: "APIトークン削除", message: "APIトークンを削除しますか。", btnName: "削除") {
-                    self.userDefaults.removeObject(forKey: "selectedTeam")
-                    self.userDefaults.removeObject(forKey: "selectedGroup")
-                    self.navigationController?.popViewController(animated: true)
-                }
-            } else {
-                // TODO: normally Regist TokenKey
-                saveAPIToken(user, withUsername: tokenKey.value)
-                userDefaults.removeObject(forKey: "selectedGroup")
-                ACATeamRequest().getTeamList(completion: { teams in
-                    self.userDefaults.set(teams?.first, forKey: "selectedTeam")
-                })
-                alertManager.confirmAlert(self, title: "APIトークン登録", message: "APIトークンを登録しました。") {
-                    self.navigationController?.popViewController(animated: true)
+    @objc private func tokenKeySubmitAction() {
+        self.view.endEditing(true)
+        if fbManager.statsOfSignIn == true {
+            if let user = user {
+                if tokenKey.value.isEmpty {
+                    // TODO: Check TokenKey Delete Alert PopUp
+                    alertManager.defaultAlert(self, title: "APIトークン削除", message: "APIトークンを削除しますか。", btnName: "削除") {
+                        self.userDefaults.removeObject(forKey: "selectedTeam")
+                        self.userDefaults.removeObject(forKey: "selectedGroup")
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                } else {
+                    // TODO: normally Regist TokenKey
+                    saveAPIToken(user, withUsername: tokenKey.value)
+                    userDefaults.removeObject(forKey: "selectedGroup")
+                    ACATeamRequest().getTeamList(completion: { teams in
+                        self.userDefaults.set(teams?.first, forKey: "selectedTeam")
+                    })
+                    alertManager.confirmAlert(self, title: "APIトークン登録", message: "APIトークンを登録しました。") {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         } else {

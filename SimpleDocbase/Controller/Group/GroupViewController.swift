@@ -29,6 +29,8 @@ class GroupViewController: UIViewController {
         refreshControlAction()
         tableView?.backgroundView = messageLabel
         self.tabBarController?.delegate = self
+        
+        fbManager.statsOfSignIn = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,15 +50,8 @@ class GroupViewController: UIViewController {
     
     // MARK: Private Methods
     @objc func back(sender: UIBarButtonItem) {
-        if fbManager.testMode == true {
-            fbManager.apiToken = nil
-            UserDefaults.standard.removeObject(forKey: "selectedTeam")
-            UserDefaults.standard.removeObject(forKey: "selectedGroup")
+        fbManager.signOut {
             _ = self.navigationController?.popViewController(animated: true)
-        } else {
-            fbManager.signOut {
-                _ = self.navigationController?.popViewController(animated: true)
-            }
         }
     }
     

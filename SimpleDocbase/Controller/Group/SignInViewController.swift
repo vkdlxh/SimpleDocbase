@@ -39,8 +39,15 @@ class SignInViewController: UIViewController {
                     passwordField.text = ""
                     self.performSegue(withIdentifier: "SignInSegue", sender: self)
                 } else {
-                    SVProgressHUD.dismiss()
-                    alertManager.confirmAlert(self, title: "メール/パスワードを\n確認してください。", message: nil) {
+                    Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+                        if let error = error {
+                            print(error)
+                            SVProgressHUD.dismiss()
+                            self.alertManager.confirmAlert(self, title: "メール/パスワードを\n確認してください。", message: nil) {
+                            }
+                            return
+                        }
+                        self.setAPIToken()
                     }
                 }
             } else {
@@ -98,6 +105,7 @@ class SignInViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
+        self.view.endEditing(true)
         AppUtility.lockOrientation(.all)
         self.navigationController?.isNavigationBarHidden = false
     }
