@@ -53,9 +53,12 @@ class SettingViewController: FormViewController {
     
     
     lazy var teamNameTextForm: StaticTextFormItem = {
-        if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {
-            preTeam = selectedTeam
+        if fbManaber.statsOfSignIn == true {
+            if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {
+                preTeam = selectedTeam
+            }
         }
+
         return StaticTextFormItem().title("所属チーム情報")
     }()
     
@@ -109,9 +112,12 @@ class SettingViewController: FormViewController {
     
     // MARK: Private Methods
     private func updateForm() {
-        
-        if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {
-            teamNameTextForm.value = "\(selectedTeam)"
+        if fbManaber.statsOfSignIn == true {
+            if let selectedTeam = userDefaults.object(forKey: "selectedTeam") as? String {
+                teamNameTextForm.value = "\(selectedTeam)"
+            } else {
+                teamNameTextForm.value.removeAll()
+            }
         } else {
             teamNameTextForm.value.removeAll()
         }
