@@ -49,8 +49,10 @@ class AccountViewController: FormViewController {
     lazy var email: StaticTextFormItem = {
         let instance = StaticTextFormItem()
         instance.title = "メール"
-        if let uid = user?.email {
-            instance.value = uid
+        if fbManager.statsOfSignIn == true {
+            if let uid = user?.email {
+                instance.value = uid
+            }
         } else {
             instance.value = "サインインしてください。"
         }
@@ -69,12 +71,13 @@ class AccountViewController: FormViewController {
     
     lazy var signInButton: ButtonFormItem = {
         let instance = ButtonFormItem()
-        
-        if let user = user {
-            instance.title = "サインアウト"
-            instance.action = {
-                self.fbManager.signOut {
-                    _ = self.navigationController?.popViewController(animated: true)
+        if fbManager.statsOfSignIn == true {
+            if let user = user {
+                instance.title = "サインアウト"
+                instance.action = {
+                    self.fbManager.signOut {
+                        _ = self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }
         } else {
