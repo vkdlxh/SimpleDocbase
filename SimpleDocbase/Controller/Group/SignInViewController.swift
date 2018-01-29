@@ -26,6 +26,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var passwordImageView: UIImageView!
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var coverView: UIView!
+    
     
     @IBAction func signInAction(_ sender: Any) {
         SVProgressHUD.show()
@@ -94,11 +96,13 @@ class SignInViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        coverView.isHidden = !fbManager.statsOfSignIn
         AppUtility.lockOrientation(.portrait)
         self.navigationController?.isNavigationBarHidden = true
         ref = Database.database().reference()
         if Auth.auth().currentUser != nil {
+            coverView.isHidden = false
             SVProgressHUD.show(withStatus: "自動サインイン中")
             setAPIToken()
         }

@@ -280,12 +280,25 @@
                                     <constraint firstAttribute="bottom" secondItem="gci-pV-GFf" secondAttribute="bottom" constant="15" id="qDm-Lg-ai6"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3v0-V6-BNq">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                        <color key="value" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="VHR-Xs-2BI" firstAttribute="trailing" secondItem="3v0-V6-BNq" secondAttribute="trailing" id="4Ry-TE-mkj"/>
+                            <constraint firstItem="3v0-V6-BNq" firstAttribute="leading" secondItem="VHR-Xs-2BI" secondAttribute="leading" id="9nq-qy-AMm"/>
                             <constraint firstItem="VHR-Xs-2BI" firstAttribute="trailing" secondItem="LpU-mc-Qyq" secondAttribute="trailing" id="RNU-eB-JaT"/>
                             <constraint firstItem="LpU-mc-Qyq" firstAttribute="leading" secondItem="VHR-Xs-2BI" secondAttribute="leading" id="TMs-Xk-DIE"/>
                             <constraint firstItem="LpU-mc-Qyq" firstAttribute="top" secondItem="VHR-Xs-2BI" secondAttribute="top" id="WBs-BF-nGx"/>
+                            <constraint firstItem="VHR-Xs-2BI" firstAttribute="bottom" secondItem="3v0-V6-BNq" secondAttribute="bottom" id="Wrs-m3-BOz"/>
+                            <constraint firstItem="3v0-V6-BNq" firstAttribute="top" secondItem="VHR-Xs-2BI" secondAttribute="top" id="eo8-hb-6QX"/>
                             <constraint firstItem="VHR-Xs-2BI" firstAttribute="bottom" secondItem="LpU-mc-Qyq" secondAttribute="bottom" id="lev-7L-koR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VHR-Xs-2BI"/>
@@ -293,6 +306,7 @@
                     <navigationItem key="navigationItem" title="サインイン" id="f4o-J9-z6U"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="lev-7L-koR" id="2EG-zz-RI5"/>
+                        <outlet property="coverView" destination="3v0-V6-BNq" id="HlM-aU-5Vk"/>
                         <outlet property="emailField" destination="EDq-ey-hgb" id="TvS-py-9qR"/>
                         <outlet property="logoImageView" destination="X2m-Qc-8nf" id="nWc-gm-Wen"/>
                         <outlet property="passwordField" destination="KIA-Gz-77K" id="tjw-ep-WNW"/>
