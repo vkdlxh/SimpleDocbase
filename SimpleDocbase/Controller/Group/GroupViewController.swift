@@ -27,9 +27,8 @@ class GroupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControlAction()
-        tableView?.backgroundView = messageLabel
         self.tabBarController?.delegate = self
-        
+        messageLabel.isHidden = true
         fbManager.statsOfSignIn = true
     }
     
@@ -80,7 +79,13 @@ class GroupViewController: UIViewController {
         ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
                 self.groups = groups
+                DispatchQueue.main.async {
+                    self.messageLabel.isHidden = true
+                }
             } else {
+                DispatchQueue.main.async {
+                    self.messageLabel.isHidden = false
+                }
                 SVProgressHUD.showError(withStatus: "エラー")
                 SVProgressHUD.dismiss(withDelay: 1)
                 self.groups.removeAll()
@@ -112,10 +117,8 @@ extension GroupViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if groups.count == 0 {
-            messageLabel?.isHidden = false
             return 0
         } else {
-            messageLabel?.isHidden = true
             return sectionTitle.count
         }
     }

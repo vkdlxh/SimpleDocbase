@@ -40,7 +40,7 @@ class MemoListViewController: UIViewController {
                                                             action: #selector(addTapped(sender:)))
         getMemoListFromRequest()
         refreshControlAction()
-        
+        self.messageLabel.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,7 +50,16 @@ class MemoListViewController: UIViewController {
     
     // MARK: Internal Methods
     
-    func getMemoListFromRequest() {
+    // MARK: Private Methods
+    private func refreshControlAction() {
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
+        self.refreshControl.addTarget(self, action: #selector(getMemoListFromRequest), for: .valueChanged)
+        self.tableView.addSubview(refreshControl)
+    }
+    
+    @objc private func getMemoListFromRequest() {
+        pageNum = 1
         SVProgressHUD.show(withStatus: "更新中")
         if let domain = domain {
             if let groupName = group?.name {
@@ -58,7 +67,9 @@ class MemoListViewController: UIViewController {
                     if let memos = memos {
                         self.memos = memos
                         DispatchQueue.main.async {
+                            self.showMessageLabel()
                             SVProgressHUD.dismiss()
+                            self.refreshControl.endRefreshing()
                             self.tableView.reloadData()
                         }
                     }
@@ -67,16 +78,8 @@ class MemoListViewController: UIViewController {
         }
     }
     
-    // MARK: Private Methods
     @objc private func addTapped(sender: UIBarButtonItem) {
         performSegue(withIdentifier: "GoWriteMemoSegue", sender: self)
-    }
-    
-    private func refreshControlAction() {
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
-        self.refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.tableView.addSubview(refreshControl)
     }
     
     private func deleteFailAlert() {
@@ -88,20 +91,13 @@ class MemoListViewController: UIViewController {
         present(deleteFailAC, animated: true, completion: nil)
     }
     
-    @objc private func refresh() {
-        pageNum = 1
-        if let domain = domain {
-            if let groupName = group?.name {
-                ACAMemoRequest().getMemoList(domain: domain, group: groupName, pageNum: pageNum, perPage: perPage) { memos in
-                    if let memos = memos {
-                        self.memos = memos
-                        DispatchQueue.main.async {
-                            self.refreshControl.endRefreshing()
-                            self.tableView.reloadData()
-                        }
-                    }
-                }
-            }
+    func showMessageLabel() {
+        if memos.isEmpty {
+            self.tableView.separatorStyle = .none
+            self.messageLabel.isHidden = false
+        } else {
+            self.tableView.separatorStyle = .singleLine
+            self.messageLabel.isHidden = true
         }
     }
     
@@ -132,13 +128,6 @@ class MemoListViewController: UIViewController {
 extension MemoListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if memos.isEmpty {
-            messageLabel.isHidden = false
-            tableView.separatorStyle = .none
-        } else {
-            messageLabel.isHidden = true
-            tableView.separatorStyle = .singleLine
-        }
         return 1
     }
     
@@ -176,6 +165,7 @@ extension MemoListViewController: UITableViewDataSource {
                                 SVProgressHUD.dismiss()
                                 self.tableView.deleteRows(at: [indexPath], with: .automatic)
                                 self.tableView.endUpdates()
+                                self.showMessageLabel()
                             }
                         } else {
                             // TODO: 失敗
@@ -214,7 +204,7 @@ extension MemoListViewController: WriteMemoViewControllerDelegate {
     
     func writeMemoViewSubmit() {
         dismiss(animated: true, completion: nil)
-        refresh()
+        getMemoListFromRequest()
     }
 }
 
