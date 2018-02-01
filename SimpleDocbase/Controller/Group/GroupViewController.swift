@@ -34,26 +34,16 @@ class GroupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.navigationItem.hidesBackButton = true
         
         fbManager.checkAccount(self)
         getGroupListFromRequest()
-
-        self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(title: "サインアウト", style: .done, target: self, action: #selector(back(sender:)))
-        self.navigationItem.leftBarButtonItem = newBackButton
-        
         print("GroupViewController WillAppear")
     }
     
     // MARK: Internal Methods
     
     // MARK: Private Methods
-    @objc func back(sender: UIBarButtonItem) {
-        fbManager.signOut {
-            _ = self.navigationController?.popViewController(animated: true)
-        }
-    }
-    
     @objc private func refresh() {
         ACAGroupRequest().getGroupList { groups in
             if let groups = groups {
