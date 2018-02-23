@@ -26,17 +26,17 @@ class DetailMemoViewController: UIViewController {
     @IBOutlet weak var viewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint?
     @IBOutlet weak var keyboardView: UIView!
-    @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var writeCommentButton: UIButton!
     
     @IBAction func writeCommentAction(_ sender: Any) {
         
-        if let comment = commentTextField.text, comment.isEmpty {
+        if let comment = commentTextView.text, comment.isEmpty {
             alertManager.confirmAlert(self, title: "コメント投稿失敗", message: "コメントは空欄無く入力してください。") {
             }
         } else {
-            let comment: [String: String] = ["body" : commentTextField.text!]
-            commentTextField.text = ""
+            let comment: [String: String] = ["body" : commentTextView.text!]
+            commentTextView.text = ""
             if let domain = domain {
                 ACACommentRequest().writeComment(memoId: memoId, domain: domain, dict: comment) { bool in
                     if bool == true {
@@ -117,12 +117,16 @@ class DetailMemoViewController: UIViewController {
         
         let viewTopBorder = UIView(frame: CGRect(x: 0,
                                                  y: 0,
-                                                 width: keyboardView.frame.width,
+                                                 width: self.view.frame.width,
                                                  height: 1
             )
         )
-        viewTopBorder.backgroundColor = UIColor.lightGray
+        viewTopBorder.backgroundColor = ACAColor().ACALightGrayColor
         keyboardView.addSubview(viewTopBorder)
+        
+        commentTextView.layer.borderWidth = 1
+        commentTextView.layer.borderColor = UIColor.lightGray.cgColor
+        commentTextView.layer.cornerRadius = 10
 
         let origImage = UIImage(named: "Comments")
         let tintedImage = origImage?.withRenderingMode(.alwaysTemplate)

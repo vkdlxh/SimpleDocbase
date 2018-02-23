@@ -488,12 +488,6 @@
                                     <rect key="frame" x="0.0" y="341" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NXB-JM-dsQ">
-                                            <rect key="frame" x="8" y="7" width="327" height="30"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" keyboardType="twitter"/>
-                                        </textField>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7RS-A6-VFy">
                                             <rect key="frame" x="340" y="7" width="30" height="30"/>
                                             <color key="backgroundColor" red="0.092920978479999999" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -506,16 +500,27 @@
                                                 <action selector="writeCommentAction:" destination="GVC-Sf-pHd" eventType="touchUpInside" id="K02-ef-Ox3"/>
                                             </connections>
                                         </button>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Kht-rV-iXj">
+                                            <rect key="frame" x="5" y="5" width="330" height="34"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                    <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textView>
                                     </subviews>
                                     <color key="backgroundColor" red="0.94939202069999995" green="0.66238188740000004" blue="0.36854845289999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
-                                        <constraint firstItem="7RS-A6-VFy" firstAttribute="leading" secondItem="NXB-JM-dsQ" secondAttribute="trailing" constant="5" id="44J-Kx-J5U"/>
+                                        <constraint firstItem="Kht-rV-iXj" firstAttribute="leading" secondItem="IXH-gM-gj1" secondAttribute="leading" constant="5" id="0OA-zx-Z0O"/>
                                         <constraint firstAttribute="trailing" secondItem="7RS-A6-VFy" secondAttribute="trailing" constant="5" id="MXR-i9-0Fm"/>
                                         <constraint firstAttribute="bottom" secondItem="7RS-A6-VFy" secondAttribute="bottom" constant="7" id="NG6-AN-WU0"/>
+                                        <constraint firstAttribute="bottom" secondItem="Kht-rV-iXj" secondAttribute="bottom" constant="5" id="PIG-4p-Mtm"/>
                                         <constraint firstItem="7RS-A6-VFy" firstAttribute="top" secondItem="IXH-gM-gj1" secondAttribute="top" constant="7" id="UhG-wT-nx4"/>
-                                        <constraint firstItem="NXB-JM-dsQ" firstAttribute="leading" secondItem="IXH-gM-gj1" secondAttribute="leading" constant="8" id="oOA-M9-Qpd"/>
-                                        <constraint firstItem="NXB-JM-dsQ" firstAttribute="top" secondItem="IXH-gM-gj1" secondAttribute="top" constant="7" id="tYw-zS-wBd"/>
-                                        <constraint firstAttribute="bottom" secondItem="NXB-JM-dsQ" secondAttribute="bottom" constant="7" id="wyu-sD-y1l"/>
+                                        <constraint firstItem="7RS-A6-VFy" firstAttribute="leading" secondItem="Kht-rV-iXj" secondAttribute="trailing" constant="5" id="mQg-k9-xPx"/>
+                                        <constraint firstItem="Kht-rV-iXj" firstAttribute="top" secondItem="IXH-gM-gj1" secondAttribute="top" constant="5" id="vNQ-8y-Z1U"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
@@ -680,7 +685,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2HB-B8-dbq">
-                                                    <rect key="frame" x="5" y="5" width="25" height="25"/>
+                                                    <rect key="frame" x="5" y="10" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="Pbq-eW-ujK"/>
                                                         <constraint firstAttribute="height" constant="25" id="imn-7B-FOv"/>
@@ -701,7 +706,7 @@
                                             <constraints>
                                                 <constraint firstItem="DJu-Gt-dmf" firstAttribute="top" secondItem="kQb-HA-mdD" secondAttribute="top" constant="2" id="A0d-Jh-c8K"/>
                                                 <constraint firstItem="2HB-B8-dbq" firstAttribute="leading" secondItem="kQb-HA-mdD" secondAttribute="leading" constant="5" id="Gtq-iU-2CM"/>
-                                                <constraint firstItem="2HB-B8-dbq" firstAttribute="top" secondItem="kQb-HA-mdD" secondAttribute="top" constant="5" id="Hd3-bb-bgZ"/>
+                                                <constraint firstItem="2HB-B8-dbq" firstAttribute="top" secondItem="kQb-HA-mdD" secondAttribute="top" constant="10" id="Hd3-bb-bgZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="DJu-Gt-dmf" secondAttribute="bottom" constant="5" id="YT3-Hi-MmH"/>
                                                 <constraint firstAttribute="trailing" secondItem="DJu-Gt-dmf" secondAttribute="trailing" constant="5" id="rdI-Nr-eKh"/>
                                                 <constraint firstItem="DJu-Gt-dmf" firstAttribute="leading" secondItem="2HB-B8-dbq" secondAttribute="trailing" constant="5" id="y91-ym-GfH"/>
@@ -729,7 +734,7 @@
                         <viewLayoutGuide key="safeArea" id="t60-7c-hSq"/>
                     </view>
                     <connections>
-                        <outlet property="commentTextField" destination="NXB-JM-dsQ" id="19T-sN-xiw"/>
+                        <outlet property="commentTextView" destination="Kht-rV-iXj" id="hdq-Tk-VkA"/>
                         <outlet property="keyboardView" destination="IXH-gM-gj1" id="VGh-z1-9tI"/>
                         <outlet property="tableView" destination="qOJ-U5-Rtv" id="zzt-7x-lPt"/>
                         <outlet property="viewBottomConstraint" destination="bi4-Z2-SrU" id="Q9g-p2-Rwd"/>
